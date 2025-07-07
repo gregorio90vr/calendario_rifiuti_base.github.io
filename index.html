@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Rifiuti</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Timer di disattivazione (opzionale per versione statica) -->
+    
+    <div class="main-container">
+        <!-- Header dell'app -->
+        <div class="app-header">
+            <div class="app-title">🗂️ Calendario Rifiuti</div>
+            <div class="app-subtitle">Raccolta differenziata intelligente</div>
+        </div>
+
+        <!-- Card principale del rifiuto -->
+        <div id="card-rifiuto" class="card-rifiuto">
+            <!-- Header della card con gradiente colorato -->
+            <div id="card-header" class="card-header-custom">
+                <div class="tipo-rifiuto-container">
+                    <div id="emoji-circle" class="emoji-circle">
+                        <!-- Icona/emoji dinamica -->
+                    </div>
+                    <div id="tipo-title" class="tipo-title">
+                        <!-- Nome tipo rifiuto -->
+                        <span id="info-button" class="info-button" onclick="toggleDettagli()">
+                            <i class="fas fa-info"></i>
+                        </span>
+                    </div>
+                    <div id="date-badge" class="date-badge">
+                        <!-- Data corrente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body della card -->
+            <div class="card-body-custom">
+                <!-- Sezione status -->
+                <div class="status-section">
+                    <div id="status-alert" class="status-alert">
+                        <!-- Messaggio di status dinamico -->
+                    </div>
+                </div>
+
+                <!-- Informazioni orario -->
+                <div id="time-info" class="time-info">
+                    <div class="time-info-title">
+                        <i class="fas fa-clock"></i> Orario Conferimento
+                    </div>
+                    <div class="time-info-subtitle">
+                        Esponi i contenitori dalle 19:00 alle 21:00
+                    </div>
+                </div>
+
+                <!-- Note sulla raccolta -->
+                <div id="collection-note" class="collection-note">
+                    <i class="fas fa-info-circle"></i>
+                    <span id="collection-note-text">Ricorda di esporre i rifiuti nell'orario indicato</span>
+                </div>
+
+                <!-- Informazioni app -->
+                <div class="app-info">
+                    <i class="fas fa-mobile-alt"></i>
+                    App aggiornata automaticamente • <span id="current-time"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione dettagli (nascosta inizialmente) -->
+        <div id="dettagli-section" class="dettagli-section" style="display: none;">
+            <button class="back-button" onclick="toggleDettagli()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            
+            <div class="dettagli-card">
+                <div id="dettagli-header" class="dettagli-header">
+                    <div class="dettagli-icon-container">
+                        <div id="dettagli-icon" class="dettagli-icon">
+                            <!-- Icona dinamica -->
+                        </div>
+                    </div>
+                    <h2 id="dettagli-title" class="dettagli-title">Dettagli Raccolta</h2>
+                    <p id="dettagli-description" class="dettagli-description"></p>
+                </div>
+                
+                <div class="dettagli-content">
+                    <div class="dettagli-tips">
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h4>Suggerimento</h4>
+                                <p>Pulisci sempre i contenitori prima del conferimento per migliorare la qualità del riciclaggio!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dettagli-lists">
+                        <div class="dettagli-column dettagli-si-column">
+                            <div class="column-header column-header-si">
+                                <i class="fas fa-check-circle"></i>
+                                <h3>Si può conferire</h3>
+                            </div>
+                            <div id="dettagli-si-list" class="dettagli-list"></div>
+                        </div>
+                        
+                        <div class="dettagli-column dettagli-no-column">
+                            <div class="column-header column-header-no">
+                                <i class="fas fa-times-circle"></i>
+                                <h3>Non si può conferire</h3>
+                            </div>
+                            <div id="dettagli-no-list" class="dettagli-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (opzionale) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
