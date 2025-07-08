@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Mostra il copyright
     displayCopyrightNotice();
+
+    // Aggiungi icona Obiettivo 11 dentro l'app con un timeout per aspettare che il DOM sia pronto
+    setTimeout(() => {
+        addSDGFooterToApp();
+    }, 100);
 });
 
 // Dati dei rifiuti (da app.py)
@@ -417,9 +422,14 @@ function updateCard(tipoRifiuto, dataTarget) {
     const tipoTitle = document.getElementById('tipo-title');
     const dateBadge = document.getElementById('date-badge');
 
-    // Mostra sempre "OGGI" come etichetta, ma il conferimento è di domani
+    // Mostra "CONFERIMENTO ODIERNO" centrato sopra la data formattata
     const oggi = getTodayString();
-    dateBadge.textContent = `OGGI • ${formatDate(oggi)}`;
+    dateBadge.innerHTML = `
+        <div style="text-align: center;">
+            <div style="font-weight: bold; margin-bottom: 5px;">CONFERIMENTO ODIERNO</div>
+            <div>${formatDate(oggi)}</div>
+        </div>
+    `;
 
     if (tipoRifiuto) {
         // Rimuovi classi precedenti
@@ -432,7 +442,7 @@ function updateCard(tipoRifiuto, dataTarget) {
         // Aggiorna icona
         emojiCircle.innerHTML = ICONE_RIFIUTI[tipoRifiuto] || EMOJI_RIFIUTI[tipoRifiuto] || '🗂️';
 
-        // Aggiorna titolo
+        // Aggiorna titolo con descrizione del tipo di rifiuto e icona info
         const tipoCapitalized = tipoRifiuto.charAt(0).toUpperCase() + tipoRifiuto.slice(1);
         const infoButtonHtml = `<span id="info-button" class="info-button" onclick="toggleDettagli()">
             <i class="fas fa-info"></i>
@@ -466,12 +476,12 @@ function updateTimeLogic() {
             timeInfo.style.background = 'linear-gradient(135deg, #10b981, #059669)';
             timeInfo.innerHTML = `
                 <div class="time-info-title">
-                    <i class="fas fa-leaf" style="color: #ecfdf5; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">È ora di conferire!</strong>
+                    <i class="fas fa-leaf" style="color: #ecfdf5; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Ora puoi consegnare i rifiuti!</strong>
                 </div>
                 <div class="time-info-subtitle">
-                    <span style="font-size: 1.1em; color: #ecfdf5;">Conferimento attivo</span>
+                    <span style="font-size: 1.1em; color: #ecfdf5;">Rispetta gli orari: </span>
                     <div style="margin-top: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; padding: 4px 10px; display: inline-block;">
-                        <strong style="font-size: 1.5em; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">19:00-21:00</strong>
+                        <strong style="font-size: 2em; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">19:00-21:00</strong>
                     </div>
                 </div>
             `;
@@ -493,7 +503,7 @@ function updateTimeLogic() {
                         </div>
                         <div style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); border: 2px solid #34d399; border-radius: 15px; box-shadow: 0 8px 25px rgba(52, 211, 153, 0.2); padding: 40px 20px 20px 20px; text-align: center; width: 100%; max-width: 100%;">
                             <h4 style='margin: 0 0 12px 0; color: #065f46; font-size: 1.25em; font-weight: bold;'>Conferimento Attivo</h4>
-                            <p style='margin: 0; color: #047857; line-height: 1.5; font-size: 1.05em;'>Conferisci nel luogo prefissato, rispettando le regole per un conferimento responsabile.</p>
+                            <p style='margin: 0; color: #047857; line-height: 1.5; font-size: 1.05em;'>Conferisci nel luogo prefissato alle ore previste, rispettando le regole per una maggiore tutela ambientale.</p>
                         </div>
                     </div>
                 `;
@@ -503,12 +513,11 @@ function updateTimeLogic() {
             timeInfo.style.background = 'linear-gradient(135deg, #fbbf24, #f59e0b)';
             timeInfo.innerHTML = `
                 <div class="time-info-title">
-                    <i class="fas fa-clock" style="color: #fffbeb; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Preparati per il conferimento</strong>
+                    <i class="fas fa-clock" style="color: #fffbeb; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Conferisci solo negli orari qui indicati!</strong>
                 </div>
                 <div class="time-info-subtitle">
-                    <span style="font-size: 1.1em; color: #fffbeb;">Conferimento attivo dalle</span>
                     <div style="margin-top: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; padding: 4px 10px; display: inline-block;">
-                        <strong style="font-size: 1.5em; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">19:00-21:00</strong>
+                        <strong style="font-size: 2em; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">19:00-21:00</strong>
                     </div>
                 </div>
             `;
@@ -531,7 +540,7 @@ function updateTimeLogic() {
                         </div>
                         <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #f59e0b; border-radius: 15px; box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2); padding: 40px 20px 20px 20px; text-align: center; width: 100%; max-width: 100%;">
                             <h4 style='margin: 0 0 12px 0; color: #92400e; font-size: 1.25em; font-weight: bold;'>Preparazione Consegna</h4>
-                            <p style='margin: 0; color: #b45309; line-height: 1.5; font-size: 1.05em;'>Prepara i rifiuti correttamente per garantire un conferimento responsabile e rispettoso dell'ambiente.</p>
+                            <p style='margin: 0; color: #b45309; line-height: 1.5; font-size: 1.05em;'>Prepara solamente i rifiuti ammessi. <br>Conferisci esclusivamente negli orari riportati e nei punti di raccolta prestabiliti, evitando la dispersione nell'ambiente. <br> <strong>TUTTI <strong> siamo chiamati a contribuire alla protezione dell'ambiente in cui viviamo.</p>
                         </div>
                     </div>
                 `;
@@ -544,9 +553,9 @@ function updateTimeLogic() {
                     <i class="fas fa-moon" style="color: #eff6ff; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Fine conferimento</strong>
                 </div>
                 <div class="time-info-subtitle">
-                    <span style="font-size: 1.1em; color: #eff6ff;">Conferimento attivo dalle</span>
+                    <span style="font-size: 1.1em; color: #eff6ff;">Conferimento attivo solo dalle</span>
                     <div style="margin-top: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; padding: 4px 10px; display: inline-block;">
-                        <strong style="font-size: 1.5em; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">19:00-21:00</strong>
+                        <strong style="font-size: 2em; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">19:00-21:00</strong>
                     </div>
                 </div>
             `;
@@ -568,7 +577,7 @@ function updateTimeLogic() {
                         </div>
                         <div style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); border: 2px solid #6366f1; border-radius: 15px; box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2); padding: 40px 20px 20px 20px; text-align: center; width: 100%; max-width: 100%;">
                             <h4 style='margin: 0 0 12px 0; color: #3730a3; font-size: 1.25em; font-weight: bold;'>Fine Conferimento</h4>
-                            <p style='margin: 0; color: #4338ca; line-height: 1.5; font-size: 1.05em;'>Il tempo per il conferimento è terminato. Prossimo conferimento domani dalle 19:00 alle 21:00.</p>
+                            <p style='margin: 0; color: #4338ca; line-height: 1.5; font-size: 1.05em;'>Il tempo per il conferimento è terminato, non consegnare i rifiuti fuori dalle fasce orarie prestabilite. <br> Consulta il calendario per il prossimo conferimento.</p>
                         </div>
                     </div>
                 `;
@@ -718,8 +727,86 @@ function displayCopyrightNotice() {
         font-size: 0.9em;
         z-index: 1000;
     `;
-    notice.textContent = '© 2025 Gregorio Pellegrini. Tutti i diritti riservati.';
+    notice.textContent = '© 2025 Autore: Gregorio Pellegrini.';
     document.body.appendChild(notice);
+}
+
+// Aggiunge il footer SDG 11 all'interno dell'app
+function addSDGFooterToApp() {
+    // Cerca il container principale dell'app
+    const mainContainer = document.querySelector('.main-container');
+    if (!mainContainer) return;
+
+    // Crea il footer SDG
+    const sdgFooter = document.createElement('div');
+    sdgFooter.id = 'sdg-footer-app';
+    sdgFooter.style.cssText = `
+        background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        border: 1px solid #10b981;
+        border-radius: 12px;
+        padding: 16px;
+        margin: 20px 0 10px 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        box-shadow: 0 4px 12px rgba(16,185,129,0.1);
+    `;
+    
+    sdgFooter.innerHTML = `
+        <div style="
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            max-width: 100%;
+        ">
+            <div style="
+                background: linear-gradient(135deg, #10b981, #059669);
+                border-radius: 50%;
+                padding: 10px;
+                box-shadow: 0 3px 10px rgba(16,185,129,0.3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 52px;
+                height: 52px;
+                flex-shrink: 0;
+            ">
+                <img src='sdg11.png' alt='Obiettivo 11' style='
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 4px;
+                    object-fit: cover;
+                '>
+            </div>
+            <div style="
+                flex: 1;
+                text-align: left;
+                line-height: 1.4;
+            ">
+                <div style="
+                    font-size: 0.8em;
+                    color: #10b981;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.8px;
+                    margin-bottom: 3px;
+                ">Agenda 2030 SDGs</div>
+                <div style="
+                    font-size: 0.95em;
+                    color: #065f46;
+                    font-weight: 600;
+                    line-height: 1.3;
+                ">Obiettivo 11: Città e comunità sostenibili</div>
+                <div style="
+                    font-size: 0.75em;
+                    color: #047857;
+                    margin-top: 2px;
+                    font-style: italic;
+                ">Questa app sostiene l'Obiettivo 11 dell'Agenda ONU 2030, favorendo lo sviluppo di comunità sostenibili tramite la gestione responsabile dei rifiuti e la corretta differenziazione, riducendo l'impatto ambientale.</div>
+            </div>
+        </div>
+    `;
+    
+    // Inserisce il footer alla fine del container principale
+    mainContainer.appendChild(sdgFooter);
 }
 
 // Aggiorna la logica oraria ogni minuto
