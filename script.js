@@ -426,7 +426,7 @@ function updateCard(tipoRifiuto, dataTarget) {
     const oggi = getTodayString();
     dateBadge.innerHTML = `
         <div style="text-align: center;">
-            <div style="font-weight: bold; margin-bottom: 5px;">CONFERIMENTO ODIERNO</div>
+            <div style="font-weight: bold; margin-bottom: 5px;">Data di riferimento:</div>
             <div>${formatDate(oggi)}</div>
         </div>
     `;
@@ -503,7 +503,7 @@ function updateTimeLogic() {
                         </div>
                         <div style="background: linear-gradient(135deg, #d1fae5, #a7f3d0); border: 2px solid #34d399; border-radius: 15px; box-shadow: 0 8px 25px rgba(52, 211, 153, 0.2); padding: 40px 20px 20px 20px; text-align: center; width: 100%; max-width: 100%;">
                             <h4 style='margin: 0 0 12px 0; color: #065f46; font-size: 1.25em; font-weight: bold;'>Conferimento Attivo</h4>
-                            <p style='margin: 0; color: #047857; line-height: 1.5; font-size: 1.05em;'>Conferisci nel luogo prefissato alle ore previste, rispettando le regole per una maggiore tutela ambientale.</p>
+                            <p style='margin: 0; color: #047857; line-height: 1.5; font-size: 1.05em;'>Porta i rifiuti nel luogo prefissato e alle ore previste. <br>Rispetta le regole per una maggiore tutela ambientale.</p>
                         </div>
                     </div>
                 `;
