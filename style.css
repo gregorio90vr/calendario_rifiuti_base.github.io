@@ -681,3 +681,112 @@ body {
 .card-rifiuto {
     animation: fadeIn 0.6s ease-out;
 }
+
+/* Stile per la barra di ricerca */
+.search-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#wasteSearchBar {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Stile per i risultati della ricerca */
+.results-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f8fafc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.results-container div {
+    padding: 5px 0;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 1rem;
+    color: #334155;
+}
+
+.results-container div:last-child {
+    border-bottom: none;
+}
+
+/* Stili per la sezione di ricerca nei dettagli */
+.search-section {
+    padding: 20px 0;
+}
+
+.search-input-container {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-results {
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+}
+
+.search-result-item {
+    padding: 15px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.2s ease;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #f8fafc;
+}
+
+.waste-name {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.waste-disposal {
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.search-hint, .no-results {
+    padding: 20px;
+    text-align: center;
+    color: #64748b;
+    font-style: italic;
+}
+
+.no-results {
+    color: #ef4444;
+}

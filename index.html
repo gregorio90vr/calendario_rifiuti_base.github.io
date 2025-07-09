@@ -52,7 +52,7 @@
                     </div>
                     <div id="tipo-title" class="tipo-title">
                         <!-- Nome tipo rifiuto -->
-                        <span id="info-button" class="info-button" onclick="toggleDettagli()">
+                        <span id="info-button" class="info-button" onclick="initializeWasteSearch()">
                             <i class="fas fa-info"></i>
                         </span>
                     </div>
@@ -134,22 +134,9 @@
                         </div>
                     </div>
                     
-                    <div class="dettagli-lists">
-                        <div class="dettagli-column dettagli-si-column">
-                            <div class="column-header column-header-si">
-                                <i class="fas fa-check-circle"></i>
-                                <h3>Si può conferire</h3>
-                            </div>
-                            <div id="dettagli-si-list" class="dettagli-list"></div>
-                        </div>
-                        
-                        <div class="dettagli-column dettagli-no-column">
-                            <div class="column-header column-header-no">
-                                <i class="fas fa-times-circle"></i>
-                                <h3>Non si può conferire</h3>
-                            </div>
-                            <div id="dettagli-no-list" class="dettagli-list"></div>
-                        </div>
+                    <!-- Area per la barra di ricerca dinamica -->
+                    <div class="dettagli-lists" id="search-area">
+                        <!-- La barra di ricerca verrà inserita qui dinamicamente -->
                     </div>
                 </div>
             </div>

@@ -369,38 +369,439 @@ const CALENDARIO_RIFIUTI = {
     "2025-12-31": "plastica/metalli"
 };
 
+// Database completo dei rifiuti - integrato per evitare problemi CORS
+const DATI_RIFIUTI_COMPLETO = {
+    "Abiti usati": "Raccolta Indumenti",
+    "Accendino": "Secco",
+    "Acetone (contenitore vuoto e lavato)": "Plastica",
+    "Acidi (contenitore sporco)": "Ecocentro",
+    "Acidi (contenitore vuoto e lavato)": "Plastica",
+    "Acquario": "Ecocentro",
+    "Addobbi natalizi": "Secco",
+    "Adesivi": "Secco",
+    "Agenda": "Carta",
+    "Ago con cappuccio": "Secco",
+    "Alcool (contenitore vuoto)": "Plastica",
+    "Alimenti avariati": "Umido",
+    "Alluminio": "Plastica",
+    "Amianto": "Ecocentro",
+    "Ammoniaca (contenitore sporco)": "Ecocentro",
+    "Annaffiatoio": "Plastica",
+    "Antenna del televisore": "Ecocentro",
+    "Antenna parabolica": "Ecocentro",
+    "Antiparassitari (contenitore vuoto)": "Ecocentro",
+    "Aquiloni": "Secco",
+    "Armadi": "Ecocentro",
+    "Articoli per l'edilizia (es. tubi)": "Ecocentro",
+    "Asciugacapelli": "Ecocentro",
+    "Aspirapolvere": "Ecocentro",
+    "Asse da stiro": "Ecocentro",
+    "Assorbenti": "Secco",
+    "Astucci": "Secco",
+    "Attaccapanni in ferro": "Plastica",
+    "Attaccapanni in legno": "Ecocentro",
+    "Auricolari": "Secco",
+    "Avanzi di cibo": "Umido",
+    "Bacinelle in plastica": "Plastica",
+    "Bambole": "Secco",
+    "Bambù": "Umido",
+    "Asta Bandiere": "Secco",
+    "Tessuto Bandiera": "Raccolta Indumenti",
+    "Barattoli di vernice e solventi": "Ecocentro",
+    "Barattoli in acciaio (vuoti e puliti)": "Plastica",
+    "Barattoli in alluminio e acciaio (per olio, pelati, tonno, ecc.)": "Plastica",
+    "Barattoli in latta (scatole di pelati, ecc.)": "Plastica",
+    "Barattoli in plastica per prodotti vari": "Plastica",
+    "Barattoli per alimenti in polvere": "Plastica",
+    "Barattoli per articoli da cancelleria": "Plastica",
+    "Barattoli per detersivi": "Plastica",
+    "Barattoli per rullini fotografici": "Plastica",
+    "Barattoli per salviette umide": "Plastica",
+    "Barattolini di crema": "Plastica",
+    "Barre da imballaggio in polistirolo espanso": "Plastica",
+    "Batterie cellulare": "Ecocentro",
+    "Batterie per auto": "Ecocentro",
+    "Battiscopa in legno": "Ecocentro",
+    "Bauli": "Ecocentro",
+    "Bicchieri e coppette in materiale compostabile (ad es.cellulosa, amido di mais, ecc.)": "Umido",
+    "Bicchieri in cristallo": "Secco",
+    "Bicchieri in plastica": "Plastica",
+    "Bicchieri di vetro": "Secco",
+    "Biciclette": "Ecocentro",
+    "Bilancia pesa persone": "Ecocentro",
+    "Bombole del gas": "Ecocentro",
+    "Bombolette spray con simbolo di pericolo T e/o F (contenitore vuoto)": "Ecocentro",
+    "Bombolette spray non pericolose (contenitore vuoto)": "Plastica",
+    "Borsa dell'acqua calda": "Secco",
+    "Borse di Plastica": "Plastica",
+    "Borse in cuoio": "Raccolta Indumenti",
+    "Bottiglie di plastica per acqua, olio, succhi": "Plastica",
+    "Bottiglie di vetro": "Vetro",
+    "Box doccia": "Ecocentro",
+    "Box per bambini": "Ecocentro",
+    "Brick per succo di frutta, tè (senza cannuccia)": "Carta",
+    "Brocche di vetro": "Vetro",
+    "Buste di carta": "Carta",
+    "Buste di plastica": "Plastica",
+    "Bustine di tè": "Umido",
+    "Caffettiera": "Plastica",
+    "Calcinacci": "Ecocentro",
+    "Calcolatrici con componenti elettroniche": "Ecocentro",
+    "Calze di nylon, lana, cotone": "Raccolta Indumenti",
+    "Candeggina (contenitore vuoto e lavato)": "Plastica",
+    "Candela": "Secco",
+    "Contenitori in plastica per candele": "Secco",
+    "Canne da pesca": "Ecocentro",
+    "Canne per irrigazione": "Secco",
+    "Cannucce": "Secco",
+    "Canovacci": "Raccolta Indumenti",
+    "Capelli": "Secco",
+    "Cappelli": "Raccolta Indumenti",
+    "Capsule per macchinette caffè": "Secco",
+    "Cards Plastificate": "Plastica",
+    "Carbone spento": "Umido",
+    "Carica batterie": "Ecocentro",
+    "Carrozzine": "Ecocentro",
+    "Carta assorbente da cucina (scottex)": "Umido",
+    "Carta carbone": "Secco",
+    "Carta cerata": "Secco",
+    "Carta da forno": "Secco",
+    "Carta delle caramelle": "Plastica",
+    "Carta patinata": "Plastica",
+    "Carta per affettati": "Secco",
+    "Carta per formaggio": "Secco",
+    "Carta sporca di colla o altre sostanze": "Secco",
+    "Carta stagnola (alluminio)": "Plastica",
+    "Carta umida imbevuta di liquidi organici (sugo, olio, ecc.)": "Umido",
+    "Carta vetrata": "Secco",
+    "Cartoncino": "Carta",
+    "Cartongesso": "Ecocentro",
+    "Cartone da imballaggio": "Carta",
+    "Cartone della pizza": "Carta",
+    "Cartone per alimenti - tetrapak (per latte, succhi di frutta, ecc.)": "Carta",
+    "Cartoni pizza sporchi": "Secco",
+    "Cartucce per stampanti": "Ecocentro",
+    "Casco moto e bici": "Secco",
+    "Cassette audio e video": "Secco",
+    "Cassette di legno": "Ecocentro",
+    "Cassette per ortofrutta e carni": "Plastica",
+    "Cavatappi": "Ecocentro",
+    "Cavi elettrici": "Ecocentro",
+    "Cd e cd-rom": "Secco",
+    "Cellophane": "Plastica",
+    "Cenere spenta": "Umido",
+    "Cera": "Secco",
+    "Ceramica": "Secco",
+    "Cerini": "Secco",
+    "Cerotti": "Secco",
+    "Chiavette usb": "Ecocentro",
+    "Chiavi in metallo": "Plastica",
+    "Chiodi": "Ecocentro",
+    "Ciabatte": "Secco",
+    "Cialde caffè con involucro non biodegradabili": "Secco",
+    "Cialde caffè con ivolucro biodegradabile": "Umido",
+    "Cinture in plastica, stoffa e cuoio": "Raccolta Indumenti",
+    "Ciuccio": "Secco",
+    "Computer": "Ecocentro",
+    "Conchiglie e molluschi": "Umido",
+    "Confezioni delle merendine": "Plastica",
+    "Confezioni in cartoncino (ad es. della pasta,del dentifricio, dei cereali, ecc.)": "Carta",
+    "Confezioni in plastica rigide o flessibili": "Plastica",
+    "Contenitore borotalco": "Plastica",
+    "Contenitore pasta abrasiva": "Plastica",
+    "Contenitore smalto": "Plastica",
+    "Contenitori per bibite (lattine)": "Plastica",
+    "Coperchi metallici": "Plastica",
+    "Coperchietti dei barattoli di yogurt": "Plastica",
+    "Corda": "Secco",
+    "Cornici in legno": "Secco",
+    "Cosmetici": "Secco",
+    "Cotone usato": "Secco",
+    "Cotton fioc compostabile": "Umido",
+    "Cover di cellulari": "Secco",
+    "Cravatte": "Secco",
+    "Cristallo": "Secco",
+    "Cucce per animali domestici": "Secco",
+    "Cuscini": "Secco",
+    "Damigiane": "Plastica",
+    "Dentifricio (tubetto vuoto)": "Plastica",
+    "Deodorante per auto": "Secco",
+    "Detersivo (sacchetto sporco)": "Secco",
+    "Diapositive": "Secco",
+    "Dischetti per computer": "Secco",
+    "Dischi in vinile": "Secco",
+    "Dvd": "Secco",
+    "Elastici": "Secco",
+    "Etichette adesive": "Secco",
+    "Etichette di indumenti": "Secco",
+    "Evidenziatori": "Secco",
+    "Feltrini": "Secco",
+    "Ferro": "Plastica",
+    "Fiammiferi": "Umido",
+    "Fili elettrici": "Plastica",
+    "Filo interdentale": "Secco",
+    "Fiori finti": "Secco",
+    "Fiori secchi e recisi": "Umido",
+    "Fitofarmaci": "Plastica",
+    "Foglie": "Umido",
+    "Fondi di caffè": "Umido",
+    "Forbici": "Plastica",
+    "Fotografie": "Secco",
+    "Ganci per chiudere i sacchetti": "Secco",
+    "Garze sterili": "Secco",
+    "Giocattoli": "Secco",
+    "Giubbetti catarifrangenti": "Secco",
+    "Gommapiuma": "Secco",
+    "Graffette": "Secco",
+    "Guanti in pelle o lana": "Secco",
+    "Guarnizioni": "Secco",
+    "Gusci di crostacei": "Umido",
+    "Gusci di frutta secca": "Umido",
+    "Gusci d'uovo": "Umido",
+    "Imballaggi in metallo": "Plastica",
+    "Imballaggi in polistirolo": "Plastica",
+    "Incensi": "Umido",
+    "Insetticidi per uso domestico (barattoli vuoti e puliti)": "Secco",
+    "Lacci per scarpe": "Secco",
+    "Lamette usa e getta": "Secco",
+    "Lampadine a basso consumo": "Secco",
+    "Lampadine a incandescenza": "Secco",
+    "Lana": "Secco",
+    "Lastre raggi": "Secco",
+    "Latta": "Plastica",
+    "Lattine in alluminio": "Plastica",
+    "Lattine in banda stagnata": "Plastica",
+    "Legno": "Secco",
+    "Lenti a contatto": "Secco",
+    "Lenzuola": "Umido",
+    "Lettiera naturale per animali": "Umido",
+    "Lettiera sintetica per animali": "Secco",
+    "Lische di pesce": "Umido",
+    "Lucida scarpe": "Secco",
+    "Lumini / Cera di lumino": "Secco",
+    "Macchina fotografica": "Secco",
+    "Mascherine": "Secco",
+    "Matite": "Secco",
+    "Mestoli di legno": "Secco",
+    "Mouse": "Secco",
+    "Mozziconi di sigaretta": "Secco",
+    "Musicassette": "Secco",
+    "Nastri per fiori": "Secco",
+    "Nastro adesivo": "Secco",
+    "Negativi fotografici": "Secco",
+    "Neon": "Plastica",
+    "Nylon": "Plastica",
+    "Oggetti in gomma": "Secco",
+    "Ombrelli": "Secco",
+    "Ombrelloni": "Umido",
+    "Ossa (avanzi di cibo)": "Umido",
+    "Ovatta": "Secco",
+    "Padelle": "Plastica",
+    "Paglia": "Umido",
+    "Paletta raccogli rifiuti": "Secco",
+    "Pallets": "Secco",
+    "Palline da Tennis": "Secco",
+    "Palloni da gioco": "Secco",
+    "Panni elettrostatici per la polvere": "Secco",
+    "Pannolini": "Secco",
+    "Parasole per auto": "Secco",
+    "Peli": "Secco",
+    "Pellicola fotografica": "Secco",
+    "Pellicole per alimenti": "Plastica",
+    "Peluche": "Secco",
+    "Pennarelli": "Secco",
+    "Penne": "Secco",
+    "Pennelli": "Secco",
+    "Pentole": "Carta",
+    "Pergamene": "Carta",
+    "Pesticidi": "Secco",
+    "Pettini": "Secco",
+    "Piante piccole": "Umido",
+    "Piastrelle": "Secco",
+    "Piastrine per zanzare": "Secco",
+    "Piatti in ceramica": "Secco",
+    "Pirofile": "Secco",
+    "Pneumatici auto piccole quantità": "Plastica",
+    "Polistirolo imballaggi": "Plastica",
+    "Polistirolo pannelli": "Plastica",
+    "Polveri dell'aspirapolvere": "Secco",
+    "Posate in metallo": "Plastica",
+    "Post-it": "Carta",
+    "Profumi (contenitori vuoti)": "Plastica",
+    "Profilattici": "Secco",
+    "Quaderni": "Carta",
+    "Quadri (cornice)": "Carta",
+    "Ramaglie": "Secco",
+    "Rasoi usa e getta": "Secco",
+    "Righelli": "Secco",
+    "Riviste": "Carta",
+    "Rullino fotografico": "Secco",
+    "Sacche per dialisi e per stomatizzati": "Secco",
+    "Sacchetti per aspirapolvere": "Secco",
+    "Sacchi per alimenti per animali": "Plastica",
+    "Sacchi per detersivi": "Plastica",
+    "Salviette": "Plastica",
+    "Sapone in pezzi e saponette": "Secco",
+    "Scarpe e scarponi usati": "Secco",
+    "Scarponi da sci rotti": "Secco",
+    "Scarti di cucina": "Umido",
+    "Scatoloni": "Carta",
+    "Sci": "Secco",
+    "Scopa": "Secco",
+    "Segature (piccole quantità)": "Umido",
+    "Sfalcio dell'erba del giardino": "Plastica",
+    "Shoppers": "Plastica",
+    "Sigarette": "Carta",
+    "Siringhe": "Secco",
+    "Solventi (T e/o F)": "Secco",
+    "Spago": "Secco",
+    "Spazzole": "Secco",
+    "Spazzolini": "Secco",
+    "Spray (T e/o F)": "Secco",
+    "Spugne": "Secco",
+    "Spugne abrasive": "Secco",
+    "Spugne per fiori": "Secco",
+    "Spugne sintetiche": "Secco",
+    "Stagnola": "Carta",
+    "Stampante": "Umido",
+    "Stecchi in legno per gelati": "Umido",
+    "Stoffa": "Secco",
+    "Stoviglie": "Secco",
+    "Stracci": "Secco",
+    "Stracci da cucina": "Secco",
+    "Stracci unti da olio minerale": "Secco",
+    "Stuzzicadenti": "Umido",
+    "Tamponi per timbri": "Secco",
+    "Tanica in banda stagnata": "Plastica",
+    "Tappeti": "Secco",
+    "Tappezzeria/tappeti": "Secco",
+    "Tappi a corona": "Plastica",
+    "Tappi di barattoli in metallo": "Plastica",
+    "Tazze e tazzine in ceramica rotta": "Secco",
+    "Tende in stoffa": "Secco",
+    "Tergicristalli rotti": "Secco",
+    "Terracotta": "Carta",
+    "Tetra-pak": "Carta",
+    "Toner": "Carta",
+    "Torcia": "Carta",
+    "Trielina": "Secco",
+    "Trucchi": "Secco",
+    "Tubetti di colore": "Plastica",
+    "Tubetti di dentifricio": "Plastica",
+    "Tubetti per uso alimentare": "Plastica",
+    "Tubi in ferro": "Secco",
+    "Tubi in gomma": "Secco",
+    "Tubi in PVC per idraulico": "Secco",
+    "Uncinetto": "Secco",
+    "Unghie": "Secco",
+    "Uova": "Umido",
+    "Valigie": "Secco",
+    "Vaschette e barattoli per gelati": "Plastica",
+    "Vasetti degli omogeneizzati": "Secco",
+    "Vasi in ceramica": "Secco",
+    "Vasi in terracotta": "Secco",
+    "Ventilatori": "Umido",
+    "Verdura avariata": "Umido",
+    "Videocassette": "Secco",
+    "Zaini": "Secco",
+    "Zanzariere": "Secco",
+    "Zappa": "Secco",
+    "Zerbino": "Secco",
+    "Zoccoli": "Secco"
+};
+
+// Mappatura per normalizzare i tipi di smaltimento dal JSON ai tipi del calendario
+const NORMALIZZA_TIPI = {
+    "Plastica": "plastica/metalli",
+    "Multi plastica / lattine": "plastica/metalli",
+    "plastica": "plastica/metalli", 
+    "Umido": "umido",
+    "Carta": "carta",
+    "Secco": "secco",
+    "Vetro": "vetro",
+    "Campana del Vetro": "vetro"
+};
+
 let dettagliVisibili = false;
 let tipoRifiutoCorrente = null;
+let dataCorrente = null; // Per tracciare quando aggiornare la data
 
 function initializeApp() {
     console.log('🔄 Inizializzazione app...');
+    console.log(`🔄 Data sistema all'avvio: ${new Date().toLocaleString('it-IT')}`);
     
-    // NUOVA LOGICA: mostra il conferimento del GIORNO SUCCESSIVO (come in app.py)
-    const oggi = getTodayString();
-    const domani = getTomorrowString();
-    const tipoRifiuto = CALENDARIO_RIFIUTI[domani] || null;
-    
-    console.log(`📅 Oggi (${oggi}), conferimento di domani (${domani}): ${tipoRifiuto || 'Nessun conferimento'}`);
-    
-    // Aggiorna la card con il conferimento di domani
-    updateCard(tipoRifiuto, domani);
+    // Forza aggiornamento immediato all'avvio
+    aggiornaDatiConferimento();
     
     // Aggiorna l'orario
     updateCurrentTime();
     
     // Determina logica oraria (come in app.py)
     updateTimeLogic();
+    
+    // Verifica cambio data ogni 30 secondi per essere più reattivo
+    setInterval(verificaCambioData, 30000); // Ogni 30 secondi
+    
+    // Aggiorna anche dopo 2 secondi per assicurarsi che tutto sia caricato
+    setTimeout(() => {
+        console.log('🔄 Aggiornamento tardivo per sicurezza...');
+        aggiornaDatiConferimento();
+    }, 2000);
+}
+
+function aggiornaDatiConferimento() {
+    // NUOVA LOGICA: mostra il conferimento del GIORNO SUCCESSIVO (come in app.py)
+    const oggi = getTodayString();
+    const domani = getTomorrowString();
+    const tipoRifiuto = CALENDARIO_RIFIUTI[domani] || null;
+    
+    console.log(`📅 DEBUG DATE:`);
+    console.log(`   Oggi: ${oggi}`);
+    console.log(`   Domani: ${domani}`);
+    console.log(`   Tipo rifiuto domani: ${tipoRifiuto || 'Nessun conferimento'}`);
+    console.log(`   Calendario entry: `, CALENDARIO_RIFIUTI[domani]);
+    
+    // Aggiorna la card con il conferimento di domani
+    updateCard(tipoRifiuto, domani);
+    
+    dataCorrente = oggi; // Salva la data corrente per il controllo
+}
+
+function verificaCambioData() {
+    const nuovaData = getTodayString();
+    console.log(`🔍 Controllo cambio data: corrente=${dataCorrente}, nuova=${nuovaData}`);
+    
+    if (dataCorrente !== nuovaData) {
+        console.log('📅 🚨 RILEVATO CAMBIO DI DATA! Aggiornamento dati conferimento...');
+        aggiornaDatiConferimento();
+    } else {
+        console.log('📅 ✅ Nessun cambio data rilevato');
+    }
 }
 
 function getTodayString() {
+    // Usa l'orario locale del sistema invece di UTC
     const oggi = new Date();
-    return oggi.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    const year = oggi.getFullYear();
+    const month = String(oggi.getMonth() + 1).padStart(2, '0');
+    const day = String(oggi.getDate()).padStart(2, '0');
+    const dateString = `${year}-${month}-${day}`;
+    
+    console.log(`🕐 Sistema data locale: ${dateString} (ora: ${oggi.getHours()}:${String(oggi.getMinutes()).padStart(2, '0')})`);
+    return dateString;
 }
 
 function getTomorrowString() {
+    // Usa l'orario locale del sistema invece di UTC
     const domani = new Date();
     domani.setDate(domani.getDate() + 1); // Aggiunge 1 giorno
-    return domani.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    const year = domani.getFullYear();
+    const month = String(domani.getMonth() + 1).padStart(2, '0');
+    const day = String(domani.getDate()).padStart(2, '0');
+    const dateString = `${year}-${month}-${day}`;
+    
+    console.log(`🕐 Sistema data domani locale: ${dateString}`);
+    return dateString;
 }
 
 function formatDate(dateString) {
@@ -422,11 +823,11 @@ function updateCard(tipoRifiuto, dataTarget) {
     const tipoTitle = document.getElementById('tipo-title');
     const dateBadge = document.getElementById('date-badge');
 
-    // Mostra "CONFERIMENTO ODIERNO" centrato sopra la data formattata
+    // Mostra la data odierna nel box
     const oggi = getTodayString();
     dateBadge.innerHTML = `
         <div style="text-align: center;">
-            <div style="font-weight: bold; margin-bottom: 5px;">Data di riferimento:</div>
+            <div style="font-weight: bold; margin-bottom: 5px;">Data di conferimento:</div>
             <div>${formatDate(oggi)}</div>
         </div>
     `;
@@ -448,7 +849,6 @@ function updateCard(tipoRifiuto, dataTarget) {
             <i class="fas fa-info"></i>
         </span>`;
         tipoTitle.innerHTML = `${tipoCapitalized} ${infoButtonHtml}`;
-
     } else {
         // Nessun conferimento
         cardHeader.className = 'card-header-custom card-header-nessuno';
@@ -655,15 +1055,11 @@ function toggleDettagli() {
 }
 
 function populateDettagli(tipoRifiuto) {
-    const dettagli = DETTAGLI_RIFIUTI[tipoRifiuto];
-    if (!dettagli) return;
-
     const dettagliHeader = document.querySelector('.dettagli-header');
     const dettagliIcon = document.getElementById('dettagli-icon');
     const dettagliTitle = document.getElementById('dettagli-title');
     const dettagliDescription = document.getElementById('dettagli-description');
-    const dettagliSiList = document.getElementById('dettagli-si-list');
-    const dettagliNoList = document.getElementById('dettagli-no-list');
+    const dettagliListsContainer = document.querySelector('.dettagli-lists') || document.getElementById('search-area');
 
     const icona = ICONE_RIFIUTI[tipoRifiuto] || EMOJI_RIFIUTI[tipoRifiuto] || '🗂️';
     const tipoCapitalized = tipoRifiuto.charAt(0).toUpperCase() + tipoRifiuto.slice(1);
@@ -682,35 +1078,127 @@ function populateDettagli(tipoRifiuto) {
 
     // Set title and description
     if (dettagliTitle) {
-        dettagliTitle.textContent = tipoCapitalized;
+        dettagliTitle.textContent = 'Ricerca Rifiuti';
     }
     if (dettagliDescription) {
-        dettagliDescription.textContent = dettagli.descrizione;
+        dettagliDescription.textContent = `Cerca un rifiuto del tipo ${tipoCapitalized} per scoprire dove smaltirlo`;
     }
 
-    // Populate lists with staggered animation
-    if (dettagliSiList) {
-        dettagliSiList.innerHTML = dettagli.si_puo
-            .map((item, index) => `
-                <div class="dettagli-item dettagli-si" style="animation-delay: ${0.1 + index * 0.05}s;">
-                    <i class="fas fa-check-circle"></i>
-                    <span>${item}</span>
+    // Sostituisci le liste con la barra di ricerca
+    if (dettagliListsContainer) {
+        dettagliListsContainer.innerHTML = `
+            <div class="search-section">
+                <div class="search-input-container">
+                    <input type="text" id="wasteSearchInput" class="search-input" placeholder="Cerca rifiuto (es: bottiglia, carta, ecc.)...">
                 </div>
-            `)
-            .join('');
-    }
-
-    if (dettagliNoList) {
-        dettagliNoList.innerHTML = dettagli.non_si_puo
-            .map((item, index) => `
-                <div class="dettagli-item dettagli-no" style="animation-delay: ${0.1 + index * 0.05}s;">
-                    <i class="fas fa-times-circle"></i>
-                    <span>${item}</span>
-                </div>
-            `)
-            .join('');
+                <div id="searchResults" class="search-results"></div>
+            </div>
+        `;
+        
+        // Inizializza la ricerca dinamica
+        setTimeout(() => {
+            const searchInput = document.getElementById('wasteSearchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            if (searchInput && searchResults) {
+                searchInput.addEventListener('input', (event) => {
+                    const query = event.target.value.trim();
+                    searchResults.innerHTML = '';
+                    
+                    if (query.length < 2) {
+                        searchResults.innerHTML = '<div class="search-hint">Digita almeno 2 caratteri per iniziare la ricerca</div>';
+                        return;
+                    }
+                    
+                    console.log('🔍 Ricerca:', query, 'Tipo:', tipoRifiuto);
+                    
+                    // Normalizza i tipi per il confronto
+                    const normalizeType = (type) => type.toLowerCase().trim();
+                    
+                    // Normalizza il tipo corrente 
+                    const tipoNormalizzato = normalizeType(tipoRifiuto);
+                    
+                    console.log('🎯 Tipo normalizzato per ricerca:', tipoNormalizzato);
+                    
+                    const results = Object.entries(DATI_RIFIUTI_COMPLETO)
+                        .filter(([nome, destinazione]) => {
+                            // Cerca nei rifiuti che contengono la query nel nome
+                            const nomeMatches = normalizeType(nome).includes(normalizeType(query));
+                            
+                            // Normalizza la destinazione usando la mappatura
+                            let destinazioneNormalizzata = normalizeType(destinazione);
+                            if (NORMALIZZA_TIPI[destinazione]) {
+                                destinazioneNormalizzata = normalizeType(NORMALIZZA_TIPI[destinazione]);
+                            }
+                            
+                            // Confronto: la destinazione deve corrispondere al tipo corrente
+                            const destinazioneMatches = destinazioneNormalizzata === tipoNormalizzato;
+                            
+                            if (nomeMatches) {
+                                console.log(`   ${nome}: dest="${destinazione}" -> "${destinazioneNormalizzata}" === "${tipoNormalizzato}" ? ${destinazioneMatches}`);
+                            }
+                            
+                            return nomeMatches && destinazioneMatches;
+                        })
+                        .slice(0, 20) // Limita a 20 risultati
+                        .map(([nome, destinazione]) => ({ nome, destinazione }));
+                    
+                    console.log(`📊 Trovati ${results.length} risultati`);
+                    
+                    if (results.length === 0) {
+                        searchResults.innerHTML = '<div class="no-results">Nessun risultato trovato per questo tipo di rifiuto</div>';
+                    } else {
+                        results.forEach(({ nome, destinazione }) => {
+                            const resultItem = document.createElement('div');
+                            resultItem.className = 'search-result-item';
+                            resultItem.innerHTML = `
+                                <div class="waste-name">${nome}</div>
+                                <div class="waste-disposal">${destinazione}</div>
+                            `;
+                            searchResults.appendChild(resultItem);
+                        });
+                    }
+                });
+            }
+        }, 100);
     }
 }
+
+// Funzione per mostrare/nascondere i dettagli
+function toggleDettagli() {
+    const dettagliSection = document.getElementById('dettagli-section');
+    const cardRifiuto = document.getElementById('card-rifiuto');
+    
+    if (!dettagliSection) {
+        console.error('Sezione dettagli non trovata');
+        return;
+    }
+
+    if (dettagliVisibili) {
+        // Nascondi dettagli
+        dettagliSection.style.display = 'none';
+        if (cardRifiuto) cardRifiuto.style.display = 'block';
+        dettagliVisibili = false;
+    } else {
+        // Mostra dettagli
+        if (tipoRifiutoCorrente) {
+            populateDettagli(tipoRifiutoCorrente);
+            dettagliSection.style.display = 'block';
+            if (cardRifiuto) cardRifiuto.style.display = 'none';
+            dettagliVisibili = true;
+        }
+    }
+}
+
+// Event listener per il click fuori dal modal
+document.addEventListener('click', (event) => {
+    const dettagliSection = document.getElementById('dettagli-section');
+    const dettagliCard = document.querySelector('.dettagli-card');
+    
+    if (dettagliSection && dettagliVisibili && !dettagliCard.contains(event.target) && !event.target.closest('.info-button')) {
+        toggleDettagli();
+    }
+});
 
 // Add copyright notice to the UI
 function displayCopyrightNotice() {
