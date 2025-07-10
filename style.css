@@ -146,14 +146,30 @@ body {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
+    position: relative;
 }
 
 .info-button:hover {
     background: rgba(255, 255, 255, 0.4);
     transform: scale(1.1);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.info-button:hover::after {
+    content: 'Cerca rifiuto';
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    z-index: 1000;
 }
 
 .date-badge {
@@ -670,6 +686,42 @@ body {
         text-align: center;
         gap: 8px;
     }
+    
+    /* Responsive design per mobile */
+    .search-modal-content {
+        margin: 10px;
+        max-width: calc(100% - 20px);
+        max-height: 90vh;
+    }
+    
+    .search-modal-header {
+        padding: 20px;
+    }
+    
+    .search-modal-title {
+        font-size: 1.2rem;
+    }
+    
+    .search-modal-body {
+        padding: 20px;
+        max-height: 70vh;
+    }
+    
+    .modal-search-input {
+        font-size: 1rem;
+        padding: 14px 45px 14px 16px;
+    }
+    
+    .search-button-content {
+        padding: 16px 20px;
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .search-button-icon {
+        margin: 0 auto;
+    }
 }
 
 /* Animazioni */
@@ -789,4 +841,217 @@ body {
 
 .no-results {
     color: #ef4444;
+}
+
+/* Pulsante per aprire ricerca rifiuti */
+.search-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.open-search-button {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border: none;
+    border-radius: 16px;
+    padding: 0;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    overflow: hidden;
+}
+
+.open-search-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.search-button-content {
+    display: flex;
+    align-items: center;
+    padding: 18px 24px;
+    color: white;
+    text-align: left;
+    gap: 16px;
+}
+
+.search-button-icon {
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.search-button-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.search-button-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* Modal di ricerca */
+.search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.search-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.search-modal-content {
+    background: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+    overflow: hidden;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.search-modal-header {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-modal-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+
+.search-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.search-modal-body {
+    padding: 24px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-input {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.modal-search-input:focus {
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.modal-search-results {
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.modal-search-results .search-result-item {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.modal-search-results .search-result-item:hover {
+    background: white;
+    border-color: #3b82f6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.modal-search-results .waste-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.modal-search-results .waste-disposal {
+    font-size: 1rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.modal-search-results .search-hint,
+.modal-search-results .no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #64748b;
+    font-style: italic;
+    font-size: 1rem;
 }

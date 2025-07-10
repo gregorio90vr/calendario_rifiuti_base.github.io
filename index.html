@@ -52,9 +52,6 @@
                     </div>
                     <div id="tipo-title" class="tipo-title">
                         <!-- Nome tipo rifiuto -->
-                        <span id="info-button" class="info-button" onclick="initializeWasteSearch()">
-                            <i class="fas fa-info"></i>
-                        </span>
                     </div>
                     <div id="date-badge" class="date-badge">
                         <!-- Data corrente -->
@@ -95,53 +92,44 @@
             </div>
         </div>
 
-        <!-- Sezione dettagli (nascosta inizialmente) -->
-        <div id="dettagli-section" class="dettagli-section" style="display: none;">
-            <button class="back-button" onclick="toggleDettagli()">
-                <i class="fas fa-arrow-left"></i>
+        <!-- Pulsante per aprire ricerca rifiuti -->
+        <div class="search-button-container">
+            <button id="openSearchButton" class="open-search-button" onclick="openSearchModal()">
+                <div class="search-button-content">
+                    <i class="fas fa-search search-button-icon"></i>
+                    <span class="search-button-text">Dove lo butto?</span>
+                    <span class="search-button-subtitle">Cerca qualsiasi rifiuto</span>
+                </div>
             </button>
-            
-            <div class="dettagli-card">
-                <div id="dettagli-header" class="dettagli-header">
-                    <div class="dettagli-icon-container">
-                        <div id="dettagli-icon" class="dettagli-icon">
-                            <!-- Icona dinamica -->
-                        </div>
-                    </div>
-                    <h2 id="dettagli-title" class="dettagli-title">Dettagli Raccolta</h2>
-                    <p id="dettagli-description" class="dettagli-description"></p>
+        </div>
+
+        <!-- Modal di ricerca rifiuti -->
+        <div id="searchModal" class="search-modal" style="display: none;">
+            <div class="search-modal-overlay" onclick="closeSearchModal()"></div>
+            <div class="search-modal-content">
+                <div class="search-modal-header">
+<h3 class="search-modal-title">
+    <i class="fas fa-search"></i>
+    Dove lo butto?
+</h3>
+<div style="font-size: 1rem; font-weight: normal; margin-top: 0.5em;">
+    Per ulteriori informazioni visita
+    <a href="https://www.amiavr.it/" target="_blank" rel="noopener noreferrer" style="color: #fcfbfa; text-decoration: underline;">AMIA</a>
+</div>
+
+                    <button class="search-modal-close" onclick="closeSearchModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 
-                <div class="dettagli-content">
-                    <div class="dettagli-tips">
-                        <div class="tip-card">
-                            <div class="tip-icon">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <div class="tip-content">
-                                <h4>Suggerimento</h4>
-                                <p>Pulisci sempre i contenitori prima del conferimento 
-                                    per migliorare la qualità del riciclaggio!
-                                </p>
-                                <p>
-                                    Consulta il sito di 
-                                    <a href="https://www.amiavr.it/" target="_blank" rel="noopener noreferrer">
-                                        AMIA
-                                    </a> 
-                                     per ulteriori informazioni
-                                </p>
-                            </div>
-                        </div>
+                <div class="search-modal-body">
+                    <div class="search-input-container">
+                        <input type="text" id="modalSearchInput" class="modal-search-input" placeholder="Cerca qualsiasi rifiuto (es: bottiglia, carta, pile, farmaci...)">
                     </div>
-                    
-                    <!-- Area per la barra di ricerca dinamica -->
-                    <div class="dettagli-lists" id="search-area">
-                        <!-- La barra di ricerca verrà inserita qui dinamicamente -->
-                    </div>
+                    <div id="modalSearchResults" class="modal-search-results"></div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Bootstrap JS (opzionale) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

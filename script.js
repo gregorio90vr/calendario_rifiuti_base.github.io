@@ -460,7 +460,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
-  "Articoli per l�edilizia (es. tubi) piccole quantit�": {
+  "Articoli per l edilizia (es. tubi) piccole quantit ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -508,7 +508,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Bamb�": {
+  "Bamb ": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -620,7 +620,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Multi plastica / lattine",
     categorie: ["plastica/metalli"]
   },
-  "Borsa dell�acqua calda": {
+  "Borsa dell acqua calda": {
     descrizione: "Secco",
     categorie: ["secco"]
   },
@@ -648,7 +648,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
-  "Brick per succo di frutta, t� (senza cannuccia)": {
+  "Brick per succo di frutta, t  (senza cannuccia)": {
     descrizione: "Carta",
     categorie: ["carta"]
   },
@@ -664,7 +664,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Multi plastica / lattine",
     categorie: ["plastica/metalli"]
   },
-  "Bustine di t�": {
+  "Bustine di t ": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -672,7 +672,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Multi plastica / lattine",
     categorie: ["plastica/metalli"]
   },
-  "Calcinacci piccole quantit�": {
+  "Calcinacci piccole quantit ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -720,7 +720,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Raccolta Indumenti",
     categorie: ["altre categorie"]
   },
-  "Capsule per macchinette caff�": {
+  "Capsule per macchinette caff ": {
     descrizione: "Secco",
     categorie: ["secco"]
   },
@@ -884,11 +884,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Cialde caff� con involucro non biodegradabili": {
+  "Cialde caff  con involucro non biodegradabili": {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Cialde caff� con ivolucro biodegradabile": {
+  "Cialde caff  con ivolucro biodegradabile": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -1156,11 +1156,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Filtri del the, t�, caff� e camomilla": {
+  "Filtri del the, t , caff  e camomilla": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
-  "Finestre piccole quantit�": {
+  "Finestre piccole quantit ": {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
@@ -1200,7 +1200,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Bidone del verde o ecocentro",
     categorie: ["ecocentro", "altre categorie"]
   },
-  "Fondi di caff�": {
+  "Fondi di caff ": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -1272,7 +1272,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Umido",
     categorie: ["umido"]
   },
-  "Gusci d�uovo": {
+  "Gusci d uovo": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -1296,11 +1296,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Umido",
     categorie: ["umido"]
   },
-  "Inerti in piccola quantit� (ad es. ceramica, terracotta, piastrelle, mattoni, ecc.)": {
+  "Inerti in piccola quantit  (ad es. ceramica, terracotta, piastrelle, mattoni, ecc.)": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
-  "Infissi piccole quantit�": {
+  "Infissi piccole quantit ": {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
@@ -1448,11 +1448,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Mattonelle di ceramica piccole quantit�": {
+  "Mattonelle di ceramica piccole quantit ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
-  "Mattoni piccole quantit�": {
+  "Mattoni piccole quantit ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -1684,7 +1684,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Pneumatici auto piccole quantit�": {
+  "Pneumatici auto piccole quantit ": {
     descrizione: "Ecocentro o telefona 045 8069213",
     categorie: ["ecocentro", "altre categorie"]
   },
@@ -1696,7 +1696,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Multi plastica / lattine",
     categorie: ["plastica/metalli"]
   },
-  "Polveri dell�aspirapolvere": {
+  "Polveri dell aspirapolvere": {
     descrizione: "Secco",
     categorie: ["secco"]
   },
@@ -1724,7 +1724,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Carta",
     categorie: ["carta"]
   },
-  "Profumi�(contenitori vuoti)": {
+  "Profumi (contenitori vuoti)": {
     descrizione: "Multi plastica / lattine",
     categorie: ["plastica/metalli"]
   },
@@ -1800,7 +1800,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Sacchi e sacchetti in plastica (fuorch� per materiale edile)": {
+  "Sacchi e sacchetti in plastica (fuorch  per materiale edile)": {
     descrizione: "Multi plastica / lattine",
     categorie: ["plastica/metalli"]
   },
@@ -1908,11 +1908,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
-  "Segature (piccole quantit�)": {
+  "Segature (piccole quantit )": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
-  "Sfalcio dell�erba del giardino": {
+  "Sfalcio dell erba del giardino": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -1924,11 +1924,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Siringhe (con l�apposito cappuccio inserito sull�ago)": {
+  "Siringhe (con l apposito cappuccio inserito sull ago)": {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Smalti�(T e/o F)": {
+  "Smalti (T e/o F)": {
     descrizione: "Ecocentro o Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
@@ -2060,7 +2060,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Multi plastica / lattine",
     categorie: ["plastica/metalli"]
   },
-  "Taniche per uso domestico (no benzina pi� 5lt)": {
+  "Taniche per uso domestico (no benzina pi  5lt)": {
     descrizione: "Ecocentro o Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
@@ -2168,7 +2168,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Truciolati o residui di lavorazione del legno (piccole quantit�)": {
+  "Truciolati o residui di lavorazione del legno (piccole quantit )": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -2454,10 +2454,7 @@ function updateCard(tipoRifiuto, dataTarget) {
 
         // Aggiorna titolo con descrizione del tipo di rifiuto e icona info
         const tipoCapitalized = tipoRifiuto.charAt(0).toUpperCase() + tipoRifiuto.slice(1);
-        const infoButtonHtml = `<span id="info-button" class="info-button" onclick="toggleDettagli()">
-            <i class="fas fa-info"></i>
-        </span>`;
-        tipoTitle.innerHTML = `${tipoCapitalized} ${infoButtonHtml}`;
+        tipoTitle.innerHTML = `${tipoCapitalized}`;
     } else {
         // Nessun conferimento
         cardHeader.className = 'card-header-custom card-header-nessuno';
@@ -2687,10 +2684,10 @@ function populateDettagli(tipoRifiuto) {
 
     // Set title and description
     if (dettagliTitle) {
-        dettagliTitle.textContent = 'Ricerca Rifiuti';
+        dettagliTitle.textContent = 'Dove lo butto?';
     }
     if (dettagliDescription) {
-        dettagliDescription.textContent = `Cerca un rifiuto del tipo ${tipoCapitalized} per scoprire dove smaltirlo`;
+        dettagliDescription.textContent = `Cerca un rifiuto per scoprire dove smaltirlo`;
     }
 
     // Sostituisci le liste con la barra di ricerca
@@ -2719,15 +2716,10 @@ function populateDettagli(tipoRifiuto) {
                         return;
                     }
                     
-                    console.log('🔍 Ricerca:', query, 'Tipo:', tipoRifiuto);
+                    console.log('🔍 Ricerca globale:', query);
                     
                     // Normalizza i tipi per il confronto
                     const normalizeType = (type) => type.toLowerCase().trim();
-                    
-                    // Normalizza il tipo corrente 
-                    const tipoNormalizzato = normalizeType(tipoRifiuto);
-                    
-                    console.log('🎯 Tipo normalizzato per ricerca:', tipoNormalizzato);
                     
                     const results = Object.entries(DATI_RIFIUTI_COMPLETO)
                         .filter(([nome, rifiutoData]) => {
@@ -2736,17 +2728,7 @@ function populateDettagli(tipoRifiuto) {
                             
                             if (!nomeMatches) return false;
                             
-                            // Verifica se il rifiuto appartiene al tipo di categoria corrente
-                            const categorie = rifiutoData.categorie || [];
-                            const categoriaMatches = categorie.some(categoria => 
-                                normalizeType(categoria) === tipoNormalizzato
-                            );
-                            
-                            if (nomeMatches) {
-                                console.log(`   ${nome}: categorie=[${categorie.join(', ')}] contains "${tipoNormalizzato}" ? ${categoriaMatches}`);
-                            }
-                            
-                            return categoriaMatches;
+                            return nomeMatches; // Rimuove il filtro per categoria
                         })
                         .slice(0, 20) // Limita a 20 risultati
                         .map(([nome, rifiutoData]) => ({ 
@@ -2757,7 +2739,7 @@ function populateDettagli(tipoRifiuto) {
                     console.log(`📊 Trovati ${results.length} risultati`);
                     
                     if (results.length === 0) {
-                        searchResults.innerHTML = '<div class="no-results">Nessun risultato trovato per questo tipo di rifiuto</div>';
+                        searchResults.innerHTML = '<div class="no-results">Nessun risultato trovato. Prova con un altro termine di ricerca.</div>';
                     } else {
                         results.forEach(({ nome, destinazione }) => {
                             const resultItem = document.createElement('div');
@@ -2772,6 +2754,112 @@ function populateDettagli(tipoRifiuto) {
                 });
             }
         }, 100);
+    }
+}
+
+// Funzioni per gestire la modal di ricerca
+function openSearchModal() {
+    const modal = document.getElementById('searchModal');
+    const searchInput = document.getElementById('modalSearchInput');
+    const searchResults = document.getElementById('modalSearchResults');
+    
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Previene scroll del body
+        
+        // Focus sull'input dopo un breve delay per permettere l'animazione
+        setTimeout(() => {
+            if (searchInput) {
+                searchInput.focus();
+                // Inizializza con messaggio di benvenuto
+                if (searchResults) {
+                    searchResults.innerHTML = '<div class="search-hint">Inizia a digitare per cercare un rifiuto...</div>';
+                }
+            }
+        }, 100);
+        
+        // Inizializza la ricerca se non già fatto
+        initializeModalSearch();
+    }
+}
+
+function closeSearchModal() {
+    const modal = document.getElementById('searchModal');
+    const searchInput = document.getElementById('modalSearchInput');
+    const searchResults = document.getElementById('modalSearchResults');
+    
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // Ripristina scroll del body
+        
+        // Pulisce i risultati e l'input
+        if (searchInput) searchInput.value = '';
+        if (searchResults) searchResults.innerHTML = '';
+    }
+}
+
+// Inizializza la ricerca nella modal
+function initializeModalSearch() {
+    const searchInput = document.getElementById('modalSearchInput');
+    const searchResults = document.getElementById('modalSearchResults');
+    
+    if (searchInput && searchResults && !searchInput.hasAttribute('data-initialized')) {
+        searchInput.setAttribute('data-initialized', 'true');
+        
+        searchInput.addEventListener('input', (event) => {
+            const query = event.target.value.trim();
+            searchResults.innerHTML = '';
+            
+            if (query.length === 0) {
+                searchResults.innerHTML = '<div class="search-hint">Inizia a digitare per cercare un rifiuto...</div>';
+                return;
+            }
+            
+            if (query.length < 2) {
+                searchResults.innerHTML = '<div class="search-hint">Digita almeno 2 caratteri per iniziare la ricerca</div>';
+                return;
+            }
+            
+            console.log('🔍 Ricerca globale:', query);
+            
+            // Normalizza i tipi per il confronto
+            const normalizeType = (type) => type.toLowerCase().trim();
+            
+            const results = Object.entries(DATI_RIFIUTI_COMPLETO)
+                .filter(([nome, rifiutoData]) => {
+                    // Cerca nei rifiuti che contengono la query nel nome
+                    const nomeMatches = normalizeType(nome).includes(normalizeType(query));
+                    return nomeMatches;
+                })
+                .slice(0, 20) // Limita a 20 risultati
+                .map(([nome, rifiutoData]) => ({ 
+                    nome, 
+                    destinazione: rifiutoData.descrizione || rifiutoData 
+                }));
+            
+            console.log(`📊 Trovati ${results.length} risultati`);
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">Nessun risultato trovato. Prova con un altro termine di ricerca.</div>';
+            } else {
+                results.forEach(({ nome, destinazione }) => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    resultItem.innerHTML = `
+                        <div class="waste-name">${nome}</div>
+                        <div class="waste-disposal">${destinazione}</div>
+                    `;
+                    searchResults.appendChild(resultItem);
+                });
+            }
+        });
+        
+        // Chiudi modal con ESC
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeSearchModal();
+            }
+        });
     }
 }
 
