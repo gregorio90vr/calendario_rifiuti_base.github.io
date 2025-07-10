@@ -369,357 +369,1969 @@ const CALENDARIO_RIFIUTI = {
     "2025-12-31": "plastica/metalli"
 };
 
-// Database completo dei rifiuti - integrato per evitare problemi CORS
+// DATI_RIFIUTI_COMPLETO: generato automaticamente da dizionario_rifiuti_completo_definitivo.csv
+// Struttura: ogni rifiuto ha descrizione e array delle categorie applicabili
 const DATI_RIFIUTI_COMPLETO = {
-    "Abiti usati": "Raccolta Indumenti",
-    "Accendino": "Secco",
-    "Acetone (contenitore vuoto e lavato)": "Plastica",
-    "Acidi (contenitore sporco)": "Ecocentro",
-    "Acidi (contenitore vuoto e lavato)": "Plastica",
-    "Acquario": "Ecocentro",
-    "Addobbi natalizi": "Secco",
-    "Adesivi": "Secco",
-    "Agenda": "Carta",
-    "Ago con cappuccio": "Secco",
-    "Alcool (contenitore vuoto)": "Plastica",
-    "Alimenti avariati": "Umido",
-    "Alluminio": "Plastica",
-    "Amianto": "Ecocentro",
-    "Ammoniaca (contenitore sporco)": "Ecocentro",
-    "Annaffiatoio": "Plastica",
-    "Antenna del televisore": "Ecocentro",
-    "Antenna parabolica": "Ecocentro",
-    "Antiparassitari (contenitore vuoto)": "Ecocentro",
-    "Aquiloni": "Secco",
-    "Armadi": "Ecocentro",
-    "Articoli per l'edilizia (es. tubi)": "Ecocentro",
-    "Asciugacapelli": "Ecocentro",
-    "Aspirapolvere": "Ecocentro",
-    "Asse da stiro": "Ecocentro",
-    "Assorbenti": "Secco",
-    "Astucci": "Secco",
-    "Attaccapanni in ferro": "Plastica",
-    "Attaccapanni in legno": "Ecocentro",
-    "Auricolari": "Secco",
-    "Avanzi di cibo": "Umido",
-    "Bacinelle in plastica": "Plastica",
-    "Bambole": "Secco",
-    "Bambù": "Umido",
-    "Asta Bandiere": "Secco",
-    "Tessuto Bandiera": "Raccolta Indumenti",
-    "Barattoli di vernice e solventi": "Ecocentro",
-    "Barattoli in acciaio (vuoti e puliti)": "Plastica",
-    "Barattoli in alluminio e acciaio (per olio, pelati, tonno, ecc.)": "Plastica",
-    "Barattoli in latta (scatole di pelati, ecc.)": "Plastica",
-    "Barattoli in plastica per prodotti vari": "Plastica",
-    "Barattoli per alimenti in polvere": "Plastica",
-    "Barattoli per articoli da cancelleria": "Plastica",
-    "Barattoli per detersivi": "Plastica",
-    "Barattoli per rullini fotografici": "Plastica",
-    "Barattoli per salviette umide": "Plastica",
-    "Barattolini di crema": "Plastica",
-    "Barre da imballaggio in polistirolo espanso": "Plastica",
-    "Batterie cellulare": "Ecocentro",
-    "Batterie per auto": "Ecocentro",
-    "Battiscopa in legno": "Ecocentro",
-    "Bauli": "Ecocentro",
-    "Bicchieri e coppette in materiale compostabile (ad es.cellulosa, amido di mais, ecc.)": "Umido",
-    "Bicchieri in cristallo": "Secco",
-    "Bicchieri in plastica": "Plastica",
-    "Bicchieri di vetro": "Secco",
-    "Biciclette": "Ecocentro",
-    "Bilancia pesa persone": "Ecocentro",
-    "Bombole del gas": "Ecocentro",
-    "Bombolette spray con simbolo di pericolo T e/o F (contenitore vuoto)": "Ecocentro",
-    "Bombolette spray non pericolose (contenitore vuoto)": "Plastica",
-    "Borsa dell'acqua calda": "Secco",
-    "Borse di Plastica": "Plastica",
-    "Borse in cuoio": "Raccolta Indumenti",
-    "Bottiglie di plastica per acqua, olio, succhi": "Plastica",
-    "Bottiglie di vetro": "Vetro",
-    "Box doccia": "Ecocentro",
-    "Box per bambini": "Ecocentro",
-    "Brick per succo di frutta, tè (senza cannuccia)": "Carta",
-    "Brocche di vetro": "Vetro",
-    "Buste di carta": "Carta",
-    "Buste di plastica": "Plastica",
-    "Bustine di tè": "Umido",
-    "Caffettiera": "Plastica",
-    "Calcinacci": "Ecocentro",
-    "Calcolatrici con componenti elettroniche": "Ecocentro",
-    "Calze di nylon, lana, cotone": "Raccolta Indumenti",
-    "Candeggina (contenitore vuoto e lavato)": "Plastica",
-    "Candela": "Secco",
-    "Contenitori in plastica per candele": "Secco",
-    "Canne da pesca": "Ecocentro",
-    "Canne per irrigazione": "Secco",
-    "Cannucce": "Secco",
-    "Canovacci": "Raccolta Indumenti",
-    "Capelli": "Secco",
-    "Cappelli": "Raccolta Indumenti",
-    "Capsule per macchinette caffè": "Secco",
-    "Cards Plastificate": "Plastica",
-    "Carbone spento": "Umido",
-    "Carica batterie": "Ecocentro",
-    "Carrozzine": "Ecocentro",
-    "Carta assorbente da cucina (scottex)": "Umido",
-    "Carta carbone": "Secco",
-    "Carta cerata": "Secco",
-    "Carta da forno": "Secco",
-    "Carta delle caramelle": "Plastica",
-    "Carta patinata": "Plastica",
-    "Carta per affettati": "Secco",
-    "Carta per formaggio": "Secco",
-    "Carta sporca di colla o altre sostanze": "Secco",
-    "Carta stagnola (alluminio)": "Plastica",
-    "Carta umida imbevuta di liquidi organici (sugo, olio, ecc.)": "Umido",
-    "Carta vetrata": "Secco",
-    "Cartoncino": "Carta",
-    "Cartongesso": "Ecocentro",
-    "Cartone da imballaggio": "Carta",
-    "Cartone della pizza": "Carta",
-    "Cartone per alimenti - tetrapak (per latte, succhi di frutta, ecc.)": "Carta",
-    "Cartoni pizza sporchi": "Secco",
-    "Cartucce per stampanti": "Ecocentro",
-    "Casco moto e bici": "Secco",
-    "Cassette audio e video": "Secco",
-    "Cassette di legno": "Ecocentro",
-    "Cassette per ortofrutta e carni": "Plastica",
-    "Cavatappi": "Ecocentro",
-    "Cavi elettrici": "Ecocentro",
-    "Cd e cd-rom": "Secco",
-    "Cellophane": "Plastica",
-    "Cenere spenta": "Umido",
-    "Cera": "Secco",
-    "Ceramica": "Secco",
-    "Cerini": "Secco",
-    "Cerotti": "Secco",
-    "Chiavette usb": "Ecocentro",
-    "Chiavi in metallo": "Plastica",
-    "Chiodi": "Ecocentro",
-    "Ciabatte": "Secco",
-    "Cialde caffè con involucro non biodegradabili": "Secco",
-    "Cialde caffè con ivolucro biodegradabile": "Umido",
-    "Cinture in plastica, stoffa e cuoio": "Raccolta Indumenti",
-    "Ciuccio": "Secco",
-    "Computer": "Ecocentro",
-    "Conchiglie e molluschi": "Umido",
-    "Confezioni delle merendine": "Plastica",
-    "Confezioni in cartoncino (ad es. della pasta,del dentifricio, dei cereali, ecc.)": "Carta",
-    "Confezioni in plastica rigide o flessibili": "Plastica",
-    "Contenitore borotalco": "Plastica",
-    "Contenitore pasta abrasiva": "Plastica",
-    "Contenitore smalto": "Plastica",
-    "Contenitori per bibite (lattine)": "Plastica",
-    "Coperchi metallici": "Plastica",
-    "Coperchietti dei barattoli di yogurt": "Plastica",
-    "Corda": "Secco",
-    "Cornici in legno": "Secco",
-    "Cosmetici": "Secco",
-    "Cotone usato": "Secco",
-    "Cotton fioc compostabile": "Umido",
-    "Cover di cellulari": "Secco",
-    "Cravatte": "Secco",
-    "Cristallo": "Secco",
-    "Cucce per animali domestici": "Secco",
-    "Cuscini": "Secco",
-    "Damigiane": "Plastica",
-    "Dentifricio (tubetto vuoto)": "Plastica",
-    "Deodorante per auto": "Secco",
-    "Detersivo (sacchetto sporco)": "Secco",
-    "Diapositive": "Secco",
-    "Dischetti per computer": "Secco",
-    "Dischi in vinile": "Secco",
-    "Dvd": "Secco",
-    "Elastici": "Secco",
-    "Etichette adesive": "Secco",
-    "Etichette di indumenti": "Secco",
-    "Evidenziatori": "Secco",
-    "Feltrini": "Secco",
-    "Ferro": "Plastica",
-    "Fiammiferi": "Umido",
-    "Fili elettrici": "Plastica",
-    "Filo interdentale": "Secco",
-    "Fiori finti": "Secco",
-    "Fiori secchi e recisi": "Umido",
-    "Fitofarmaci": "Plastica",
-    "Foglie": "Umido",
-    "Fondi di caffè": "Umido",
-    "Forbici": "Plastica",
-    "Fotografie": "Secco",
-    "Ganci per chiudere i sacchetti": "Secco",
-    "Garze sterili": "Secco",
-    "Giocattoli": "Secco",
-    "Giubbetti catarifrangenti": "Secco",
-    "Gommapiuma": "Secco",
-    "Graffette": "Secco",
-    "Guanti in pelle o lana": "Secco",
-    "Guarnizioni": "Secco",
-    "Gusci di crostacei": "Umido",
-    "Gusci di frutta secca": "Umido",
-    "Gusci d'uovo": "Umido",
-    "Imballaggi in metallo": "Plastica",
-    "Imballaggi in polistirolo": "Plastica",
-    "Incensi": "Umido",
-    "Insetticidi per uso domestico (barattoli vuoti e puliti)": "Secco",
-    "Lacci per scarpe": "Secco",
-    "Lamette usa e getta": "Secco",
-    "Lampadine a basso consumo": "Secco",
-    "Lampadine a incandescenza": "Secco",
-    "Lana": "Secco",
-    "Lastre raggi": "Secco",
-    "Latta": "Plastica",
-    "Lattine in alluminio": "Plastica",
-    "Lattine in banda stagnata": "Plastica",
-    "Legno": "Secco",
-    "Lenti a contatto": "Secco",
-    "Lenzuola": "Umido",
-    "Lettiera naturale per animali": "Umido",
-    "Lettiera sintetica per animali": "Secco",
-    "Lische di pesce": "Umido",
-    "Lucida scarpe": "Secco",
-    "Lumini / Cera di lumino": "Secco",
-    "Macchina fotografica": "Secco",
-    "Mascherine": "Secco",
-    "Matite": "Secco",
-    "Mestoli di legno": "Secco",
-    "Mouse": "Secco",
-    "Mozziconi di sigaretta": "Secco",
-    "Musicassette": "Secco",
-    "Nastri per fiori": "Secco",
-    "Nastro adesivo": "Secco",
-    "Negativi fotografici": "Secco",
-    "Neon": "Plastica",
-    "Nylon": "Plastica",
-    "Oggetti in gomma": "Secco",
-    "Ombrelli": "Secco",
-    "Ombrelloni": "Umido",
-    "Ossa (avanzi di cibo)": "Umido",
-    "Ovatta": "Secco",
-    "Padelle": "Plastica",
-    "Paglia": "Umido",
-    "Paletta raccogli rifiuti": "Secco",
-    "Pallets": "Secco",
-    "Palline da Tennis": "Secco",
-    "Palloni da gioco": "Secco",
-    "Panni elettrostatici per la polvere": "Secco",
-    "Pannolini": "Secco",
-    "Parasole per auto": "Secco",
-    "Peli": "Secco",
-    "Pellicola fotografica": "Secco",
-    "Pellicole per alimenti": "Plastica",
-    "Peluche": "Secco",
-    "Pennarelli": "Secco",
-    "Penne": "Secco",
-    "Pennelli": "Secco",
-    "Pentole": "Carta",
-    "Pergamene": "Carta",
-    "Pesticidi": "Secco",
-    "Pettini": "Secco",
-    "Piante piccole": "Umido",
-    "Piastrelle": "Secco",
-    "Piastrine per zanzare": "Secco",
-    "Piatti in ceramica": "Secco",
-    "Pirofile": "Secco",
-    "Pneumatici auto piccole quantità": "Plastica",
-    "Polistirolo imballaggi": "Plastica",
-    "Polistirolo pannelli": "Plastica",
-    "Polveri dell'aspirapolvere": "Secco",
-    "Posate in metallo": "Plastica",
-    "Post-it": "Carta",
-    "Profumi (contenitori vuoti)": "Plastica",
-    "Profilattici": "Secco",
-    "Quaderni": "Carta",
-    "Quadri (cornice)": "Carta",
-    "Ramaglie": "Secco",
-    "Rasoi usa e getta": "Secco",
-    "Righelli": "Secco",
-    "Riviste": "Carta",
-    "Rullino fotografico": "Secco",
-    "Sacche per dialisi e per stomatizzati": "Secco",
-    "Sacchetti per aspirapolvere": "Secco",
-    "Sacchi per alimenti per animali": "Plastica",
-    "Sacchi per detersivi": "Plastica",
-    "Salviette": "Plastica",
-    "Sapone in pezzi e saponette": "Secco",
-    "Scarpe e scarponi usati": "Secco",
-    "Scarponi da sci rotti": "Secco",
-    "Scarti di cucina": "Umido",
-    "Scatoloni": "Carta",
-    "Sci": "Secco",
-    "Scopa": "Secco",
-    "Segature (piccole quantità)": "Umido",
-    "Sfalcio dell'erba del giardino": "Plastica",
-    "Shoppers": "Plastica",
-    "Sigarette": "Carta",
-    "Siringhe": "Secco",
-    "Solventi (T e/o F)": "Secco",
-    "Spago": "Secco",
-    "Spazzole": "Secco",
-    "Spazzolini": "Secco",
-    "Spray (T e/o F)": "Secco",
-    "Spugne": "Secco",
-    "Spugne abrasive": "Secco",
-    "Spugne per fiori": "Secco",
-    "Spugne sintetiche": "Secco",
-    "Stagnola": "Carta",
-    "Stampante": "Umido",
-    "Stecchi in legno per gelati": "Umido",
-    "Stoffa": "Secco",
-    "Stoviglie": "Secco",
-    "Stracci": "Secco",
-    "Stracci da cucina": "Secco",
-    "Stracci unti da olio minerale": "Secco",
-    "Stuzzicadenti": "Umido",
-    "Tamponi per timbri": "Secco",
-    "Tanica in banda stagnata": "Plastica",
-    "Tappeti": "Secco",
-    "Tappezzeria/tappeti": "Secco",
-    "Tappi a corona": "Plastica",
-    "Tappi di barattoli in metallo": "Plastica",
-    "Tazze e tazzine in ceramica rotta": "Secco",
-    "Tende in stoffa": "Secco",
-    "Tergicristalli rotti": "Secco",
-    "Terracotta": "Carta",
-    "Tetra-pak": "Carta",
-    "Toner": "Carta",
-    "Torcia": "Carta",
-    "Trielina": "Secco",
-    "Trucchi": "Secco",
-    "Tubetti di colore": "Plastica",
-    "Tubetti di dentifricio": "Plastica",
-    "Tubetti per uso alimentare": "Plastica",
-    "Tubi in ferro": "Secco",
-    "Tubi in gomma": "Secco",
-    "Tubi in PVC per idraulico": "Secco",
-    "Uncinetto": "Secco",
-    "Unghie": "Secco",
-    "Uova": "Umido",
-    "Valigie": "Secco",
-    "Vaschette e barattoli per gelati": "Plastica",
-    "Vasetti degli omogeneizzati": "Secco",
-    "Vasi in ceramica": "Secco",
-    "Vasi in terracotta": "Secco",
-    "Ventilatori": "Umido",
-    "Verdura avariata": "Umido",
-    "Videocassette": "Secco",
-    "Zaini": "Secco",
-    "Zanzariere": "Secco",
-    "Zappa": "Secco",
-    "Zerbino": "Secco",
-    "Zoccoli": "Secco"
+  "Abiti usati": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Accendino": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Acetone (contenitore vuoto e lavato)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Acidi (contenitore sporco)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Acidi (contenitore vuoto e lavato)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Acquario": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Addobbi natalizi": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Adesivi": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Agenda": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Ago con cappuccio": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Alcool (contenitore vuoto)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Alimenti avariati": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Umido": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Alluminio": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Amianto": {
+    descrizione: "Chiedi informazioni al numero verde AMIA",
+    categorie: ["altre categorie"]
+  },
+  "Ammoniaca (contenitore sporco)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Annaffiatoio": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Antenna del televisore": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Antenna parabolica": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Antiparassitari (contenitore vuoto)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Aquiloni": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Armadi": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Articoli per l�edilizia (es. tubi) piccole quantit�": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Asciugacapelli": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Aspirapolvere": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Asse da stiro": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Assorbenti": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Astucci": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Attaccapanni in ferro": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Attaccapanni in legno": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Auricolari": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Avanzi di cibo": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Bacinelle in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Bambole": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Bamb�": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Asta Bandiere": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Tessuto Bandiera": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Barattoli di vernice e solventi": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Barattoli in acciaio (vuoti e puliti)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barattoli in alluminio e acciaio (per olio, pelati, tonno, ecc.)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barattoli in latta (scatole di pelati, ecc.)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barattoli in plastica per prodotti vari": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barattoli per alimenti in polvere": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barattoli per articoli da cancelleria": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barattoli per detersivi": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barattoli per rullini fotografici": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barattoli per salviette umide": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barattolini di crema": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Barre da imballaggio in polistirolo espanso": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Batterie cellulare": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Batterie per auto": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Battiscopa in legno": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Bauli": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Bicchieri e coppette in materiale compostabile (ad es.cellulosa, amido di mais, ecc.)": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Bicchieri in cristallo": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Bicchieri in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Bicchieri di vetro": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Biciclette": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Bilancia pesa persone": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Bombole del gas": {
+    descrizione: "Fornitori e rivenditori autorizzati",
+    categorie: ["altre categorie"]
+  },
+  "Bombolette spray con simbolo di pericolo T e/o F (contenitore vuoto)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Bombolette spray non pericolose (contenitore vuoto)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Borsa dell�acqua calda": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Borse di Plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Borse in cuoio": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Bottiglie di plastica per acqua, olio, succhi": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Bottiglie di vetro": {
+    descrizione: "Campana del Vetro",
+    categorie: ["vetro"]
+  },
+  "Box doccia": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Box per bambini": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Brick per succo di frutta, t� (senza cannuccia)": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Brocche di vetro": {
+    descrizione: "Campana del Vetro",
+    categorie: ["vetro"]
+  },
+  "Buste di carta": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Buste di plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Bustine di t�": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Caffettiera": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Calcinacci piccole quantit�": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Calcolatrici con componenti elettroniche": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Calze di nylon, lana, cotone": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Candeggina (contenitore vuoto e lavato)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Candela": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Contenitori in plastica per candele": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Canne da pesca": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Canne per irrigazione": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cannucce": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Canovacci": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Capelli": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cappelli": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Capsule per macchinette caff�": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cards Plastificate": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Carbone spento": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Carica batterie": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Carrozzine": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Carta assorbente da cucina (scottex)": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Carta carbone": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Carta cerata": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Carta da forno": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Carta delle caramelle": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Carta patinata": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Carta per affettati": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Carta per formaggio": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Carta sporca di colla o altre sostanze": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Carta stagnola (alluminio)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Carta umida imbevuta di liquidi organici (sugo, olio, ecc.)": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Carta vetrata": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cartoncino": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Cartongesso": {
+    descrizione: "Centri di smaltimento autorizzati",
+    categorie: ["altre categorie"]
+  },
+  "Cartone da imballaggio": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Cartone della pizza": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Cartone per alimenti - tetrapak (per latte, succhi di frutta, ecc.)": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Cartoni pizza sporchi": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cartucce per stampanti": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Casco moto e bici": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cassette audio e video": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cassette di legno": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Cassette per ortofrutta e carni": {
+    descrizione: "Multi plastica / lattine / Ecocentro",
+    categorie: ["plastica/metalli", "ecocentro"]
+  },
+  "Cavatappi": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Cavi elettrici": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Cd e cd-rom": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cellophane": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Cenere spenta": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Cera": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Ceramica": {
+    descrizione: "Secco o Ecocentro",
+    categorie: ["secco", "ecocentro"]
+  },
+  "Cerini": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cerotti": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Chiavette usb": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Chiavi in metallo": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Chiodi": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Ciabatte": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cialde caff� con involucro non biodegradabili": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cialde caff� con ivolucro biodegradabile": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Cinture in plastica, stoffa e cuoio": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Ciuccio": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Computer": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti / Ecomobile",
+    categorie: ["ecocentro", "ecomobile", "altre categorie"]
+  },
+  "Conchiglie e molluschi": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Confezioni delle merendine": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Confezioni in cartoncino (ad es. della pasta,del dentifricio, dei cereali, ecc.)": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Confezioni in plastica rigide o flessibili": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Congelatori": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Contenitore borotalco": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Contenitore pasta abrasiva": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Contenitore smalto": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Contenitori in plastica (bacinelle e terrine)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Contenitori per alimenti in alluminio e acciaio": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Contenitori per alimenti in vetro": {
+    descrizione: "Campana del Vetro",
+    categorie: ["vetro"]
+  },
+  "Contenitori per bibite (lattine)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Coperchi metallici": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Coperchietti dei barattoli di yogurt": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Coperte usate": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Copertoni di automobili": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Coppette del gelato di carta pulite": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Coppette del gelato di plastica pulite": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Corda": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cornici in legno": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Cosmetici": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cosmetici (contenitore plastica)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Cotone usato": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cotton fioc compostabile": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Cotton fioc in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Cover di cellulari": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cravatte": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Cristallo": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Cucce per animali domestici": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Cuscini": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Custodie per cd, musicassette, videocassette": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Damigiane": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Dentifricio (tubetto vuoto)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Deodorante per auto": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Deodorante personale con contenitore in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Deodorante personale con contenitore in vetro": {
+    descrizione: "Campana del Vetro",
+    categorie: ["vetro"]
+  },
+  "Detersivo (flaccone vuoto e pulito)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Detersivo (imballaggio cartone)": {
+    descrizione: "carta",
+    categorie: ["carta"]
+  },
+  "Detersivo (sacchetto sporco)": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Detersivo (sacchetto vuoto e pulito)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Diapositive": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Dischetti per computer": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Dischi in vinile": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Diserbanti e disinfettanti": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Dispensatori per alimenti vuoti e puliti (creme, salse, yogurt)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Divano": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Dvd": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Elastici": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Elettrodomestici": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Estintori": {
+    descrizione: "Rivenditori autorizzati",
+    categorie: ["altre categorie"]
+  },
+  "Eternit": {
+    descrizione: "Chiedi informazioni al numero verde AMIA",
+    categorie: ["altre categorie"]
+  },
+  "Etichette adesive": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Etichette di indumenti": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Evidenziatori": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Farmaci": {
+    descrizione: "Contenitori presso le Farmacie",
+    categorie: ["altre categorie"]
+  },
+  "Fazzoletti di carta sporchi": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Feltrini": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Ferro": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Fiale in plastia vuote": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Fiammiferi": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Fili elettrici": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Film e pellicole da imballaggio in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Filo interdentale": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Filtri del the, t�, caff� e camomilla": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Finestre piccole quantit�": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Fiori finti": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Fiori secchi e recisi": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Fitofarmaci": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Flacconi di plastica vuoti (detersivi e saponi)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Flacconi per alimenti vuoti (creme e salse)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Fogli di carta e cartone": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Fogli di protezione in alluminio delle cioccolate": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Fogli in alluminio per uso domestico": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Foglie": {
+    descrizione: "Bidone del verde o ecocentro",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Fondi di caff�": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Forbici": {
+    descrizione: "Multi plastica / lattine (Nelle zone servite dal porta a porta, Ecocentro / Ecomobile)",
+    categorie: ["plastica/metalli", "ecocentro", "ecomobile"]
+  },
+  "Fotografie": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Frigoriferi": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Ganci per chiudere i sacchetti": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Garze sterili": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Giocattoli": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Girello per bambini": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Giubbetti catarifrangenti": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Gommapiuma": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Graffette": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Grattugia in plastica per alimenti": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Guaina catramata": {
+    descrizione: "Centri di smaltimento autorizzati",
+    categorie: ["altre categorie"]
+  },
+  "Guanti in pelle o lana": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Guanti in gomma, lattice, usa e getta": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Guarnizioni": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Gusci di crostacei": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Gusci di frutta secca": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Gusci d�uovo": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Imballaggi in carta e cartone": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Imballaggi in metallo": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Imballaggi in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Imballaggi in polistirolo": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Incensi": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Inerti in piccola quantit� (ad es. ceramica, terracotta, piastrelle, mattoni, ecc.)": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Infissi piccole quantit�": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Insetticidi per uso domestico (barattoli vuoti e puliti)": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Insetticidi per uso domestico (sporchi)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Lacche (contenitore vuoto)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Lacci per scarpe": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Lamette usa e getta": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Lampadari": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Lampade": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Lampadine a basso consumo": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Lampadine a incandescenza": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Lampadine a led": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Lampadine alogene": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Lana": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Lana di roccia": {
+    descrizione: "Centri di smaltimento autorizzati",
+    categorie: ["altre categorie"]
+  },
+  "Lana di vetro": {
+    descrizione: "Centri di smaltimento autorizzati",
+    categorie: ["altre categorie"]
+  },
+  "Lastre di Vetro piccole dimensioni": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Lastre raggi": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Latta": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Lattine in alluminio": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Lattine in banda stagnata": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Lavastoviglie": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Lavatrice": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Legno": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Lenti a contatto": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Lenti occhiali": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Lenzuola": {
+    descrizione: "Raccolta Indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Lettiera naturale per animali": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Lettiera sintetica per animali": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Lische di pesce": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Lucida scarpe": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Lumini / Cera di lumino": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Lumini / Contenitori in plastica per lumini": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Macchina da cucire": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Macchina fotografica": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Mascherine": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Materassi": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Matite": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Mattonelle di ceramica piccole quantit�": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Mattoni piccole quantit�": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Medicinali scaduti": {
+    descrizione: "Contenitori presso le farmacie / Ecomobile",
+    categorie: ["ecomobile", "altre categorie"]
+  },
+  "Mercurio (termometri)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Mestoli di legno": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Microonde": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Mobili e mensole in legno": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Mollette": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Monitor": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Motorini": {
+    descrizione: "Autodemolizioni",
+    categorie: ["altre categorie"]
+  },
+  "Mouse": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Mozziconi di sigaretta": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Musicassette": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Nastri per fiori": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Nastro adesivo": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Negativi fotografici": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Neon": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Nylon": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Occhiali / Montatura occhiali": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Oggetti in gomma": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Olio alimentare usato": {
+    descrizione: "Ecocentro / Ecomobile / Contenitori circoscrizioni/consultare sito AMIA www.amiavr.it/Raccolta-differenziata/Raccolta-olio-alimentare",
+    categorie: ["ecocentro", "ecomobile", "altre categorie"]
+  },
+  "Olio per automobili e macchinari": {
+    descrizione: "Raccoglitori autorizzati / Ecocentro",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Ombrelli": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Ombrelloni": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Ossa (avanzi di cibo)": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Ovatta": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Pacchetti di sigarette senza parti in plastica": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Padelle": {
+    descrizione: "Multi plastica / lattine (Nelle zone servite dal porta a, Ecocentro/ Ecomobile)",
+    categorie: ["plastica/metalli", "ecocentro", "ecomobile"]
+  },
+  "Paglia": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Paletta raccogli rifiuti": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Pallets": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Palline da Tennis": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Palloni da gioco": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Panni elettrostatici per la polvere": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Pannolini": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Parasole per auto": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Paste abrasive (contenitotre sporco)": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Paste abrasive (contenitotre vuoto)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Peli": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Pellicola fotografica": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Pellicole per alimenti": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Peluche": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Pennarelli": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Penne": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Pennelli": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Pentole": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Pergamene": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Persiane": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Pesticidi": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Pettini": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Piante piccole": {
+    descrizione: "Umido/Ecocentro",
+    categorie: ["umido", "ecocentro"]
+  },
+  "Piastra per i capelli": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Piastrelle": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Piastrine per zanzare": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Piatti e posate in materiale compostabile": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Piatti in ceramica": {
+    descrizione: "Secco o Ecocentro",
+    categorie: ["secco", "ecocentro"]
+  },
+  "Piccoli attrezzi in metallo": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Pile": {
+    descrizione: "Contenitori per pile presso rivenditori / Ecomobile",
+    categorie: ["ecomobile", "altre categorie"]
+  },
+  "Pirofile": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Pneumatici auto piccole quantit�": {
+    descrizione: "Ecocentro o telefona 045 8069213",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Polistirolo imballaggi": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Polistirolo pannelli": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Polveri dell�aspirapolvere": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Poltrone": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Portadocumenti e cartellette in plastica": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Posacenere in vetro": {
+    descrizione: "Campana del Vetro",
+    categorie: ["vetro"]
+  },
+  "Posate in metallo": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Posate in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Post-it": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Profumi�(contenitori vuoti)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Profilattici": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Quaderni": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Quadri (cornice)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Raccoglitore dossier senza parti metalliche": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Radio": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Ramaglie": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Rasoi usa e getta": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Reggette per legatura pacchi (in plastica)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Reti in plastica per frutta e verdura": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Reti per letti": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Righelli": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Riviste": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Rotolo interno alla carta igienica": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Rullino fotografico": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Sacche per dialisi e per stomatizzati": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Sacchetti di carta con interno plasticato": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Sacchetti di plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Sacchetti per aspirapolvere": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Sacchi e sacchetti in plastica (fuorch� per materiale edile)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Sacchi per alimenti per animali": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Sacchi per detersivi": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Sacchi per prodotti di giardinaggio": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Salviette": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Salviette di carta unte": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Salviette pulite": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Sanitari": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Sapone in pezzi e saponette": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Scaffali in ferro": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Scaffali in legno": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Scale pieghevoli": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Scarpe e scarponi usati in buono stato": {
+    descrizione: "Raccolta indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Scarpe e scarponi usati in cattivo stato": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Scarponi da sci rotti": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Scarti di cucina": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Scatola in cartone per pizza (se sporchi pulire con una salvietta)": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Scatolette per tonno e altri alimenti": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Scatoloni": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Schermo del computer": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Sci": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Scolapasta in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Scontrini in carta chimica": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Scopa": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Sdraio": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Secchielli in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Sedie": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Segature (piccole quantit�)": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Sfalcio dell�erba del giardino": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Shoppers": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Sigarette": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Siringhe (con l�apposito cappuccio inserito sull�ago)": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Smalti�(T e/o F)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Solventi (T e/o F)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Spago": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Spazzole": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Spazzolini": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Specchio": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Spray (T e/o F)": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Spugne": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Spugne abrasive": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Spugne per fiori": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Spugne sintetiche": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Stagnola": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Stampante": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Stecchi in legno per gelati": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Stendini": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Stereo": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Stoffa": {
+    descrizione: "Raccolta indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Stoviglie": {
+    descrizione: "Secco o Ecocentro",
+    categorie: ["secco", "ecocentro"]
+  },
+  "Stracci": {
+    descrizione: "Raccolta indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Stracci da cucina": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Stracci unti da olio minerale": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Stracci unti da sostanze chimiche": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Strumenti musicali": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Stuzzicadenti": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Sughero": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Sveglie": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tablet": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tagliere in legno": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tagliere in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Taglierini": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tamponi per timbri": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Tanica in banda stagnata": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Taniche per uso domestico (no benzina meno 5lt)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Taniche per uso domestico (no benzina pi� 5lt)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tappeti": {
+    descrizione: "Secco o Ecocentro",
+    categorie: ["secco", "ecocentro"]
+  },
+  "Tappezzeria/tappeti": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Tappi a corona": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Tappi di barattoli in metallo": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Tappi in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Tappi sughero": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tastiera del computer": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tavolo": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Tazze e tazzine in ceramica rotta": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Telefono": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Televisore": {
+    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti / Ecomobile",
+    categorie: ["ecocentro", "ecomobile", "altre categorie"]
+  },
+  "Tende in stoffa": {
+    descrizione: "Raccolta indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Tergicristalli rotti": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Termometro": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Termometro mercurio digitale": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Terracotta": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Tetra-pak": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Tintura per abiti, scarpe, capelli (contenitore pieno)": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tintura per abiti, scarpe, capelli (contenitore vuoto)": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Toner": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Torcia": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tovaglioli di carta puliti": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Tovaglioli di carta usati": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Triciclo": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Trielina": {
+    descrizione: "Ecocentro / Ditta specializzata",
+    categorie: ["ecocentro", "altre categorie"]
+  },
+  "Trucchi": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Truciolati o residui di lavorazione del legno (piccole quantit�)": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Trucioli di tempera della matita o pastelli": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Tubetti di colore": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tubetti di dentifricio": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Tubetti per uso alimentare": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Tubi fluorescenti": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Tubi in alluminio": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Tubi in ferro": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Tubi in gomma": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Tubi in PVC per idraulico": {
+    descrizione: "Secco o Ecocentro",
+    categorie: ["secco", "ecocentro"]
+  },
+  "Uncinetto": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Unghie": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Uova": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Umido": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Valigie": {
+    descrizione: "Secco/ Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti / Ecomobile",
+    categorie: ["secco", "ecocentro", "ecomobile", "altre categorie"]
+  },
+  "Vaschette e barattoli per gelati": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Vaschette in alluminio per alimenti": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Vaschette in carta portauova": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Vaschette in plastica portauova": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Vasetti degli omogeneizzati": {
+    descrizione: "Campana del Vetro",
+    categorie: ["vetro"]
+  },
+  "Vasi in ceramica": {
+    descrizione: "Secco o Ecocentro",
+    categorie: ["secco", "ecocentro"]
+  },
+  "Vasi in plastica": {
+    descrizione: "Multi plastica / lattine",
+    categorie: ["plastica/metalli"]
+  },
+  "Vasi in terracotta": {
+    descrizione: "Secco o Ecocentro",
+    categorie: ["secco", "ecocentro"]
+  },
+  "Vasi in vetro": {
+    descrizione: "Campana del Vetro",
+    categorie: ["vetro"]
+  },
+  "Vassoi e confezioni in cartoncino": {
+    descrizione: "Carta",
+    categorie: ["carta"]
+  },
+  "Veneziane": {
+    descrizione: "Ecocentro",
+    categorie: ["ecocentro"]
+  },
+  "Ventilatori": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Verdura avariata": {
+    descrizione: "Umido",
+    categorie: ["umido"]
+  },
+  "Vernici": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Videocassette": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Videogiochi": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Videoregistratore": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Zaini": {
+    descrizione: "Raccola indumenti",
+    categorie: ["altre categorie"]
+  },
+  "Zanzariere": {
+    descrizione: "Secco o Ecocentro",
+    categorie: ["secco", "ecocentro"]
+  },
+  "Zappa": {
+    descrizione: "Ecocentro o Ecomobile",
+    categorie: ["ecocentro", "ecomobile"]
+  },
+  "Zerbino": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
+  "Zoccoli": {
+    descrizione: "Secco",
+    categorie: ["secco"]
+  },
 };
 
-// Mappatura per normalizzare i tipi di smaltimento dal JSON ai tipi del calendario
+
+// Mappatura per normalizzare i tipi di smaltimento per la ricerca filtrata
+// Ora supporta la ricerca per categorie multiple per ogni rifiuto
 const NORMALIZZA_TIPI = {
-    "Plastica": "plastica/metalli",
-    "Multi plastica / lattine": "plastica/metalli",
-    "plastica": "plastica/metalli", 
-    "Umido": "umido",
-    "Carta": "carta",
-    "Secco": "secco",
-    "Vetro": "vetro",
-    "Campana del Vetro": "vetro"
+    "secco": "secco",
+    "umido": "umido", 
+    "carta": "carta",
+    "plastica": "plastica/metalli",
+    "plastica/metalli": "plastica/metalli",
+    "vetro": "vetro",
+    "campana del vetro": "vetro",
+    "ecocentro": "ecocentro",
+    "ecomobile": "ecomobile",
+    "altre categorie": "altre categorie"
 };
 
 let dettagliVisibili = false;
@@ -825,12 +2437,9 @@ function updateCard(tipoRifiuto, dataTarget) {
 
     // Mostra la data odierna nel box
     const oggi = getTodayString();
-    dateBadge.innerHTML = `
-        <div style="text-align: center;">
-            <div style="font-weight: bold; margin-bottom: 5px;">Data di conferimento:</div>
-            <div>${formatDate(oggi)}</div>
-        </div>
-    `;
+    if (dateBadge) {
+        dateBadge.style.display = 'none';
+    }
 
     if (tipoRifiuto) {
         // Rimuovi classi precedenti
@@ -913,7 +2522,7 @@ function updateTimeLogic() {
             timeInfo.style.background = 'linear-gradient(135deg, #fbbf24, #f59e0b)';
             timeInfo.innerHTML = `
                 <div class="time-info-title">
-                    <i class="fas fa-clock" style="color: #fffbeb; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Conferisci solo negli orari qui indicati!</strong>
+                    <i class="fas fa-clock" style="color: #fffbeb; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Oggi ${new Date().toLocaleDateString()} porta i rifiuti nei seguenti orari:</strong>
                 </div>
                 <div class="time-info-subtitle">
                     <div style="margin-top: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; padding: 4px 10px; display: inline-block;">
@@ -940,7 +2549,7 @@ function updateTimeLogic() {
                         </div>
                         <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #f59e0b; border-radius: 15px; box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2); padding: 40px 20px 20px 20px; text-align: center; width: 100%; max-width: 100%;">
                             <h4 style='margin: 0 0 12px 0; color: #92400e; font-size: 1.25em; font-weight: bold;'>Preparazione Consegna</h4>
-                            <p style='margin: 0; color: #b45309; line-height: 1.5; font-size: 1.05em;'>Prepara solamente i rifiuti ammessi. <br>Conferisci esclusivamente negli orari riportati e nei punti di raccolta prestabiliti, evitando la dispersione nell'ambiente. <br> <strong>TUTTI <strong> siamo chiamati a contribuire alla protezione dell'ambiente in cui viviamo.</p>
+                            <p style='margin: 0; color: #b45309; line-height: 1.5; font-size: 1.05em;'>Consulta le informazioni nella ard per capire quali rifiuti sono ammessi. <br> Ricordati di consegnare i rifiuti solo negli orari riportati e nei punti di raccolta prestabiliti. <br> <strong>TUTTI <strong> siamo chiamati a contribuire alla protezione dell'ambiente in cui viviamo.</p>
                         </div>
                     </div>
                 `;
@@ -1121,27 +2730,29 @@ function populateDettagli(tipoRifiuto) {
                     console.log('🎯 Tipo normalizzato per ricerca:', tipoNormalizzato);
                     
                     const results = Object.entries(DATI_RIFIUTI_COMPLETO)
-                        .filter(([nome, destinazione]) => {
+                        .filter(([nome, rifiutoData]) => {
                             // Cerca nei rifiuti che contengono la query nel nome
                             const nomeMatches = normalizeType(nome).includes(normalizeType(query));
                             
-                            // Normalizza la destinazione usando la mappatura
-                            let destinazioneNormalizzata = normalizeType(destinazione);
-                            if (NORMALIZZA_TIPI[destinazione]) {
-                                destinazioneNormalizzata = normalizeType(NORMALIZZA_TIPI[destinazione]);
-                            }
+                            if (!nomeMatches) return false;
                             
-                            // Confronto: la destinazione deve corrispondere al tipo corrente
-                            const destinazioneMatches = destinazioneNormalizzata === tipoNormalizzato;
+                            // Verifica se il rifiuto appartiene al tipo di categoria corrente
+                            const categorie = rifiutoData.categorie || [];
+                            const categoriaMatches = categorie.some(categoria => 
+                                normalizeType(categoria) === tipoNormalizzato
+                            );
                             
                             if (nomeMatches) {
-                                console.log(`   ${nome}: dest="${destinazione}" -> "${destinazioneNormalizzata}" === "${tipoNormalizzato}" ? ${destinazioneMatches}`);
+                                console.log(`   ${nome}: categorie=[${categorie.join(', ')}] contains "${tipoNormalizzato}" ? ${categoriaMatches}`);
                             }
                             
-                            return nomeMatches && destinazioneMatches;
+                            return categoriaMatches;
                         })
                         .slice(0, 20) // Limita a 20 risultati
-                        .map(([nome, destinazione]) => ({ nome, destinazione }));
+                        .map(([nome, rifiutoData]) => ({ 
+                            nome, 
+                            destinazione: rifiutoData.descrizione || rifiutoData 
+                        }));
                     
                     console.log(`📊 Trovati ${results.length} risultati`);
                     
