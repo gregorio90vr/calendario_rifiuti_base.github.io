@@ -460,7 +460,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
-  "Articoli per l edilizia (es. tubi) piccole quantità ": {
+  "Articoli per l edilizia (es. tubi) piccole quantit ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -672,7 +672,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Multi plastica / lattine",
     categorie: ["plastica/metalli"]
   },
-  "Calcinacci piccole quantità": {
+  "Calcinacci piccole quantit ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -1160,7 +1160,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Umido",
     categorie: ["umido"]
   },
-  "Finestre piccole quantità ": {
+  "Finestre piccole quantit ": {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
@@ -1296,11 +1296,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Umido",
     categorie: ["umido"]
   },
-  "Inerti in piccola quantità  (ad es. ceramica, terracotta, piastrelle, mattoni, ecc.)": {
+  "Inerti in piccola quantit  (ad es. ceramica, terracotta, piastrelle, mattoni, ecc.)": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
-  "Infissi piccole quantità ": {
+  "Infissi piccole quantit ": {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
@@ -1448,11 +1448,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Mattonelle di ceramica piccole quantità ": {
+  "Mattonelle di ceramica piccole quantit ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
-  "Mattoni piccole quantità ": {
+  "Mattoni piccole quantit ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -1684,7 +1684,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Pneumatici auto piccole quantità ": {
+  "Pneumatici auto piccole quantit ": {
     descrizione: "Ecocentro o telefona 045 8069213",
     categorie: ["ecocentro", "altre categorie"]
   },
@@ -1908,7 +1908,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
-  "Segature (piccole quantità )": {
+  "Segature (piccole quantit )": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -2168,7 +2168,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Truciolati o residui di lavorazione del legno (piccole quantità )": {
+  "Truciolati o residui di lavorazione del legno (piccole quantit )": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -2403,7 +2403,7 @@ function updateCard(tipoRifiuto, dataTarget) {
 }
 
 function updateTimeLogic(tipoRifiuto) {
-    const ora = new Date().getHours();
+    const ora = new Date().toLocaleString('it-IT', { timeZone: 'Europe/Rome', hour: 'numeric', hour12: false });
     const timeInfo = document.getElementById('time-info');
     const collectionNote = document.getElementById('collection-note');
     const collectionNoteText = document.getElementById('collection-note-text');
@@ -2452,7 +2452,7 @@ function updateTimeLogic(tipoRifiuto) {
             timeInfo.style.background = 'linear-gradient(135deg, #fbbf24, #f59e0b)';
             timeInfo.innerHTML = `
                 <div class="time-info-title">
-                    <i class="fas fa-clock" style="color: #fffbeb; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Conferisci solo negli orari qui indicati!</strong>
+                    <i class="fas fa-clock" style="color: #fffbeb; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Oggi ${new Date().toLocaleDateString('it-IT', { timeZone: 'Europe/Rome' })} porta i rifiuti nei seguenti orari:</strong>
                 </div>
                 <div class="time-info-subtitle">
                     <div style="margin-top: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; padding: 4px 10px; display: inline-block;">
@@ -2463,7 +2463,6 @@ function updateTimeLogic(tipoRifiuto) {
             
             // Stile del box delle note - Arancione per preparazione
             if (collectionNote) {
-                // Wrapper per permettere al triangolo di uscire dal box
                 collectionNote.style.cssText = `
                     background: none;
                     border: none;
@@ -2792,3 +2791,58 @@ function verificaCambioData() {
 
 // Aggiorna la logica oraria ogni minuto
 setInterval(updateTimeLogic, 60000);
+
+// Modifica della schermata nera per includere un timer di inattività e un pulsante di restart
+function addStandbyOverlay() {
+    const overlay = document.createElement('div');
+    overlay.id = 'standby-overlay';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
+    overlay.innerHTML = `
+        <p>Questa schermata nera è per diminuire il consumo energetico e promuovere una maggiore sostenibilità ambientale.</p>
+        <button id="restart-button" style="margin-top: 20px; padding: 10px 20px; font-size: 1em; cursor: pointer;">Restart</button>
+    `;
+    document.body.appendChild(overlay);
+
+    const restartButton = document.getElementById('restart-button');
+    restartButton.addEventListener('click', () => {
+        location.reload();
+    });
+
+    let inactivityTimer;
+
+    const showOverlay = () => {
+        overlay.style.display = 'flex';
+        setTimeout(() => overlay.style.opacity = '1', 0);
+    };
+
+    const resetInactivityTimer = () => {
+        clearTimeout(inactivityTimer);
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.style.display = 'none', 300);
+        inactivityTimer = setTimeout(showOverlay, 10000); // 10 secondi di inattività
+    };
+
+    document.addEventListener('mousemove', resetInactivityTimer);
+    document.addEventListener('keydown', resetInactivityTimer);
+
+    inactivityTimer = setTimeout(showOverlay, 10000); // Inizializza il timer di inattività
+}
+
+// Chiamata alla funzione per aggiungere la schermata nera
+addStandbyOverlay();
