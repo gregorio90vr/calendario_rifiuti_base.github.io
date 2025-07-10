@@ -2792,7 +2792,7 @@ function verificaCambioData() {
 // Aggiorna la logica oraria ogni minuto
 setInterval(updateTimeLogic, 60000);
 
-// Modifica della schermata nera per includere un timer di inattività e un pulsante di restart
+// Modifica della schermata nera per far partire l'inattività dopo 15 secondi
 function addStandbyOverlay() {
     const overlay = document.createElement('div');
     overlay.id = 'standby-overlay';
@@ -2814,34 +2814,38 @@ function addStandbyOverlay() {
         transition: opacity 0.3s ease;
     `;
     overlay.innerHTML = `
-        <p>Questa schermata nera è per diminuire il consumo energetico e promuovere una maggiore sostenibilità ambientale.</p>
-        <button id="restart-button" style="margin-top: 20px; padding: 10px 20px; font-size: 1em; cursor: pointer;">Restart</button>
+        <div style="color: #ffffff; background-color: #000000; padding: 20px; font-family: Arial, sans-serif; text-align: center;">
+            <h2 style="margin-bottom: 16px;">Meno luce, più futuro.</h2>
+            <p style="margin-bottom: 10px;">Questa schermata scura aiuta a <strong>ridurre i consumi</strong> e a <strong>proteggere l’ambiente</strong>.</p>
+            <p style="margin-bottom: 10px;">Un piccolo gesto per te,<br>
+            un grande respiro per la Terra.</p>
+            <p style="font-weight: bold;">Risparmi tu, guadagna il pianeta.</p>
+        </div>
     `;
     document.body.appendChild(overlay);
 
-    const restartButton = document.getElementById('restart-button');
-    restartButton.addEventListener('click', () => {
-        location.reload();
-    });
-
     let inactivityTimer;
+    let overlayActive = false;
 
     const showOverlay = () => {
         overlay.style.display = 'flex';
         setTimeout(() => overlay.style.opacity = '1', 0);
+        overlayActive = true;
     };
 
     const resetInactivityTimer = () => {
         clearTimeout(inactivityTimer);
-        overlay.style.opacity = '0';
-        setTimeout(() => overlay.style.display = 'none', 300);
-        inactivityTimer = setTimeout(showOverlay, 10000); // 10 secondi di inattività
+        if (overlayActive) {
+            location.reload(); // Riavvia l'app solo se la schermata nera è attiva
+        } else {
+            inactivityTimer = setTimeout(showOverlay, 15000); // Reimposta il timer di inattività a 15 secondi
+        }
     };
 
     document.addEventListener('mousemove', resetInactivityTimer);
-    document.addEventListener('keydown', resetInactivityTimer);
+    document.addEventListener('click', resetInactivityTimer);
 
-    inactivityTimer = setTimeout(showOverlay, 10000); // Inizializza il timer di inattività
+    inactivityTimer = setTimeout(showOverlay, 15000); // Inizializza il timer di inattività a 15 secondi
 }
 
 // Chiamata alla funzione per aggiungere la schermata nera
