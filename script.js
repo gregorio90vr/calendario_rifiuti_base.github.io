@@ -460,7 +460,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
-  "Articoli per l edilizia (es. tubi) piccole quantit ": {
+  "Articoli per l edilizia (es. tubi) piccole quantità ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -672,7 +672,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Multi plastica / lattine",
     categorie: ["plastica/metalli"]
   },
-  "Calcinacci piccole quantit ": {
+  "Calcinacci piccole quantità": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -1160,7 +1160,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Umido",
     categorie: ["umido"]
   },
-  "Finestre piccole quantit ": {
+  "Finestre piccole quantità ": {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
@@ -1296,11 +1296,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Umido",
     categorie: ["umido"]
   },
-  "Inerti in piccola quantit  (ad es. ceramica, terracotta, piastrelle, mattoni, ecc.)": {
+  "Inerti in piccola quantità  (ad es. ceramica, terracotta, piastrelle, mattoni, ecc.)": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
-  "Infissi piccole quantit ": {
+  "Infissi piccole quantità ": {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
@@ -1448,11 +1448,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Mattonelle di ceramica piccole quantit ": {
+  "Mattonelle di ceramica piccole quantità ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
-  "Mattoni piccole quantit ": {
+  "Mattoni piccole quantità ": {
     descrizione: "Ecocentro",
     categorie: ["ecocentro"]
   },
@@ -1684,7 +1684,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Pneumatici auto piccole quantit ": {
+  "Pneumatici auto piccole quantità ": {
     descrizione: "Ecocentro o telefona 045 8069213",
     categorie: ["ecocentro", "altre categorie"]
   },
@@ -1908,7 +1908,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
-  "Segature (piccole quantit )": {
+  "Segature (piccole quantità )": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -2168,7 +2168,7 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Truciolati o residui di lavorazione del legno (piccole quantit )": {
+  "Truciolati o residui di lavorazione del legno (piccole quantità )": {
     descrizione: "Umido",
     categorie: ["umido"]
   },
@@ -2319,101 +2319,37 @@ const DATI_RIFIUTI_COMPLETO = {
 };
 
 
-// Mappatura per normalizzare i tipi di smaltimento per la ricerca filtrata
-// Ora supporta la ricerca per categorie multiple per ogni rifiuto
-const NORMALIZZA_TIPI = {
-    "secco": "secco",
-    "umido": "umido", 
-    "carta": "carta",
-    "plastica": "plastica/metalli",
-    "plastica/metalli": "plastica/metalli",
-    "vetro": "vetro",
-    "campana del vetro": "vetro",
-    "ecocentro": "ecocentro",
-    "ecomobile": "ecomobile",
-    "altre categorie": "altre categorie"
-};
 
-let dettagliVisibili = false;
-let tipoRifiutoCorrente = null;
-let dataCorrente = null; // Per tracciare quando aggiornare la data
 
 function initializeApp() {
     console.log('🔄 Inizializzazione app...');
-    console.log(`🔄 Data sistema all'avvio: ${new Date().toLocaleString('it-IT')}`);
     
-    // Forza aggiornamento immediato all'avvio
-    aggiornaDatiConferimento();
-    
-    // Aggiorna l'orario
-    updateCurrentTime();
-    
-    // Determina logica oraria (come in app.py)
-    updateTimeLogic();
-    
-    // Verifica cambio data ogni 30 secondi per essere più reattivo
-    setInterval(verificaCambioData, 30000); // Ogni 30 secondi
-    
-    // Aggiorna anche dopo 2 secondi per assicurarsi che tutto sia caricato
-    setTimeout(() => {
-        console.log('🔄 Aggiornamento tardivo per sicurezza...');
-        aggiornaDatiConferimento();
-    }, 2000);
-}
-
-function aggiornaDatiConferimento() {
     // NUOVA LOGICA: mostra il conferimento del GIORNO SUCCESSIVO (come in app.py)
     const oggi = getTodayString();
     const domani = getTomorrowString();
     const tipoRifiuto = CALENDARIO_RIFIUTI[domani] || null;
     
-    console.log(`📅 DEBUG DATE:`);
-    console.log(`   Oggi: ${oggi}`);
-    console.log(`   Domani: ${domani}`);
-    console.log(`   Tipo rifiuto domani: ${tipoRifiuto || 'Nessun conferimento'}`);
-    console.log(`   Calendario entry: `, CALENDARIO_RIFIUTI[domani]);
+    console.log(`📅 Oggi (${oggi}), conferimento di domani (${domani}): ${tipoRifiuto || 'Nessun conferimento'}`);
     
     // Aggiorna la card con il conferimento di domani
     updateCard(tipoRifiuto, domani);
     
-    dataCorrente = oggi; // Salva la data corrente per il controllo
-}
-
-function verificaCambioData() {
-    const nuovaData = getTodayString();
-    console.log(`🔍 Controllo cambio data: corrente=${dataCorrente}, nuova=${nuovaData}`);
+    // Aggiorna l'orario
+    updateCurrentTime();
     
-    if (dataCorrente !== nuovaData) {
-        console.log('📅 🚨 RILEVATO CAMBIO DI DATA! Aggiornamento dati conferimento...');
-        aggiornaDatiConferimento();
-    } else {
-        console.log('📅 ✅ Nessun cambio data rilevato');
-    }
+    // Determina logica oraria (come in app.py)
+    updateTimeLogic(tipoRifiuto);
 }
 
 function getTodayString() {
-    // Usa l'orario locale del sistema invece di UTC
     const oggi = new Date();
-    const year = oggi.getFullYear();
-    const month = String(oggi.getMonth() + 1).padStart(2, '0');
-    const day = String(oggi.getDate()).padStart(2, '0');
-    const dateString = `${year}-${month}-${day}`;
-    
-    console.log(`🕐 Sistema data locale: ${dateString} (ora: ${oggi.getHours()}:${String(oggi.getMinutes()).padStart(2, '0')})`);
-    return dateString;
+    return oggi.toISOString().split('T')[0]; // Formato YYYY-MM-DD
 }
 
 function getTomorrowString() {
-    // Usa l'orario locale del sistema invece di UTC
     const domani = new Date();
     domani.setDate(domani.getDate() + 1); // Aggiunge 1 giorno
-    const year = domani.getFullYear();
-    const month = String(domani.getMonth() + 1).padStart(2, '0');
-    const day = String(domani.getDate()).padStart(2, '0');
-    const dateString = `${year}-${month}-${day}`;
-    
-    console.log(`🕐 Sistema data domani locale: ${dateString}`);
-    return dateString;
+    return domani.toISOString().split('T')[0]; // Formato YYYY-MM-DD
 }
 
 function formatDate(dateString) {
@@ -2428,18 +2364,14 @@ function formatDate(dateString) {
 }
 
 function updateCard(tipoRifiuto, dataTarget) {
-    tipoRifiutoCorrente = tipoRifiuto;
 
     const cardHeader = document.getElementById('card-header');
     const emojiCircle = document.getElementById('emoji-circle');
     const tipoTitle = document.getElementById('tipo-title');
     const dateBadge = document.getElementById('date-badge');
 
-    // Mostra la data odierna nel box
-    const oggi = getTodayString();
-    if (dateBadge) {
-        dateBadge.style.display = 'none';
-    }
+    // Non mostrare alcuna data di riferimento
+    dateBadge.style.display = 'none';
 
     if (tipoRifiuto) {
         // Rimuovi classi precedenti
@@ -2452,9 +2384,10 @@ function updateCard(tipoRifiuto, dataTarget) {
         // Aggiorna icona
         emojiCircle.innerHTML = ICONE_RIFIUTI[tipoRifiuto] || EMOJI_RIFIUTI[tipoRifiuto] || '🗂️';
 
-        // Aggiorna titolo con descrizione del tipo di rifiuto e icona info
-        const tipoCapitalized = tipoRifiuto.charAt(0).toUpperCase() + tipoRifiuto.slice(1);
-        tipoTitle.innerHTML = `${tipoCapitalized}`;
+    // Aggiorna titolo senza icona info
+    const tipoCapitalized = tipoRifiuto.charAt(0).toUpperCase() + tipoRifiuto.slice(1);
+    tipoTitle.innerHTML = tipoCapitalized;
+
     } else {
         // Nessun conferimento
         cardHeader.className = 'card-header-custom card-header-nessuno';
@@ -2469,13 +2402,13 @@ function updateCard(tipoRifiuto, dataTarget) {
     }
 }
 
-function updateTimeLogic() {
+function updateTimeLogic(tipoRifiuto) {
     const ora = new Date().getHours();
     const timeInfo = document.getElementById('time-info');
     const collectionNote = document.getElementById('collection-note');
     const collectionNoteText = document.getElementById('collection-note-text');
 
-    if (tipoRifiutoCorrente) {
+    if (tipoRifiuto) {
         // Logica oraria come in app.py - conferimento di domani
         if (ora >= 19 && ora <= 21) {
             // Ora di conferimento
@@ -2519,7 +2452,7 @@ function updateTimeLogic() {
             timeInfo.style.background = 'linear-gradient(135deg, #fbbf24, #f59e0b)';
             timeInfo.innerHTML = `
                 <div class="time-info-title">
-                    <i class="fas fa-clock" style="color: #fffbeb; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Oggi ${new Date().toLocaleDateString()} porta i rifiuti nei seguenti orari:</strong>
+                    <i class="fas fa-clock" style="color: #fffbeb; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Conferisci solo negli orari qui indicati!</strong>
                 </div>
                 <div class="time-info-subtitle">
                     <div style="margin-top: 5px; background: rgba(255,255,255,0.2); border-radius: 10px; padding: 4px 10px; display: inline-block;">
@@ -2546,7 +2479,7 @@ function updateTimeLogic() {
                         </div>
                         <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #f59e0b; border-radius: 15px; box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2); padding: 40px 20px 20px 20px; text-align: center; width: 100%; max-width: 100%;">
                             <h4 style='margin: 0 0 12px 0; color: #92400e; font-size: 1.25em; font-weight: bold;'>Preparazione Consegna</h4>
-                            <p style='margin: 0; color: #b45309; line-height: 1.5; font-size: 1.05em;'>Consulta le informazioni nella ard per capire quali rifiuti sono ammessi. <br> Ricordati di consegnare i rifiuti solo negli orari riportati e nei punti di raccolta prestabiliti. <br> <strong>TUTTI <strong> siamo chiamati a contribuire alla protezione dell'ambiente in cui viviamo.</p>
+                            <p style='margin: 0; color: #b45309; line-height: 1.5; font-size: 1.05em;'>Prepara solamente i rifiuti ammessi. <br>Conferisci esclusivamente negli orari riportati e nei punti di raccolta prestabiliti, evitando la dispersione nell'ambiente. <br> <strong>TUTTI <strong> siamo chiamati a contribuire alla protezione dell'ambiente in cui viviamo.</p>
                         </div>
                     </div>
                 `;
@@ -2640,264 +2573,7 @@ function updateCurrentTime() {
     document.getElementById('current-time').textContent = timeString;
 }
 
-function toggleDettagli() {
-    const mainContainer = document.querySelector('.main-container > .card-rifiuto');
-    const dettagliSection = document.getElementById('dettagli-section');
-    
-    dettagliVisibili = !dettagliVisibili;
-    
-    if (dettagliVisibili && tipoRifiutoCorrente) {
-        // Mostra dettagli
-        mainContainer.style.display = 'none';
-        dettagliSection.style.display = 'block';
-        
-        // Popola i dettagli
-        populateDettagli(tipoRifiutoCorrente);
-    } else {
-        // Nascondi dettagli
-        mainContainer.style.display = 'block';
-        dettagliSection.style.display = 'none';
-    }
-}
 
-function populateDettagli(tipoRifiuto) {
-    const dettagliHeader = document.querySelector('.dettagli-header');
-    const dettagliIcon = document.getElementById('dettagli-icon');
-    const dettagliTitle = document.getElementById('dettagli-title');
-    const dettagliDescription = document.getElementById('dettagli-description');
-    const dettagliListsContainer = document.querySelector('.dettagli-lists') || document.getElementById('search-area');
-
-    const icona = ICONE_RIFIUTI[tipoRifiuto] || EMOJI_RIFIUTI[tipoRifiuto] || '🗂️';
-    const tipoCapitalized = tipoRifiuto.charAt(0).toUpperCase() + tipoRifiuto.slice(1);
-
-    // Apply color scheme to header
-    if (dettagliHeader) {
-        dettagliHeader.className = 'dettagli-header';
-        const tipoClass = tipoRifiuto.replace('/', '-');
-        dettagliHeader.classList.add(`dettagli-header-${tipoClass}`);
-    }
-
-    // Set icon
-    if (dettagliIcon) {
-        dettagliIcon.innerHTML = icona;
-    }
-
-    // Set title and description
-    if (dettagliTitle) {
-        dettagliTitle.textContent = 'Dove lo butto?';
-    }
-    if (dettagliDescription) {
-        dettagliDescription.textContent = `Cerca un rifiuto per scoprire dove smaltirlo`;
-    }
-
-    // Sostituisci le liste con la barra di ricerca
-    if (dettagliListsContainer) {
-        dettagliListsContainer.innerHTML = `
-            <div class="search-section">
-                <div class="search-input-container">
-                    <input type="text" id="wasteSearchInput" class="search-input" placeholder="Cerca rifiuto (es: bottiglia, carta, ecc.)...">
-                </div>
-                <div id="searchResults" class="search-results"></div>
-            </div>
-        `;
-        
-        // Inizializza la ricerca dinamica
-        setTimeout(() => {
-            const searchInput = document.getElementById('wasteSearchInput');
-            const searchResults = document.getElementById('searchResults');
-            
-            if (searchInput && searchResults) {
-                searchInput.addEventListener('input', (event) => {
-                    const query = event.target.value.trim();
-                    searchResults.innerHTML = '';
-                    
-                    if (query.length < 2) {
-                        searchResults.innerHTML = '<div class="search-hint">Digita almeno 2 caratteri per iniziare la ricerca</div>';
-                        return;
-                    }
-                    
-                    console.log('🔍 Ricerca globale:', query);
-                    
-                    // Normalizza i tipi per il confronto
-                    const normalizeType = (type) => type.toLowerCase().trim();
-                    
-                    const results = Object.entries(DATI_RIFIUTI_COMPLETO)
-                        .filter(([nome, rifiutoData]) => {
-                            // Cerca nei rifiuti che contengono la query nel nome
-                            const nomeMatches = normalizeType(nome).includes(normalizeType(query));
-                            
-                            if (!nomeMatches) return false;
-                            
-                            return nomeMatches; // Rimuove il filtro per categoria
-                        })
-                        .slice(0, 20) // Limita a 20 risultati
-                        .map(([nome, rifiutoData]) => ({ 
-                            nome, 
-                            destinazione: rifiutoData.descrizione || rifiutoData 
-                        }));
-                    
-                    console.log(`📊 Trovati ${results.length} risultati`);
-                    
-                    if (results.length === 0) {
-                        searchResults.innerHTML = '<div class="no-results">Nessun risultato trovato. Prova con un altro termine di ricerca.</div>';
-                    } else {
-                        results.forEach(({ nome, destinazione }) => {
-                            const resultItem = document.createElement('div');
-                            resultItem.className = 'search-result-item';
-                            resultItem.innerHTML = `
-                                <div class="waste-name">${nome}</div>
-                                <div class="waste-disposal">${destinazione}</div>
-                            `;
-                            searchResults.appendChild(resultItem);
-                        });
-                    }
-                });
-            }
-        }, 100);
-    }
-}
-
-// Funzioni per gestire la modal di ricerca
-function openSearchModal() {
-    const modal = document.getElementById('searchModal');
-    const searchInput = document.getElementById('modalSearchInput');
-    const searchResults = document.getElementById('modalSearchResults');
-    
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Previene scroll del body
-        
-        // Focus sull'input dopo un breve delay per permettere l'animazione
-        setTimeout(() => {
-            if (searchInput) {
-                searchInput.focus();
-                // Inizializza con messaggio di benvenuto
-                if (searchResults) {
-                    searchResults.innerHTML = '<div class="search-hint">Inizia a digitare per cercare un rifiuto...</div>';
-                }
-            }
-        }, 100);
-        
-        // Inizializza la ricerca se non già fatto
-        initializeModalSearch();
-    }
-}
-
-function closeSearchModal() {
-    const modal = document.getElementById('searchModal');
-    const searchInput = document.getElementById('modalSearchInput');
-    const searchResults = document.getElementById('modalSearchResults');
-    
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = ''; // Ripristina scroll del body
-        
-        // Pulisce i risultati e l'input
-        if (searchInput) searchInput.value = '';
-        if (searchResults) searchResults.innerHTML = '';
-    }
-}
-
-// Inizializza la ricerca nella modal
-function initializeModalSearch() {
-    const searchInput = document.getElementById('modalSearchInput');
-    const searchResults = document.getElementById('modalSearchResults');
-    
-    if (searchInput && searchResults && !searchInput.hasAttribute('data-initialized')) {
-        searchInput.setAttribute('data-initialized', 'true');
-        
-        searchInput.addEventListener('input', (event) => {
-            const query = event.target.value.trim();
-            searchResults.innerHTML = '';
-            
-            if (query.length === 0) {
-                searchResults.innerHTML = '<div class="search-hint">Inizia a digitare per cercare un rifiuto...</div>';
-                return;
-            }
-            
-            if (query.length < 2) {
-                searchResults.innerHTML = '<div class="search-hint">Digita almeno 2 caratteri per iniziare la ricerca</div>';
-                return;
-            }
-            
-            console.log('🔍 Ricerca globale:', query);
-            
-            // Normalizza i tipi per il confronto
-            const normalizeType = (type) => type.toLowerCase().trim();
-            
-            const results = Object.entries(DATI_RIFIUTI_COMPLETO)
-                .filter(([nome, rifiutoData]) => {
-                    // Cerca nei rifiuti che contengono la query nel nome
-                    const nomeMatches = normalizeType(nome).includes(normalizeType(query));
-                    return nomeMatches;
-                })
-                .slice(0, 20) // Limita a 20 risultati
-                .map(([nome, rifiutoData]) => ({ 
-                    nome, 
-                    destinazione: rifiutoData.descrizione || rifiutoData 
-                }));
-            
-            console.log(`📊 Trovati ${results.length} risultati`);
-            
-            if (results.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">Nessun risultato trovato. Prova con un altro termine di ricerca.</div>';
-            } else {
-                results.forEach(({ nome, destinazione }) => {
-                    const resultItem = document.createElement('div');
-                    resultItem.className = 'search-result-item';
-                    resultItem.innerHTML = `
-                        <div class="waste-name">${nome}</div>
-                        <div class="waste-disposal">${destinazione}</div>
-                    `;
-                    searchResults.appendChild(resultItem);
-                });
-            }
-        });
-        
-        // Chiudi modal con ESC
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                closeSearchModal();
-            }
-        });
-    }
-}
-
-// Funzione per mostrare/nascondere i dettagli
-function toggleDettagli() {
-    const dettagliSection = document.getElementById('dettagli-section');
-    const cardRifiuto = document.getElementById('card-rifiuto');
-    
-    if (!dettagliSection) {
-        console.error('Sezione dettagli non trovata');
-        return;
-    }
-
-    if (dettagliVisibili) {
-        // Nascondi dettagli
-        dettagliSection.style.display = 'none';
-        if (cardRifiuto) cardRifiuto.style.display = 'block';
-        dettagliVisibili = false;
-    } else {
-        // Mostra dettagli
-        if (tipoRifiutoCorrente) {
-            populateDettagli(tipoRifiutoCorrente);
-            dettagliSection.style.display = 'block';
-            if (cardRifiuto) cardRifiuto.style.display = 'none';
-            dettagliVisibili = true;
-        }
-    }
-}
-
-// Event listener per il click fuori dal modal
-document.addEventListener('click', (event) => {
-    const dettagliSection = document.getElementById('dettagli-section');
-    const dettagliCard = document.querySelector('.dettagli-card');
-    
-    if (dettagliSection && dettagliVisibili && !dettagliCard.contains(event.target) && !event.target.closest('.info-button')) {
-        toggleDettagli();
-    }
-});
 
 // Add copyright notice to the UI
 function displayCopyrightNotice() {
@@ -2994,6 +2670,124 @@ function addSDGFooterToApp() {
     
     // Inserisce il footer alla fine del container principale
     mainContainer.appendChild(sdgFooter);
+}
+
+// Funzioni essenziali per il Modal di Ricerca
+function openSearchModal() {
+    const modal = document.getElementById('searchModal');
+    const searchInput = document.getElementById('modalSearchInput');
+    const searchResults = document.getElementById('modalSearchResults');
+    
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        setTimeout(() => {
+            if (searchInput) {
+                searchInput.focus();
+                if (searchResults) {
+                    searchResults.innerHTML = '<div class="search-hint">Inizia a digitare per cercare un rifiuto...</div>';
+                }
+            }
+        }, 100);
+        
+        initializeModalSearch();
+    }
+}
+
+function closeSearchModal() {
+    const modal = document.getElementById('searchModal');
+    const searchInput = document.getElementById('modalSearchInput');
+    const searchResults = document.getElementById('modalSearchResults');
+    
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        
+        if (searchInput) searchInput.value = '';
+        if (searchResults) searchResults.innerHTML = '';
+    }
+}
+
+function initializeModalSearch() {
+    const searchInput = document.getElementById('modalSearchInput');
+    const searchResults = document.getElementById('modalSearchResults');
+    
+    if (searchInput && searchResults && !searchInput.hasAttribute('data-initialized')) {
+        searchInput.setAttribute('data-initialized', 'true');
+        
+        // Database rifiuti completo
+        const wasteDB = DATI_RIFIUTI_COMPLETO;
+        
+        searchInput.addEventListener('input', (event) => {
+            const query = event.target.value.trim().toLowerCase();
+            searchResults.innerHTML = '';
+            
+            if (query.length === 0) {
+                searchResults.innerHTML = '<div class="search-hint">Inizia a digitare per cercare un rifiuto...</div>';
+                return;
+            }
+            
+            if (query.length < 2) {
+                searchResults.innerHTML = '<div class="search-hint">Digita almeno 2 caratteri</div>';
+                return;
+            }
+            
+            const results = Object.entries(wasteDB)
+                .filter(([name]) => name.toLowerCase().includes(query))
+                .slice(0, 12)
+                .map(([name, data]) => ({ nome: name, destinazione: data.descrizione }));
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">Nessun risultato trovato</div>';
+            } else {
+                results.forEach(({ nome, destinazione }) => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.innerHTML = `
+                        <div class="waste-name">${nome}</div>
+                        <div class="waste-disposal">${destinazione}</div>
+                    `;
+                    searchResults.appendChild(item);
+                });
+            }
+        });
+        
+        // Supporto tasto ESC
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeSearchModal();
+        });
+    }
+}
+
+// Versione semplificata - rimosso codice ridondante
+function aggiornaDatiConferimento() {
+    const oggi = getTodayString();
+    const domani = getTomorrowString();
+    
+    let tipoRifiuto = 'secco'; // default
+    let dataTarget = oggi;
+    
+    // Controlla il tipo di rifiuto di oggi
+    if (CALENDARIO_RIFIUTI[oggi]) {
+        tipoRifiuto = CALENDARIO_RIFIUTI[oggi];
+        dataTarget = oggi;
+    } else if (CALENDARIO_RIFIUTI[domani]) {
+        tipoRifiuto = CALENDARIO_RIFIUTI[domani];
+        dataTarget = domani;
+    }
+    
+    updateCard(tipoRifiuto, dataTarget);
+}
+
+function verificaCambioData() {
+    // Versione semplificata
+    const nuovaData = getTodayString();
+    if (dataCorrente !== nuovaData) {
+        dataCorrente = nuovaData;
+        aggiornaDatiConferimento();
+        updateTimeLogic();
+    }
 }
 
 // Aggiorna la logica oraria ogni minuto
