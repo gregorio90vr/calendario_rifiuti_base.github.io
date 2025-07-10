@@ -2403,15 +2403,22 @@ function updateCard(tipoRifiuto, dataTarget) {
 }
 
 function updateTimeLogic(tipoRifiuto) {
-    const ora = new Date().toLocaleString('it-IT', { timeZone: 'Europe/Rome', hour: 'numeric', hour12: false });
+    // Usa sempre il fuso orario italiano (Europe/Rome) che gestisce automaticamente ora legale/solare
+    const oraItaliana = new Date().toLocaleString('it-IT', { 
+        timeZone: 'Europe/Rome', 
+        hour: 'numeric', 
+        hour12: false 
+    });
+    const ora = parseInt(oraItaliana);
+    
     const timeInfo = document.getElementById('time-info');
     const collectionNote = document.getElementById('collection-note');
     const collectionNoteText = document.getElementById('collection-note-text');
 
     if (tipoRifiuto) {
-        // Logica oraria come in app.py - conferimento di domani
-        if (ora >= 19 && ora <= 21) {
-            // Ora di conferimento
+        // Logica oraria: conferimento attivo dalle 19:00 alle 20:59 (fino alle 21:00 escluse)
+        if (ora >= 19 && ora < 21) {
+            // Ora di conferimento (dalle 19:00 alle 20:59)
             timeInfo.style.background = 'linear-gradient(135deg, #10b981, #059669)';
             timeInfo.innerHTML = `
                 <div class="time-info-title">
@@ -2564,12 +2571,17 @@ function updateTimeLogic(tipoRifiuto) {
 }
 
 function updateCurrentTime() {
+    // Usa sempre il fuso orario italiano (Europe/Rome)
     const now = new Date();
-    const timeString = now.toLocaleTimeString('it-IT', { 
+    const timeString = now.toLocaleString('it-IT', { 
+        timeZone: 'Europe/Rome',
         hour: '2-digit', 
         minute: '2-digit' 
     });
-    document.getElementById('current-time').textContent = timeString;
+    const currentTimeElement = document.getElementById('current-time');
+    if (currentTimeElement) {
+        currentTimeElement.textContent = timeString;
+    }
 }
 
 
@@ -2764,7 +2776,7 @@ function aggiornaDatiConferimento() {
     const oggi = getTodayString();
     const domani = getTomorrowString();
     
-    let tipoRifiuto = 'secco'; // default
+    let tipoRifiuto = null;
     let dataTarget = oggi;
     
     // Controlla il tipo di rifiuto di oggi
@@ -2777,6 +2789,7 @@ function aggiornaDatiConferimento() {
     }
     
     updateCard(tipoRifiuto, dataTarget);
+    updateTimeLogic(tipoRifiuto);
 }
 
 function verificaCambioData() {
@@ -2785,68 +2798,22 @@ function verificaCambioData() {
     if (dataCorrente !== nuovaData) {
         dataCorrente = nuovaData;
         aggiornaDatiConferimento();
-        updateTimeLogic();
     }
 }
 
-// Aggiorna la logica oraria ogni minuto
-setInterval(updateTimeLogic, 60000);
-
-// Modifica della schermata nera per far partire l'inattività dopo 15 secondi
-function addStandbyOverlay() {
-    const overlay = document.createElement('div');
-    overlay.id = 'standby-overlay';
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: black;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5em;
-        z-index: 9999;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    `;
-    overlay.innerHTML = `
-        <div style="color: #ffffff; background-color: #000000; padding: 20px; font-family: Arial, sans-serif; text-align: center;">
-            <h2 style="margin-bottom: 16px;">Meno luce, più futuro.</h2>
-            <p style="margin-bottom: 10px;">Questa schermata scura aiuta a <strong>ridurre i consumi</strong> e a <strong>proteggere l’ambiente</strong>.</p>
-            <p style="margin-bottom: 10px;">Un piccolo gesto per te,<br>
-            un grande respiro per la Terra.</p>
-            <p style="font-weight: bold;">Risparmi tu, guadagna il pianeta.</p>
-        </div>
-    `;
-    document.body.appendChild(overlay);
-
-    let inactivityTimer;
-    let overlayActive = false;
-
-    const showOverlay = () => {
-        overlay.style.display = 'flex';
-        setTimeout(() => overlay.style.opacity = '1', 0);
-        overlayActive = true;
-    };
-
-    const resetInactivityTimer = () => {
-        clearTimeout(inactivityTimer);
-        if (overlayActive) {
-            location.reload(); // Riavvia l'app solo se la schermata nera è attiva
-        } else {
-            inactivityTimer = setTimeout(showOverlay, 15000); // Reimposta il timer di inattività a 15 secondi
-        }
-    };
-
-    document.addEventListener('mousemove', resetInactivityTimer);
-    document.addEventListener('click', resetInactivityTimer);
-
-    inactivityTimer = setTimeout(showOverlay, 15000); // Inizializza il timer di inattività a 15 secondi
-}
-
-// Chiamata alla funzione per aggiungere la schermata nera
-addStandbyOverlay();
+// Aggiorna la logica oraria ogni minuto usando sempre l'orario italiano
+setInterval(() => {
+    const oggi = getTodayString();
+    const domani = getTomorrowString();
+    let tipoRifiuto = null;
+    
+    // Controlla il tipo di rifiuto di oggi e domani
+    if (CALENDARIO_RIFIUTI[oggi]) {
+        tipoRifiuto = CALENDARIO_RIFIUTI[oggi];
+    } else if (CALENDARIO_RIFIUTI[domani]) {
+        tipoRifiuto = CALENDARIO_RIFIUTI[domani];
+    }
+    
+    updateTimeLogic(tipoRifiuto);
+    updateCurrentTime(); // Aggiorna anche l'orario visualizzato
+}, 60000);
