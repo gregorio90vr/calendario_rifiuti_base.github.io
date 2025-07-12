@@ -2225,7 +2225,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Valigie": {
-    descrizione: "Secco oppure Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti oppure Ecomobile",
+    descrizione: "Secco oppure Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti oEcomobile",
     categorie: ["secco", "ecocentro", "ecomobile", "altre categorie"]
   },
   "Vaschette e barattoli per gelati": {
@@ -2533,7 +2533,7 @@ function updateTimeLogic(tipoRifiuto) {
         timeInfo.style.background = 'linear-gradient(135deg, #64748b, #475569)';
         timeInfo.innerHTML = `
             <div class="time-info-title">
-                <i class="fas fa-star" style="color: #f1f5f9; font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Giorno di riposo</strong>
+                <i font-size: 1.8em; margin-right: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2);"></i> <strong style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">Giorno di riposo</strong>
             </div>
             <div class="time-info-subtitle">
                 <span style="font-size: 1.2em; color: #f1f5f9;">Nessuna raccolta programmata per domani</span>
@@ -2543,25 +2543,23 @@ function updateTimeLogic(tipoRifiuto) {
         // Stile del box delle note - Grigio per riposo
         if (collectionNote) {
             collectionNote.style.cssText = `
-                background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-                border: 2px solid #64748b;
-                border-radius: 15px;
-                padding: 20px;
-                margin: 15px 0;
-                box-shadow: 0 8px 25px rgba(100, 116, 139, 0.15);
-                position: relative;
-                overflow: hidden;
+            background: none;
+            border: none;
+            margin: 15px 0;
+            padding: 0;
             `;
             collectionNote.innerHTML = `
-                <div style="display: flex; align-items: flex-start; gap: 15px;">
-                    <div style="background: #64748b; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <i class="fas fa-bed" style="color: white; font-size: 1.2em;"></i>
+                    <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                        <div style='position: relative; z-index: 2;'>
+                            <div style="width: 56px; height: 56px; background:  #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(16,185,129,0.15); margin-bottom: -28px;">
+                                <i class='fas fa-bed' style='color: white; font-size: 2em;'></i>
+                            </div>
+                        </div>
+                        <div style="background: linear-gradient(135deg,#f1f5f9, #e2e8f0); border: 2px solid  #64748b; border-radius: 15px; box-shadow: 0 8px 25px rgba(100, 116, 139, 0.15); padding: 40px 20px 20px 20px; text-align: center; width: 100%; max-width: 100%;">
+                            <h4 style='margin: 0 0 12px 0; color: #334155; font-size: 1.25em; font-weight: bold;'>Nessuna consegna prevista per la giornata</h4>
+                            <p style='margin: 0; color:#475569; line-height: 1.5; font-size: 1.05em;'>Non protare rifiuti ai punti di raccolta. <br> Rispetta le regole per una maggiore tutela ambientale.</p>
+                        </div>
                     </div>
-                    <div style="flex: 1;">
-                        <h4 style="margin: 0 0 8px 0; color: #334155; font-size: 1.1em; font-weight: bold;">Nessuna consegna prevista per la giornata</h4>
-                        <p style="margin: 0; color: #475569; line-height: 1.5; font-size: 0.95em;">Consulta il calendario nei giorni successivi, non disperdere rifiuti nell'ambiente!</p>
-                    </div>
-                </div>
             `;
         }
     }

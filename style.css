@@ -682,7 +682,7 @@ body {
         max-height: 65vh;
     }
     
-    .search-button-container {
+    .openSearchButton {
         margin: 20px auto;
     }
     
@@ -917,14 +917,14 @@ body {
 }
 
 .open-search-button {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(135deg, #57cf8b, #0a9534);
     border: none;
     border-radius: 16px;
     padding: 0;
     width: 100%;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 15px rgba(68, 168, 110, 0.3);
     overflow: hidden;
 }
 
@@ -1016,7 +1016,7 @@ body {
 }
 
 .search-modal-header {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(135deg, #57cf8b, #0a9534);
     color: white;
     padding: 24px;
     display: flex;
@@ -1072,9 +1072,9 @@ body {
 }
 
 .modal-search-input:focus {
-    border-color: #3b82f6;
+    border-color: #0a9534;
     background: white;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 4px 12px rgba(3, 51, 21, 0.15);
 }
 
 .modal-search-results {
@@ -1094,7 +1094,7 @@ body {
 
 .modal-search-results .search-result-item:hover {
     background: white;
-    border-color: #3b82f6;
+    border-color: #0a9534;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
 }
