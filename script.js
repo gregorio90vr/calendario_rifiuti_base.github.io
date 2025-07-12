@@ -381,7 +381,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Acetone (contenitore vuoto e lavato)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Acidi (contenitore sporco)": {
@@ -389,7 +389,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Acidi (contenitore vuoto e lavato)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Acquario": {
@@ -413,7 +413,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Alcool (contenitore vuoto)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Alimenti avariati": {
@@ -425,7 +425,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Alluminio": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Amianto": {
@@ -437,7 +437,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Annaffiatoio": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Antenna del televisore": {
@@ -445,7 +445,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Antenna parabolica": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Antiparassitari (contenitore vuoto)": {
@@ -457,7 +457,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Armadi": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Articoli per l edilizia (es. tubi) piccole quantit ": {
@@ -473,7 +473,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Asse da stiro": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Assorbenti": {
@@ -485,7 +485,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Attaccapanni in ferro": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Attaccapanni in legno": {
@@ -501,7 +501,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Bacinelle in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Bambole": {
@@ -525,47 +525,47 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Barattoli in acciaio (vuoti e puliti)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli in alluminio e acciaio (per olio, pelati, tonno, ecc.)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli in latta (scatole di pelati, ecc.)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli in plastica per prodotti vari": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per alimenti in polvere": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per articoli da cancelleria": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per detersivi": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per rullini fotografici": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per salviette umide": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattolini di crema": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barre da imballaggio in polistirolo espanso": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Batterie cellulare": {
@@ -581,7 +581,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Bauli": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Bicchieri e coppette in materiale compostabile (ad es.cellulosa, amido di mais, ecc.)": {
@@ -593,7 +593,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Bicchieri in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Bicchieri di vetro": {
@@ -601,7 +601,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Biciclette": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Bilancia pesa persone": {
@@ -617,7 +617,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Bombolette spray non pericolose (contenitore vuoto)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Borsa dell acqua calda": {
@@ -625,7 +625,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Borse di Plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Borse in cuoio": {
@@ -633,7 +633,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Bottiglie di plastica per acqua, olio, succhi": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Bottiglie di vetro": {
@@ -641,11 +641,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["vetro"]
   },
   "Box doccia": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Box per bambini": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Brick per succo di frutta, t  (senza cannuccia)": {
@@ -661,7 +661,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Buste di plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Bustine di t ": {
@@ -669,7 +669,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Caffettiera": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Calcinacci piccole quantit ": {
@@ -685,7 +685,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Candeggina (contenitore vuoto e lavato)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Candela": {
@@ -725,7 +725,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Cards Plastificate": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Carbone spento": {
@@ -737,7 +737,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Carrozzine": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Carta assorbente da cucina (scottex)": {
@@ -757,11 +757,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Carta delle caramelle": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Carta patinata": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Carta per affettati": {
@@ -777,7 +777,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Carta stagnola (alluminio)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Carta umida imbevuta di liquidi organici (sugo, olio, ecc.)": {
@@ -829,7 +829,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Cassette per ortofrutta e carni": {
-    descrizione: "Multi plastica / lattine / Ecocentro",
+    descrizione: "plastica e metallo oppure Ecocentro",
     categorie: ["plastica/metalli", "ecocentro"]
   },
   "Cavatappi": {
@@ -845,7 +845,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Cellophane": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Cenere spenta": {
@@ -873,7 +873,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Chiavi in metallo": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Chiodi": {
@@ -901,7 +901,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Computer": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti / Ecomobile",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile", "altre categorie"]
   },
   "Conchiglie e molluschi": {
@@ -909,7 +909,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Confezioni delle merendine": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Confezioni in cartoncino (ad es. della pasta,del dentifricio, dei cereali, ecc.)": {
@@ -917,19 +917,19 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Confezioni in plastica rigide o flessibili": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Congelatori": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Contenitore borotalco": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Contenitore pasta abrasiva": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Contenitore smalto": {
@@ -937,11 +937,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Contenitori in plastica (bacinelle e terrine)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Contenitori per alimenti in alluminio e acciaio": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Contenitori per alimenti in vetro": {
@@ -949,15 +949,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["vetro"]
   },
   "Contenitori per bibite (lattine)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Coperchi metallici": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Coperchietti dei barattoli di yogurt": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Coperte usate": {
@@ -965,7 +965,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Copertoni di automobili": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Coppette del gelato di carta pulite": {
@@ -973,7 +973,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Coppette del gelato di plastica pulite": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Corda": {
@@ -989,7 +989,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Cosmetici (contenitore plastica)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Cotone usato": {
@@ -1001,7 +1001,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Cotton fioc in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Cover di cellulari": {
@@ -1033,7 +1033,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Dentifricio (tubetto vuoto)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Deodorante per auto": {
@@ -1041,7 +1041,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Deodorante personale con contenitore in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Deodorante personale con contenitore in vetro": {
@@ -1049,7 +1049,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["vetro"]
   },
   "Detersivo (flaccone vuoto e pulito)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Detersivo (imballaggio cartone)": {
@@ -1061,7 +1061,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Detersivo (sacchetto vuoto e pulito)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Diapositive": {
@@ -1081,11 +1081,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Dispensatori per alimenti vuoti e puliti (creme, salse, yogurt)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Divano": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Dvd": {
@@ -1133,11 +1133,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Ferro": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Fiale in plastia vuote": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Fiammiferi": {
@@ -1149,7 +1149,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Film e pellicole da imballaggio in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Filo interdentale": {
@@ -1161,7 +1161,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Finestre piccole quantit ": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Fiori finti": {
@@ -1177,11 +1177,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Flacconi di plastica vuoti (detersivi e saponi)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Flacconi per alimenti vuoti (creme e salse)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Fogli di carta e cartone": {
@@ -1189,11 +1189,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Fogli di protezione in alluminio delle cioccolate": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Fogli in alluminio per uso domestico": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Foglie": {
@@ -1205,7 +1205,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Forbici": {
-    descrizione: "Multi plastica / lattine (Nelle zone servite dal porta a porta, Ecocentro / Ecomobile)",
+    descrizione: "plastica e metallo (Nelle zone servite dal porta a porta, Ecocentro oppure Ecomobile)",
     categorie: ["plastica/metalli", "ecocentro", "ecomobile"]
   },
   "Fotografie": {
@@ -1213,7 +1213,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Frigoriferi": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Ganci per chiudere i sacchetti": {
@@ -1229,7 +1229,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Girello per bambini": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Giubbetti catarifrangenti": {
@@ -1245,7 +1245,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Grattugia in plastica per alimenti": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Guaina catramata": {
@@ -1281,15 +1281,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Imballaggi in metallo": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Imballaggi in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Imballaggi in polistirolo": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Incensi": {
@@ -1301,7 +1301,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Infissi piccole quantit ": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Insetticidi per uso domestico (barattoli vuoti e puliti)": {
@@ -1313,7 +1313,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Lacche (contenitore vuoto)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Lacci per scarpe": {
@@ -1325,7 +1325,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Lampadari": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Lampade": {
@@ -1361,7 +1361,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Lastre di Vetro piccole dimensioni": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Lastre raggi": {
@@ -1369,23 +1369,23 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Latta": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Lattine in alluminio": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Lattine in banda stagnata": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Lavastoviglie": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Lavatrice": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Legno": {
@@ -1420,11 +1420,11 @@ const DATI_RIFIUTI_COMPLETO = {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Lumini / Cera di lumino": {
+  "Lumini oppure Cera di lumino": {
     descrizione: "Secco",
     categorie: ["secco"]
   },
-  "Lumini / Contenitori in plastica per lumini": {
+  "Lumini oppure Contenitori in plastica per lumini": {
     descrizione: "Secco",
     categorie: ["secco"]
   },
@@ -1441,7 +1441,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Materassi": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Matite": {
@@ -1457,7 +1457,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Medicinali scaduti": {
-    descrizione: "Contenitori presso le farmacie / Ecomobile",
+    descrizione: "Contenitori presso le farmacie oppure Ecomobile",
     categorie: ["ecomobile", "altre categorie"]
   },
   "Mercurio (termometri)": {
@@ -1473,7 +1473,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Mobili e mensole in legno": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Mollette": {
@@ -1481,7 +1481,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Monitor": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Motorini": {
@@ -1517,10 +1517,10 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Nylon": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
-  "Occhiali / Montatura occhiali": {
+  "Occhiali o Montatura occhiali": {
     descrizione: "Secco",
     categorie: ["secco"]
   },
@@ -1529,11 +1529,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Olio alimentare usato": {
-    descrizione: "Ecocentro / Ecomobile / Contenitori circoscrizioni/consultare sito AMIA www.amiavr.it/Raccolta-differenziata/Raccolta-olio-alimentare",
+    descrizione: "Ecocentro oppure Ecomobile oppure Contenitori circoscrizioni/consultare sito AMIA www.amiavr.it/Raccolta-differenziata/Raccolta-olio-alimentare",
     categorie: ["ecocentro", "ecomobile", "altre categorie"]
   },
   "Olio per automobili e macchinari": {
-    descrizione: "Raccoglitori autorizzati / Ecocentro",
+    descrizione: "Raccoglitori autorizzati oppure Ecocentro",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Ombrelli": {
@@ -1557,7 +1557,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Padelle": {
-    descrizione: "Multi plastica / lattine (Nelle zone servite dal porta a, Ecocentro/ Ecomobile)",
+    descrizione: "plastica e metallo (Nelle zone servite dal porta a, Ecocentrooppure Ecomobile)",
     categorie: ["plastica/metalli", "ecocentro", "ecomobile"]
   },
   "Paglia": {
@@ -1597,7 +1597,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Paste abrasive (contenitotre vuoto)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Peli": {
@@ -1609,7 +1609,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Pellicole per alimenti": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Peluche": {
@@ -1637,7 +1637,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Persiane": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Pesticidi": {
@@ -1677,7 +1677,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Pile": {
-    descrizione: "Contenitori per pile presso rivenditori / Ecomobile",
+    descrizione: "Contenitori per pile presso rivenditori oppure Ecomobile",
     categorie: ["ecomobile", "altre categorie"]
   },
   "Pirofile": {
@@ -1689,11 +1689,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Polistirolo imballaggi": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Polistirolo pannelli": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Polveri dell aspirapolvere": {
@@ -1701,7 +1701,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Poltrone": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Portadocumenti e cartellette in plastica": {
@@ -1713,11 +1713,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["vetro"]
   },
   "Posate in metallo": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Posate in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Post-it": {
@@ -1725,7 +1725,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Profumi (contenitori vuoti)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Profilattici": {
@@ -1757,15 +1757,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Reggette per legatura pacchi (in plastica)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Reti in plastica per frutta e verdura": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Reti per letti": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Righelli": {
@@ -1789,11 +1789,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Sacchetti di carta con interno plasticato": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchetti di plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchetti per aspirapolvere": {
@@ -1801,19 +1801,19 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Sacchi e sacchetti in plastica (fuorch  per materiale edile)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchi per alimenti per animali": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchi per detersivi": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchi per prodotti di giardinaggio": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Salviette": {
@@ -1829,7 +1829,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Sanitari": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Sapone in pezzi e saponette": {
@@ -1837,15 +1837,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Scaffali in ferro": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Scaffali in legno": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Scale pieghevoli": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Scarpe e scarponi usati in buono stato": {
@@ -1869,7 +1869,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Scatolette per tonno e altri alimenti": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Scatoloni": {
@@ -1877,15 +1877,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Schermo del computer": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Sci": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Scolapasta in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Scontrini in carta chimica": {
@@ -1897,15 +1897,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Sdraio": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Secchielli in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sedie": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Segature (piccole quantit )": {
@@ -1917,7 +1917,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Shoppers": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sigarette": {
@@ -1973,7 +1973,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Stagnola": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Stampante": {
@@ -1989,7 +1989,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Stereo": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Stoffa": {
@@ -2017,7 +2017,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Strumenti musicali": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Stuzzicadenti": {
@@ -2041,7 +2041,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tagliere in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Taglierini": {
@@ -2057,7 +2057,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Taniche per uso domestico (no benzina meno 5lt)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Taniche per uso domestico (no benzina pi  5lt)": {
@@ -2073,15 +2073,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Tappi a corona": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tappi di barattoli in metallo": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tappi in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tappi sughero": {
@@ -2093,7 +2093,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tavolo": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Tazze e tazzine in ceramica rotta": {
@@ -2105,7 +2105,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Televisore": {
-    descrizione: "Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti / Ecomobile",
+    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile", "altre categorie"]
   },
   "Tende in stoffa": {
@@ -2137,7 +2137,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tintura per abiti, scarpe, capelli (contenitore vuoto)": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Toner": {
@@ -2161,7 +2161,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Trielina": {
-    descrizione: "Ecocentro / Ditta specializzata",
+    descrizione: "Ecocentro oppure Ditta specializzata",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Trucchi": {
@@ -2181,11 +2181,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tubetti di dentifricio": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tubetti per uso alimentare": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tubi fluorescenti": {
@@ -2225,15 +2225,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Valigie": {
-    descrizione: "Secco/ Ecocentro / telefona al numero 045 8069213 per ritiro rifiuti ingombranti / Ecomobile",
+    descrizione: "Secco oppure Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti oppure Ecomobile",
     categorie: ["secco", "ecocentro", "ecomobile", "altre categorie"]
   },
   "Vaschette e barattoli per gelati": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Vaschette in alluminio per alimenti": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Vaschette in carta portauova": {
@@ -2241,7 +2241,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Vaschette in plastica portauova": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Vasetti degli omogeneizzati": {
@@ -2253,7 +2253,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco", "ecocentro"]
   },
   "Vasi in plastica": {
-    descrizione: "Multi plastica / lattine",
+    descrizione: "plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Vasi in terracotta": {
@@ -2553,16 +2553,13 @@ function updateTimeLogic(tipoRifiuto) {
                 overflow: hidden;
             `;
             collectionNote.innerHTML = `
-                <div style="position: absolute; top: -5px; right: -5px; width: 30px; height: 30px; background: #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-moon" style="color: white; font-size: 0.8em;"></i>
-                </div>
                 <div style="display: flex; align-items: flex-start; gap: 15px;">
                     <div style="background: #64748b; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                         <i class="fas fa-bed" style="color: white; font-size: 1.2em;"></i>
                     </div>
                     <div style="flex: 1;">
-                        <h4 style="margin: 0 0 8px 0; color: #334155; font-size: 1.1em; font-weight: bold;">Giorno di Riposo</h4>
-                        <p style="margin: 0; color: #475569; line-height: 1.5; font-size: 0.95em;">Goditi il giorno di pausa dalla raccolta!</p>
+                        <h4 style="margin: 0 0 8px 0; color: #334155; font-size: 1.1em; font-weight: bold;">Nessuna consegna prevista per la giornata</h4>
+                        <p style="margin: 0; color: #475569; line-height: 1.5; font-size: 0.95em;">Consulta il calendario nei giorni successivi, non disperdere rifiuti nell'ambiente!</p>
                     </div>
                 </div>
             `;
@@ -2807,12 +2804,7 @@ setInterval(() => {
     const domani = getTomorrowString();
     let tipoRifiuto = null;
     
-    // Controlla il tipo di rifiuto di oggi e domani
-    if (CALENDARIO_RIFIUTI[oggi]) {
-        tipoRifiuto = CALENDARIO_RIFIUTI[oggi];
-    } else if (CALENDARIO_RIFIUTI[domani]) {
-        tipoRifiuto = CALENDARIO_RIFIUTI[domani];
-    }
+    tipoRifiuto = CALENDARIO_RIFIUTI[domani]
     
     updateTimeLogic(tipoRifiuto);
     updateCurrentTime(); // Aggiorna anche l'orario visualizzato
