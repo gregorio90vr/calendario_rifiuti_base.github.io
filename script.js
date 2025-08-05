@@ -40,7 +40,18 @@ const TRANSLATIONS = {
         sdgTitle: "Obiettivi di Sviluppo Sostenibile",
         sdgDescription: "Contribuisci agli SDGs 11, 12 e 14 attraverso la raccolta differenziata",
         calendarLink: "📅 Calendario AMIA",
-        dictionaryLink: "📖 Dizionario Rifiuti"
+        dictionaryLink: "📖 Dizionario Rifiuti",
+        districtSelector: {
+            title: "📍 Seleziona il tuo quartiere",
+            placeholder: "Cerca il tuo quartiere...",
+            noResults: "Nessun quartiere trovato",
+            calendarTypes: {
+                azzurro: "Calendario Azzurro",
+                verde: "Calendario Verde", 
+                blu: "Calendario Blu",
+                arancione: "Calendario Arancione"
+            }
+        }
     },
     en: {
         appTitle: "📅 Waste Calendar",
@@ -70,13 +81,24 @@ const TRANSLATIONS = {
             },
             tooLate: {
                 title: "❌ Too late",
-                message: "Don't dispose of waste after hours 7:00 PM - 9:00 PM."
+                message: "Don't dispose of waste before 7:00 PM and after 9:00 PM."
             }
         },
         sdgTitle: "Sustainable Development Goals",
         sdgDescription: "Contribute to SDGs 11, 12 and 14 through waste separation",
         calendarLink: "📅 AMIA Calendar",
-        dictionaryLink: "📖 Waste Dictionary"
+        dictionaryLink: "📖 Waste Dictionary",
+        districtSelector: {
+            title: "📍 Select your district",
+            placeholder: "Search your district...",
+            noResults: "No district found",
+            calendarTypes: {
+                azzurro: "Azure Calendar",
+                verde: "Green Calendar", 
+                blu: "Blue Calendar",
+                arancione: "Orange Calendar"
+            }
+        }
     }
 };
 
@@ -171,44 +193,764 @@ const WASTE_DATA_EN = {
 };
 
 // === CALENDARIO RIFIUTI AGGIORNATO ===
-const WASTE_CALENDAR = {
-    "2025-08-01": "secco",
-    "2025-08-02": "umido", 
-    "2025-08-03": null,
-    "2025-08-04": "carta",
-    "2025-08-05": "umido",
-    "2025-08-06": "plastica",
-    "2025-08-07": "umido",
-    "2025-08-08": "secco",
-    "2025-08-09": "umido",
-    "2025-08-10": null,
-    "2025-08-11": "carta", 
-    "2025-08-12": "umido",
-    "2025-08-13": "plastica",
-    "2025-08-14": "umido",
-    "2025-08-15": null,
-    "2025-08-16": "umido",
-    "2025-08-17": null,
-    "2025-08-18": "carta",
-    "2025-08-19": "umido", 
-    "2025-08-20": "plastica",
-    "2025-08-21": "umido",
-    "2025-08-22": "secco",
-    "2025-08-23": "umido",
-    "2025-08-24": null,
-    "2025-08-25": "carta",
-    "2025-08-26": "umido",
-    "2025-08-27": "plastica",
-    "2025-08-28": "umido",
-    "2025-08-29": "secco",
-    "2025-08-30": "umido",
-    "2025-08-31": null,
-    "2025-09-01": "carta",
-    "2025-09-02": "umido",
-    "2025-09-03": "plastica",
-    "2025-09-04": "umido",
-    "2025-09-05": "secco"
+const WASTE_CALENDARS = {
+    azzurro: {
+        "2025-07-01" : "umido",
+        "2025-07-02" : "plastica",
+        "2025-07-03" : "umido",
+        "2025-07-04" : "secco",
+        "2025-07-05" : "umido",
+        "2025-07-06" : null,
+        "2025-07-07" : "carta",
+        "2025-07-08" : "umido",
+        "2025-07-09" : "plastica",
+        "2025-07-10" : "umido",
+        "2025-07-11" : "secco",
+        "2025-07-12" : "umido",
+        "2025-07-13" : null,
+        "2025-07-14" : "carta",
+        "2025-07-15" : "umido",
+        "2025-07-16" : "plastica",
+        "2025-07-17" : "umido",
+        "2025-07-18" : "secco",
+        "2025-07-19" : "umido",
+        "2025-07-20" : null,
+        "2025-07-21" : "carta",
+        "2025-07-22" : "umido",
+        "2025-07-23" : "plastica",
+        "2025-07-24" : "umido",
+        "2025-07-25" : "secco",
+        "2025-07-26" : "umido",
+        "2025-07-27" : null,
+        "2025-07-28" : "carta",
+        "2025-07-29" : "umido",
+        "2025-07-30" : "plastica",
+        "2025-07-31" : "umido",
+        "2025-08-01" : "secco",
+        "2025-08-02" : "umido",
+        "2025-08-03" : null,
+        "2025-08-04" : "carta",
+        "2025-08-05" : "umido",
+        "2025-08-06" : "plastica",
+        "2025-08-07" : "umido",
+        "2025-08-08" : "secco",
+        "2025-08-09" : "umido",
+        "2025-08-10" : null,
+        "2025-08-11" : "carta",
+        "2025-08-12" : "umido",
+        "2025-08-13" : "plastica",
+        "2025-08-14" : "umido",
+        "2025-08-15" : "secco",
+        "2025-08-16" : "umido",
+        "2025-08-17" : null,
+        "2025-08-18" : "carta",
+        "2025-08-19" : "umido",
+        "2025-08-20" : "plastica",
+        "2025-08-21" : "umido",
+        "2025-08-22" : "secco",
+        "2025-08-23" : "umido",
+        "2025-08-24" : null,
+        "2025-08-25" : "carta",
+        "2025-08-26" : "umido",
+        "2025-08-27" : "plastica",
+        "2025-08-28" : "umido",
+        "2025-08-29" : "secco",
+        "2025-08-30" : "umido",
+        "2025-08-31" : null,
+        "2025-09-01" : "carta",
+        "2025-09-02" : "umido",
+        "2025-09-03" : "plastica",
+        "2025-09-04" : "umido",
+        "2025-09-05" : "secco",
+        "2025-09-06" : "umido",
+        "2025-09-07" : null,
+        "2025-09-08" : "carta",
+        "2025-09-09" : "umido",
+        "2025-09-10" : "plastica",
+        "2025-09-11" : "umido",
+        "2025-09-12" : "secco",
+        "2025-09-13" : "umido",
+        "2025-09-14" : null,
+        "2025-09-15" : "carta",
+        "2025-09-16" : "umido",
+        "2025-09-17" : "plastica",
+        "2025-09-18" : null,
+        "2025-09-19" : "secco",
+        "2025-09-20" : "umido",
+        "2025-09-21" : null,
+        "2025-09-22" : "carta",
+        "2025-09-23" : "umido",
+        "2025-09-24" : "plastica",
+        "2025-09-25" : null,
+        "2025-09-26" : "secco",
+        "2025-09-27" : "umido",
+        "2025-09-28" : null,
+        "2025-09-29" : "carta",
+        "2025-09-30" : "umido",
+        "2025-10-01" : "plastica",
+        "2025-10-02" : null,
+        "2025-10-03" : "secco",
+        "2025-10-04" : "umido",
+        "2025-10-05" : null,
+        "2025-10-06" : "carta",
+        "2025-10-07" : "umido",
+        "2025-10-08" : "plastica",
+        "2025-10-09" : null,
+        "2025-10-10" : "secco",
+        "2025-10-11" : "umido",
+        "2025-10-12" : null,
+        "2025-10-13" : "carta",
+        "2025-10-14" : "umido",
+        "2025-10-15" : "plastica",
+        "2025-10-16" : null,
+        "2025-10-17" : "secco",
+        "2025-10-18" : "umido",
+        "2025-10-19" : null,
+        "2025-10-20" : "carta",
+        "2025-10-21" : "umido",
+        "2025-10-22" : "plastica",
+        "2025-10-23" : null,
+        "2025-10-24" : "secco",
+        "2025-10-25" : "umido",
+        "2025-10-26" : null,
+        "2025-10-27" : "carta",
+        "2025-10-28" : "umido",
+        "2025-10-29" : "plastica",
+        "2025-10-30" : null,
+        "2025-10-31" : "secco",
+        "2025-11-01" : "umido",
+        "2025-11-02" : null,
+        "2025-11-03" : "carta",
+        "2025-11-04" : "umido",
+        "2025-11-05" : "plastica",
+        "2025-11-06" : null,
+        "2025-11-07" : "secco",
+        "2025-11-08" : "umido",
+        "2025-11-09" : null,
+        "2025-11-10" : "carta",
+        "2025-11-11" : "umido",
+        "2025-11-12" : "plastica",
+        "2025-11-13" : null,
+        "2025-11-14" : "secco",
+        "2025-11-15" : "umido",
+        "2025-11-16" : null,
+        "2025-11-17" : "carta",
+        "2025-11-18" : "umido",
+        "2025-11-19" : "plastica",
+        "2025-11-20" : null,
+        "2025-11-21" : "secco",
+        "2025-11-22" : "umido",
+        "2025-11-23" : null,
+        "2025-11-24" : "carta",
+        "2025-11-25" : "umido",
+        "2025-11-26" : "plastica",
+        "2025-11-27" : null,
+        "2025-11-28" : "secco",
+        "2025-11-29" : "umido",
+        "2025-11-30" : null,
+        "2025-12-01" : "carta",
+        "2025-12-02" : "umido",
+        "2025-12-03" : "plastica",
+        "2025-12-04" : null,
+        "2025-12-05" : "secco",
+        "2025-12-06" : "umido",
+        "2025-12-07" : null,
+        "2025-12-08" : "carta",
+        "2025-12-09" : "umido",
+        "2025-12-10" : "plastica",
+        "2025-12-11" : null,
+        "2025-12-12" : "secco",
+        "2025-12-13" : "umido",
+        "2025-12-14" : null,
+        "2025-12-15" : "carta",
+        "2025-12-16" : "umido",
+        "2025-12-17" : "plastica",
+        "2025-12-18" : null,
+        "2025-12-19" : "secco",
+        "2025-12-20" : "umido",
+        "2025-12-21" : null,
+        "2025-12-22" : "carta",
+        "2025-12-23" : "umido",
+        "2025-12-24" : "plastica",
+        "2025-12-25" : null,
+        "2025-12-26" : "secco",
+        "2025-12-27" : "umido",
+        "2025-12-28" : null,
+        "2025-12-29" : "carta",
+        "2025-12-30" : "umido",
+        "2025-12-31" : "plastica"
+    },
+    verde: {
+        "2025-07-01" : "umido",
+        "2025-07-02" : "carta",
+        "2025-07-03" : "umido",
+        "2025-07-04" : "secco",
+        "2025-07-05" : "umido",
+        "2025-07-06" : null,
+        "2025-07-07" : "carta",
+        "2025-07-08" : "umido",
+        "2025-07-09" : "plastica",
+        "2025-07-10" : "umido",
+        "2025-07-11" : "secco",
+        "2025-07-12" : "umido",
+        "2025-07-13" : null,
+        "2025-07-14" : "plastica",
+        "2025-07-15" : "umido",
+        "2025-07-16" : "carta",
+        "2025-07-17" : "umido",
+        "2025-07-18" : "secco",
+        "2025-07-19" : "umido",
+        "2025-07-20" : null,
+        "2025-07-21" : "plastica",
+        "2025-07-22" : "umido",
+        "2025-07-23" : "carta",
+        "2025-07-24" : "umido",
+        "2025-07-25" : "secco",
+        "2025-07-26" : "umido",
+        "2025-07-27" : null,
+        "2025-07-28" : "plastica",
+        "2025-07-29" : "umido",
+        "2025-07-30" : "carta",
+        "2025-07-31" : "umido",
+        "2025-08-01" : "secco",
+        "2025-08-02" : "umido",
+        "2025-08-03" : null,
+        "2025-08-04" : "plastica",
+        "2025-08-05" : "umido",
+        "2025-08-06" : "carta",
+        "2025-08-07" : "umido",
+        "2025-08-08" : "secco",
+        "2025-08-09" : "umido",
+        "2025-08-10" : null,
+        "2025-08-11" : "plastica",
+        "2025-08-12" : "umido",
+        "2025-08-13" : "carta",
+        "2025-08-14" : "umido",
+        "2025-08-15" : "secco",
+        "2025-08-16" : "umido",
+        "2025-08-17" : null,
+        "2025-08-18" : "plastica",
+        "2025-08-19" : "umido",
+        "2025-08-20" : "carta",
+        "2025-08-21" : "umido",
+        "2025-08-22" : "secco",
+        "2025-08-23" : "umido",
+        "2025-08-24" : null,
+        "2025-08-25" : "plastica",
+        "2025-08-26" : "umido",
+        "2025-08-27" : "carta",
+        "2025-08-28" : "umido",
+        "2025-08-29" : "secco",
+        "2025-08-30" : "umido",
+        "2025-08-31" : null,
+        "2025-09-01" : "plastica",
+        "2025-09-02" : "umido",
+        "2025-09-03" : "carta",
+        "2025-09-04" : "umido",
+        "2025-09-05" : "secco",
+        "2025-09-06" : "umido",
+        "2025-09-07" : null,
+        "2025-09-08" : "plastica",
+        "2025-09-09" : "umido",
+        "2025-09-10" : "carta",
+        "2025-09-11" : "umido",
+        "2025-09-12" : "secco",
+        "2025-09-13" : "umido",
+        "2025-09-14" : null,
+        "2025-09-15" : "umido",
+        "2025-09-16" : "plastica",
+        "2025-09-17" : "secco",
+        "2025-09-18" : "carta",
+        "2025-09-19" : "umido",
+        "2025-09-20" : null,
+        "2025-09-21" : null,
+        "2025-09-22" : "umido",
+        "2025-09-23" : "plastica",
+        "2025-09-24" : "secco",
+        "2025-09-25" : "carta",
+        "2025-09-26" : "umido",
+        "2025-09-27" : null,
+        "2025-09-28" : null,
+        "2025-09-29" : "umido",
+        "2025-09-30" : "plastica",
+        "2025-10-01" : "secco",
+        "2025-10-02" : "carta",
+        "2025-10-03" : "umido",
+        "2025-10-04" : null,
+        "2025-10-05" : null,
+        "2025-10-06" : "umido",
+        "2025-10-07" : "plastica",
+        "2025-10-08" : "secco",
+        "2025-10-09" : "carta",
+        "2025-10-10" : "umido",
+        "2025-10-11" : null,
+        "2025-10-12" : null,
+        "2025-10-13" : "umido",
+        "2025-10-14" : "plastica",
+        "2025-10-15" : "secco",
+        "2025-10-16" : "carta",
+        "2025-10-17" : "umido",
+        "2025-10-18" : null,
+        "2025-10-19" : null,
+        "2025-10-20" : "umido",
+        "2025-10-21" : "plastica",
+        "2025-10-22" : "secco",
+        "2025-10-23" : "carta",
+        "2025-10-24" : "umido",
+        "2025-10-25" : null,
+        "2025-10-26" : null,
+        "2025-10-27" : "umido",
+        "2025-10-28" : "plastica",
+        "2025-10-29" : "secco",
+        "2025-10-30" : "carta",
+        "2025-10-31" : "umido",
+        "2025-11-01" : null,
+        "2025-11-02" : null,
+        "2025-11-03" : "umido",
+        "2025-11-04" : "plastica",
+        "2025-11-05" : "secco",
+        "2025-11-06" : "carta",
+        "2025-11-07" : "umido",
+        "2025-11-08" : null,
+        "2025-11-09" : null,
+        "2025-11-10" : "umido",
+        "2025-11-11" : "plastica",
+        "2025-11-12" : "secco",
+        "2025-11-13" : "carta",
+        "2025-11-14" : "umido",
+        "2025-11-15" : null,
+        "2025-11-16" : null,
+        "2025-11-17" : "umido",
+        "2025-11-18" : "plastica",
+        "2025-11-19" : "secco",
+        "2025-11-20" : "carta",
+        "2025-11-21" : "umido",
+        "2025-11-22" : null,
+        "2025-11-23" : null,
+        "2025-11-24" : "umido",
+        "2025-11-25" : "plastica",
+        "2025-11-26" : "secco",
+        "2025-11-27" : "carta",
+        "2025-11-28" : "umido",
+        "2025-11-29" : null,
+        "2025-11-30" : null,
+        "2025-12-01" : "umido",
+        "2025-12-02" : "plastica",
+        "2025-12-03" : "secco",
+        "2025-12-04" : "carta",
+        "2025-12-05" : "umido",
+        "2025-12-06" : null,
+        "2025-12-07" : null,
+        "2025-12-08" : "umido",
+        "2025-12-09" : "plastica",
+        "2025-12-10" : "secco",
+        "2025-12-11" : "carta",
+        "2025-12-12" : "umido",
+        "2025-12-13" : null,
+        "2025-12-14" : null,
+        "2025-12-15" : "umido",
+        "2025-12-16" : "plastica",
+        "2025-12-17" : "secco",
+        "2025-12-18" : "carta",
+        "2025-12-19" : "umido",
+        "2025-12-20" : null,
+        "2025-12-21" : null,
+        "2025-12-22" : "umido",
+        "2025-12-23" : "plastica",
+        "2025-12-24" : "secco",
+        "2025-12-25" : "carta",
+        "2025-12-26" : "umido",
+        "2025-12-27" : null,
+        "2025-12-28" : null,
+        "2025-12-29" : "umido",
+        "2025-12-30" : "plastica",
+        "2025-12-31" : "secco"
+    },
+    blu: {
+        "2025-07-01" : "secco",
+        "2025-07-02" : "umido",
+        "2025-07-03" : "carta",
+        "2025-07-04" : "umido",
+        "2025-07-05" : "plastica",
+        "2025-07-06" : null,
+        "2025-07-07" : "umido",
+        "2025-07-08" : "secco",
+        "2025-07-09" : "umido",
+        "2025-07-10" : "carta",
+        "2025-07-11" : "umido",
+        "2025-07-12" : "plastica",
+        "2025-07-13" : null,
+        "2025-07-14" : "umido",
+        "2025-07-15" : "secco",
+        "2025-07-16" : "umido",
+        "2025-07-17" : "carta",
+        "2025-07-18" : "umido",
+        "2025-07-19" : "plastica",
+        "2025-07-20" : null,
+        "2025-07-21" : "umido",
+        "2025-07-22" : "secco",
+        "2025-07-23" : "umido",
+        "2025-07-24" : "carta",
+        "2025-07-25" : "umido",
+        "2025-07-26" : "plastica",
+        "2025-07-27" : null,
+        "2025-07-28" : "umido",
+        "2025-07-29" : "secco",
+        "2025-07-30" : "umido",
+        "2025-07-31" : "carta",
+        "2025-08-01" : "umido",
+        "2025-08-02" : "plastica",
+        "2025-08-03" : null,
+        "2025-08-04" : "umido",
+        "2025-08-05" : "secco",
+        "2025-08-06" : "umido",
+        "2025-08-07" : "carta",
+        "2025-08-08" : "umido",
+        "2025-08-09" : "plastica",
+        "2025-08-10" : null,
+        "2025-08-11" : "umido",
+        "2025-08-12" : "secco",
+        "2025-08-13" : "umido",
+        "2025-08-14" : "carta",
+        "2025-08-15" : "umido",
+        "2025-08-16" : "plastica",
+        "2025-08-17" : null,
+        "2025-08-18" : "umido",
+        "2025-08-19" : "secco",
+        "2025-08-20" : "umido",
+        "2025-08-21" : "carta",
+        "2025-08-22" : "umido",
+        "2025-08-23" : "plastica",
+        "2025-08-24" : null,
+        "2025-08-25" : "umido",
+        "2025-08-26" : "secco",
+        "2025-08-27" : "umido",
+        "2025-08-28" : "carta",
+        "2025-08-29" : "umido",
+        "2025-08-30" : "plastica",
+        "2025-08-31" : null,
+        "2025-09-01" : "umido",
+        "2025-09-02" : "secco",
+        "2025-09-03" : "umido",
+        "2025-09-04" : "carta",
+        "2025-09-05" : "umido",
+        "2025-09-06" : "plastica",
+        "2025-09-07" : null,
+        "2025-09-08" : "umido",
+        "2025-09-09" : "secco",
+        "2025-09-10" : "umido",
+        "2025-09-11" : "carta",
+        "2025-09-12" : "umido",
+        "2025-09-13" : "plastica",
+        "2025-09-14" : null,
+        "2025-09-15" : "umido",
+        "2025-09-16" : "secco",
+        "2025-09-17" : null,
+        "2025-09-18" : "carta",
+        "2025-09-19" : "umido",
+        "2025-09-20" : "plastica",
+        "2025-09-21" : null,
+        "2025-09-22" : "umido",
+        "2025-09-23" : "secco",
+        "2025-09-24" : null,
+        "2025-09-25" : "carta",
+        "2025-09-26" : "umido",
+        "2025-09-27" : "plastica",
+        "2025-09-28" : null,
+        "2025-09-29" : "umido",
+        "2025-09-30" : "secco",
+        "2025-10-01" : null,
+        "2025-10-02" : "carta",
+        "2025-10-03" : "umido",
+        "2025-10-04" : "plastica",
+        "2025-10-05" : null,
+        "2025-10-06" : "umido",
+        "2025-10-07" : "secco",
+        "2025-10-08" : null,
+        "2025-10-09" : "carta",
+        "2025-10-10" : "umido",
+        "2025-10-11" : "plastica",
+        "2025-10-12" : null,
+        "2025-10-13" : "umido",
+        "2025-10-14" : "secco",
+        "2025-10-15" : null,
+        "2025-10-16" : "carta",
+        "2025-10-17" : "umido",
+        "2025-10-18" : "plastica",
+        "2025-10-19" : null,
+        "2025-10-20" : "umido",
+        "2025-10-21" : "secco",
+        "2025-10-22" : null,
+        "2025-10-23" : "carta",
+        "2025-10-24" : "umido",
+        "2025-10-25" : "plastica",
+        "2025-10-26" : null,
+        "2025-10-27" : "umido",
+        "2025-10-28" : "secco",
+        "2025-10-29" : null,
+        "2025-10-30" : "carta",
+        "2025-10-31" : "umido",
+        "2025-11-01" : "plastica",
+        "2025-11-02" : null,
+        "2025-11-03" : "umido",
+        "2025-11-04" : "secco",
+        "2025-11-05" : null,
+        "2025-11-06" : "carta",
+        "2025-11-07" : "umido",
+        "2025-11-08" : "plastica",
+        "2025-11-09" : null,
+        "2025-11-10" : "umido",
+        "2025-11-11" : "secco",
+        "2025-11-12" : null,
+        "2025-11-13" : "carta",
+        "2025-11-14" : "umido",
+        "2025-11-15" : "plastica",
+        "2025-11-16" : null,
+        "2025-11-17" : "umido",
+        "2025-11-18" : "secco",
+        "2025-11-19" : null,
+        "2025-11-20" : "carta",
+        "2025-11-21" : "umido",
+        "2025-11-22" : "plastica",
+        "2025-11-23" : null,
+        "2025-11-24" : "umido",
+        "2025-11-25" : "secco",
+        "2025-11-26" : null,
+        "2025-11-27" : "carta",
+        "2025-11-28" : "umido",
+        "2025-11-29" : "plastica",
+        "2025-11-30" : null,
+        "2025-12-01" : "umido",
+        "2025-12-02" : "secco",
+        "2025-12-03" : null,
+        "2025-12-04" : "carta",
+        "2025-12-05" : "umido",
+        "2025-12-06" : "plastica",
+        "2025-12-07" : null,
+        "2025-12-08" : "umido",
+        "2025-12-09" : "secco",
+        "2025-12-10" : null,
+        "2025-12-11" : "carta",
+        "2025-12-12" : "umido",
+        "2025-12-13" : "plastica",
+        "2025-12-14" : null,
+        "2025-12-15" : "umido",
+        "2025-12-16" : "secco",
+        "2025-12-17" : null,
+        "2025-12-18" : "carta",
+        "2025-12-19" : "umido",
+        "2025-12-20" : "plastica",
+        "2025-12-21" : null,
+        "2025-12-22" : "umido",
+        "2025-12-23" : "secco",
+        "2025-12-24" : null,
+        "2025-12-25" : "carta",
+        "2025-12-26" : "umido",
+        "2025-12-27" : "plastica",
+        "2025-12-28" : null,
+        "2025-12-29" : "umido",
+        "2025-12-30" : "secco",
+        "2025-12-31" : null
+    },
+    arancione: {
+        "2025-07-01" : "plastica",
+        "2025-07-02" : "umido",
+        "2025-07-03" : "secco",
+        "2025-07-04" : "umido",
+        "2025-07-05" : "carta",
+        "2025-07-06" : null,
+        "2025-07-07" : "umido",
+        "2025-07-08" : "plastica",
+        "2025-07-09" : "umido",
+        "2025-07-10" : "secco",
+        "2025-07-11" : "umido",
+        "2025-07-12" : "carta",
+        "2025-07-13" : null,
+        "2025-07-14" : "umido",
+        "2025-07-15" : "plastica",
+        "2025-07-16" : "umido",
+        "2025-07-17" : "secco",
+        "2025-07-18" : "umido",
+        "2025-07-19" : "carta",
+        "2025-07-20" : null,
+        "2025-07-21" : "umido",
+        "2025-07-22" : "plastica",
+        "2025-07-23" : "umido",
+        "2025-07-24" : "secco",
+        "2025-07-25" : "umido",
+        "2025-07-26" : "carta",
+        "2025-07-27" : null,
+        "2025-07-28" : "umido",
+        "2025-07-29" : "plastica",
+        "2025-07-30" : "umido",
+        "2025-07-31" : "secco",
+        "2025-08-01" : "umido",
+        "2025-08-02" : "carta",
+        "2025-08-03" : null,
+        "2025-08-04" : "umido",
+        "2025-08-05" : "plastica",
+        "2025-08-06" : "umido",
+        "2025-08-07" : "secco",
+        "2025-08-08" : "umido",
+        "2025-08-09" : "carta",
+        "2025-08-10" : null,
+        "2025-08-11" : "umido",
+        "2025-08-12" : "plastica",
+        "2025-08-13" : "umido",
+        "2025-08-14" : "secco",
+        "2025-08-15" : "umido",
+        "2025-08-16" : "carta",
+        "2025-08-17" : null,
+        "2025-08-18" : "umido",
+        "2025-08-19" : "plastica",
+        "2025-08-20" : "umido",
+        "2025-08-21" : "secco",
+        "2025-08-22" : "umido",
+        "2025-08-23" : "carta",
+        "2025-08-24" : null,
+        "2025-08-25" : "umido",
+        "2025-08-26" : "plastica",
+        "2025-08-27" : "umido",
+        "2025-08-28" : "secco",
+        "2025-08-29" : "umido",
+        "2025-08-30" : "carta",
+        "2025-08-31" : null,
+        "2025-09-01" : "umido",
+        "2025-09-02" : "plastica",
+        "2025-09-03" : "umido",
+        "2025-09-04" : "secco",
+        "2025-09-05" : "umido",
+        "2025-09-06" : "carta",
+        "2025-09-07" : null,
+        "2025-09-08" : "umido",
+        "2025-09-09" : "plastica",
+        "2025-09-10" : "umido",
+        "2025-09-11" : "secco",
+        "2025-09-12" : "umido",
+        "2025-09-13" : "carta",
+        "2025-09-14" : null,
+        "2025-09-15" : "umido",
+        "2025-09-16" : "plastica",
+        "2025-09-17" : "carta",
+        "2025-09-18" : "secco",
+        "2025-09-19" : "umido",
+        "2025-09-20" : null,
+        "2025-09-21" : null,
+        "2025-09-22" : "umido",
+        "2025-09-23" : "plastica",
+        "2025-09-24" : "carta",
+        "2025-09-25" : "secco",
+        "2025-09-26" : "umido",
+        "2025-09-27" : null,
+        "2025-09-28" : null,
+        "2025-09-29" : "umido",
+        "2025-09-30" : "plastica",
+        "2025-10-01" : "carta",
+        "2025-10-02" : "secco",
+        "2025-10-03" : "umido",
+        "2025-10-04" : null,
+        "2025-10-05" : null,
+        "2025-10-06" : "umido",
+        "2025-10-07" : "plastica",
+        "2025-10-08" : "carta",
+        "2025-10-09" : "secco",
+        "2025-10-10" : "umido",
+        "2025-10-11" : null,
+        "2025-10-12" : null,
+        "2025-10-13" : "umido",
+        "2025-10-14" : "plastica",
+        "2025-10-15" : "carta",
+        "2025-10-16" : "secco",
+        "2025-10-17" : "umido",
+        "2025-10-18" : null,
+        "2025-10-19" : null,
+        "2025-10-20" : "umido",
+        "2025-10-21" : "plastica",
+        "2025-10-22" : "carta",
+        "2025-10-23" : "secco",
+        "2025-10-24" : "umido",
+        "2025-10-25" : null,
+        "2025-10-26" : null,
+        "2025-10-27" : "umido",
+        "2025-10-28" : "plastica",
+        "2025-10-29" : "carta",
+        "2025-10-30" : "secco",
+        "2025-10-31" : "umido",
+        "2025-11-01" : null,
+        "2025-11-02" : null,
+        "2025-11-03" : "umido",
+        "2025-11-04" : "plastica",
+        "2025-11-05" : "carta",
+        "2025-11-06" : "secco",
+        "2025-11-07" : "umido",
+        "2025-11-08" : null,
+        "2025-11-09" : null,
+        "2025-11-10" : "umido",
+        "2025-11-11" : "plastica",
+        "2025-11-12" : "carta",
+        "2025-11-13" : "secco",
+        "2025-11-14" : "umido",
+        "2025-11-15" : null,
+        "2025-11-16" : null,
+        "2025-11-17" : "umido",
+        "2025-11-18" : "plastica",
+        "2025-11-19" : "carta",
+        "2025-11-20" : "secco",
+        "2025-11-21" : "umido",
+        "2025-11-22" : null,
+        "2025-11-23" : null,
+        "2025-11-24" : "umido",
+        "2025-11-25" : "plastica",
+        "2025-11-26" : "carta",
+        "2025-11-27" : "secco",
+        "2025-11-28" : "umido",
+        "2025-11-29" : null,
+        "2025-11-30" : null,
+        "2025-12-01" : "umido",
+        "2025-12-02" : "plastica",
+        "2025-12-03" : "carta",
+        "2025-12-04" : "secco",
+        "2025-12-05" : "umido",
+        "2025-12-06" : null,
+        "2025-12-07" : null,
+        "2025-12-08" : "umido",
+        "2025-12-09" : "plastica",
+        "2025-12-10" : "carta",
+        "2025-12-11" : "secco",
+        "2025-12-12" : "umido",
+        "2025-12-13" : null,
+        "2025-12-14" : null,
+        "2025-12-15" : "umido",
+        "2025-12-16" : "plastica",
+        "2025-12-17" : "carta",
+        "2025-12-18" : "secco",
+        "2025-12-19" : "umido",
+        "2025-12-20" : null,
+        "2025-12-21" : null,
+        "2025-12-22" : "umido",
+        "2025-12-23" : "plastica",
+        "2025-12-24" : "carta",
+        "2025-12-25" : "secco",
+        "2025-12-26" : "umido",
+        "2025-12-27" : null,
+        "2025-12-28" : null,
+        "2025-12-29" : "umido",
+        "2025-12-30" : "plastica",
+        "2025-12-31" : "carta"
+    }
 };
+
+// Mappa dei quartieri per tipo di calendario
+const DISTRICT_MAP = {
+    azzurro: ["basson", "ca di david", "la rizza", "la sorte", "madonna di dossobuono", "sacra famiglia", "torricelle"],
+    verde: ["marangona", "mizzole", "montorio", "parona", "pigozzo", "ponte florio", "quinzano", "zai bassona", "zai storica"],
+    blu: ["basse", "san michele", "san felice", "valpantena", "zai montorio"],
+    arancione: ["basso acquar", "palazzina", "san massimo"]
+};
+
+// Calendario attivo e quartiere selezionato
+let currentCalendarType = 'azzurro';
+let selectedDistrict = 'basson';
 
 // === FUNZIONI UTILITÀ ===
 function getTodayString() {
@@ -278,20 +1020,22 @@ function getWasteIcon(wasteType) {
 function updateWasteCard() {
     const today = getTodayString();
     const tomorrow = getTomorrowString();
+    const currentCalendar = WASTE_CALENDARS[currentCalendarType];
     
     // DEBUG: Log delle date per verificare
     console.log('DEBUG - Oggi:', today);
     console.log('DEBUG - Domani:', tomorrow);
-    console.log('DEBUG - Calendario oggi:', WASTE_CALENDAR[today]);
-    console.log('DEBUG - Calendario domani:', WASTE_CALENDAR[tomorrow]);
+    console.log('DEBUG - Calendario tipo:', currentCalendarType);
+    console.log('DEBUG - Calendario oggi:', currentCalendar[today]);
+    console.log('DEBUG - Calendario domani:', currentCalendar[tomorrow]);
     
     let wasteType = null;
     let displayDate = null;
     
     // Il conferimento avviene la sera prima del ritiro
     // Quindi mostriamo il rifiuto di domani come "rifiuto del giorno"
-    if (WASTE_CALENDAR[tomorrow]) {
-        wasteType = WASTE_CALENDAR[tomorrow];
+    if (currentCalendar[tomorrow]) {
+        wasteType = currentCalendar[tomorrow];
         displayDate = TRANSLATIONS[currentLanguage].today; // Mostra "OGGI" perché è il giorno del conferimento
         console.log('DEBUG - Mostro rifiuto di domani:', wasteType);
     }
@@ -348,7 +1092,7 @@ function updateTimeStatus(wasteType, isToday) {
             status = "green";
             title = TRANSLATIONS[currentLanguage].timeStatus.canDispose.title;
             message = TRANSLATIONS[currentLanguage].timeStatus.canDispose.message;
-        } else if (hour < 19 && hour >= 0) {
+        } else if (hour < 19 && hour >= 16) {
             // Prima dell'orario
             status = "orange";
             title = TRANSLATIONS[currentLanguage].timeStatus.prepare.title;
@@ -402,6 +1146,14 @@ function updateLanguage() {
     const dictionaryLinkText = document.getElementById('dictionary-link-text');
     if (dictionaryLinkText) {
         dictionaryLinkText.textContent = TRANSLATIONS[currentLanguage].dictionaryLink;
+    }
+    
+    // Aggiorna display quartiere selezionato
+    updateSelectedDistrictDisplay();
+    
+    // Aggiorna modal quartiere se aperto
+    if (document.getElementById('district-modal').style.display === 'block') {
+        updateDistrictModal();
     }
     
     // Aggiorna suggestions se modal aperto
@@ -600,6 +1352,130 @@ function closeSearchModal() {
     document.getElementById('search-results').innerHTML = '';
 }
 
+// === GESTIONE SELETTORE QUARTIERE ===
+function openDistrictSelector() {
+    const modal = document.getElementById('district-modal');
+    modal.style.display = 'block';
+    
+    // Aggiorna contenuto per lingua corrente
+    updateDistrictModal();
+    
+    // Focus automatico dopo animazione
+    setTimeout(() => {
+        const input = document.getElementById('district-search');
+        input.focus();
+    }, 300);
+}
+
+function closeDistrictSelector() {
+    const modal = document.getElementById('district-modal');
+    modal.style.display = 'none';
+    document.getElementById('district-search').value = '';
+}
+
+function updateDistrictModal() {
+    const title = document.getElementById('district-modal-title');
+    const placeholder = document.getElementById('district-search');
+    
+    title.textContent = TRANSLATIONS[currentLanguage].districtSelector.title;
+    placeholder.placeholder = TRANSLATIONS[currentLanguage].districtSelector.placeholder;
+    
+    // Mostra tutti i quartieri
+    renderDistrictList('');
+}
+
+function renderDistrictList(searchQuery = '') {
+    const container = document.getElementById('district-list');
+    const query = searchQuery.toLowerCase().trim();
+    
+    let html = '';
+    
+    Object.keys(DISTRICT_MAP).forEach(calendarType => {
+        const districts = DISTRICT_MAP[calendarType];
+        const filteredDistricts = query 
+            ? districts.filter(district => district.toLowerCase().includes(query))
+            : districts;
+        
+        if (filteredDistricts.length > 0) {
+            const calendarIcon = getCalendarIcon(calendarType);
+            const calendarName = TRANSLATIONS[currentLanguage].districtSelector.calendarTypes[calendarType];
+            
+            html += `
+                <div class="calendar-group" data-calendar="${calendarType}">
+                    <div class="calendar-group-header">
+                        <span class="calendar-icon">${calendarIcon}</span>
+                        <span class="calendar-name">${calendarName}</span>
+                    </div>
+                    <div class="districts-grid">
+                        ${filteredDistricts.map(district => `
+                            <button class="district-item ${selectedDistrict === district ? 'selected' : ''}" 
+                                    onclick="selectDistrict('${district}', '${calendarType}')">
+                                <span class="district-name">${district.charAt(0).toUpperCase() + district.slice(1)}</span>
+                                ${selectedDistrict === district ? '<i class="fas fa-check"></i>' : ''}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+    });
+    
+    if (html === '') {
+        html = `
+            <div class="no-districts">
+                <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
+                <div style="font-size: 16px; margin-bottom: 8px;">${TRANSLATIONS[currentLanguage].districtSelector.noResults}</div>
+            </div>
+        `;
+    }
+    
+    container.innerHTML = html;
+}
+
+function selectDistrict(district, calendarType) {
+    selectedDistrict = district;
+    currentCalendarType = calendarType;
+    
+    // Aggiorna display quartiere selezionato
+    updateSelectedDistrictDisplay();
+    
+    // Aggiorna calendario
+    updateWasteCard();
+    
+    // Chiudi modal
+    closeDistrictSelector();
+    
+    console.log(`Quartiere selezionato: ${district} (Calendario ${calendarType})`);
+}
+
+function updateSelectedDistrictDisplay() {
+    const districtDisplay = document.getElementById('selected-district');
+    const calendarIcon = getCalendarIcon(currentCalendarType);
+    const calendarName = TRANSLATIONS[currentLanguage].districtSelector.calendarTypes[currentCalendarType];
+    
+    districtDisplay.innerHTML = `
+        <span class="selected-calendar-icon">${calendarIcon}</span>
+        <div class="selected-info">
+            <div class="selected-district-name">${selectedDistrict.charAt(0).toUpperCase() + selectedDistrict.slice(1)}</div>
+            <div class="selected-calendar-type">${calendarName}</div>
+        </div>
+    `;
+}
+
+function getCalendarIcon(calendarType) {
+    const icons = {
+        azzurro: "🔵",
+        verde: "🟢",
+        blu: "🔷",
+        arancione: "🟠"
+    };
+    return icons[calendarType] || "📅";
+}
+
+function searchDistricts(query) {
+    renderDistrictList(query);
+}
+
 // === INIZIALIZZAZIONE ===
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Calendario Rifiuti - App Migliorata Caricata');
@@ -633,6 +1509,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('search-button').addEventListener('click', openSearchModal);
     document.getElementById('close-btn').addEventListener('click', closeSearchModal);
     
+    // Setup eventi district selector
+    document.getElementById('district-selector').addEventListener('click', openDistrictSelector);
+    document.getElementById('district-close-btn').addEventListener('click', closeDistrictSelector);
+    
+    // District search con debounce
+    let districtSearchTimeout;
+    document.getElementById('district-search').addEventListener('input', (e) => {
+        clearTimeout(districtSearchTimeout);
+        districtSearchTimeout = setTimeout(() => {
+            searchDistricts(e.target.value);
+        }, 300);
+    });
+    
     // Search input con debounce
     let searchTimeout;
     document.getElementById('search-input').addEventListener('input', (e) => {
@@ -644,15 +1533,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Chiudi modal con ESC o click fuori
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeSearchModal();
+        if (e.key === 'Escape') {
+            closeSearchModal();
+            closeDistrictSelector();
+        }
     });
     
     document.getElementById('search-modal').addEventListener('click', (e) => {
         if (e.target.id === 'search-modal') closeSearchModal();
     });
     
+    document.getElementById('district-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'district-modal') closeDistrictSelector();
+    });
+    
     // Inizializza app
     switchLanguage('it');
+    updateSelectedDistrictDisplay();
     
     // Copyright notice
     console.log('© 2025 XXX - Pippo. Tutti i diritti riservati.');

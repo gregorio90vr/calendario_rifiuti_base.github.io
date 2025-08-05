@@ -52,6 +52,21 @@
                 </div>
             </div>
 
+            <!-- Selettore Quartiere -->
+            <div class="district-selector-container">
+                <button class="district-selector" id="district-selector">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="selected-district" id="selected-district">
+                        <span class="selected-calendar-icon">🔵</span>
+                        <div class="selected-info">
+                            <div class="selected-district-name">Basson</div>
+                            <div class="selected-calendar-type">Calendario Azzurro</div>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down selector-arrow"></i>
+                </button>
+            </div>
+
             <!-- Waste Card -->
             <div class="waste-card" id="waste-card">
                 <div class="waste-icon" id="waste-icon">🗑️</div>
@@ -119,6 +134,23 @@
             </div>
             
             <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    <!-- District Selector Modal -->
+    <div class="modal" id="district-modal">
+        <div class="modal-content district-modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="district-modal-title">📍 Seleziona il tuo quartiere</h2>
+                <button class="close-btn" id="district-close-btn">Chiudi</button>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="district-search" placeholder="Cerca il tuo quartiere...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <div class="district-list" id="district-list"></div>
         </div>
     </div>
 

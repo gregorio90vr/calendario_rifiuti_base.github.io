@@ -559,12 +559,12 @@ input:focus-visible,
 
 /* === COLORI SPECIFICI PER TIPO DI RIFIUTO === */
 .waste-card.umido {
-    background: #8D6E63;
-    box-shadow: 0 15px 40px rgba(141, 110, 99, 0.4);
+    background: #5D4037; /* Marrone più intenso */
+    box-shadow: 0 15px 40px rgba(93, 64, 55, 0.4);
 }
 
 .waste-card.umido:hover {
-    box-shadow: 0 25px 60px rgba(141, 110, 99, 0.6);
+    box-shadow: 0 25px 60px rgba(93, 64, 55, 0.6);
 }
 
 .waste-card.plastica {
@@ -1126,9 +1126,9 @@ input:focus-visible,
 
 /* === CATEGORIE RIFIUTI === */
 .result-type.umido { 
-    background: linear-gradient(135deg, #8D6E63 0%, #A1887F 50%, #BCAAA4 100%);
+    background: #5D4037; /* Marrone più intenso */
     box-shadow: 
-        0 6px 20px rgba(141, 110, 99, 0.4),
+        0 6px 20px rgba(93, 64, 55, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -1354,6 +1354,180 @@ input:focus-visible,
     color: var(--amia-green);
 }
 
+/* === SELETTORE QUARTIERE === */
+.district-selector-container {
+    margin: 25px 0;
+    padding: 0 20px;
+}
+
+.district-selector {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 20px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s var(--motion-easing-standard);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.district-selector:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    background: rgba(255, 255, 255, 1);
+    border-color: var(--amia-accent);
+}
+
+.district-selector:focus {
+    outline: none;
+    box-shadow: var(--focus-ring), var(--shadow-hover);
+}
+
+.district-selector > .fas.fa-map-marker-alt {
+    color: var(--amia-accent);
+    font-size: 18px;
+    min-width: 18px;
+}
+
+.selected-district {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    text-align: left;
+}
+
+.selected-calendar-icon {
+    font-size: 20px;
+    min-width: 20px;
+}
+
+.selected-info {
+    flex: 1;
+}
+
+.selected-district-name {
+    font-weight: 600;
+    color: var(--amia-green);
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.selected-calendar-type {
+    font-size: 13px;
+    color: var(--amia-accent);
+    font-weight: 500;
+}
+
+.selector-arrow {
+    color: var(--amia-accent);
+    font-size: 14px;
+    transition: transform 0.3s var(--motion-easing-standard);
+}
+
+.district-selector:hover .selector-arrow {
+    transform: translateY(2px);
+}
+
+/* === MODAL QUARTIERE === */
+.district-modal-content {
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.district-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px 0;
+}
+
+.calendar-group {
+    margin-bottom: 25px;
+}
+
+.calendar-group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(46, 125, 50, 0.1);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--amia-accent);
+}
+
+.calendar-icon {
+    font-size: 18px;
+}
+
+.calendar-name {
+    font-weight: 600;
+    color: var(--amia-green);
+    font-size: 15px;
+}
+
+.districts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 0 16px;
+}
+
+.district-item {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(46, 125, 50, 0.1);
+    border-radius: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s var(--motion-easing-standard);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    color: var(--amia-green);
+}
+
+.district-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--amia-accent);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
+}
+
+.district-item.selected {
+    background: var(--amia-gradient);
+    color: white;
+    border-color: var(--amia-green);
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.25);
+}
+
+.district-item.selected:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(46, 125, 50, 0.35);
+}
+
+.district-name {
+    font-size: 14px;
+}
+
+.district-item .fas.fa-check {
+    color: white;
+    font-size: 14px;
+}
+
+.no-districts {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--amia-green);
+    opacity: 0.7;
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 480px) {
     body {
@@ -1401,6 +1575,38 @@ input:focus-visible,
         width: 100%;
         padding: 14px 20px;
         font-size: 13px;
+    }
+    
+    .district-selector-container {
+        margin: 20px 0;
+        padding: 0 16px;
+    }
+    
+    .district-selector {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+    
+    .selected-district-name {
+        font-size: 15px;
+    }
+    
+    .selected-calendar-type {
+        font-size: 12px;
+    }
+    
+    .districts-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 0 8px;
+    }
+    
+    .district-item {
+        padding: 14px 16px;
+    }
+    
+    .calendar-group-header {
+        padding: 10px 12px;
     }
 
     .container {
