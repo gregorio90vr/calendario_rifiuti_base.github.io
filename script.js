@@ -23,145 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
 });
 
-// Dati dei rifiuti (da app.py)
-const DETTAGLI_RIFIUTI = {
-    "secco": {
-        "descrizione": "Rifiuti non riciclabili che non possono essere differenziati",
-        "si_puo": [
-            "Pannolini e assorbenti",
-            "Lettiere per animali",
-            "Ceramica e porcellana rotta",
-            "Giocattoli rotti (non elettronici)",
-            "Spugne e stracci sporchi",
-            "Mozziconi di sigaretta",
-            "Polvere dell'aspirapolvere",
-            "Carta plastificata o oleata",
-            "CD e DVD",
-            "Piccoli oggetti in gomma"
-        ],
-        "non_si_puo": [
-            "Materiali riciclabili (carta, plastica, vetro)",
-            "Rifiuti organici",
-            "Pile e batterie",
-            "Farmaci scaduti",
-            "Materiali pericolosi",
-            "Elettrodomestici",
-            "Oli esausti",
-            "Vernici e solventi",
-            "Pneumatici",
-            "Materiali ingombranti"
-        ]
-    },
-    "umido": {
-        "descrizione": "Rifiuti organici biodegradabili",
-        "si_puo": [
-            "Avanzi di cibo cotti e crudi",
-            "Bucce di frutta e verdura",
-            "Ossa di pesce e carne",
-            "Fondi di caffè e filtri di tè",
-            "Gusci d'uovo",
-            "Pane raffermo",
-            "Fiori recisi e piante",
-            "Tovaglioli di carta sporchi",
-            "Tappi di sughero naturale",
-            "Lettiere biodegradabili"
-        ],
-        "non_si_puo": [
-            "Plastica biodegradabile",
-            "Cenere di sigaretta",
-            "Lettiere chimiche",
-            "Oli da cucina",
-            "Liquidi in generale",
-            "Medicinali",
-            "Escrementi di animali",
-            "Materiali non organici",
-            "Imballaggi anche se compostabili",
-            "Legno trattato"
-        ]
-    },
-    "plastica": {
-        "descrizione": "Imballaggi e contenitori in plastica e metallo",
-        "si_puo": [
-            "Bottiglie di acqua e bibite",
-            "Flaconi di shampoo e detergenti",
-            "Contenitori per alimenti",
-            "Buste e sacchetti di plastica",
-            "Vaschette per alimenti",
-            "Pellicole trasparenti",
-            "Tappi e coperchi in plastica",
-            "Lattine e barattoli in metallo",
-            "Fogli e vaschette di alluminio",
-            "Scatolette di metallo per alimenti"
-        ],
-        "non_si_puo": [
-            "Giocattoli di plastica",
-            "Elettrodomestici in plastica",
-            "Posate di plastica nere",
-            "Oggetti di plastica non imballaggio",
-            "Plastica sporca di sostanze pericolose",
-            "Contenitori di vernici",
-            "Siringhe",
-            "Oggetti in metallo non imballaggio",
-            "Plastica rigida da costruzione",
-            "Pentole e padelle metalliche"
-        ]
-    },
-    "plastica/metalli": {
-        "descrizione": "Imballaggi e contenitori in plastica e metallo",
-        "si_puo": [
-            "Bottiglie di acqua e bibite",
-            "Flaconi di shampoo e detergenti",
-            "Contenitori per alimenti",
-            "Buste e sacchetti di plastica",
-            "Vaschette per alimenti",
-            "Pellicole trasparenti",
-            "Tappi e coperchi in plastica",
-            "Lattine e barattoli in metallo",
-            "Fogli e vaschette di alluminio",
-            "Scatolette di metallo per alimenti"
-        ],
-        "non_si_puo": [
-            "Giocattoli di plastica",
-            "Elettrodomestici in plastica",
-            "Posate di plastica nere",
-            "Oggetti di plastica non imballaggio",
-            "Plastica sporca di sostanze pericolose",
-            "Contenitori di vernici",
-            "Siringhe",
-            "Oggetti in metallo non imballaggio",
-            "Plastica rigida da costruzione",
-            "Pentole e padelle metalliche"
-        ]
-    },
-    "carta": {
-        "descrizione": "Carta, cartone e materiali cellulosici",
-        "si_puo": [
-            "Giornali e riviste",
-            "Libri e quaderni",
-            "Scatole di cartone",
-            "Fogli e documenti",
-            "Sacchetti di carta",
-            "Cartoni per alimenti (latte, succhi)",
-            "Confezioni di cereali",
-            "Carta da regalo (non plastificata)",
-            "Cartoncini e biglietti",
-            "Tetrapak (dove previsto)"
-        ],
-        "non_si_puo": [
-            "Carta plastificata o oleata",
-            "Carta carbone",
-            "Carta fotografica",
-            "Carta da forno usata",
-            "Fazzoletti usati",
-            "Tovaglioli sporchi",
-            "Carta igienica",
-            "Scontrini termici",
-            "Carta adesiva",
-            "Cartoni sporchi di cibo"
-        ]
-    }
-};
-
 // Icone per ogni tipo di rifiuto
 const ICONE_RIFIUTI = {
     "secco": "<i class='fas fa-trash'></i>",
@@ -381,15 +242,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Acetone (contenitore vuoto e lavato)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Acidi (contenitore sporco)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Acidi (contenitore vuoto e lavato)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Acquario": {
@@ -413,7 +274,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Alcool (contenitore vuoto)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Alimenti avariati": {
@@ -425,7 +286,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Alluminio": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Amianto": {
@@ -433,11 +294,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Ammoniaca (contenitore sporco)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Annaffiatoio": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Antenna del televisore": {
@@ -445,11 +306,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Antenna parabolica": {
-    descrizione: "Ecocentro oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
+    descrizione: "- Ecocentro <br> - oppure telefona al numero 045 8069213 per ritiro rifiuti ingombranti",
     categorie: ["ecocentro", "altre categorie"]
   },
   "Antiparassitari (contenitore vuoto)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Aquiloni": {
@@ -465,11 +326,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Asciugacapelli": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Aspirapolvere": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Asse da stiro": {
@@ -485,11 +346,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Attaccapanni in ferro": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Attaccapanni in legno": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Auricolari": {
@@ -501,7 +362,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Bacinelle in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Bambole": {
@@ -521,55 +382,55 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Barattoli di vernice e solventi": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Barattoli in acciaio (vuoti e puliti)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli in alluminio e acciaio (per olio, pelati, tonno, ecc.)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli in latta (scatole di pelati, ecc.)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli in plastica per prodotti vari": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per alimenti in polvere": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per articoli da cancelleria": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per detersivi": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per rullini fotografici": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattoli per salviette umide": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barattolini di crema": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Barre da imballaggio in polistirolo espanso": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Batterie cellulare": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Batterie per auto": {
@@ -593,7 +454,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Bicchieri in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Bicchieri di vetro": {
@@ -605,7 +466,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Bilancia pesa persone": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Bombole del gas": {
@@ -613,11 +474,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Bombolette spray con simbolo di pericolo T e/o F (contenitore vuoto)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Bombolette spray non pericolose (contenitore vuoto)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Borsa dell acqua calda": {
@@ -625,7 +486,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Borse di Plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Borse in cuoio": {
@@ -633,7 +494,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Bottiglie di plastica per acqua, olio, succhi": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Bottiglie di vetro": {
@@ -661,7 +522,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Buste di plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Bustine di t ": {
@@ -669,7 +530,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Caffettiera": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Calcinacci piccole quantit ": {
@@ -677,7 +538,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Calcolatrici con componenti elettroniche": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Calze di nylon, lana, cotone": {
@@ -685,7 +546,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Candeggina (contenitore vuoto e lavato)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Candela": {
@@ -697,7 +558,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Canne da pesca": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Canne per irrigazione": {
@@ -725,7 +586,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Cards Plastificate": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Carbone spento": {
@@ -733,7 +594,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Carica batterie": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Carrozzine": {
@@ -757,11 +618,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Carta delle caramelle": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Carta patinata": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Carta per affettati": {
@@ -777,7 +638,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Carta stagnola (alluminio)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Carta umida imbevuta di liquidi organici (sugo, olio, ecc.)": {
@@ -813,7 +674,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Cartucce per stampanti": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Casco moto e bici": {
@@ -825,19 +686,19 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Cassette di legno": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Cassette per ortofrutta e carni": {
-    descrizione: "plastica e metallo oppure Ecocentro",
+    descrizione: "Plastica e metallo oppure Ecocentro",
     categorie: ["plastica/metalli", "ecocentro"]
   },
   "Cavatappi": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Cavi elettrici": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Cd e cd-rom": {
@@ -845,7 +706,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Cellophane": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Cenere spenta": {
@@ -869,15 +730,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Chiavette usb": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Chiavi in metallo": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Chiodi": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Ciabatte": {
@@ -909,7 +770,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Confezioni delle merendine": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Confezioni in cartoncino (ad es. della pasta,del dentifricio, dei cereali, ecc.)": {
@@ -917,7 +778,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Confezioni in plastica rigide o flessibili": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Congelatori": {
@@ -925,23 +786,23 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Contenitore borotalco": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Contenitore pasta abrasiva": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Contenitore smalto": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Contenitori in plastica (bacinelle e terrine)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Contenitori per alimenti in alluminio e acciaio": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Contenitori per alimenti in vetro": {
@@ -949,15 +810,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["vetro"]
   },
   "Contenitori per bibite (lattine)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Coperchi metallici": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Coperchietti dei barattoli di yogurt": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Coperte usate": {
@@ -973,7 +834,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Coppette del gelato di plastica pulite": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Corda": {
@@ -981,7 +842,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Cornici in legno": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Cosmetici": {
@@ -989,7 +850,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Cosmetici (contenitore plastica)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Cotone usato": {
@@ -1001,7 +862,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Cotton fioc in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Cover di cellulari": {
@@ -1029,11 +890,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Damigiane": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Dentifricio (tubetto vuoto)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Deodorante per auto": {
@@ -1041,7 +902,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Deodorante personale con contenitore in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Deodorante personale con contenitore in vetro": {
@@ -1049,7 +910,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["vetro"]
   },
   "Detersivo (flaccone vuoto e pulito)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Detersivo (imballaggio cartone)": {
@@ -1061,7 +922,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Detersivo (sacchetto vuoto e pulito)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Diapositive": {
@@ -1077,11 +938,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Diserbanti e disinfettanti": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Dispensatori per alimenti vuoti e puliti (creme, salse, yogurt)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Divano": {
@@ -1137,7 +998,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Fiale in plastia vuote": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Fiammiferi": {
@@ -1145,11 +1006,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Fili elettrici": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Film e pellicole da imballaggio in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Filo interdentale": {
@@ -1173,15 +1034,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Fitofarmaci": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Flacconi di plastica vuoti (detersivi e saponi)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Flacconi per alimenti vuoti (creme e salse)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Fogli di carta e cartone": {
@@ -1189,11 +1050,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Fogli di protezione in alluminio delle cioccolate": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Fogli in alluminio per uso domestico": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Foglie": {
@@ -1205,7 +1066,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Forbici": {
-    descrizione: "plastica e metallo (Nelle zone servite dal porta a porta, Ecocentro oppure Ecomobile)",
+    descrizione: "Plastica e metallo (Nelle zone servite dal porta a porta, Ecocentro oppure Ecomobile)",
     categorie: ["plastica/metalli", "ecocentro", "ecomobile"]
   },
   "Fotografie": {
@@ -1245,7 +1106,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Grattugia in plastica per alimenti": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Guaina catramata": {
@@ -1281,15 +1142,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Imballaggi in metallo": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Imballaggi in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Imballaggi in polistirolo": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Incensi": {
@@ -1309,11 +1170,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Insetticidi per uso domestico (sporchi)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Lacche (contenitore vuoto)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Lacci per scarpe": {
@@ -1329,11 +1190,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Lampade": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Lampadine a basso consumo": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Lampadine a incandescenza": {
@@ -1341,11 +1202,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Lampadine a led": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Lampadine alogene": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Lana": {
@@ -1369,15 +1230,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Latta": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Lattine in alluminio": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Lattine in banda stagnata": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Lavastoviglie": {
@@ -1389,7 +1250,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Legno": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Lenti a contatto": {
@@ -1429,11 +1290,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Macchina da cucire": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Macchina fotografica": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Mascherine": {
@@ -1461,15 +1322,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecomobile", "altre categorie"]
   },
   "Mercurio (termometri)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Mestoli di legno": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Microonde": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Mobili e mensole in legno": {
@@ -1489,7 +1350,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["altre categorie"]
   },
   "Mouse": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Mozziconi di sigaretta": {
@@ -1513,11 +1374,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Neon": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Nylon": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Occhiali o Montatura occhiali": {
@@ -1557,7 +1418,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Padelle": {
-    descrizione: "plastica e metallo (Nelle zone servite dal porta a, Ecocentrooppure Ecomobile)",
+    descrizione: "Plastica e metallo (Nelle zone servite dal porta a, Ecocentrooppure Ecomobile)",
     categorie: ["plastica/metalli", "ecocentro", "ecomobile"]
   },
   "Paglia": {
@@ -1597,7 +1458,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Paste abrasive (contenitotre vuoto)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Peli": {
@@ -1609,7 +1470,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Pellicole per alimenti": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Peluche": {
@@ -1629,7 +1490,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Pentole": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Pergamene": {
@@ -1641,7 +1502,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Pesticidi": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Pettini": {
@@ -1653,7 +1514,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido", "ecocentro"]
   },
   "Piastra per i capelli": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Piastrelle": {
@@ -1673,7 +1534,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco", "ecocentro"]
   },
   "Piccoli attrezzi in metallo": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Pile": {
@@ -1689,11 +1550,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Polistirolo imballaggi": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Polistirolo pannelli": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Polveri dell aspirapolvere": {
@@ -1713,11 +1574,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["vetro"]
   },
   "Posate in metallo": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Posate in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Post-it": {
@@ -1725,7 +1586,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Profumi (contenitori vuoti)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Profilattici": {
@@ -1737,7 +1598,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Quadri (cornice)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Raccoglitore dossier senza parti metalliche": {
@@ -1745,7 +1606,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Radio": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Ramaglie": {
@@ -1757,11 +1618,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Reggette per legatura pacchi (in plastica)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Reti in plastica per frutta e verdura": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Reti per letti": {
@@ -1789,11 +1650,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Sacchetti di carta con interno plasticato": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchetti di plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchetti per aspirapolvere": {
@@ -1801,19 +1662,19 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Sacchi e sacchetti in plastica (fuorch  per materiale edile)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchi per alimenti per animali": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchi per detersivi": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sacchi per prodotti di giardinaggio": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Salviette": {
@@ -1869,7 +1730,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Scatolette per tonno e altri alimenti": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Scatoloni": {
@@ -1885,7 +1746,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Scolapasta in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Scontrini in carta chimica": {
@@ -1901,7 +1762,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro", "altre categorie"]
   },
   "Secchielli in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sedie": {
@@ -1917,7 +1778,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Shoppers": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Sigarette": {
@@ -1929,11 +1790,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Smalti (T e/o F)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Solventi (T e/o F)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Spago": {
@@ -1973,11 +1834,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Stagnola": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Stampante": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Stecchi in legno per gelati": {
@@ -1985,7 +1846,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Stendini": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Stereo": {
@@ -2013,7 +1874,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Stracci unti da sostanze chimiche": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Strumenti musicali": {
@@ -2025,27 +1886,27 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Sughero": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Sveglie": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tablet": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tagliere in legno": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tagliere in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Taglierini": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tamponi per timbri": {
@@ -2053,15 +1914,15 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Tanica in banda stagnata": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Taniche per uso domestico (no benzina meno 5lt)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Taniche per uso domestico (no benzina pi  5lt)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tappeti": {
@@ -2073,23 +1934,23 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Tappi a corona": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tappi di barattoli in metallo": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tappi in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tappi sughero": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tastiera del computer": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tavolo": {
@@ -2101,7 +1962,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Telefono": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Televisore": {
@@ -2117,11 +1978,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Termometro": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Termometro mercurio digitale": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Terracotta": {
@@ -2133,19 +1994,19 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Tintura per abiti, scarpe, capelli (contenitore pieno)": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tintura per abiti, scarpe, capelli (contenitore vuoto)": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Toner": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Torcia": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tovaglioli di carta puliti": {
@@ -2177,19 +2038,19 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Tubetti di colore": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tubetti di dentifricio": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tubetti per uso alimentare": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Tubi fluorescenti": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Tubi in alluminio": {
@@ -2229,11 +2090,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco", "ecocentro", "ecomobile", "altre categorie"]
   },
   "Vaschette e barattoli per gelati": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Vaschette in alluminio per alimenti": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Vaschette in carta portauova": {
@@ -2241,7 +2102,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["carta"]
   },
   "Vaschette in plastica portauova": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Vasetti degli omogeneizzati": {
@@ -2253,7 +2114,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco", "ecocentro"]
   },
   "Vasi in plastica": {
-    descrizione: "plastica e metallo",
+    descrizione: "Plastica e metallo",
     categorie: ["plastica/metalli"]
   },
   "Vasi in terracotta": {
@@ -2273,7 +2134,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["ecocentro"]
   },
   "Ventilatori": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Verdura avariata": {
@@ -2281,7 +2142,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["umido"]
   },
   "Vernici": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Videocassette": {
@@ -2289,11 +2150,11 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco"]
   },
   "Videogiochi": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Videoregistratore": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Zaini": {
@@ -2305,7 +2166,7 @@ const DATI_RIFIUTI_COMPLETO = {
     categorie: ["secco", "ecocentro"]
   },
   "Zappa": {
-    descrizione: "Ecocentro o Ecomobile",
+    descrizione: "- Ecocentro <br> - oppure Ecomobile",
     categorie: ["ecocentro", "ecomobile"]
   },
   "Zerbino": {
