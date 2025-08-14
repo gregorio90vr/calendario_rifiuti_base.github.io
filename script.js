@@ -11,7 +11,7 @@ const TRANSLATIONS = {
         searchButton: "🔍 Dove lo butto?",
         modalTitle: "🔍 Dove lo butto?",
         searchPlaceholder: "Cerca un oggetto...",
-        searchHint: "Es: bottiglia di plastica, carta, lattina...",
+        searchHint: "Es: bottiglie di plastica, giornali, scatolette di tonno",
         closeButton: "Chiudi",
         noResults: "Nessun risultato trovato",
         today: "OGGI",
@@ -30,7 +30,7 @@ const TRANSLATIONS = {
             },
             prepare: {
                 title: "⏰ Prepara i rifiuti",
-                message: "Prepara i rifiuti per il conferimento dalle 🕖 19:00 alle 🕘 21:00"
+                message: "Prepara i rifiuti, ma non esporli prima delle 19:00"
             },
             tooLate: {
                 title: "❌ Troppo tardi",
@@ -42,15 +42,12 @@ const TRANSLATIONS = {
         calendarLink: "📅 Calendario AMIA",
         dictionaryLink: "📖 Dizionario Rifiuti",
         districtSelector: {
-            title: "📍 Seleziona il tuo quartiere",
-            placeholder: "Cerca il tuo quartiere...",
-            noResults: "Nessun quartiere trovato",
-            calendarTypes: {
-                azzurro: "Calendario Azzurro",
-                verde: "Calendario Verde", 
-                blu: "Calendario Blu",
-                arancione: "Calendario Arancione"
-            }
+            title: "📍 Il tuo quartiere",
+            placeholder: "Inizia a scrivere il nome del tuo quartiere...",
+            searchHelper: "Es: Basson, La Rizza, Sacra Famiglia",
+            noResults: "Nessun quartiere trovato. Prova con un altro nome.",
+            recentTitle: "Quartieri recenti",
+            nearbyTitle: "Quartieri vicini"
         }
     },
     en: {
@@ -77,7 +74,7 @@ const TRANSLATIONS = {
             },
             prepare: {
                 title: "⏰ Prepare waste",
-                message: "Prepare waste for collection from 🕖 7:00 PM to 🕘 9:00 PM"
+                message: "Prepare waste, don't dispose them before 🕖 7:00 PM"
             },
             tooLate: {
                 title: "❌ Too late",
@@ -1092,7 +1089,7 @@ function updateTimeStatus(wasteType, isToday) {
             status = "green";
             title = TRANSLATIONS[currentLanguage].timeStatus.canDispose.title;
             message = TRANSLATIONS[currentLanguage].timeStatus.canDispose.message;
-        } else if (hour < 19 && hour >= 16) {
+        } else if (hour < 19 && hour >= 8) {
             // Prima dell'orario
             status = "orange";
             title = TRANSLATIONS[currentLanguage].timeStatus.prepare.title;
@@ -1305,7 +1302,7 @@ function updateSearchSuggestions() {
     if (!suggestions) return;
     
     const currentSuggestions = currentLanguage === 'it' 
-        ? ['bottiglia', 'carta', 'lattina', 'avanzi', 'giornale']
+        ? ['bottiglie', 'carta', 'lattine', 'avanzi', 'giornali']
         : ['bottle', 'paper', 'can', 'food scraps', 'newspaper'];
     
     suggestions.innerHTML = currentSuggestions.map(suggestion => 
@@ -1376,52 +1373,69 @@ function closeDistrictSelector() {
 function updateDistrictModal() {
     const title = document.getElementById('district-modal-title');
     const placeholder = document.getElementById('district-search');
+    const helper = document.getElementById('district-search-helper');
     
     title.textContent = TRANSLATIONS[currentLanguage].districtSelector.title;
     placeholder.placeholder = TRANSLATIONS[currentLanguage].districtSelector.placeholder;
     
-    // Mostra tutti i quartieri
-    renderDistrictList('');
+    if (helper) {
+        helper.textContent = TRANSLATIONS[currentLanguage].districtSelector.searchHelper;
+    }
+    
+    // Mostra i quartieri recenti se esistono
+    const recentDistricts = localStorage.getItem('recentDistricts');
+    if (recentDistricts) {
+        showRecentDistricts(JSON.parse(recentDistricts));
+    } else {
+        // Altrimenti mostra tutti i quartieri
+        renderDistrictList('');
+    }
 }
 
 function renderDistrictList(searchQuery = '') {
     const container = document.getElementById('district-list');
     const query = searchQuery.toLowerCase().trim();
     
-    let html = '';
+    // Prepara l'array di tutti i quartieri
+    let allDistricts = [];
     
     Object.keys(DISTRICT_MAP).forEach(calendarType => {
-        const districts = DISTRICT_MAP[calendarType];
-        const filteredDistricts = query 
-            ? districts.filter(district => district.toLowerCase().includes(query))
-            : districts;
-        
-        if (filteredDistricts.length > 0) {
-            const calendarIcon = getCalendarIcon(calendarType);
-            const calendarName = TRANSLATIONS[currentLanguage].districtSelector.calendarTypes[calendarType];
-            
-            html += `
-                <div class="calendar-group" data-calendar="${calendarType}">
-                    <div class="calendar-group-header">
-                        <span class="calendar-icon">${calendarIcon}</span>
-                        <span class="calendar-name">${calendarName}</span>
-                    </div>
-                    <div class="districts-grid">
-                        ${filteredDistricts.map(district => `
-                            <button class="district-item ${selectedDistrict === district ? 'selected' : ''}" 
-                                    onclick="selectDistrict('${district}', '${calendarType}')">
-                                <span class="district-name">${district.charAt(0).toUpperCase() + district.slice(1)}</span>
-                                ${selectedDistrict === district ? '<i class="fas fa-check"></i>' : ''}
-                            </button>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        }
+        DISTRICT_MAP[calendarType].forEach(district => {
+            allDistricts.push({
+                name: district,
+                calendarType: calendarType
+            });
+        });
     });
     
-    if (html === '') {
-        html = `
+    // Ordina alfabeticamente
+    allDistricts.sort((a, b) => a.name.localeCompare(b.name));
+    
+    // Filtra i quartieri in base alla ricerca
+    const filteredDistricts = query
+        ? allDistricts.filter(d => d.name.toLowerCase().includes(query))
+        : allDistricts;
+    
+    if (filteredDistricts.length > 0) {
+        const html = `
+            <div class="districts-list">
+                ${filteredDistricts.map(district => `
+                    <div class="district-row ${selectedDistrict === district.name ? 'selected' : ''}" 
+                         onclick="selectDistrict('${district.name}', '${district.calendarType}')">
+                        <div class="district-info">
+                            <span class="calendar-dot ${district.calendarType}"></span>
+                            <span class="district-name">${district.name.charAt(0).toUpperCase() + district.name.slice(1)}</span>
+                        </div>
+                        ${selectedDistrict === district.name ? 
+                            '<span class="selected-indicator">✓ Quartiere attuale</span>' : 
+                            ''}
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        container.innerHTML = html;
+    } else {
+        container.innerHTML = `
             <div class="no-districts">
                 <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
                 <div style="font-size: 16px; margin-bottom: 8px;">${TRANSLATIONS[currentLanguage].districtSelector.noResults}</div>
@@ -1429,12 +1443,40 @@ function renderDistrictList(searchQuery = '') {
         `;
     }
     
-    container.innerHTML = html;
+    // Aggiungi la legenda dei colori
+    const legendHtml = `
+        <div class="calendar-legend">
+            <div class="legend-title">Tipo di Calendario:</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <span class="calendar-dot azzurro"></span>
+                    <span>Azzurro</span>
+                </div>
+                <div class="legend-item">
+                    <span class="calendar-dot verde"></span>
+                    <span>Verde</span>
+                </div>
+                <div class="legend-item">
+                    <span class="calendar-dot blu"></span>
+                    <span>Blu</span>
+                </div>
+                <div class="legend-item">
+                    <span class="calendar-dot arancione"></span>
+                    <span>Arancione</span>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    container.insertAdjacentHTML('beforeend', legendHtml);
 }
 
 function selectDistrict(district, calendarType) {
     selectedDistrict = district;
     currentCalendarType = calendarType;
+    
+    // Salva il quartiere nei recenti
+    saveRecentDistrict(district, calendarType);
     
     // Aggiorna display quartiere selezionato
     updateSelectedDistrictDisplay();
@@ -1445,19 +1487,76 @@ function selectDistrict(district, calendarType) {
     // Chiudi modal
     closeDistrictSelector();
     
+    // Salva selezione in localStorage
+    localStorage.setItem('lastSelectedDistrict', district);
+    localStorage.setItem('lastSelectedCalendarType', calendarType);
+    
     console.log(`Quartiere selezionato: ${district} (Calendario ${calendarType})`);
+}
+
+function saveRecentDistrict(district, calendarType) {
+    let recentDistricts = JSON.parse(localStorage.getItem('recentDistricts') || '[]');
+    
+    // Rimuovi il quartiere se già presente
+    recentDistricts = recentDistricts.filter(d => d.name !== district);
+    
+    // Aggiungi il nuovo quartiere all'inizio
+    recentDistricts.unshift({
+        name: district,
+        calendarType: calendarType
+    });
+    
+    // Mantieni solo gli ultimi 5 quartieri
+    recentDistricts = recentDistricts.slice(0, 5);
+    
+    // Salva in localStorage
+    localStorage.setItem('recentDistricts', JSON.stringify(recentDistricts));
+}
+
+function showRecentDistricts(recentDistricts) {
+    const container = document.getElementById('district-list');
+    
+    if (recentDistricts && recentDistricts.length > 0) {
+        const html = `
+            <div class="recent-districts">
+                <h3 class="section-title">${TRANSLATIONS[currentLanguage].districtSelector.recentTitle}</h3>
+                <div class="districts-grid">
+                    ${recentDistricts.map(district => `
+                        <button class="district-item ${selectedDistrict === district.name ? 'selected' : ''}" 
+                                onclick="selectDistrict('${district.name}', '${district.calendarType}')">
+                            <div class="district-item-content">
+                                <span class="district-name">${district.name.charAt(0).toUpperCase() + district.name.slice(1)}</span>
+                                <div class="district-calendar-info">
+                                    <span class="calendar-icon">${getCalendarIcon(district.calendarType)}</span>
+                                    <span class="calendar-name">${TRANSLATIONS[currentLanguage].districtSelector.calendarTypes[district.calendarType]}</span>
+                                </div>
+                            </div>
+                            ${selectedDistrict === district.name ? '<i class="fas fa-check"></i>' : ''}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+            <h3 class="section-title">${TRANSLATIONS[currentLanguage].districtSelector.nearbyTitle}</h3>
+        `;
+        container.innerHTML = html;
+        renderDistrictList('');
+    } else {
+        renderDistrictList('');
+    }
 }
 
 function updateSelectedDistrictDisplay() {
     const districtDisplay = document.getElementById('selected-district');
-    const calendarIcon = getCalendarIcon(currentCalendarType);
-    const calendarName = TRANSLATIONS[currentLanguage].districtSelector.calendarTypes[currentCalendarType];
+    const districtName = selectedDistrict.charAt(0).toUpperCase() + selectedDistrict.slice(1);
+    const hintText = currentLanguage === 'it' ? '(clicca per cambiare)' : '(click to change)';
     
     districtDisplay.innerHTML = `
-        <span class="selected-calendar-icon">${calendarIcon}</span>
         <div class="selected-info">
-            <div class="selected-district-name">${selectedDistrict.charAt(0).toUpperCase() + selectedDistrict.slice(1)}</div>
-            <div class="selected-calendar-type">${calendarName}</div>
+            <div class="district-header">
+                <span class="calendar-dot ${currentCalendarType}"></span>
+                <div class="selected-district-name">${districtName}</div>
+            </div>
+            <div class="selected-calendar-hint">${hintText}</div>
         </div>
     `;
 }
@@ -1480,20 +1579,11 @@ function searchDistricts(query) {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Calendario Rifiuti - App Migliorata Caricata');
     
-    // Aggiorna orario e data ogni secondo
-    setInterval(() => {
-        const timeElement = document.getElementById('current-time');
-        const dateElement = document.getElementById('current-date');
-        const currentTime = getCurrentTime();
-        const currentDate = getCurrentDate();
-        
-        timeElement.textContent = currentTime;
-        timeElement.setAttribute('data-time', currentTime);
-        
-        if (dateElement) {
-            dateElement.textContent = currentDate;
-        }
-    }, 1000);
+    // Imposta la data corrente
+    const dateElement = document.getElementById('current-date');
+    if (dateElement) {
+        dateElement.textContent = getCurrentDate();
+    }
     
     // Aggiorna card rifiuti ogni minuto
     setInterval(updateWasteCard, 60000);

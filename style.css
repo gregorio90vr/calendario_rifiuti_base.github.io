@@ -503,14 +503,17 @@ input:focus-visible,
 
 .date-display {
     font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--amia-green);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--amia-dark-green);
     letter-spacing: 0.8px;
-    margin-top: 2px;
-    margin-bottom: 4px;
-    opacity: 0.85;
-    transition: all 0.3s ease;
+    padding: 12px 20px;
+    margin: 0;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.98) 100%);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.15);
+    text-transform: capitalize;
 }
 
 .current-time:hover .date-display {
@@ -537,17 +540,17 @@ input:focus-visible,
 
 /* === WASTE CARD - COMPLETAMENTE RISCRITTA SENZA VERDE === */
 .waste-card {
-    background: #E0E0E0; /* Colore di fallback neutro */
+    background: #424242; /* Colore di fallback più scuro e solido */
     color: white;
     border-radius: 28px;
     padding: 35px;
     text-align: center;
     margin-bottom: 30px;
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 /* HOVER EFFECT SENZA VERDE - MANTIENE COLORE ORIGINALE */
@@ -559,40 +562,44 @@ input:focus-visible,
 
 /* === COLORI SPECIFICI PER TIPO DI RIFIUTO === */
 .waste-card.umido {
-    background: #5D4037; /* Marrone più intenso */
-    box-shadow: 0 15px 40px rgba(93, 64, 55, 0.4);
+    background: #4E342E; /* Marrone scuro solido */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .waste-card.umido:hover {
-    box-shadow: 0 25px 60px rgba(93, 64, 55, 0.6);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
 }
 
 .waste-card.plastica {
-    background: #FFD700;
-    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+    background: #FBC02D; /* Giallo solido */
+    box-shadow: 0 15px 35px rgba(251, 192, 45, 0.3);
     color: #333;
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .waste-card.plastica:hover {
-    box-shadow: 0 25px 60px rgba(255, 215, 0, 0.6);
+    box-shadow: 0 20px 45px rgba(251, 192, 45, 0.35);
 }
 
 .waste-card.carta {
-    background: #1976D2;
-    box-shadow: 0 15px 40px rgba(25, 118, 210, 0.4);
+    background: #1565C0; /* Blu solido */
+    box-shadow: 0 15px 35px rgba(21, 101, 192, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .waste-card.carta:hover {
-    box-shadow: 0 25px 60px rgba(25, 118, 210, 0.6);
+    box-shadow: 0 20px 45px rgba(21, 101, 192, 0.35);
 }
 
 .waste-card.secco {
-    background: #616161;
-    box-shadow: 0 15px 40px rgba(97, 97, 97, 0.4);
+    background: #424242; /* Grigio solido */
+    box-shadow: 0 15px 35px rgba(66, 66, 66, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .waste-card.secco:hover {
-    box-shadow: 0 25px 60px rgba(97, 97, 97, 0.6);
+    box-shadow: 0 20px 45px rgba(66, 66, 66, 0.35);
 }
 
 .waste-card.no-collection {
@@ -643,39 +650,14 @@ input:focus-visible,
 
 /* === TIME STATUS === */
 .time-status {
-    background: rgba(255, 255, 255, 0.98);
-    border-radius: 20px;
+    background: #FFF4E6;
+    border-radius: 16px;
     padding: 24px;
     margin-top: 20px;
-    backdrop-filter: blur(25px);
-    border: 3px solid rgba(46, 125, 50, 0.2);
-    transition: all 0.4s var(--motion-easing-standard);
-    text-align: center;
+    border: 1px solid rgba(194, 65, 12, 0.15);
+    text-align: left;
     position: relative;
-    overflow: hidden;
-    box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.2),
-        0 5px 15px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-    z-index: 10;
-}
-
-.time-status::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    border-radius: 23px;
-    background: linear-gradient(135deg, 
-        rgba(46, 125, 50, 0.1) 0%, 
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(46, 125, 50, 0.05) 100%);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .time-status:hover::before {
@@ -709,37 +691,35 @@ input:focus-visible,
 }
 
 .time-status.red {
-    background: linear-gradient(135deg, 
-        rgba(244, 67, 54, 0.25) 0%, 
-        rgba(255, 255, 255, 0.95) 60%,
-        rgba(229, 57, 53, 0.15) 100%);
-    border-color: rgba(244, 67, 54, 0.6);
-    box-shadow: 
-        0 18px 55px rgba(244, 67, 54, 0.35),
-        0 8px 20px rgba(244, 67, 54, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -1px 0 rgba(244, 67, 54, 0.1);
+    background: #FEE2E2; /* Sfondo rosso chiaro più solido */
+    border: 2px solid #DC2626; /* Bordo rosso più evidente */
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.15);
 }
 
 .time-title {
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--amia-dark-green);
+    margin-bottom: 12px;
+    color: #9A3412;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
-    letter-spacing: 0.3px;
 }
 
 .time-message {
-    font-size: 14px;
-    color: var(--amia-dark-green);
-    opacity: 0.9;
+    font-size: 1rem;
+    color: #374151;
     font-weight: 500;
     line-height: 1.5;
-    letter-spacing: 0.2px;
+}
+
+.time-message span:last-child {
+    background: #DC2626;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 4px;
 }
 
 .time-highlight {
@@ -1362,18 +1342,22 @@ input:focus-visible,
 
 .district-selector {
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98));
     border: none;
     border-radius: 20px;
-    padding: 16px 20px;
+    padding: 20px;
     display: flex;
     align-items: center;
     gap: 15px;
     cursor: pointer;
     transition: all 0.3s var(--motion-easing-standard);
-    box-shadow: var(--shadow-card);
+    box-shadow: 
+        0 10px 30px rgba(46, 125, 50, 0.12),
+        0 4px 8px rgba(46, 125, 50, 0.06);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(46, 125, 50, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
 .district-selector:hover {
@@ -1409,19 +1393,72 @@ input:focus-visible,
 
 .selected-info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.district-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .selected-district-name {
-    font-weight: 600;
-    color: var(--amia-green);
-    font-size: 16px;
-    margin-bottom: 2px;
+    font-weight: 700;
+    color: var(--amia-dark-green);
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    position: relative;
 }
 
-.selected-calendar-type {
+.selected-calendar-hint {
     font-size: 13px;
     color: var(--amia-accent);
     font-weight: 500;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.calendar-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.district-selector:hover .selected-calendar-hint {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+.district-selector:hover .calendar-dot {
+    transform: scale(1.2);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.district-selector::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 45%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.1) 55%,
+        transparent 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.district-selector:hover::after {
+    transform: translateX(100%);
 }
 
 .selector-arrow {
@@ -1472,11 +1509,94 @@ input:focus-visible,
     font-size: 15px;
 }
 
-.districts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
+.districts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     padding: 0 16px;
+    margin: 20px 0;
+}
+
+.district-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid rgba(46, 125, 50, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.district-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--amia-accent);
+}
+
+.district-row.selected {
+    background: var(--amia-light);
+    border-color: var(--amia-green);
+}
+
+.district-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.calendar-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.calendar-dot.azzurro { background-color: #1976d2; }
+.calendar-dot.verde { background-color: #2e7d32; }
+.calendar-dot.blu { background-color: #0d47a1; }
+.calendar-dot.arancione { background-color: #f57c00; }
+
+.district-name {
+    font-size: 16px;
+    color: var(--amia-dark-green);
+    font-weight: 500;
+}
+
+.selected-indicator {
+    font-size: 14px;
+    color: var(--amia-green);
+    font-weight: 600;
+}
+
+.calendar-legend {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    border: 1px solid rgba(46, 125, 50, 0.1);
+}
+
+.legend-title {
+    font-size: 14px;
+    color: var(--amia-dark-green);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.legend-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--amia-dark-green);
 }
 
 .district-item {
