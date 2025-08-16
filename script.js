@@ -1,198 +1,191 @@
-// Copyright © 2025 XXX - Pippo. Tutti i diritti riservati.
-// Calendario Rifiuti - Versione Migliorata con UX ottimizzata
+// Copyright © 2025 Gregorio Pellegrini. Tutti i diritti riservati.
+// Calendario Rifiuti - Nuovo Design con Layout Wireframe
 
 // === CONFIGURAZIONE GLOBALE ===
 let currentLanguage = 'it';
+let currentDistrict = 'basson';
+let currentCalendarType = 'azzurro';
 
 // === TRADUZIONI COMPLETE ===
 const TRANSLATIONS = {
     it: {
-        appTitle: "📅 Calendario Rifiuti",
-        searchButton: "🔍 Dove lo butto?",
-        modalTitle: "🔍 Dove lo butto?",
-        searchPlaceholder: "Cerca un oggetto...",
+        appTitle: "CALENDARIO RIFIUTI",
+        searchButton: "DOVE LO BUTTO",
+        modalTitle: "Dove lo butto?",
+        searchPlaceholder: "Scrivi cosa vuoi buttare...",
         searchHint: "Es: bottiglie di plastica, giornali, scatolette di tonno",
         closeButton: "Chiudi",
         noResults: "Nessun risultato trovato",
         today: "OGGI",
         tomorrow: "DOMANI",
         noCollection: "Nessun conferimento",
+        noPickupToday: "Nessuna consegna per oggi",
+        relaxDay: "Giornata libera",
         wasteTypes: {
             umido: "Umido",
-            plastica: "Plastica/Metalli", 
+            plastica: "Plastica/Metalli",
             carta: "Carta",
             secco: "Secco"
         },
         timeStatus: {
             canDispose: {
                 title: "✅ Puoi conferire ora",
-                message: "È il momento giusto per portare fuori i rifiuti (19:00-21:00)"
+                message: "Porta fuori i rifiuti per il ritiro di domani (19:00-21:00)"
             },
             prepare: {
                 title: "⏰ Prepara i rifiuti",
-                message: "Prepara i rifiuti, ma non esporli prima delle 19:00"
+                message: "Prepara i rifiuti per domani, esponili dopo le 19:00"
             },
             tooLate: {
                 title: "❌ Troppo tardi",
-                message: "Non consegnare i rifiuti oltre l'orario 19.00 - 21.00."
+                message: "Prepara i rifiuti per domani, esponili dalle 19.00 alle 21.00"
             }
         },
         sdgTitle: "Obiettivi di Sviluppo Sostenibile",
         sdgDescription: "Contribuisci agli SDGs 11, 12 e 14 attraverso la raccolta differenziata",
-        calendarLink: "📅 Calendario AMIA",
-        dictionaryLink: "📖 Dizionario Rifiuti",
         districtSelector: {
-            title: "📍 Il tuo quartiere",
-            placeholder: "Inizia a scrivere il nome del tuo quartiere...",
-            searchHelper: "Es: Basson, La Rizza, Sacra Famiglia",
-            noResults: "Nessun quartiere trovato. Prova con un altro nome.",
-            recentTitle: "Quartieri recenti",
-            nearbyTitle: "Quartieri vicini"
+            title: "Seleziona il tuo quartiere",
+            placeholder: "Cerca il tuo quartiere...",
+            noResults: "Nessun quartiere trovato. Prova con un altro nome."
         }
     },
     en: {
-        appTitle: "📅 Waste Calendar",
-        searchButton: "🔍 Where do I throw it?",
-        modalTitle: "🔍 Where do I throw it?",
+        appTitle: "WASTE CALENDAR",
+        searchButton: "WHERE DO I THROW IT",
+        modalTitle: "Where do I throw it?",
         searchPlaceholder: "Search for an item...",
-        searchHint: "Ex: plastic bottle, paper, can...",
+        searchHint: "Ex: plastic bottles, newspapers, tuna cans",
         closeButton: "Close",
         noResults: "No results found",
         today: "TODAY",
-        tomorrow: "TOMORROW", 
+        tomorrow: "TOMORROW",
         noCollection: "No collection",
+        noPickupToday: "No pickup for today",
+        relaxDay: "Free day",
         wasteTypes: {
             umido: "Organic",
             plastica: "Plastic/Metals",
-            carta: "Paper", 
+            carta: "Paper",
             secco: "Dry Waste"
         },
         timeStatus: {
             canDispose: {
                 title: "✅ You can dispose now",
-                message: "It's the right time to take out waste (7:00 PM - 9:00 PM)"
+                message: "Take out the waste for tomorrow's pickup (7:00 PM - 9:00 PM)"
             },
             prepare: {
                 title: "⏰ Prepare waste",
-                message: "Prepare waste, don't dispose them before 🕖 7:00 PM"
+                message: "Prepare waste for tomorrow, take them out after 7:00 PM"
             },
             tooLate: {
                 title: "❌ Too late",
-                message: "Don't dispose of waste before 7:00 PM and after 9:00 PM."
+                message: "Prepare waste for tomorrow, take them out from 7:00 PM to 9:00 PM"
             }
         },
         sdgTitle: "Sustainable Development Goals",
         sdgDescription: "Contribute to SDGs 11, 12 and 14 through waste separation",
-        calendarLink: "📅 AMIA Calendar",
-        dictionaryLink: "📖 Waste Dictionary",
         districtSelector: {
-            title: "📍 Select your district",
+            title: "Select your district",
             placeholder: "Search your district...",
-            noResults: "No district found",
-            calendarTypes: {
-                azzurro: "Azure Calendar",
-                verde: "Green Calendar", 
-                blu: "Blue Calendar",
-                arancione: "Orange Calendar"
-            }
+            noResults: "No district found. Try another name."
         }
     }
 };
 
-// === DATABASE COMPLETO RIFIUTI ITALIANI ===
-const WASTE_DATA_IT = {
-    umido: {
-        items: [
-            "avanzi di cibo", "bucce di frutta", "bucce di verdura", "ossa di pesce", 
-            "ossa di carne", "gusci d'uovo", "fondi di caffè", "filtri del tè",
-            "pane vecchio", "pasta avanzata", "riso", "fiori recisi", "foglie",
-            "tovaglioli sporchi", "fazzoletti di carta usati", "sfalci d'erba",
-            "potature", "lettiere biodegradabili", "tappi di sughero naturale",
-            "cenere di legna spenta", "escrementi di animali domestici", "pelo di animali"
-        ]
+// === DIZIONARIO RIFIUTI ===
+const WASTE_DICTIONARY = {
+    it: {
+        umido: {
+            items: [
+                "avanzi di cibo", "bucce di frutta", "bucce di verdura", "ossa di pesce", 
+                "ossa di carne", "gusci d'uovo", "fondi di caffè", "bustine di tè",
+                "pane vecchio", "pasta avanzata", "riso", "fiori recisi", "foglie",
+                "tovaglioli sporchi", "fazzoletti usati", "sfalci d'erba",
+                "potature", "lettiera biodegradabile", "tappi di sughero naturale",
+                "cenere fredda di legna", "escrementi di animali", "peli di animali"
+            ]
+        },
+        plastica: {
+            items: [
+                "bottiglie di plastica", "flaconi shampoo", "contenitori yogurt", 
+                "sacchetti di plastica", "vaschette alimentari", "pellicola trasparente",
+                "tappi di plastica", "lattine di alluminio", "barattoli di metallo",
+                "scatolette tonno", "carta stagnola", "tetra pak",
+                "vaschette polistirolo", "blister medicinali", "reggette di plastica",
+                "retine per frutta", "sacchetti freezer", "flaconi detersivi",
+                "tappi a corona", "bombolette spray vuote"
+            ]
+        },
+        carta: {
+            items: [
+                "giornali", "riviste", "libri", "quaderni", "scatole di cartone",
+                "fogli di carta", "sacchetti di carta", "cartoni del latte", 
+                "buste di carta", "scatole cereali", "cartone ondulato",
+                "volantini pubblicitari", "scontrini", "biglietti autobus",
+                "carta regalo", "calendari", "agende", "fumetti",
+                "scatole pizza pulite", "contenitori tetrapak"
+            ]
+        },
+        secco: {
+            items: [
+                "pannolini", "assorbenti", "ceramica rotta", "porcellana",
+                "giocattoli rotti", "cd", "dvd", "spugne sporche", 
+                "mozziconi sigarette", "polvere aspirapolvere", "lettiera chimica",
+                "carta oleata", "carta plastificata", "scontrini termici",
+                "oggetti di gomma piccoli", "preservativi", "rasoi usa e getta",
+                "cotton fioc", "cerotti", "calzini strappati"
+            ]
+        }
     },
-    plastica: {
-        items: [
-            "bottiglie di plastica", "flaconi shampoo", "contenitori yogurt", 
-            "buste di plastica", "vaschette alimentari", "pellicola trasparente",
-            "tappi di plastica", "lattine di alluminio", "barattoli di metallo",
-            "scatolette di tonno", "fogli di alluminio", "tetrapak",
-            "vassoi di polistirolo", "blister farmaci", "reggette di plastica",
-            "reti per frutta", "sacchetti freezer", "contenitori detersivi",
-            "tappi corona", "bombolette spray vuote"
-        ]
-    },
-    carta: {
-        items: [
-            "giornali", "riviste", "libri", "quaderni", "scatole di cartone",
-            "fogli di carta", "buste di carta", "cartoni del latte", 
-            "sacchetti di carta", "scatole di cereali", "cartoncini",
-            "volantini pubblicitari", "scontrini", "biglietti autobus",
-            "carta da regalo", "calendari", "agende", "fumetti",
-            "cartoni della pizza puliti", "contenitori tetrapak"
-        ]
-    },
-    secco: {
-        items: [
-            "pannolini", "assorbenti", "ceramica rotta", "porcellana",
-            "giocattoli rotti", "cd", "dvd", "spugne sporche", 
-            "mozziconi di sigaretta", "polvere aspirapolvere", "lettiere chimiche",
-            "carta oleata", "carta plastificata", "scontrini termici",
-            "piccoli oggetti in gomma", "preservativi", "rasoi usa e getta",
-            "cotton fioc", "cerotti", "calze rotte"
-        ]
+    en: {
+        umido: {
+            items: [
+                "food scraps", "fruit peels", "vegetable peels", "fish bones", 
+                "meat bones", "eggshells", "coffee grounds", "tea bags",
+                "old bread", "leftover pasta", "rice", "cut flowers", "leaves",
+                "dirty napkins", "used tissues", "grass clippings",
+                "prunings", "biodegradable litter", "natural cork stoppers",
+                "cold wood ash", "pet waste", "animal hair"
+            ]
+        },
+        plastica: {
+            items: [
+                "plastic bottles", "shampoo bottles", "yogurt containers", 
+                "plastic bags", "food trays", "plastic wrap",
+                "plastic caps", "aluminum cans", "metal jars",
+                "tuna cans", "aluminum foil", "tetra pak",
+                "polystyrene trays", "medicine blisters", "plastic straps",
+                "fruit nets", "freezer bags", "detergent containers",
+                "bottle caps", "empty spray cans"
+            ]
+        },
+        carta: {
+            items: [
+                "newspapers", "magazines", "books", "notebooks", "cardboard boxes",
+                "paper sheets", "paper bags", "milk cartons", 
+                "paper bags", "cereal boxes", "cardboard",
+                "advertising flyers", "receipts", "bus tickets",
+                "gift wrapping", "calendars", "diaries", "comics",
+                "clean pizza boxes", "tetrapak containers"
+            ]
+        },
+        secco: {
+            items: [
+                "diapers", "sanitary products", "broken ceramics", "porcelain",
+                "broken toys", "cds", "dvds", "dirty sponges", 
+                "cigarette butts", "vacuum dust", "chemical litter",
+                "wax paper", "plastic-coated paper", "thermal receipts",
+                "small rubber objects", "condoms", "disposable razors",
+                "cotton swabs", "bandages", "torn socks"
+            ]
+        }
     }
 };
 
-// === DATABASE COMPLETO RIFIUTI INGLESI ===
-const WASTE_DATA_EN = {
-    umido: {
-        items: [
-            "food scraps", "fruit peels", "vegetable peels", "fish bones", 
-            "meat bones", "eggshells", "coffee grounds", "tea bags",
-            "old bread", "leftover pasta", "rice", "cut flowers", "leaves",
-            "dirty napkins", "used tissues", "grass clippings",
-            "prunings", "biodegradable litter", "natural cork stoppers",
-            "cold wood ash", "pet waste", "animal hair"
-        ]
-    },
-    plastica: {
-        items: [
-            "plastic bottles", "shampoo bottles", "yogurt containers", 
-            "plastic bags", "food trays", "plastic wrap",
-            "plastic caps", "aluminum cans", "metal jars",
-            "tuna cans", "aluminum foil", "tetra pak",
-            "polystyrene trays", "medicine blisters", "plastic straps",
-            "fruit nets", "freezer bags", "detergent containers",
-            "bottle caps", "empty spray cans"
-        ]
-    },
-    carta: {
-        items: [
-            "newspapers", "magazines", "books", "notebooks", "cardboard boxes",
-            "paper sheets", "paper bags", "milk cartons", 
-            "paper bags", "cereal boxes", "cardboard",
-            "advertising flyers", "receipts", "bus tickets",
-            "gift wrapping", "calendars", "diaries", "comics",
-            "clean pizza boxes", "tetrapak containers"
-        ]
-    },
-    secco: {
-        items: [
-            "diapers", "sanitary products", "broken ceramics", "porcelain",
-            "broken toys", "cds", "dvds", "dirty sponges", 
-            "cigarette butts", "vacuum dust", "chemical litter",
-            "wax paper", "plastic-coated paper", "thermal receipts",
-            "small rubber objects", "condoms", "disposable razors",
-            "cotton swabs", "bandages", "torn socks"
-        ]
-    }
-};
-
-// === CALENDARIO RIFIUTI AGGIORNATO ===
+// === CALENDARIO RIFIUTI ESTESO ===
 const WASTE_CALENDARS = {
     azzurro: {
-        "2025-07-01" : "umido",
+ "2025-07-01" : "umido",
         "2025-07-02" : "plastica",
         "2025-07-03" : "umido",
         "2025-07-04" : "secco",
@@ -378,7 +371,7 @@ const WASTE_CALENDARS = {
         "2025-12-31" : "plastica"
     },
     verde: {
-        "2025-07-01" : "umido",
+                "2025-07-01" : "umido",
         "2025-07-02" : "carta",
         "2025-07-03" : "umido",
         "2025-07-04" : "secco",
@@ -562,1085 +555,446 @@ const WASTE_CALENDARS = {
         "2025-12-29" : "umido",
         "2025-12-30" : "plastica",
         "2025-12-31" : "secco"
-    },
-    blu: {
-        "2025-07-01" : "secco",
-        "2025-07-02" : "umido",
-        "2025-07-03" : "carta",
-        "2025-07-04" : "umido",
-        "2025-07-05" : "plastica",
-        "2025-07-06" : null,
-        "2025-07-07" : "umido",
-        "2025-07-08" : "secco",
-        "2025-07-09" : "umido",
-        "2025-07-10" : "carta",
-        "2025-07-11" : "umido",
-        "2025-07-12" : "plastica",
-        "2025-07-13" : null,
-        "2025-07-14" : "umido",
-        "2025-07-15" : "secco",
-        "2025-07-16" : "umido",
-        "2025-07-17" : "carta",
-        "2025-07-18" : "umido",
-        "2025-07-19" : "plastica",
-        "2025-07-20" : null,
-        "2025-07-21" : "umido",
-        "2025-07-22" : "secco",
-        "2025-07-23" : "umido",
-        "2025-07-24" : "carta",
-        "2025-07-25" : "umido",
-        "2025-07-26" : "plastica",
-        "2025-07-27" : null,
-        "2025-07-28" : "umido",
-        "2025-07-29" : "secco",
-        "2025-07-30" : "umido",
-        "2025-07-31" : "carta",
-        "2025-08-01" : "umido",
-        "2025-08-02" : "plastica",
-        "2025-08-03" : null,
-        "2025-08-04" : "umido",
-        "2025-08-05" : "secco",
-        "2025-08-06" : "umido",
-        "2025-08-07" : "carta",
-        "2025-08-08" : "umido",
-        "2025-08-09" : "plastica",
-        "2025-08-10" : null,
-        "2025-08-11" : "umido",
-        "2025-08-12" : "secco",
-        "2025-08-13" : "umido",
-        "2025-08-14" : "carta",
-        "2025-08-15" : "umido",
-        "2025-08-16" : "plastica",
-        "2025-08-17" : null,
-        "2025-08-18" : "umido",
-        "2025-08-19" : "secco",
-        "2025-08-20" : "umido",
-        "2025-08-21" : "carta",
-        "2025-08-22" : "umido",
-        "2025-08-23" : "plastica",
-        "2025-08-24" : null,
-        "2025-08-25" : "umido",
-        "2025-08-26" : "secco",
-        "2025-08-27" : "umido",
-        "2025-08-28" : "carta",
-        "2025-08-29" : "umido",
-        "2025-08-30" : "plastica",
-        "2025-08-31" : null,
-        "2025-09-01" : "umido",
-        "2025-09-02" : "secco",
-        "2025-09-03" : "umido",
-        "2025-09-04" : "carta",
-        "2025-09-05" : "umido",
-        "2025-09-06" : "plastica",
-        "2025-09-07" : null,
-        "2025-09-08" : "umido",
-        "2025-09-09" : "secco",
-        "2025-09-10" : "umido",
-        "2025-09-11" : "carta",
-        "2025-09-12" : "umido",
-        "2025-09-13" : "plastica",
-        "2025-09-14" : null,
-        "2025-09-15" : "umido",
-        "2025-09-16" : "secco",
-        "2025-09-17" : null,
-        "2025-09-18" : "carta",
-        "2025-09-19" : "umido",
-        "2025-09-20" : "plastica",
-        "2025-09-21" : null,
-        "2025-09-22" : "umido",
-        "2025-09-23" : "secco",
-        "2025-09-24" : null,
-        "2025-09-25" : "carta",
-        "2025-09-26" : "umido",
-        "2025-09-27" : "plastica",
-        "2025-09-28" : null,
-        "2025-09-29" : "umido",
-        "2025-09-30" : "secco",
-        "2025-10-01" : null,
-        "2025-10-02" : "carta",
-        "2025-10-03" : "umido",
-        "2025-10-04" : "plastica",
-        "2025-10-05" : null,
-        "2025-10-06" : "umido",
-        "2025-10-07" : "secco",
-        "2025-10-08" : null,
-        "2025-10-09" : "carta",
-        "2025-10-10" : "umido",
-        "2025-10-11" : "plastica",
-        "2025-10-12" : null,
-        "2025-10-13" : "umido",
-        "2025-10-14" : "secco",
-        "2025-10-15" : null,
-        "2025-10-16" : "carta",
-        "2025-10-17" : "umido",
-        "2025-10-18" : "plastica",
-        "2025-10-19" : null,
-        "2025-10-20" : "umido",
-        "2025-10-21" : "secco",
-        "2025-10-22" : null,
-        "2025-10-23" : "carta",
-        "2025-10-24" : "umido",
-        "2025-10-25" : "plastica",
-        "2025-10-26" : null,
-        "2025-10-27" : "umido",
-        "2025-10-28" : "secco",
-        "2025-10-29" : null,
-        "2025-10-30" : "carta",
-        "2025-10-31" : "umido",
-        "2025-11-01" : "plastica",
-        "2025-11-02" : null,
-        "2025-11-03" : "umido",
-        "2025-11-04" : "secco",
-        "2025-11-05" : null,
-        "2025-11-06" : "carta",
-        "2025-11-07" : "umido",
-        "2025-11-08" : "plastica",
-        "2025-11-09" : null,
-        "2025-11-10" : "umido",
-        "2025-11-11" : "secco",
-        "2025-11-12" : null,
-        "2025-11-13" : "carta",
-        "2025-11-14" : "umido",
-        "2025-11-15" : "plastica",
-        "2025-11-16" : null,
-        "2025-11-17" : "umido",
-        "2025-11-18" : "secco",
-        "2025-11-19" : null,
-        "2025-11-20" : "carta",
-        "2025-11-21" : "umido",
-        "2025-11-22" : "plastica",
-        "2025-11-23" : null,
-        "2025-11-24" : "umido",
-        "2025-11-25" : "secco",
-        "2025-11-26" : null,
-        "2025-11-27" : "carta",
-        "2025-11-28" : "umido",
-        "2025-11-29" : "plastica",
-        "2025-11-30" : null,
-        "2025-12-01" : "umido",
-        "2025-12-02" : "secco",
-        "2025-12-03" : null,
-        "2025-12-04" : "carta",
-        "2025-12-05" : "umido",
-        "2025-12-06" : "plastica",
-        "2025-12-07" : null,
-        "2025-12-08" : "umido",
-        "2025-12-09" : "secco",
-        "2025-12-10" : null,
-        "2025-12-11" : "carta",
-        "2025-12-12" : "umido",
-        "2025-12-13" : "plastica",
-        "2025-12-14" : null,
-        "2025-12-15" : "umido",
-        "2025-12-16" : "secco",
-        "2025-12-17" : null,
-        "2025-12-18" : "carta",
-        "2025-12-19" : "umido",
-        "2025-12-20" : "plastica",
-        "2025-12-21" : null,
-        "2025-12-22" : "umido",
-        "2025-12-23" : "secco",
-        "2025-12-24" : null,
-        "2025-12-25" : "carta",
-        "2025-12-26" : "umido",
-        "2025-12-27" : "plastica",
-        "2025-12-28" : null,
-        "2025-12-29" : "umido",
-        "2025-12-30" : "secco",
-        "2025-12-31" : null
-    },
-    arancione: {
-        "2025-07-01" : "plastica",
-        "2025-07-02" : "umido",
-        "2025-07-03" : "secco",
-        "2025-07-04" : "umido",
-        "2025-07-05" : "carta",
-        "2025-07-06" : null,
-        "2025-07-07" : "umido",
-        "2025-07-08" : "plastica",
-        "2025-07-09" : "umido",
-        "2025-07-10" : "secco",
-        "2025-07-11" : "umido",
-        "2025-07-12" : "carta",
-        "2025-07-13" : null,
-        "2025-07-14" : "umido",
-        "2025-07-15" : "plastica",
-        "2025-07-16" : "umido",
-        "2025-07-17" : "secco",
-        "2025-07-18" : "umido",
-        "2025-07-19" : "carta",
-        "2025-07-20" : null,
-        "2025-07-21" : "umido",
-        "2025-07-22" : "plastica",
-        "2025-07-23" : "umido",
-        "2025-07-24" : "secco",
-        "2025-07-25" : "umido",
-        "2025-07-26" : "carta",
-        "2025-07-27" : null,
-        "2025-07-28" : "umido",
-        "2025-07-29" : "plastica",
-        "2025-07-30" : "umido",
-        "2025-07-31" : "secco",
-        "2025-08-01" : "umido",
-        "2025-08-02" : "carta",
-        "2025-08-03" : null,
-        "2025-08-04" : "umido",
-        "2025-08-05" : "plastica",
-        "2025-08-06" : "umido",
-        "2025-08-07" : "secco",
-        "2025-08-08" : "umido",
-        "2025-08-09" : "carta",
-        "2025-08-10" : null,
-        "2025-08-11" : "umido",
-        "2025-08-12" : "plastica",
-        "2025-08-13" : "umido",
-        "2025-08-14" : "secco",
-        "2025-08-15" : "umido",
-        "2025-08-16" : "carta",
-        "2025-08-17" : null,
-        "2025-08-18" : "umido",
-        "2025-08-19" : "plastica",
-        "2025-08-20" : "umido",
-        "2025-08-21" : "secco",
-        "2025-08-22" : "umido",
-        "2025-08-23" : "carta",
-        "2025-08-24" : null,
-        "2025-08-25" : "umido",
-        "2025-08-26" : "plastica",
-        "2025-08-27" : "umido",
-        "2025-08-28" : "secco",
-        "2025-08-29" : "umido",
-        "2025-08-30" : "carta",
-        "2025-08-31" : null,
-        "2025-09-01" : "umido",
-        "2025-09-02" : "plastica",
-        "2025-09-03" : "umido",
-        "2025-09-04" : "secco",
-        "2025-09-05" : "umido",
-        "2025-09-06" : "carta",
-        "2025-09-07" : null,
-        "2025-09-08" : "umido",
-        "2025-09-09" : "plastica",
-        "2025-09-10" : "umido",
-        "2025-09-11" : "secco",
-        "2025-09-12" : "umido",
-        "2025-09-13" : "carta",
-        "2025-09-14" : null,
-        "2025-09-15" : "umido",
-        "2025-09-16" : "plastica",
-        "2025-09-17" : "carta",
-        "2025-09-18" : "secco",
-        "2025-09-19" : "umido",
-        "2025-09-20" : null,
-        "2025-09-21" : null,
-        "2025-09-22" : "umido",
-        "2025-09-23" : "plastica",
-        "2025-09-24" : "carta",
-        "2025-09-25" : "secco",
-        "2025-09-26" : "umido",
-        "2025-09-27" : null,
-        "2025-09-28" : null,
-        "2025-09-29" : "umido",
-        "2025-09-30" : "plastica",
-        "2025-10-01" : "carta",
-        "2025-10-02" : "secco",
-        "2025-10-03" : "umido",
-        "2025-10-04" : null,
-        "2025-10-05" : null,
-        "2025-10-06" : "umido",
-        "2025-10-07" : "plastica",
-        "2025-10-08" : "carta",
-        "2025-10-09" : "secco",
-        "2025-10-10" : "umido",
-        "2025-10-11" : null,
-        "2025-10-12" : null,
-        "2025-10-13" : "umido",
-        "2025-10-14" : "plastica",
-        "2025-10-15" : "carta",
-        "2025-10-16" : "secco",
-        "2025-10-17" : "umido",
-        "2025-10-18" : null,
-        "2025-10-19" : null,
-        "2025-10-20" : "umido",
-        "2025-10-21" : "plastica",
-        "2025-10-22" : "carta",
-        "2025-10-23" : "secco",
-        "2025-10-24" : "umido",
-        "2025-10-25" : null,
-        "2025-10-26" : null,
-        "2025-10-27" : "umido",
-        "2025-10-28" : "plastica",
-        "2025-10-29" : "carta",
-        "2025-10-30" : "secco",
-        "2025-10-31" : "umido",
-        "2025-11-01" : null,
-        "2025-11-02" : null,
-        "2025-11-03" : "umido",
-        "2025-11-04" : "plastica",
-        "2025-11-05" : "carta",
-        "2025-11-06" : "secco",
-        "2025-11-07" : "umido",
-        "2025-11-08" : null,
-        "2025-11-09" : null,
-        "2025-11-10" : "umido",
-        "2025-11-11" : "plastica",
-        "2025-11-12" : "carta",
-        "2025-11-13" : "secco",
-        "2025-11-14" : "umido",
-        "2025-11-15" : null,
-        "2025-11-16" : null,
-        "2025-11-17" : "umido",
-        "2025-11-18" : "plastica",
-        "2025-11-19" : "carta",
-        "2025-11-20" : "secco",
-        "2025-11-21" : "umido",
-        "2025-11-22" : null,
-        "2025-11-23" : null,
-        "2025-11-24" : "umido",
-        "2025-11-25" : "plastica",
-        "2025-11-26" : "carta",
-        "2025-11-27" : "secco",
-        "2025-11-28" : "umido",
-        "2025-11-29" : null,
-        "2025-11-30" : null,
-        "2025-12-01" : "umido",
-        "2025-12-02" : "plastica",
-        "2025-12-03" : "carta",
-        "2025-12-04" : "secco",
-        "2025-12-05" : "umido",
-        "2025-12-06" : null,
-        "2025-12-07" : null,
-        "2025-12-08" : "umido",
-        "2025-12-09" : "plastica",
-        "2025-12-10" : "carta",
-        "2025-12-11" : "secco",
-        "2025-12-12" : "umido",
-        "2025-12-13" : null,
-        "2025-12-14" : null,
-        "2025-12-15" : "umido",
-        "2025-12-16" : "plastica",
-        "2025-12-17" : "carta",
-        "2025-12-18" : "secco",
-        "2025-12-19" : "umido",
-        "2025-12-20" : null,
-        "2025-12-21" : null,
-        "2025-12-22" : "umido",
-        "2025-12-23" : "plastica",
-        "2025-12-24" : "carta",
-        "2025-12-25" : "secco",
-        "2025-12-26" : "umido",
-        "2025-12-27" : null,
-        "2025-12-28" : null,
-        "2025-12-29" : "umido",
-        "2025-12-30" : "plastica",
-        "2025-12-31" : "carta"
     }
 };
 
-// Mappa dei quartieri per tipo di calendario
-const DISTRICT_MAP = {
-    azzurro: ["basson", "ca di david", "la rizza", "la sorte", "madonna di dossobuono", "sacra famiglia", "torricelle"],
-    verde: ["marangona", "mizzole", "montorio", "parona", "pigozzo", "ponte florio", "quinzano", "zai bassona", "zai storica"],
-    blu: ["basse", "san michele", "san felice", "valpantena", "zai montorio"],
-    arancione: ["basso acquar", "palazzina", "san massimo"]
+// === QUARTIERI ===
+const DISTRICTS = [
+    { name: "Basson", calendar: "azzurro" },
+    { name: "Borgo Milano", calendar: "verde" },
+    { name: "Borgo Roma", calendar: "azzurro" },
+    { name: "Borgo Trento", calendar: "verde" },
+    { name: "Borgo Venezia", calendar: "azzurro" },
+    { name: "Cattarossola", calendar: "verde" },
+    { name: "Centro Storico", calendar: "azzurro" },
+    { name: "Chievo", calendar: "verde" },
+    { name: "Golosine", calendar: "azzurro" },
+    { name: "La Rizza", calendar: "verde" },
+    { name: "Parona", calendar: "azzurro" },
+    { name: "Pozzo Dipinto", calendar: "verde" },
+    { name: "Quinzano", calendar: "azzurro" },
+    { name: "Sacra Famiglia", calendar: "verde" },
+    { name: "San Lazzaro", calendar: "azzurro" },
+    { name: "San Massimo", calendar: "verde" },
+    { name: "Santa Lucia", calendar: "azzurro" },
+    { name: "Santo Stefano", calendar: "verde" },
+    { name: "Stadio", calendar: "azzurro" },
+    { name: "Tombetta", calendar: "verde" },
+    { name: "Valdonega", calendar: "azzurro" },
+    { name: "Veronetta", calendar: "verde" }
+];
+
+// === ICONE RIFIUTI ===
+const WASTE_ICONS = {
+    umido: '<i class="fas fa-seedling"></i>',
+    plastica: '<i class="fas fa-recycle"></i>',  // Using recycle icon
+    carta: '<i class="fas fa-newspaper"></i>',
+    secco: '<i class="fas fa-trash"></i>'
 };
 
-// Calendario attivo e quartiere selezionato
-let currentCalendarType = 'azzurro';
-let selectedDistrict = 'basson';
-
-// === FUNZIONI UTILITÀ ===
-function getTodayString() {
-    // Crea una data specifica per il fuso orario di Roma
-    const now = new Date();
-    const romeTime = new Date(now.toLocaleString("en-US", {timeZone: "Europe/Rome"}));
-    
-    // Formattiamo manualmente per evitare problemi di conversione
-    const year = romeTime.getFullYear();
-    const month = String(romeTime.getMonth() + 1).padStart(2, '0');
-    const day = String(romeTime.getDate()).padStart(2, '0');
-    
-    return `${year}-${month}-${day}`;
-}
-
-function getTomorrowString() {
-    // Crea una data specifica per il fuso orario di Roma
-    const now = new Date();
-    const romeTime = new Date(now.toLocaleString("en-US", {timeZone: "Europe/Rome"}));
-    
-    // Aggiungi un giorno
-    romeTime.setDate(romeTime.getDate() + 1);
-    
-    // Formattiamo manualmente per evitare problemi di conversione
-    const year = romeTime.getFullYear();
-    const month = String(romeTime.getMonth() + 1).padStart(2, '0');
-    const day = String(romeTime.getDate()).padStart(2, '0');
-    
-    return `${year}-${month}-${day}`;
-}
-
-function getCurrentTime() {
-    const now = new Date();
-    // Usa il fuso orario di Roma
-    return now.toLocaleTimeString('it-IT', { 
-        timeZone: 'Europe/Rome',
-        hour: '2-digit', 
-        minute: '2-digit',
-        second: '2-digit'
-    });
-}
-
+// === UTILITY FUNCTIONS ===
 function getCurrentDate() {
     const now = new Date();
-    // Usa il fuso orario di Roma e la lingua corrente
-    const locale = currentLanguage === 'it' ? 'it-IT' : 'en-GB';
-    return now.toLocaleDateString(locale, { 
-        timeZone: 'Europe/Rome',
+    const options = {
         weekday: 'long',
-        day: 'numeric', 
+        year: 'numeric',
         month: 'long',
-        year: 'numeric'
-    });
-}
-
-function getWasteIcon(wasteType) {
-    const icons = {
-        umido: "🌿",
-        plastica: "♻️", 
-        carta: "📄",
-        secco: "🗑️"
+        day: 'numeric'
     };
-    return icons[wasteType] || "❌";
+    return new Intl.DateTimeFormat(currentLanguage === 'it' ? 'it-IT' : 'en-US', options).format(now);
 }
 
-// === FUNZIONI PRINCIPALI ===
-function updateWasteCard() {
-    const today = getTodayString();
-    const tomorrow = getTomorrowString();
-    const currentCalendar = WASTE_CALENDARS[currentCalendarType];
-    
-    // DEBUG: Log delle date per verificare
-    console.log('DEBUG - Oggi:', today);
-    console.log('DEBUG - Domani:', tomorrow);
-    console.log('DEBUG - Calendario tipo:', currentCalendarType);
-    console.log('DEBUG - Calendario oggi:', currentCalendar[today]);
-    console.log('DEBUG - Calendario domani:', currentCalendar[tomorrow]);
-    
-    let wasteType = null;
-    let displayDate = null;
-    
-    // Il conferimento avviene la sera prima del ritiro
-    // Quindi mostriamo il rifiuto di domani come "rifiuto del giorno"
-    if (currentCalendar[tomorrow]) {
-        wasteType = currentCalendar[tomorrow];
-        displayDate = TRANSLATIONS[currentLanguage].today; // Mostra "OGGI" perché è il giorno del conferimento
-        console.log('DEBUG - Mostro rifiuto di domani:', wasteType);
-    }
-    // Se domani non c'è ritiro, non mostrare nulla
-    else {
-        console.log('DEBUG - Nessun ritiro domani:', tomorrow);
-        wasteType = null;
-        displayDate = null;
-    }
-    
-    const card = document.getElementById('waste-card');
-    const icon = document.getElementById('waste-icon');
-    const date = document.getElementById('waste-date');
-    const type = document.getElementById('waste-type');
-    
-    if (wasteType) {
-        // Aggiorna contenuto
-        icon.textContent = getWasteIcon(wasteType);
-        date.textContent = displayDate;
-        type.textContent = TRANSLATIONS[currentLanguage].wasteTypes[wasteType];
-        
-        // Aggiorna stile
-        card.className = `waste-card ${wasteType}`;
-        console.log('DEBUG - Card aggiornata con:', wasteType, displayDate);
-    } else {
-        // Nessun conferimento
-        icon.textContent = "❌";
-        date.textContent = TRANSLATIONS[currentLanguage].today;
-        type.textContent = TRANSLATIONS[currentLanguage].noCollection;
-        card.className = "waste-card no-collection";
-        console.log('DEBUG - Nessun conferimento');
-    }
-    
-    // Passa true per isToday se stiamo mostrando il conferimento di oggi
-    updateTimeStatus(wasteType, displayDate === TRANSLATIONS[currentLanguage].today);
+function formatDateKey(date = new Date()) {
+    return date.toISOString().split('T')[0];
 }
 
-function updateTimeStatus(wasteType, isToday) {
-    // Usa il fuso orario di Roma per determinare l'ora corrente
-    const now = new Date();
-    const romeTime = new Date(now.toLocaleString("en-US", {timeZone: "Europe/Rome"}));
-    const hour = romeTime.getHours();
-    
-    const statusElement = document.getElementById('time-status');
-    const titleElement = document.getElementById('time-title');
-    const messageElement = document.getElementById('time-message');
-    
-    let status, title, message;
-    
-    if (wasteType && isToday) {
-        // C'è conferimento oggi
-        if (hour >= 19 && hour <= 21) {
-            // Ora di conferimento (19:00-21:00)
-            status = "green";
-            title = TRANSLATIONS[currentLanguage].timeStatus.canDispose.title;
-            message = TRANSLATIONS[currentLanguage].timeStatus.canDispose.message;
-        } else if (hour < 19 && hour >= 8) {
-            // Prima dell'orario
-            status = "orange";
-            title = TRANSLATIONS[currentLanguage].timeStatus.prepare.title;
-            message = TRANSLATIONS[currentLanguage].timeStatus.prepare.message;
-        } else {
-            // Dopo l'orario
-            status = "red";
-            title = TRANSLATIONS[currentLanguage].timeStatus.tooLate.title;
-            message = TRANSLATIONS[currentLanguage].timeStatus.tooLate.message;
+function getWasteForDate(date = new Date()) {
+    const dateKey = formatDateKey(date);
+    const calendar = WASTE_CALENDARS[currentCalendarType];
+    return calendar ? calendar[dateKey] : null;
+}
+
+// Ottiene il rifiuto da preparare oggi (quello di domani)
+function getTomorrowWaste() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return getWasteForDate(tomorrow);
+}
+
+function getNextWasteDate() {
+    const calendar = WASTE_CALENDARS[currentCalendarType];
+    if (!calendar) return null;
+
+    const today = new Date();
+    for (let i = 1; i <= 7; i++) {
+        const nextDate = new Date(today);
+        nextDate.setDate(today.getDate() + i);
+        const dateKey = formatDateKey(nextDate);
+        if (calendar[dateKey]) {
+            return { date: nextDate, waste: calendar[dateKey] };
         }
-    } else {
-        // Nessun conferimento oggi
-        status = "red";
-        title = TRANSLATIONS[currentLanguage].timeStatus.tooLate.title;
-        message = TRANSLATIONS[currentLanguage].timeStatus.tooLate.message;
     }
-    
-    statusElement.className = `time-status ${status}`;
-    titleElement.textContent = title;
-    messageElement.textContent = message;
+    return null;
 }
 
-function updateLanguage() {
-    // Aggiorna tutti i testi dell'interfaccia
-    document.getElementById('app-title').textContent = TRANSLATIONS[currentLanguage].appTitle;
-    document.getElementById('search-text').textContent = TRANSLATIONS[currentLanguage].searchButton;
-    document.getElementById('modal-title').textContent = TRANSLATIONS[currentLanguage].modalTitle;
-    document.getElementById('search-input').placeholder = TRANSLATIONS[currentLanguage].searchPlaceholder;
-    document.getElementById('close-btn').textContent = TRANSLATIONS[currentLanguage].closeButton;
-    document.getElementById('sdg-title').textContent = TRANSLATIONS[currentLanguage].sdgTitle;
-    document.getElementById('sdg-description').textContent = TRANSLATIONS[currentLanguage].sdgDescription;
+function getTimeStatus() {
+    const now = new Date();
+    const hour = now.getHours();
     
-    // Aggiorna etichetta orologio
-    const timeLabel = document.getElementById('time-label');
-    if (timeLabel) {
-        timeLabel.textContent = currentLanguage === 'it' ? 'Ora Attuale' : 'Current Time';
-    }
-    
-    // Aggiorna data con nuova lingua
-    const dateElement = document.getElementById('current-date');
-    if (dateElement) {
-        dateElement.textContent = getCurrentDate();
-    }
-    
-    // Aggiorna link utili
-    const calendarLinkText = document.getElementById('calendar-link-text');
-    if (calendarLinkText) {
-        calendarLinkText.textContent = TRANSLATIONS[currentLanguage].calendarLink;
-    }
-    
-    const dictionaryLinkText = document.getElementById('dictionary-link-text');
-    if (dictionaryLinkText) {
-        dictionaryLinkText.textContent = TRANSLATIONS[currentLanguage].dictionaryLink;
-    }
-    
-    // Aggiorna display quartiere selezionato
-    updateSelectedDistrictDisplay();
-    
-    // Aggiorna modal quartiere se aperto
-    if (document.getElementById('district-modal').style.display === 'block') {
-        updateDistrictModal();
-    }
-    
-    // Aggiorna suggestions se modal aperto
-    if (document.getElementById('search-modal').style.display === 'block') {
-        updateSearchSuggestions();
-    }
-    
-    // Aggiorna la card dei rifiuti
-    updateWasteCard();
-    
-    // Riperforma ricerca se presente
-    const searchInput = document.getElementById('search-input');
-    if (searchInput.value.trim()) {
-        performSearch(searchInput.value);
+    if (hour >= 19 && hour <= 21) {
+        return 'canDispose';
+    } else if (hour < 19) {
+        return 'prepare';
     } else {
-        document.getElementById('search-results').innerHTML = '';
+        return 'tooLate';
+    }
+}
+
+// === UI UPDATE FUNCTIONS ===
+function updateWasteCard() {
+    const wasteCard = document.getElementById('waste-info-card');
+    const wasteIcon = document.getElementById('waste-icon');
+    const wasteType = document.getElementById('waste-type');
+    const wasteDate = document.getElementById('waste-date');
+    
+    if (!wasteCard || !wasteIcon || !wasteType || !wasteDate) return;
+    
+    // La logica è: oggi preparo il rifiuto che verrà ritirato domani
+    const tomorrowWaste = getTomorrowWaste();
+    
+    if (tomorrowWaste) {
+        // C'è un ritiro domani, mostro cosa preparare oggi
+        wasteCard.className = 'waste-info-card';
+        wasteCard.classList.add(tomorrowWaste);
+        
+        wasteIcon.innerHTML = WASTE_ICONS[tomorrowWaste];
+        wasteType.textContent = TRANSLATIONS[currentLanguage].wasteTypes[tomorrowWaste];
+        wasteDate.textContent = TRANSLATIONS[currentLanguage].tomorrow;
+    } else {
+        // Non c'è ritiro domani - mostro sempre che oggi non c'è nulla da fare
+        wasteCard.className = 'waste-info-card';
+        wasteCard.classList.add('no-pickup'); // Classe speciale per "nessun ritiro"
+        wasteIcon.innerHTML = '<i class="fas fa-calendar-check"></i>';
+        wasteType.textContent = TRANSLATIONS[currentLanguage].noPickupToday;
+        wasteDate.textContent = TRANSLATIONS[currentLanguage].relaxDay;
+    }
+}
+
+function updateScheduleInfo() {
+    const scheduleTitle = document.getElementById('time-title');
+    const scheduleMessage = document.getElementById('time-message');
+    const scheduleBox = document.getElementById('schedule-info-box');
+    
+    if (!scheduleTitle || !scheduleMessage || !scheduleBox) return;
+    
+    // Controlla se domani c'è un ritiro
+    const tomorrowWaste = getTomorrowWaste();
+    
+    if (!tomorrowWaste) {
+        // Nessun ritiro domani - mostra messaggio speciale
+        scheduleTitle.textContent = currentLanguage === 'it' ? 
+            '🛋️ Giorno di riposo' : '🛋️ Rest day';
+        scheduleMessage.textContent = currentLanguage === 'it' ? 
+            'Oggi non devi preparare nessun rifiuto' : 
+            'Today you don\'t need to prepare any waste';
+    } else {
+        // C'è un ritiro domani - mostra info sui tempi
+        const timeStatus = getTimeStatus();
+        const statusInfo = TRANSLATIONS[currentLanguage].timeStatus[timeStatus];
+        
+        scheduleTitle.textContent = statusInfo.title;
+        scheduleMessage.textContent = statusInfo.message;
+    }
+    
+    // Update box color based on status
+    scheduleBox.className = 'schedule-info-box';
+    scheduleBox.classList.add(timeStatus);
+}
+
+function updateDistrictInfo() {
+    const districtName = document.getElementById('selected-district-name');
+    const calendarType = document.getElementById('selected-calendar-type');
+    
+    // Header elements
+    const districtNameHeader = document.getElementById('selected-district-name-header');
+    const calendarTypeHeader = document.getElementById('selected-calendar-type-header');
+    
+    const district = DISTRICTS.find(d => d.name.toLowerCase() === currentDistrict.toLowerCase());
+    if (district) {
+        const calendarTypeText = currentLanguage === 'it' ? 
+            `Calendario ${district.calendar.charAt(0).toUpperCase() + district.calendar.slice(1)}` :
+            `${district.calendar.charAt(0).toUpperCase() + district.calendar.slice(1)} Calendar`;
+        
+        // Update old district info (if still exists)
+        if (districtName) districtName.textContent = district.name;
+        if (calendarType) calendarType.textContent = calendarTypeText;
+        
+        // Update header district info
+        if (districtNameHeader) districtNameHeader.textContent = district.name;
+        if (calendarTypeHeader) {
+            // Show only the calendar type without "Calendario/Calendar"
+            calendarTypeHeader.textContent = district.calendar.charAt(0).toUpperCase() + district.calendar.slice(1);
+        }
+        
+        currentCalendarType = district.calendar;
     }
 }
 
 function switchLanguage(lang) {
     currentLanguage = lang;
     
-    // Aggiorna bottoni lingua
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
-    
-    // Aggiorna indicatore lingua selezionata
-    const langIndicator = document.getElementById('selected-lang-text');
-    if (langIndicator) {
-        langIndicator.textContent = lang === 'it' ? '🇮🇹 Italiano selezionato' : '🇬🇧 English selected';
+    // Update header
+    const appTitle = document.getElementById('app-title');
+    if (appTitle) {
+        appTitle.innerHTML = `<i class="fas fa-calendar-alt header-icon"></i>${TRANSLATIONS[currentLanguage].appTitle}`;
     }
     
-    // Aggiorna interfaccia
-    updateLanguage();
+    // Update navigation labels
+    const searchButton = document.getElementById('search-text');
+    if (searchButton) {
+        searchButton.textContent = TRANSLATIONS[currentLanguage].searchButton;
+    }
+    
+    // Update language button
+    const langButton = document.querySelector('.current-lang');
+    if (langButton) {
+        langButton.textContent = currentLanguage === 'it' ? 'ITA/ENG' : 'ENG/ITA';
+    }
+    
+    // Update active language option
+    document.querySelectorAll('.language-option').forEach(option => {
+        option.classList.toggle('active', option.dataset.lang === currentLanguage);
+    });
+    
+    // Update all content
+    updateWasteCard();
+    updateScheduleInfo();
+    updateDistrictInfo();
 }
 
-// === RICERCA AVANZATA MOBILE-FIRST ===
+// === MODAL FUNCTIONS ===
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'flex';
+        setTimeout(() => modal.classList.add('active'), 10);
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 300);
+    }
+}
+
+function openSearchModal() {
+    openModal('search-modal');
+    setTimeout(() => {
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) searchInput.focus();
+    }, 350);
+}
+
+function closeSearchModal() {
+    closeModal('search-modal');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    if (searchInput) searchInput.value = '';
+    if (searchResults) searchResults.innerHTML = '';
+}
+
+function openDistrictModal() {
+    openModal('district-modal');
+    renderDistrictList();
+    setTimeout(() => {
+        const districtSearch = document.getElementById('district-search');
+        if (districtSearch) districtSearch.focus();
+    }, 350);
+}
+
+function closeDistrictModal() {
+    closeModal('district-modal');
+    const districtSearch = document.getElementById('district-search');
+    if (districtSearch) districtSearch.value = '';
+}
+
+function openLanguageModal() {
+    openModal('language-modal');
+}
+
+function closeLanguageModal() {
+    closeModal('language-modal');
+}
+
+function openInfoModal() {
+    openModal('info-modal');
+}
+
+function closeInfoModal() {
+    closeModal('info-modal');
+}
+
+// === SEARCH FUNCTIONS ===
 function performSearch(query) {
-    if (!query || query.length < 2) {
-        document.getElementById('search-results').innerHTML = '';
+    const resultsContainer = document.getElementById('search-results');
+    if (!resultsContainer || !query.trim()) {
+        if (resultsContainer) resultsContainer.innerHTML = '';
         return;
     }
-
-    const searchQuery = query.toLowerCase().trim();
-    const wasteData = currentLanguage === 'it' ? WASTE_DATA_IT : WASTE_DATA_EN;
-    const resultsContainer = document.getElementById('search-results');
     
-    let results = [];
+    const results = [];
+    const lowerQuery = query.toLowerCase();
+    const dictionary = WASTE_DICTIONARY[currentLanguage];
     
-    // Ricerca ottimizzata con score per rilevanza
-    Object.keys(wasteData).forEach(wasteType => {
-        wasteData[wasteType].items.forEach(item => {
-            const itemLower = item.toLowerCase();
-            let score = 0;
-            
-            // Corrispondenza esatta ha priorità massima
-            if (itemLower === searchQuery) {
-                score = 100;
-            }
-            // Inizia con la query
-            else if (itemLower.startsWith(searchQuery)) {
-                score = 80;
-            }
-            // Contiene la query
-            else if (itemLower.includes(searchQuery)) {
-                score = 60;
-            }
-            // Ricerca per parole (split spaces)
-            else {
-                const queryWords = searchQuery.split(' ');
-                const matchedWords = queryWords.filter(word => 
-                    word.length > 1 && itemLower.includes(word)
-                );
-                if (matchedWords.length > 0) {
-                    score = 40 + (matchedWords.length / queryWords.length) * 20;
-                }
-            }
-            
-            if (score > 0) {
+    Object.entries(dictionary).forEach(([wasteType, data]) => {
+        data.items.forEach(item => {
+            if (item.toLowerCase().includes(lowerQuery)) {
                 results.push({
-                    name: item,
-                    type: wasteType,
-                    typeName: TRANSLATIONS[currentLanguage].wasteTypes[wasteType],
-                    score: score
+                    item: item,
+                    category: TRANSLATIONS[currentLanguage].wasteTypes[wasteType],
+                    type: wasteType
                 });
             }
         });
     });
     
-    // Ordina per score e rimuovi duplicati
-    results = results
-        .sort((a, b) => b.score - a.score)
-        .filter((item, index, arr) => 
-            arr.findIndex(t => t.name === item.name) === index
-        )
-        .slice(0, 20); // Limita a 20 risultati
-
-    // Rendering risultati con animazioni scaglionate
     if (results.length === 0) {
         resultsContainer.innerHTML = `
             <div class="no-results">
-                <div style="font-size: 48px; margin-bottom: 16px;">🤔</div>
-                <div style="font-size: 18px; margin-bottom: 8px;">${TRANSLATIONS[currentLanguage].noResults}</div>
-                <div style="font-size: 14px; opacity: 0.7;">Prova con termini più generici come "bottiglia" o "carta"</div>
+                <i class="fas fa-search"></i>
+                <p>${TRANSLATIONS[currentLanguage].noResults}</p>
             </div>
         `;
-    } else {
-        resultsContainer.innerHTML = results.map((result, index) => {
-            const categoryIcon = getCategoryIcon(result.type);
-            return `
-                <div class="search-result" style="animation-delay: ${index * 0.05}s">
-                    <div class="result-header">
-                        <div class="result-name">
-                            <span class="result-category-icon">${categoryIcon}</span>
-                            ${highlightMatch(result.name, searchQuery)}
-                        </div>
-                        <span class="result-type ${result.type}">${result.typeName}</span>
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
-}
-
-// Funzione per evidenziare i match nella ricerca
-function highlightMatch(text, query) {
-    if (!query || query.length < 2) return text;
-    
-    const regex = new RegExp(`(${query.split(' ').join('|')})`, 'gi');
-    return text.replace(regex, '<mark style="background: var(--amia-light); color: var(--amia-dark-green); padding: 1px 3px; border-radius: 3px; font-weight: 700;">$1</mark>');
-}
-
-// Icone per categorie
-function getCategoryIcon(type) {
-    const icons = {
-        umido: "🌿",
-        plastica: "♻️", 
-        carta: "📄",
-        secco: "🗑️"
-    };
-    return icons[type] || "📦";
-}
-
-// Gestione suggestions intelligenti
-function updateSearchSuggestions() {
-    const suggestions = document.getElementById('search-suggestions');
-    if (!suggestions) return;
-    
-    const currentSuggestions = currentLanguage === 'it' 
-        ? ['bottiglie', 'carta', 'lattine', 'avanzi', 'giornali']
-        : ['bottle', 'paper', 'can', 'food scraps', 'newspaper'];
-    
-    suggestions.innerHTML = currentSuggestions.map(suggestion => 
-        `<div class="suggestion-chip" onclick="searchFromSuggestion('${suggestion}')">${getCategoryIcon(getWasteTypeForItem(suggestion))} ${suggestion}</div>`
-    ).join('');
-}
-
-// Ricerca da suggestion con focus input
-function searchFromSuggestion(query) {
-    const input = document.getElementById('search-input');
-    input.value = query;
-    input.focus();
-    performSearch(query);
-}
-
-// Determina il tipo di rifiuto per un item (per icone suggestions)
-function getWasteTypeForItem(item) {
-    const wasteData = currentLanguage === 'it' ? WASTE_DATA_IT : WASTE_DATA_EN;
-    for (const [type, data] of Object.entries(wasteData)) {
-        if (data.items.some(dataItem => dataItem.toLowerCase().includes(item.toLowerCase()))) {
-            return type;
-        }
-    }
-    return 'secco';
-}
-
-function openSearchModal() {
-    const modal = document.getElementById('search-modal');
-    modal.style.display = 'block';
-    
-    // Aggiorna suggestions per lingua corrente
-    updateSearchSuggestions();
-    
-    // Focus automatico dopo animazione
-    setTimeout(() => {
-        const input = document.getElementById('search-input');
-        input.focus();
-    }, 300);
-}
-
-function closeSearchModal() {
-    document.getElementById('search-modal').style.display = 'none';
-    document.getElementById('search-input').value = '';
-    document.getElementById('search-results').innerHTML = '';
-}
-
-// === GESTIONE SELETTORE QUARTIERE ===
-function openDistrictSelector() {
-    const modal = document.getElementById('district-modal');
-    modal.style.display = 'block';
-    
-    // Aggiorna contenuto per lingua corrente
-    updateDistrictModal();
-    
-    // Focus automatico dopo animazione
-    setTimeout(() => {
-        const input = document.getElementById('district-search');
-        input.focus();
-    }, 300);
-}
-
-function closeDistrictSelector() {
-    const modal = document.getElementById('district-modal');
-    modal.style.display = 'none';
-    document.getElementById('district-search').value = '';
-}
-
-function updateDistrictModal() {
-    const title = document.getElementById('district-modal-title');
-    const placeholder = document.getElementById('district-search');
-    const helper = document.getElementById('district-search-helper');
-    
-    title.textContent = TRANSLATIONS[currentLanguage].districtSelector.title;
-    placeholder.placeholder = TRANSLATIONS[currentLanguage].districtSelector.placeholder;
-    
-    if (helper) {
-        helper.textContent = TRANSLATIONS[currentLanguage].districtSelector.searchHelper;
+        return;
     }
     
-    // Mostra i quartieri recenti se esistono
-    const recentDistricts = localStorage.getItem('recentDistricts');
-    if (recentDistricts) {
-        showRecentDistricts(JSON.parse(recentDistricts));
-    } else {
-        // Altrimenti mostra tutti i quartieri
-        renderDistrictList('');
-    }
+    resultsContainer.innerHTML = results.map(result => `
+        <div class="search-result-item ${result.type}">
+            <div class="search-result-title">${result.item}</div>
+            <div class="search-result-category">${result.category}</div>
+        </div>
+    `).join('');
 }
 
-function renderDistrictList(searchQuery = '') {
-    const container = document.getElementById('district-list');
-    const query = searchQuery.toLowerCase().trim();
+// === DISTRICT FUNCTIONS ===
+function renderDistrictList(filter = '') {
+    const districtList = document.getElementById('district-list');
+    if (!districtList) return;
     
-    // Prepara l'array di tutti i quartieri
-    let allDistricts = [];
+    const filteredDistricts = DISTRICTS.filter(district => 
+        district.name.toLowerCase().includes(filter.toLowerCase())
+    );
     
-    Object.keys(DISTRICT_MAP).forEach(calendarType => {
-        DISTRICT_MAP[calendarType].forEach(district => {
-            allDistricts.push({
-                name: district,
-                calendarType: calendarType
-            });
-        });
-    });
-    
-    // Ordina alfabeticamente
-    allDistricts.sort((a, b) => a.name.localeCompare(b.name));
-    
-    // Filtra i quartieri in base alla ricerca
-    const filteredDistricts = query
-        ? allDistricts.filter(d => d.name.toLowerCase().includes(query))
-        : allDistricts;
-    
-    if (filteredDistricts.length > 0) {
-        const html = `
-            <div class="districts-list">
-                ${filteredDistricts.map(district => `
-                    <div class="district-row ${selectedDistrict === district.name ? 'selected' : ''}" 
-                         onclick="selectDistrict('${district.name}', '${district.calendarType}')">
-                        <div class="district-info">
-                            <span class="calendar-dot ${district.calendarType}"></span>
-                            <span class="district-name">${district.name.charAt(0).toUpperCase() + district.name.slice(1)}</span>
-                        </div>
-                        ${selectedDistrict === district.name ? 
-                            '<span class="selected-indicator">✓ Quartiere attuale</span>' : 
-                            ''}
-                    </div>
-                `).join('')}
+    if (filteredDistricts.length === 0) {
+        districtList.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>${TRANSLATIONS[currentLanguage].districtSelector.noResults}</p>
             </div>
         `;
-        container.innerHTML = html;
-    } else {
-        container.innerHTML = `
-            <div class="no-districts">
-                <div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
-                <div style="font-size: 16px; margin-bottom: 8px;">${TRANSLATIONS[currentLanguage].districtSelector.noResults}</div>
-            </div>
-        `;
+        return;
     }
     
-    // Aggiungi la legenda dei colori
-    const legendHtml = `
-        <div class="calendar-legend">
-            <div class="legend-title">Tipo di Calendario:</div>
-            <div class="legend-items">
-                <div class="legend-item">
-                    <span class="calendar-dot azzurro"></span>
-                    <span>Azzurro</span>
-                </div>
-                <div class="legend-item">
-                    <span class="calendar-dot verde"></span>
-                    <span>Verde</span>
-                </div>
-                <div class="legend-item">
-                    <span class="calendar-dot blu"></span>
-                    <span>Blu</span>
-                </div>
-                <div class="legend-item">
-                    <span class="calendar-dot arancione"></span>
-                    <span>Arancione</span>
-                </div>
+    districtList.innerHTML = filteredDistricts.map(district => `
+        <div class="district-item" onclick="selectDistrict('${district.name.toLowerCase()}')">
+            <div class="district-calendar-icon ${district.calendar}"></div>
+            <div class="district-item-info">
+                <div class="district-item-name">${district.name}</div>
+                <div class="district-item-calendar">Calendario ${district.calendar.charAt(0).toUpperCase() + district.calendar.slice(1)}</div>
             </div>
         </div>
-    `;
-    
-    container.insertAdjacentHTML('beforeend', legendHtml);
+    `).join('');
 }
 
-function selectDistrict(district, calendarType) {
-    selectedDistrict = district;
-    currentCalendarType = calendarType;
-    
-    // Salva il quartiere nei recenti
-    saveRecentDistrict(district, calendarType);
-    
-    // Aggiorna display quartiere selezionato
-    updateSelectedDistrictDisplay();
-    
-    // Aggiorna calendario
+function selectDistrict(districtName) {
+    currentDistrict = districtName;
+    updateDistrictInfo();
     updateWasteCard();
-    
-    // Chiudi modal
-    closeDistrictSelector();
-    
-    // Salva selezione in localStorage
-    localStorage.setItem('lastSelectedDistrict', district);
-    localStorage.setItem('lastSelectedCalendarType', calendarType);
-    
-    console.log(`Quartiere selezionato: ${district} (Calendario ${calendarType})`);
+    updateScheduleInfo();
+    closeDistrictModal();
 }
 
-function saveRecentDistrict(district, calendarType) {
-    let recentDistricts = JSON.parse(localStorage.getItem('recentDistricts') || '[]');
-    
-    // Rimuovi il quartiere se già presente
-    recentDistricts = recentDistricts.filter(d => d.name !== district);
-    
-    // Aggiungi il nuovo quartiere all'inizio
-    recentDistricts.unshift({
-        name: district,
-        calendarType: calendarType
-    });
-    
-    // Mantieni solo gli ultimi 5 quartieri
-    recentDistricts = recentDistricts.slice(0, 5);
-    
-    // Salva in localStorage
-    localStorage.setItem('recentDistricts', JSON.stringify(recentDistricts));
-}
-
-function showRecentDistricts(recentDistricts) {
-    const container = document.getElementById('district-list');
-    
-    if (recentDistricts && recentDistricts.length > 0) {
-        const html = `
-            <div class="recent-districts">
-                <h3 class="section-title">${TRANSLATIONS[currentLanguage].districtSelector.recentTitle}</h3>
-                <div class="districts-grid">
-                    ${recentDistricts.map(district => `
-                        <button class="district-item ${selectedDistrict === district.name ? 'selected' : ''}" 
-                                onclick="selectDistrict('${district.name}', '${district.calendarType}')">
-                            <div class="district-item-content">
-                                <span class="district-name">${district.name.charAt(0).toUpperCase() + district.name.slice(1)}</span>
-                                <div class="district-calendar-info">
-                                    <span class="calendar-icon">${getCalendarIcon(district.calendarType)}</span>
-                                    <span class="calendar-name">${TRANSLATIONS[currentLanguage].districtSelector.calendarTypes[district.calendarType]}</span>
-                                </div>
-                            </div>
-                            ${selectedDistrict === district.name ? '<i class="fas fa-check"></i>' : ''}
-                        </button>
-                    `).join('')}
-                </div>
-            </div>
-            <h3 class="section-title">${TRANSLATIONS[currentLanguage].districtSelector.nearbyTitle}</h3>
-        `;
-        container.innerHTML = html;
-        renderDistrictList('');
-    } else {
-        renderDistrictList('');
-    }
-}
-
-function updateSelectedDistrictDisplay() {
-    const districtDisplay = document.getElementById('selected-district');
-    const districtName = selectedDistrict.charAt(0).toUpperCase() + selectedDistrict.slice(1);
-    const hintText = currentLanguage === 'it' ? '(clicca per cambiare)' : '(click to change)';
-    
-    districtDisplay.innerHTML = `
-        <div class="selected-info">
-            <div class="district-header">
-                <span class="calendar-dot ${currentCalendarType}"></span>
-                <div class="selected-district-name">${districtName}</div>
-            </div>
-            <div class="selected-calendar-hint">${hintText}</div>
-        </div>
-    `;
-}
-
-function getCalendarIcon(calendarType) {
-    const icons = {
-        azzurro: "🔵",
-        verde: "🟢",
-        blu: "🔷",
-        arancione: "🟠"
-    };
-    return icons[calendarType] || "📅";
-}
-
-function searchDistricts(query) {
-    renderDistrictList(query);
-}
-
-// === INIZIALIZZAZIONE ===
+// === EVENT LISTENERS ===
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Calendario Rifiuti - App Migliorata Caricata');
+    console.log('🚀 Calendario Rifiuti - Nuovo Design Caricato');
     
-    // Imposta la data corrente
+    // Set current date
     const dateElement = document.getElementById('current-date');
     if (dateElement) {
         dateElement.textContent = getCurrentDate();
     }
     
-    // Aggiorna card rifiuti ogni minuto
-    setInterval(updateWasteCard, 60000);
+    // Update every minute
+    setInterval(() => {
+        updateWasteCard();
+        updateScheduleInfo();
+    }, 60000);
     
-    // Setup eventi lingua
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            switchLanguage(btn.dataset.lang);
+    // Navigation event listeners
+    document.getElementById('search-button')?.addEventListener('click', openSearchModal);
+    document.getElementById('district-button')?.addEventListener('click', openDistrictModal);
+    document.getElementById('language-button')?.addEventListener('click', openLanguageModal);
+    document.getElementById('info-button')?.addEventListener('click', openInfoModal);
+    
+    // Modal close buttons
+    document.getElementById('close-btn')?.addEventListener('click', closeSearchModal);
+    document.getElementById('district-close-btn')?.addEventListener('click', closeDistrictModal);
+    document.getElementById('language-close-btn')?.addEventListener('click', closeLanguageModal);
+    document.getElementById('info-close-btn')?.addEventListener('click', closeInfoModal);
+    
+    // Modal overlays
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            const modal = e.target.closest('.modal');
+            if (modal) {
+                closeModal(modal.id);
+            }
         });
     });
     
-    // Setup eventi search
-    document.getElementById('search-button').addEventListener('click', openSearchModal);
-    document.getElementById('close-btn').addEventListener('click', closeSearchModal);
-    
-    // Setup eventi district selector
-    document.getElementById('district-selector').addEventListener('click', openDistrictSelector);
-    document.getElementById('district-close-btn').addEventListener('click', closeDistrictSelector);
-    
-    // District search con debounce
-    let districtSearchTimeout;
-    document.getElementById('district-search').addEventListener('input', (e) => {
-        clearTimeout(districtSearchTimeout);
-        districtSearchTimeout = setTimeout(() => {
-            searchDistricts(e.target.value);
-        }, 300);
-    });
-    
-    // Search input con debounce
+    // Search input
     let searchTimeout;
-    document.getElementById('search-input').addEventListener('input', (e) => {
+    document.getElementById('search-input')?.addEventListener('input', (e) => {
         clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-            performSearch(e.target.value);
-        }, 300);
+        searchTimeout = setTimeout(() => performSearch(e.target.value), 300);
     });
     
-    // Chiudi modal con ESC o click fuori
+    // District search input
+    let districtSearchTimeout;
+    document.getElementById('district-search')?.addEventListener('input', (e) => {
+        clearTimeout(districtSearchTimeout);
+        districtSearchTimeout = setTimeout(() => renderDistrictList(e.target.value), 300);
+    });
+    
+    // Language options
+    document.querySelectorAll('.language-option').forEach(option => {
+        option.addEventListener('click', () => {
+            switchLanguage(option.dataset.lang);
+            closeLanguageModal();
+        });
+    });
+    
+    // Keyboard events
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeSearchModal();
-            closeDistrictSelector();
+            closeDistrictModal();
+            closeLanguageModal();
+            closeInfoModal();
         }
     });
     
-    document.getElementById('search-modal').addEventListener('click', (e) => {
-        if (e.target.id === 'search-modal') closeSearchModal();
-    });
-    
-    document.getElementById('district-modal').addEventListener('click', (e) => {
-        if (e.target.id === 'district-modal') closeDistrictSelector();
-    });
-    
-    // Inizializza app
+    // Initialize app
     switchLanguage('it');
-    updateSelectedDistrictDisplay();
+    updateDistrictInfo();
+    updateWasteCard();
+    updateScheduleInfo();
     
-    // Copyright notice
-    console.log('© 2025 XXX - Pippo. Tutti i diritti riservati.');
+    console.log('© 2025 Gregorio Pellegrini. Tutti i diritti riservati.');
 });

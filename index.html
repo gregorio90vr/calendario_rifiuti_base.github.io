@@ -6,145 +6,236 @@
     <title>Calendario Rifiuti</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
-
 </head>
 <body>
-    <div class="container">
+    <div class="app-container">
         <!-- Header -->
-        <div class="header">
-            <h1 id="app-title">📅 Calendario Rifiuti</h1>
-            <div class="language-selector">
-                <button class="lang-btn active" data-lang="it">
-                    <svg class="flag-svg" viewBox="0 0 3 2">
-                        <rect width="1" height="2" fill="#009246"/>
-                        <rect x="1" width="1" height="2" fill="#fff"/>
-                        <rect x="2" width="1" height="2" fill="#ce2b37"/>
-                    </svg>
-                    <div class="lang-label">Italiano</div>
-                </button>
-                <button class="lang-btn" data-lang="en">
-                    <svg class="flag-svg" viewBox="0 0 60 30">
-                        <rect width="60" height="30" fill="#012169"/>
-                        <path d="m0 0 60 30m0-30L0 30" stroke="#fff" stroke-width="6"/>
-                        <path d="m0 0 60 30m0-30L0 30" stroke="#C8102E" stroke-width="4"/>
-                        <path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>
-                        <path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/>
-                    </svg>
-                    <div class="lang-label">English</div>
-                </button>
+        <header class="app-header">
+            <div class="header-content">
+                <h1 id="app-title">
+                    <i class="fas fa-calendar-alt header-icon"></i>
+                    CALENDARIO RIFIUTI
+                </h1>
+                
+                <!-- District Info in Header -->
+                <div class="district-header-info" id="district-header-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="district-header-name" id="selected-district-name-header">Basson</span>
+                    <span class="district-header-calendar" id="selected-calendar-type-header">Azzurro</span>
+                </div>
             </div>
-            
-        </div>
+        </header>
 
         <!-- Main Content -->
-        <div class="main-content">
-            <!-- Data -->
-            <div class="current-time">
-                <div class="time-container">
-                    <div class="date-display" id="current-date">-- -- ----</div>
-                </div>
+        <main class="app-main">
+            <!-- Current Date Section -->
+            <div class="date-section" id="date-section">
+                <div class="date-display" id="current-date">-- -- ----</div>
             </div>
 
-            <!-- Selettore Quartiere -->
-            <div class="district-selector-container">
-                <button class="district-selector" id="district-selector">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div class="selected-district" id="selected-district">
-                        <span class="selected-calendar-icon">🔵</span>
-                        <div class="selected-info">
-                            <div class="selected-district-name">Basson</div>
-                            <div class="selected-calendar-type">Calendario Azzurro</div>
-                        </div>
+            <!-- Main Waste Info Card -->
+            <div class="waste-info-card" id="waste-info-card">
+                <div class="waste-icon-container">
+                    <div class="waste-icon" id="waste-icon">
+                        <i class="fas fa-trash-alt"></i>
                     </div>
-                    <i class="fas fa-chevron-down selector-arrow"></i>
-                </button>
-            </div>
-
-            <!-- Waste Card -->
-            <div class="waste-card" id="waste-card">
-                <div class="waste-icon" id="waste-icon">🗑️</div>
-                <div class="waste-date" id="waste-date">OGGI</div>
-                <div class="waste-type" id="waste-type">Caricamento...</div>
+                </div>
+                <div class="waste-details">
+                    <div class="waste-type" id="waste-type">Caricamento...</div>
+                    <div class="waste-date" id="waste-date">OGGI</div>
+                </div>
                 
-                <div class="time-status" id="time-status">
-                    <div class="time-title" id="time-title">Caricamento...</div>
-                    <div class="time-message" id="time-message">Attendere...</div>
+                <!-- Schedule Info Box (inside card) -->
+                <div class="schedule-info-box" id="schedule-info-box">
+                    <div class="schedule-header">
+                        <i class="fas fa-clock schedule-icon"></i>
+                        <span class="schedule-title" id="time-title">Caricamento...</span>
+                    </div>
+                    <div class="schedule-message" id="time-message">Attendere...</div>
                 </div>
             </div>
+        </main>
 
-            <!-- Search Button -->
-            <button class="search-button" id="search-button">
-                <i class="fas fa-search"></i> <span id="search-text">🔍 Dove lo butto?</span>
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-btn" id="search-button" title="Dove lo butto?">
+                <i class="fas fa-search nav-icon"></i>
+                <span class="nav-label" id="search-text">DOVE LO BUTTO</span>
             </button>
-        </div>
+            
+            <button class="nav-btn" id="district-button" title="Quartiere">
+                <i class="fas fa-map-marker-alt nav-icon"></i>
+                <span class="nav-label">QUARTIERE</span>
+            </button>
+            
+            <button class="nav-btn" id="language-button" title="Lingua">
+                <i class="fas fa-globe nav-icon"></i>
+                <span class="nav-label current-lang">ITA/ENG</span>
+            </button>
+            
+            <button class="nav-btn" id="info-button" title="Info">
+                <i class="fas fa-info-circle nav-icon"></i>
+                <span class="nav-label">INFO</span>
+            </button>
+        </nav>
 
-        <!-- Footer SDG Ultra-Moderno -->
-        <div class="footer">
-            <div class="sdg-info">
-                <div class="sdg-icon-container">
-                    <div class="sdg-icon">🌍</div>
-                </div>
-                <div class="sdg-text">
-                    <strong id="sdg-title">  Obiettivi di Sviluppo Sostenibile</strong>
-                    <span id="sdg-description">Contribuisci agli SDGs 11, 12 e 14 attraverso la raccolta differenziata intelligente</span>
-                </div>
-            </div>
-            <div class="footer-credits">© 2025 - Gregorio Pellegrini. Tutti i diritti riservati.</div>
-        </div>
-
-        <!-- Link Utili -->
-        <div class="useful-links">
-            <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" class="link-button" id="calendar-link">
-                <i class="fas fa-calendar-alt"></i>
-                <span id="calendar-link-text">📅 Calendario AMIA</span>
-            </a>
-            <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" class="link-button" id="dictionary-link">
-                <i class="fas fa-book"></i>
-                <span id="dictionary-link-text">📖 Dizionario Rifiuti</span>
-            </a>
-        </div>
+        <!-- Copyright -->
+        <footer class="app-footer">
+            <div class="copyright">© 2025 - Gregorio Pellegrini</div>
+        </footer>
     </div>
 
-    <!-- Search Modal Ultra-Moderno -->
+    <!-- Modals -->
+    
+    <!-- Search Modal -->
     <div class="modal" id="search-modal">
+        <div class="modal-overlay"></div>
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="modal-title">🔍 Dove lo butto?</h2>
-                <button class="close-btn" id="close-btn">Chiudi</button>
+                <h2 class="modal-title" id="modal-title">
+                    <i class="fas fa-search"></i>
+                    Dove lo butto?
+                </h2>
+                <button class="modal-close" id="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             
-            <div class="search-container">
-                <input type="text" class="search-input" id="search-input" placeholder="Scrivi cosa vuoi buttare...">
-                <i class="fas fa-search search-icon"></i>
+            <div class="modal-body">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="search-input" placeholder="Scrivi cosa vuoi buttare...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                
+                <div class="search-suggestions" id="search-suggestions">
+                    <div class="suggestion-chip" onclick="performSearch('bottiglia')">
+                        <i class="fas fa-wine-bottle"></i>
+                        bottiglia
+                    </div>
+                    <div class="suggestion-chip" onclick="performSearch('carta')">
+                        <i class="fas fa-file-alt"></i>
+                        carta
+                    </div>
+                    <div class="suggestion-chip" onclick="performSearch('lattina')">
+                        <i class="fas fa-can-food"></i>
+                        lattina
+                    </div>
+                    <div class="suggestion-chip" onclick="performSearch('avanzi')">
+                        <i class="fas fa-utensils"></i>
+                        avanzi
+                    </div>
+                    <div class="suggestion-chip" onclick="performSearch('giornale')">
+                        <i class="fas fa-newspaper"></i>
+                        giornale
+                    </div>
+                </div>
+                
+                <div class="search-results" id="search-results"></div>
             </div>
-            
-            <div class="search-suggestions" id="search-suggestions">
-                <div class="suggestion-chip" onclick="performSearch('bottiglia')">🍶 bottiglia</div>
-                <div class="suggestion-chip" onclick="performSearch('carta')">📄 carta</div>
-                <div class="suggestion-chip" onclick="performSearch('lattina')">🥫 lattina</div>
-                <div class="suggestion-chip" onclick="performSearch('avanzi')">🍽️ avanzi</div>
-                <div class="suggestion-chip" onclick="performSearch('giornale')">📰 giornale</div>
-            </div>
-            
-            <div class="search-results" id="search-results"></div>
         </div>
     </div>
 
-    <!-- District Selector Modal -->
+    <!-- District Modal -->
     <div class="modal" id="district-modal">
-        <div class="modal-content district-modal-content">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="district-modal-title">📍 Seleziona il tuo quartiere</h2>
-                <button class="close-btn" id="district-close-btn">Chiudi</button>
+                <h2 class="modal-title" id="district-modal-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Seleziona il tuo quartiere
+                </h2>
+                <button class="modal-close" id="district-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             
-            <div class="search-container">
-                <input type="text" class="search-input" id="district-search" placeholder="Cerca il tuo quartiere...">
-                <i class="fas fa-search search-icon"></i>
+            <div class="modal-body">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="district-search" placeholder="Cerca il tuo quartiere...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                
+                <div class="district-list" id="district-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language Modal -->
+    <div class="modal" id="language-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-globe"></i>
+                    Seleziona Lingua
+                </h2>
+                <button class="modal-close" id="language-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             
-            <div class="district-list" id="district-list"></div>
+            <div class="modal-body">
+                <div class="language-options">
+                    <button class="language-option active" data-lang="it">
+                        <svg class="flag-svg" viewBox="0 0 3 2">
+                            <rect width="1" height="2" fill="#009246"/>
+                            <rect x="1" width="1" height="2" fill="#fff"/>
+                            <rect x="2" width="1" height="2" fill="#ce2b37"/>
+                        </svg>
+                        <span>Italiano</span>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="language-option" data-lang="en">
+                        <svg class="flag-svg" viewBox="0 0 60 30">
+                            <rect width="60" height="30" fill="#012169"/>
+                            <path d="m0 0 60 30m0-30L0 30" stroke="#fff" stroke-width="6"/>
+                            <path d="m0 0 60 30m0-30L0 30" stroke="#C8102E" stroke-width="4"/>
+                            <path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/>
+                            <path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/>
+                        </svg>
+                        <span>English</span>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div class="modal" id="info-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-info-circle"></i>
+                    Informazioni
+                </h2>
+                <button class="modal-close" id="info-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="info-content">
+                    <div class="info-section">
+                        <h3><i class="fas fa-recycle"></i> Obiettivi Sostenibili</h3>
+                        <p>Contribuisci agli SDGs 11, 12 e 14 attraverso la raccolta differenziata intelligente</p>
+                    </div>
+                    
+                    <div class="info-links">
+                        <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" class="info-link" target="_blank">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Calendario AMIA</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" class="info-link" target="_blank">
+                            <i class="fas fa-book"></i>
+                            <span>Dizionario Rifiuti</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
