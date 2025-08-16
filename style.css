@@ -45,11 +45,19 @@
 body {
     font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: linear-gradient(135deg, var(--amia-primary) 0%, var(--amia-secondary) 100%);
-    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh; /* Use dynamic viewport height for mobile */
     color: var(--text-primary);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow: hidden; /* Prevent page scroll */
+    position: fixed; /* Fix body position */
+    width: 100%;
+    top: 0;
+    left: 0;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overscroll-behavior: none; /* Prevent bounce on mobile */
 }
 
 /* === APP CONTAINER === */
@@ -57,12 +65,15 @@ body {
     max-width: 420px;
     margin: 0 auto;
     height: 100vh;
+    height: 100dvh; /* Use dynamic viewport height for mobile */
     background: var(--bg-primary);
     display: flex;
     flex-direction: column;
     position: relative;
     box-shadow: var(--shadow-heavy);
     overflow: hidden; /* No scroll */
+    overscroll-behavior: none; /* Prevent bounce on mobile */
+    -webkit-overflow-scrolling: touch;
 }
 
 /* === HEADER === */
@@ -135,9 +146,11 @@ body {
     padding: 8px 16px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px; /* Aumentato leggermente */
     overflow: hidden;
     justify-content: flex-start;
+    height: 100vh; /* Forziamo altezza completa viewport */
+    box-sizing: border-box; /* Include padding nel calcolo altezza */
 }
 
 /* === DATE SECTION === */
@@ -158,21 +171,35 @@ body {
 
 /* === WASTE INFO CARD === */
 .waste-info-card {
-    background: var(--bg-primary);
-    border-radius: var(--radius-xl);
-    padding: 20px 18px;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    border-radius: 20px;
+    padding: 18px;
     text-align: center;
-    box-shadow: var(--shadow-medium);
-    border: 3px solid transparent;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 8px 32px rgba(0,0,0,0.12),
+        0 2px 8px rgba(0,0,0,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 300px;  /* Increased from 200px */
-    max-height: 350px;  /* Increased from 240px */
+    justify-content: flex-start; /* Allineamento dall'alto */
+    align-items: center;
+    min-height: 280px;
+}
+
+/* Sezione superiore con icona e dettagli */
+.waste-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
 }
 
 /* Card colored backgrounds based on waste type - DARKER COLORS */
@@ -208,30 +235,84 @@ body {
 }
 
 .waste-info-card::before {
-    display: none; /* Remove the top border line */
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .waste-icon-container {
     margin-bottom: 16px;
 }
 
+/* Shimmer animation for card hover effect */
+.waste-info-card:hover::before {
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+.waste-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .waste-icon {
-    width: 80px;
-    height: 80px;
+    width: 75px; /* Ridotto da 90px */
+    height: 75px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 16px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: var(--shadow-light);
-    backdrop-filter: blur(10px);
+    margin: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 6px 20px rgba(0,0,0,0.12),
+        0 2px 6px rgba(0,0,0,0.08),
+        inset 0 2px 4px rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.waste-icon:hover {
+    transform: scale(1.05) translateY(-1px); /* Ridotto effetto hover */
+    box-shadow: 
+        0 8px 24px rgba(0,0,0,0.15),
+        0 3px 8px rgba(0,0,0,0.1),
+        inset 0 2px 4px rgba(255,255,255,0.15);
 }
 
 .waste-icon i {
-    font-size: 40px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 40px; /* Ridotto da 48px */
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 
+        0 2px 4px rgba(0,0,0,0.3),
+        0 0 8px rgba(255,255,255,0.1);
 }
 
 /* Specific icon colors for colored cards */
@@ -245,32 +326,41 @@ body {
 
 .waste-details {
     text-align: center;
-    margin-bottom: 16px;
     flex: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Ridotto gap */
 }
 
 .waste-type {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 28px; /* Ridotto da 32px */
+    font-weight: 800;
     color: inherit;
-    margin-bottom: 8px;
+    margin: 0;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-    line-height: 1.1;
+    letter-spacing: 1.5px;
+    text-shadow: 
+        0 3px 6px rgba(0,0,0,0.4),
+        0 1px 3px rgba(0,0,0,0.3);
+    line-height: 1;
 }
 
 .waste-date {
-    font-size: 16px;
+    font-size: 14px; /* Ridotto da 16px */
     font-weight: 600;
     background: rgba(255, 255, 255, 0.25);
     color: inherit;
-    padding: 6px 12px;
-    border-radius: var(--radius-medium);
+    padding: 6px 16px; /* Ridotto padding verticale */
+    border-radius: 20px;
     display: inline-block;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    min-width: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 /* Specific styles for carta (yellow background) */
@@ -281,15 +371,46 @@ body {
 
 /* === SCHEDULE INFO BOX (inside card) === */
 .schedule-info-box {
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: var(--radius-medium);
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    margin-top: auto;
-    backdrop-filter: blur(10px);
-    min-height: 80px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px; /* Ridotto da 20px */
+    padding: 14px 16px; /* Ridotto padding */
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Ridotto border */
+    backdrop-filter: blur(20px);
+    min-height: 60px; /* Ridotto da 80px */
+    max-height: 90px; /* Limite massimo altezza */
     text-align: center;
+    flex: 0 0 auto; /* Non crescere oltre necessario */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 4px; /* Ridotto margin */
+}
+
+.schedule-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Ridotto gap */
+    margin-bottom: 6px; /* Ridotto margin */
+    font-weight: 700; /* Ridotto peso font */
+    font-size: 13px; /* Ridotto font size */
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.schedule-text {
+    font-size: 13px; /* Ridotto da 15px */
+    font-weight: 500; /* Ridotto peso font */
+    line-height: 1.4;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 /* Specific styles for carta (yellow background) */
@@ -430,7 +551,7 @@ body {
     height: 100%;
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .modal.active {
@@ -446,6 +567,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
+    transition: backdrop-filter 0.4s ease;
 }
 
 .modal-content {
@@ -458,12 +580,12 @@ body {
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-heavy);
     overflow: hidden;
-    transform: scale(0.9);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0.8) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .modal.active .modal-content {
-    transform: scale(1);
+    transform: scale(1) translateY(0);
 }
 
 .modal-header {
@@ -576,6 +698,13 @@ body {
     gap: 12px;
 }
 
+.language-option:active,
+.district-item:active {
+    transform: scale(0.98);
+    background: var(--amia-primary) !important;
+    color: white !important;
+}
+
 .language-option {
     display: flex;
     align-items: center;
@@ -593,6 +722,8 @@ body {
 .language-option:hover {
     border-color: var(--amia-light);
     background: var(--bg-primary);
+    box-shadow: var(--shadow-light);
+    transform: translateY(-1px); /* Subtle lift effect */
 }
 
 .language-option.active {
@@ -691,6 +822,8 @@ body {
 
 .district-item:hover {
     background: var(--bg-secondary);
+    box-shadow: var(--shadow-light);
+    transform: translateY(-1px); /* Subtle lift effect */
 }
 
 .district-item:last-child {
@@ -722,11 +855,13 @@ body {
     border-radius: var(--radius-medium);
     border-left: 4px solid transparent;
     transition: all 0.3s ease;
+    cursor: pointer; /* Make it clear it's clickable */
 }
 
 .search-result-item:hover {
     background: var(--bg-primary);
     box-shadow: var(--shadow-light);
+    transform: translateY(-1px); /* Subtle lift effect */
 }
 
 .search-result-item.umido { border-left-color: var(--umido-color); }
@@ -746,6 +881,183 @@ body {
 }
 
 /* === RESPONSIVE DESIGN === */
+
+/* Mobile Height Optimization - Critical for single screen view */
+@media (max-height: 800px) {
+    .app-header {
+        padding: 10px 20px;
+    }
+    
+    .app-header h1 {
+        font-size: 16px;
+    }
+    
+    .app-main {
+        padding: 4px 16px;
+        gap: 4px;
+    }
+    
+    .date-section {
+        padding: 6px;
+    }
+    
+    .waste-info-card {
+        min-height: 180px;
+        padding: 16px;
+        gap: 16px;
+    }
+    
+    .waste-icon {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .waste-icon i {
+        font-size: 32px;
+    }
+    
+    .waste-type {
+        font-size: 22px;
+    }
+    
+    .bottom-nav {
+        padding: 5px 8px 7px;
+    }
+}
+
+@media (max-height: 700px) {
+    .app-header {
+        padding: 8px 18px;
+    }
+    
+    .app-header h1 {
+        font-size: 15px;
+    }
+    
+    .app-main {
+        padding: 3px 14px;
+        gap: 3px;
+    }
+    
+    .date-section {
+        padding: 5px;
+    }
+    
+    .date-display {
+        font-size: 12px;
+    }
+    
+    .waste-info-card {
+        min-height: 160px;
+        padding: 14px;
+        gap: 14px;
+    }
+    
+    .waste-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .waste-icon i {
+        font-size: 28px;
+    }
+    
+    .waste-type {
+        font-size: 20px;
+    }
+    
+    .waste-type {
+        font-size: 22px;
+        margin-bottom: 6px;
+    }
+    
+    .waste-date {
+        font-size: 13px;
+        padding: 4px 10px;
+    }
+    
+    .schedule-info-box {
+        padding: 10px;
+        min-height: 50px;
+    }
+    
+    .schedule-title {
+        font-size: 11px;
+    }
+    
+    .schedule-message {
+        font-size: 11px;
+    }
+    
+    .bottom-nav {
+        padding: 3px 6px 4px;
+    }
+    
+    .nav-btn {
+        padding: 3px 5px;
+        gap: 1px;
+    }
+    
+    .nav-icon {
+        font-size: 14px;
+    }
+    
+    .nav-label {
+        font-size: 7px;
+    }
+}
+
+@media (max-height: 600px) {
+    .app-header {
+        padding: 6px 16px;
+    }
+    
+    .app-header h1 {
+        font-size: 14px;
+    }
+    
+    .app-main {
+        padding: 2px 12px;
+        gap: 2px;
+    }
+    
+    .waste-info-card {
+        min-height: 140px;
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .waste-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .waste-icon i {
+        font-size: 26px;
+    }
+    
+    .waste-type {
+        font-size: 18px;
+    }
+    
+    .waste-type {
+        font-size: 18px;
+    }
+    
+    .waste-icon-container {
+        margin-bottom: 8px;
+    }
+    
+    .waste-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .bottom-nav {
+        padding: 2px 4px 3px;
+    }
+}
+
 @media (max-width: 480px) {
     .app-header {
         padding: 14px 16px;

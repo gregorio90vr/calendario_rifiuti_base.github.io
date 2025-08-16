@@ -28,6 +28,10 @@ const TRANSLATIONS = {
             secco: "Secco"
         },
         timeStatus: {
+            rest: {
+                title: "🛋️ GIORNO DI RIPOSO",
+                message: "Oggi non devi preparare nessun rifiuto"
+            },
             canDispose: {
                 title: "✅ Puoi conferire ora",
                 message: "Porta fuori i rifiuti per il ritiro di domani (19:00-21:00)"
@@ -47,6 +51,13 @@ const TRANSLATIONS = {
             title: "Seleziona il tuo quartiere",
             placeholder: "Cerca il tuo quartiere...",
             noResults: "Nessun quartiere trovato. Prova con un altro nome."
+        },
+        searchSuggestions: {
+            bottiglia: "bottiglia",
+            carta: "carta", 
+            lattina: "lattina",
+            avanzi: "avanzi",
+            giornale: "giornale"
         }
     },
     en: {
@@ -69,6 +80,10 @@ const TRANSLATIONS = {
             secco: "Dry Waste"
         },
         timeStatus: {
+            rest: {
+                title: "🛋️ REST DAY",
+                message: "Today you don't need to prepare any waste"
+            },
             canDispose: {
                 title: "✅ You can dispose now",
                 message: "Take out the waste for tomorrow's pickup (7:00 PM - 9:00 PM)"
@@ -88,6 +103,13 @@ const TRANSLATIONS = {
             title: "Select your district",
             placeholder: "Search your district...",
             noResults: "No district found. Try another name."
+        },
+        searchSuggestions: {
+            bottiglia: "bottle",
+            carta: "paper", 
+            lattina: "can",
+            avanzi: "leftovers",
+            giornale: "newspaper"
         }
     }
 };
@@ -185,376 +207,24 @@ const WASTE_DICTIONARY = {
 // === CALENDARIO RIFIUTI ESTESO ===
 const WASTE_CALENDARS = {
     azzurro: {
- "2025-07-01" : "umido",
-        "2025-07-02" : "plastica",
-        "2025-07-03" : "umido",
-        "2025-07-04" : "secco",
-        "2025-07-05" : "umido",
-        "2025-07-06" : null,
-        "2025-07-07" : "carta",
-        "2025-07-08" : "umido",
-        "2025-07-09" : "plastica",
-        "2025-07-10" : "umido",
-        "2025-07-11" : "secco",
-        "2025-07-12" : "umido",
-        "2025-07-13" : null,
-        "2025-07-14" : "carta",
-        "2025-07-15" : "umido",
-        "2025-07-16" : "plastica",
-        "2025-07-17" : "umido",
-        "2025-07-18" : "secco",
-        "2025-07-19" : "umido",
-        "2025-07-20" : null,
-        "2025-07-21" : "carta",
-        "2025-07-22" : "umido",
-        "2025-07-23" : "plastica",
-        "2025-07-24" : "umido",
-        "2025-07-25" : "secco",
-        "2025-07-26" : "umido",
-        "2025-07-27" : null,
-        "2025-07-28" : "carta",
-        "2025-07-29" : "umido",
-        "2025-07-30" : "plastica",
-        "2025-07-31" : "umido",
-        "2025-08-01" : "secco",
-        "2025-08-02" : "umido",
-        "2025-08-03" : null,
-        "2025-08-04" : "carta",
-        "2025-08-05" : "umido",
-        "2025-08-06" : "plastica",
-        "2025-08-07" : "umido",
-        "2025-08-08" : "secco",
-        "2025-08-09" : "umido",
-        "2025-08-10" : null,
-        "2025-08-11" : "carta",
-        "2025-08-12" : "umido",
-        "2025-08-13" : "plastica",
-        "2025-08-14" : "umido",
-        "2025-08-15" : "secco",
-        "2025-08-16" : "umido",
-        "2025-08-17" : null,
-        "2025-08-18" : "carta",
-        "2025-08-19" : "umido",
-        "2025-08-20" : "plastica",
-        "2025-08-21" : "umido",
-        "2025-08-22" : "secco",
-        "2025-08-23" : "umido",
-        "2025-08-24" : null,
-        "2025-08-25" : "carta",
-        "2025-08-26" : "umido",
-        "2025-08-27" : "plastica",
-        "2025-08-28" : "umido",
-        "2025-08-29" : "secco",
-        "2025-08-30" : "umido",
-        "2025-08-31" : null,
-        "2025-09-01" : "carta",
-        "2025-09-02" : "umido",
-        "2025-09-03" : "plastica",
-        "2025-09-04" : "umido",
-        "2025-09-05" : "secco",
-        "2025-09-06" : "umido",
-        "2025-09-07" : null,
-        "2025-09-08" : "carta",
-        "2025-09-09" : "umido",
-        "2025-09-10" : "plastica",
-        "2025-09-11" : "umido",
-        "2025-09-12" : "secco",
-        "2025-09-13" : "umido",
-        "2025-09-14" : null,
-        "2025-09-15" : "carta",
-        "2025-09-16" : "umido",
-        "2025-09-17" : "plastica",
-        "2025-09-18" : null,
-        "2025-09-19" : "secco",
-        "2025-09-20" : "umido",
-        "2025-09-21" : null,
-        "2025-09-22" : "carta",
-        "2025-09-23" : "umido",
-        "2025-09-24" : "plastica",
-        "2025-09-25" : null,
-        "2025-09-26" : "secco",
-        "2025-09-27" : "umido",
-        "2025-09-28" : null,
-        "2025-09-29" : "carta",
-        "2025-09-30" : "umido",
-        "2025-10-01" : "plastica",
-        "2025-10-02" : null,
-        "2025-10-03" : "secco",
-        "2025-10-04" : "umido",
-        "2025-10-05" : null,
-        "2025-10-06" : "carta",
-        "2025-10-07" : "umido",
-        "2025-10-08" : "plastica",
-        "2025-10-09" : null,
-        "2025-10-10" : "secco",
-        "2025-10-11" : "umido",
-        "2025-10-12" : null,
-        "2025-10-13" : "carta",
-        "2025-10-14" : "umido",
-        "2025-10-15" : "plastica",
-        "2025-10-16" : null,
-        "2025-10-17" : "secco",
-        "2025-10-18" : "umido",
-        "2025-10-19" : null,
-        "2025-10-20" : "carta",
-        "2025-10-21" : "umido",
-        "2025-10-22" : "plastica",
-        "2025-10-23" : null,
-        "2025-10-24" : "secco",
-        "2025-10-25" : "umido",
-        "2025-10-26" : null,
-        "2025-10-27" : "carta",
-        "2025-10-28" : "umido",
-        "2025-10-29" : "plastica",
-        "2025-10-30" : null,
-        "2025-10-31" : "secco",
-        "2025-11-01" : "umido",
-        "2025-11-02" : null,
-        "2025-11-03" : "carta",
-        "2025-11-04" : "umido",
-        "2025-11-05" : "plastica",
-        "2025-11-06" : null,
-        "2025-11-07" : "secco",
-        "2025-11-08" : "umido",
-        "2025-11-09" : null,
-        "2025-11-10" : "carta",
-        "2025-11-11" : "umido",
-        "2025-11-12" : "plastica",
-        "2025-11-13" : null,
-        "2025-11-14" : "secco",
-        "2025-11-15" : "umido",
-        "2025-11-16" : null,
-        "2025-11-17" : "carta",
-        "2025-11-18" : "umido",
-        "2025-11-19" : "plastica",
-        "2025-11-20" : null,
-        "2025-11-21" : "secco",
-        "2025-11-22" : "umido",
-        "2025-11-23" : null,
-        "2025-11-24" : "carta",
-        "2025-11-25" : "umido",
-        "2025-11-26" : "plastica",
-        "2025-11-27" : null,
-        "2025-11-28" : "secco",
-        "2025-11-29" : "umido",
-        "2025-11-30" : null,
-        "2025-12-01" : "carta",
-        "2025-12-02" : "umido",
-        "2025-12-03" : "plastica",
-        "2025-12-04" : null,
-        "2025-12-05" : "secco",
-        "2025-12-06" : "umido",
-        "2025-12-07" : null,
-        "2025-12-08" : "carta",
-        "2025-12-09" : "umido",
-        "2025-12-10" : "plastica",
-        "2025-12-11" : null,
-        "2025-12-12" : "secco",
-        "2025-12-13" : "umido",
-        "2025-12-14" : null,
-        "2025-12-15" : "carta",
-        "2025-12-16" : "umido",
-        "2025-12-17" : "plastica",
-        "2025-12-18" : null,
-        "2025-12-19" : "secco",
-        "2025-12-20" : "umido",
-        "2025-12-21" : null,
-        "2025-12-22" : "carta",
-        "2025-12-23" : "umido",
-        "2025-12-24" : "plastica",
-        "2025-12-25" : null,
-        "2025-12-26" : "secco",
-        "2025-12-27" : "umido",
-        "2025-12-28" : null,
-        "2025-12-29" : "carta",
-        "2025-12-30" : "umido",
-        "2025-12-31" : "plastica"
+        "2025-08-01": "umido", "2025-08-02": "plastica", "2025-08-03": "umido", "2025-08-04": "secco",
+        "2025-08-05": "umido", "2025-08-06": null, "2025-08-07": "carta", "2025-08-08": "umido",
+        "2025-08-09": "plastica", "2025-08-10": "umido", "2025-08-11": "secco", "2025-08-12": "umido",
+        "2025-08-13": null, "2025-08-14": "carta", "2025-08-15": "umido", "2025-08-16": "plastica",
+        "2025-08-17": null, "2025-08-18": "secco", "2025-08-19": "umido", "2025-08-20": null,
+        "2025-08-21": "carta", "2025-08-22": "umido", "2025-08-23": "plastica", "2025-08-24": "umido",
+        "2025-08-25": "secco", "2025-08-26": "umido", "2025-08-27": null, "2025-08-28": "carta",
+        "2025-08-29": "umido", "2025-08-30": "plastica", "2025-08-31": "umido"
     },
     verde: {
-                "2025-07-01" : "umido",
-        "2025-07-02" : "carta",
-        "2025-07-03" : "umido",
-        "2025-07-04" : "secco",
-        "2025-07-05" : "umido",
-        "2025-07-06" : null,
-        "2025-07-07" : "carta",
-        "2025-07-08" : "umido",
-        "2025-07-09" : "plastica",
-        "2025-07-10" : "umido",
-        "2025-07-11" : "secco",
-        "2025-07-12" : "umido",
-        "2025-07-13" : null,
-        "2025-07-14" : "plastica",
-        "2025-07-15" : "umido",
-        "2025-07-16" : "carta",
-        "2025-07-17" : "umido",
-        "2025-07-18" : "secco",
-        "2025-07-19" : "umido",
-        "2025-07-20" : null,
-        "2025-07-21" : "plastica",
-        "2025-07-22" : "umido",
-        "2025-07-23" : "carta",
-        "2025-07-24" : "umido",
-        "2025-07-25" : "secco",
-        "2025-07-26" : "umido",
-        "2025-07-27" : null,
-        "2025-07-28" : "plastica",
-        "2025-07-29" : "umido",
-        "2025-07-30" : "carta",
-        "2025-07-31" : "umido",
-        "2025-08-01" : "secco",
-        "2025-08-02" : "umido",
-        "2025-08-03" : null,
-        "2025-08-04" : "plastica",
-        "2025-08-05" : "umido",
-        "2025-08-06" : "carta",
-        "2025-08-07" : "umido",
-        "2025-08-08" : "secco",
-        "2025-08-09" : "umido",
-        "2025-08-10" : null,
-        "2025-08-11" : "plastica",
-        "2025-08-12" : "umido",
-        "2025-08-13" : "carta",
-        "2025-08-14" : "umido",
-        "2025-08-15" : "secco",
-        "2025-08-16" : "umido",
-        "2025-08-17" : null,
-        "2025-08-18" : "plastica",
-        "2025-08-19" : "umido",
-        "2025-08-20" : "carta",
-        "2025-08-21" : "umido",
-        "2025-08-22" : "secco",
-        "2025-08-23" : "umido",
-        "2025-08-24" : null,
-        "2025-08-25" : "plastica",
-        "2025-08-26" : "umido",
-        "2025-08-27" : "carta",
-        "2025-08-28" : "umido",
-        "2025-08-29" : "secco",
-        "2025-08-30" : "umido",
-        "2025-08-31" : null,
-        "2025-09-01" : "plastica",
-        "2025-09-02" : "umido",
-        "2025-09-03" : "carta",
-        "2025-09-04" : "umido",
-        "2025-09-05" : "secco",
-        "2025-09-06" : "umido",
-        "2025-09-07" : null,
-        "2025-09-08" : "plastica",
-        "2025-09-09" : "umido",
-        "2025-09-10" : "carta",
-        "2025-09-11" : "umido",
-        "2025-09-12" : "secco",
-        "2025-09-13" : "umido",
-        "2025-09-14" : null,
-        "2025-09-15" : "umido",
-        "2025-09-16" : "plastica",
-        "2025-09-17" : "secco",
-        "2025-09-18" : "carta",
-        "2025-09-19" : "umido",
-        "2025-09-20" : null,
-        "2025-09-21" : null,
-        "2025-09-22" : "umido",
-        "2025-09-23" : "plastica",
-        "2025-09-24" : "secco",
-        "2025-09-25" : "carta",
-        "2025-09-26" : "umido",
-        "2025-09-27" : null,
-        "2025-09-28" : null,
-        "2025-09-29" : "umido",
-        "2025-09-30" : "plastica",
-        "2025-10-01" : "secco",
-        "2025-10-02" : "carta",
-        "2025-10-03" : "umido",
-        "2025-10-04" : null,
-        "2025-10-05" : null,
-        "2025-10-06" : "umido",
-        "2025-10-07" : "plastica",
-        "2025-10-08" : "secco",
-        "2025-10-09" : "carta",
-        "2025-10-10" : "umido",
-        "2025-10-11" : null,
-        "2025-10-12" : null,
-        "2025-10-13" : "umido",
-        "2025-10-14" : "plastica",
-        "2025-10-15" : "secco",
-        "2025-10-16" : "carta",
-        "2025-10-17" : "umido",
-        "2025-10-18" : null,
-        "2025-10-19" : null,
-        "2025-10-20" : "umido",
-        "2025-10-21" : "plastica",
-        "2025-10-22" : "secco",
-        "2025-10-23" : "carta",
-        "2025-10-24" : "umido",
-        "2025-10-25" : null,
-        "2025-10-26" : null,
-        "2025-10-27" : "umido",
-        "2025-10-28" : "plastica",
-        "2025-10-29" : "secco",
-        "2025-10-30" : "carta",
-        "2025-10-31" : "umido",
-        "2025-11-01" : null,
-        "2025-11-02" : null,
-        "2025-11-03" : "umido",
-        "2025-11-04" : "plastica",
-        "2025-11-05" : "secco",
-        "2025-11-06" : "carta",
-        "2025-11-07" : "umido",
-        "2025-11-08" : null,
-        "2025-11-09" : null,
-        "2025-11-10" : "umido",
-        "2025-11-11" : "plastica",
-        "2025-11-12" : "secco",
-        "2025-11-13" : "carta",
-        "2025-11-14" : "umido",
-        "2025-11-15" : null,
-        "2025-11-16" : null,
-        "2025-11-17" : "umido",
-        "2025-11-18" : "plastica",
-        "2025-11-19" : "secco",
-        "2025-11-20" : "carta",
-        "2025-11-21" : "umido",
-        "2025-11-22" : null,
-        "2025-11-23" : null,
-        "2025-11-24" : "umido",
-        "2025-11-25" : "plastica",
-        "2025-11-26" : "secco",
-        "2025-11-27" : "carta",
-        "2025-11-28" : "umido",
-        "2025-11-29" : null,
-        "2025-11-30" : null,
-        "2025-12-01" : "umido",
-        "2025-12-02" : "plastica",
-        "2025-12-03" : "secco",
-        "2025-12-04" : "carta",
-        "2025-12-05" : "umido",
-        "2025-12-06" : null,
-        "2025-12-07" : null,
-        "2025-12-08" : "umido",
-        "2025-12-09" : "plastica",
-        "2025-12-10" : "secco",
-        "2025-12-11" : "carta",
-        "2025-12-12" : "umido",
-        "2025-12-13" : null,
-        "2025-12-14" : null,
-        "2025-12-15" : "umido",
-        "2025-12-16" : "plastica",
-        "2025-12-17" : "secco",
-        "2025-12-18" : "carta",
-        "2025-12-19" : "umido",
-        "2025-12-20" : null,
-        "2025-12-21" : null,
-        "2025-12-22" : "umido",
-        "2025-12-23" : "plastica",
-        "2025-12-24" : "secco",
-        "2025-12-25" : "carta",
-        "2025-12-26" : "umido",
-        "2025-12-27" : null,
-        "2025-12-28" : null,
-        "2025-12-29" : "umido",
-        "2025-12-30" : "plastica",
-        "2025-12-31" : "secco"
+        "2025-08-01": "plastica", "2025-08-02": "umido", "2025-08-03": "secco", "2025-08-04": "umido",
+        "2025-08-05": null, "2025-08-06": "carta", "2025-08-07": "umido", "2025-08-08": "plastica",
+        "2025-08-09": "umido", "2025-08-10": "secco", "2025-08-11": "umido", "2025-08-12": null,
+        "2025-08-13": "carta", "2025-08-14": "umido", "2025-08-15": "plastica", "2025-08-16": "umido",
+        "2025-08-17": "secco", "2025-08-18": "umido", "2025-08-19": null, "2025-08-20": "carta",
+        "2025-08-21": "umido", "2025-08-22": "plastica", "2025-08-23": "umido", "2025-08-24": "secco",
+        "2025-08-25": "umido", "2025-08-26": null, "2025-08-27": "carta", "2025-08-28": "umido",
+        "2025-08-29": "plastica", "2025-08-30": "umido", "2025-08-31": "secco"
     }
 };
 
@@ -689,17 +359,17 @@ function updateScheduleInfo() {
     
     // Controlla se domani c'è un ritiro
     const tomorrowWaste = getTomorrowWaste();
+    let timeStatus = 'rest'; // Default status
     
     if (!tomorrowWaste) {
         // Nessun ritiro domani - mostra messaggio speciale
-        scheduleTitle.textContent = currentLanguage === 'it' ? 
-            '🛋️ Giorno di riposo' : '🛋️ Rest day';
-        scheduleMessage.textContent = currentLanguage === 'it' ? 
-            'Oggi non devi preparare nessun rifiuto' : 
-            'Today you don\'t need to prepare any waste';
+        timeStatus = 'rest';
+        const statusInfo = TRANSLATIONS[currentLanguage].timeStatus[timeStatus];
+        scheduleTitle.textContent = statusInfo.title;
+        scheduleMessage.textContent = statusInfo.message;
     } else {
         // C'è un ritiro domani - mostra info sui tempi
-        const timeStatus = getTimeStatus();
+        timeStatus = getTimeStatus();
         const statusInfo = TRANSLATIONS[currentLanguage].timeStatus[timeStatus];
         
         scheduleTitle.textContent = statusInfo.title;
@@ -761,9 +431,41 @@ function switchLanguage(lang) {
         langButton.textContent = currentLanguage === 'it' ? 'ITA/ENG' : 'ENG/ITA';
     }
     
+    // Update modal titles
+    const modalTitle = document.getElementById('modal-title');
+    if (modalTitle) {
+        modalTitle.innerHTML = `<i class="fas fa-search"></i>${currentLanguage === 'it' ? 'Dove lo butto?' : 'Where do I throw it?'}`;
+    }
+    
+    // Update district modal title  
+    const districtModalTitle = document.getElementById('district-modal-title');
+    if (districtModalTitle) {
+        districtModalTitle.innerHTML = `<i class="fas fa-map-marker-alt"></i>${currentLanguage === 'it' ? 'Seleziona Quartiere' : 'Select District'}`;
+    }
+    
+    // Update language modal title
+    const languageModalTitle = document.getElementById('language-modal-title');
+    if (languageModalTitle) {
+        languageModalTitle.innerHTML = `<i class="fas fa-language"></i>${currentLanguage === 'it' ? 'Seleziona Lingua' : 'Select Language'}`;
+    }
+    
     // Update active language option
     document.querySelectorAll('.language-option').forEach(option => {
         option.classList.toggle('active', option.dataset.lang === currentLanguage);
+    });
+    
+    // Update search suggestions
+    const searchSuggestions = document.querySelectorAll('.suggestion-chip span[data-translate]');
+    searchSuggestions.forEach(suggestion => {
+        const key = suggestion.getAttribute('data-translate');
+        const keys = key.split('.');
+        let translation = TRANSLATIONS[currentLanguage];
+        for (const k of keys) {
+            translation = translation[k];
+        }
+        if (translation) {
+            suggestion.textContent = translation;
+        }
     });
     
     // Update all content
@@ -784,12 +486,13 @@ function openModal(modalId) {
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) {
+    if (modal && modal.classList.contains('active')) {
+        console.log(`🚪 Smoothly closing modal: ${modalId}`);
         modal.classList.remove('active');
         setTimeout(() => {
             modal.style.display = 'none';
             document.body.style.overflow = '';
-        }, 300);
+        }, 450); // Aumentato da 300 a 450ms per animazione più fluida
     }
 }
 
@@ -875,11 +578,36 @@ function performSearch(query) {
     }
     
     resultsContainer.innerHTML = results.map(result => `
-        <div class="search-result-item ${result.type}">
+        <div class="search-result-item ${result.type}" onclick="selectSearchResult('${result.type}', '${result.item.replace(/'/g, "\\'")}')">
             <div class="search-result-title">${result.item}</div>
             <div class="search-result-category">${result.category}</div>
         </div>
     `).join('');
+}
+
+// Funzione per gestire i click sui suggerimenti
+function performSearchBySuggestion(suggestionKey) {
+    // Ottiene la traduzione corretta per la lingua attuale
+    const translatedTerm = TRANSLATIONS[currentLanguage].searchSuggestions[suggestionKey];
+    console.log(`🔍 Search suggestion clicked: ${suggestionKey} -> ${translatedTerm}`);
+    
+    // Esegue la ricerca con il termine tradotto
+    performSearch(translatedTerm);
+    
+    // Aggiorna anche il campo di input per mostrare cosa si sta cercando
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.value = translatedTerm;
+    }
+}
+
+// Funzione per gestire la selezione di un risultato di ricerca
+function selectSearchResult(wasteType, item) {
+    // Mostra che tipo di rifiuto è stato selezionato
+    console.log(`Selezionato: ${item} - Categoria: ${wasteType}`);
+    
+    // Chiude il modal di ricerca
+    closeSearchModal();
 }
 
 // === DISTRICT FUNCTIONS ===
@@ -912,17 +640,85 @@ function renderDistrictList(filter = '') {
     `).join('');
 }
 
+// === UTILITY FUNCTIONS ===
+function closeAllModals() {
+    console.log('🚪 Smoothly closing all modals...');
+    
+    // Get all modals and close them with animation
+    const allModals = ['search-modal', 'district-modal', 'language-modal', 'info-modal'];
+    
+    allModals.forEach(modalId => {
+        const modal = document.getElementById(modalId);
+        if (modal && modal.classList.contains('active')) {
+            console.log(`🎭 Animating close: ${modalId}`);
+            modal.classList.remove('active');
+        }
+    });
+    
+    // Wait for animation to complete before hiding
+    setTimeout(() => {
+        allModals.forEach(modalId => {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Reset body overflow
+        document.body.style.overflow = '';
+        console.log('✅ All modals closed smoothly');
+    }, 450); // Match CSS animation duration
+}
+
+function selectSearchResult(wasteType, item) {
+    console.log('🔍 Search result selected:', { item, wasteType });
+    closeAllModals();
+    console.log('✅ Search modals closed');
+}
+
+function selectLanguage(lang) {
+    console.log('🌍 Changing language to:', lang);
+    console.log('🔄 Current language before:', currentLanguage);
+    
+    switchLanguage(lang);
+    
+    console.log('✅ Current language after:', currentLanguage);
+    console.log('🔍 Available dictionary keys:', Object.keys(WASTE_DICTIONARY[currentLanguage] || {}));
+    
+    // Clear search results to force refresh
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    if (searchInput && searchResults) {
+        const currentQuery = searchInput.value;
+        searchResults.innerHTML = '';
+        if (currentQuery.trim()) {
+            setTimeout(() => performSearch(currentQuery), 100);
+        }
+    }
+    
+    closeAllModals();
+}
+
 function selectDistrict(districtName) {
+    console.log('🏘️ Selecting district:', districtName);
+    
     currentDistrict = districtName;
     updateDistrictInfo();
     updateWasteCard();
     updateScheduleInfo();
-    closeDistrictModal();
+    
+    console.log('✅ District changed, closing modals...');
+    closeAllModals();
+    
+    console.log('✅ District selection complete');
 }
 
 // === EVENT LISTENERS ===
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Calendario Rifiuti - Nuovo Design Caricato');
+    console.log('🚀 Calendario Rifiuti - DEBUG MODE ENABLED');
+    console.log('📊 Current Language:', currentLanguage);
+    console.log('🏘️ Current District:', currentDistrict);
+    console.log('📅 Current Date:', new Date().toLocaleDateString());
     
     // Set current date
     const dateElement = document.getElementById('current-date');
@@ -972,13 +768,7 @@ document.addEventListener('DOMContentLoaded', function() {
         districtSearchTimeout = setTimeout(() => renderDistrictList(e.target.value), 300);
     });
     
-    // Language options
-    document.querySelectorAll('.language-option').forEach(option => {
-        option.addEventListener('click', () => {
-            switchLanguage(option.dataset.lang);
-            closeLanguageModal();
-        });
-    });
+    // REMOVED: Language options event listeners - now using onclick in HTML
     
     // Keyboard events
     document.addEventListener('keydown', (e) => {

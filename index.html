@@ -35,14 +35,16 @@
 
             <!-- Main Waste Info Card -->
             <div class="waste-info-card" id="waste-info-card">
-                <div class="waste-icon-container">
-                    <div class="waste-icon" id="waste-icon">
-                        <i class="fas fa-trash-alt"></i>
+                <div class="waste-main-content">
+                    <div class="waste-icon-container">
+                        <div class="waste-icon" id="waste-icon">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="waste-details">
-                    <div class="waste-type" id="waste-type">Caricamento...</div>
-                    <div class="waste-date" id="waste-date">OGGI</div>
+                    <div class="waste-details">
+                        <div class="waste-type" id="waste-type">Caricamento...</div>
+                        <div class="waste-date" id="waste-date">OGGI</div>
+                    </div>
                 </div>
                 
                 <!-- Schedule Info Box (inside card) -->
@@ -108,25 +110,25 @@
                 </div>
                 
                 <div class="search-suggestions" id="search-suggestions">
-                    <div class="suggestion-chip" onclick="performSearch('bottiglia')">
+                    <div class="suggestion-chip" onclick="performSearchBySuggestion('bottiglia')">
                         <i class="fas fa-wine-bottle"></i>
-                        bottiglia
+                        <span data-translate="searchSuggestions.bottiglia">bottiglia</span>
                     </div>
-                    <div class="suggestion-chip" onclick="performSearch('carta')">
+                    <div class="suggestion-chip" onclick="performSearchBySuggestion('carta')">
                         <i class="fas fa-file-alt"></i>
-                        carta
+                        <span data-translate="searchSuggestions.carta">carta</span>
                     </div>
-                    <div class="suggestion-chip" onclick="performSearch('lattina')">
+                    <div class="suggestion-chip" onclick="performSearchBySuggestion('lattina')">
                         <i class="fas fa-can-food"></i>
-                        lattina
+                        <span data-translate="searchSuggestions.lattina">lattina</span>
                     </div>
-                    <div class="suggestion-chip" onclick="performSearch('avanzi')">
+                    <div class="suggestion-chip" onclick="performSearchBySuggestion('avanzi')">
                         <i class="fas fa-utensils"></i>
-                        avanzi
+                        <span data-translate="searchSuggestions.avanzi">avanzi</span>
                     </div>
-                    <div class="suggestion-chip" onclick="performSearch('giornale')">
+                    <div class="suggestion-chip" onclick="performSearchBySuggestion('giornale')">
                         <i class="fas fa-newspaper"></i>
-                        giornale
+                        <span data-translate="searchSuggestions.giornale">giornale</span>
                     </div>
                 </div>
                 
@@ -176,7 +178,7 @@
             
             <div class="modal-body">
                 <div class="language-options">
-                    <button class="language-option active" data-lang="it">
+                    <button class="language-option active" data-lang="it" onclick="selectLanguage('it')">
                         <svg class="flag-svg" viewBox="0 0 3 2">
                             <rect width="1" height="2" fill="#009246"/>
                             <rect x="1" width="1" height="2" fill="#fff"/>
@@ -185,7 +187,7 @@
                         <span>Italiano</span>
                         <i class="fas fa-check"></i>
                     </button>
-                    <button class="language-option" data-lang="en">
+                    <button class="language-option" data-lang="en" onclick="selectLanguage('en')">
                         <svg class="flag-svg" viewBox="0 0 60 30">
                             <rect width="60" height="30" fill="#012169"/>
                             <path d="m0 0 60 30m0-30L0 30" stroke="#fff" stroke-width="6"/>
