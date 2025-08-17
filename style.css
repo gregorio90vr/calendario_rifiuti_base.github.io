@@ -156,24 +156,26 @@ body {
 /* === DATE SECTION === */
 .date-section {
     text-align: center;
-    padding: 10px;
+    padding: 14px 16px;
     background: var(--bg-secondary);
     border-radius: var(--radius-medium);
     border: 1px solid var(--amia-light);
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .date-display {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 700;
     color: var(--amia-primary);
+    margin: 0;
 }
 
 /* === WASTE INFO CARD === */
 .waste-info-card {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     border-radius: 20px;
-    padding: 18px;
+    padding: 24px;
     text-align: center;
     box-shadow: 
         0 8px 32px rgba(0,0,0,0.12),
@@ -186,9 +188,9 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Allineamento dall'alto */
+    justify-content: center;
     align-items: center;
-    min-height: 280px;
+    min-height: 320px;
 }
 
 /* Sezione superiore con icona e dettagli */
@@ -198,8 +200,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
+    gap: 24px;
+    margin-bottom: 16px;
 }
 
 /* Card colored backgrounds based on waste type - DARKER COLORS */
@@ -211,7 +213,7 @@ body {
 
 .waste-info-card.carta {
     background: #E6C200;  /* Giallo più scuro */
-    color: #1A1A1A;
+    color: #FFFFFF;  /* Bianco per migliore contrasto */
     border-color: #CCA000;
 }
 
@@ -282,8 +284,8 @@ body {
 }
 
 .waste-icon {
-    width: 75px; /* Ridotto da 90px */
-    height: 75px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
     display: flex;
@@ -308,7 +310,7 @@ body {
 }
 
 .waste-icon i {
-    font-size: 40px; /* Ridotto da 48px */
+    font-size: 64px;
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 
         0 2px 4px rgba(0,0,0,0.3),
@@ -317,11 +319,11 @@ body {
 
 /* Specific icon colors for colored cards */
 .waste-info-card.carta .waste-icon {
-    background: rgba(51, 51, 51, 0.2);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .waste-info-card.carta .waste-icon i {
-    color: rgba(51, 51, 51, 0.9);
+    color: rgba(255, 255, 255, 0.95);
 }
 
 .waste-details {
@@ -334,12 +336,12 @@ body {
 }
 
 .waste-type {
-    font-size: 28px; /* Ridotto da 32px */
+    font-size: 48px;
     font-weight: 800;
     color: inherit;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 3px;
     text-shadow: 
         0 3px 6px rgba(0,0,0,0.4),
         0 1px 3px rgba(0,0,0,0.3);
@@ -347,20 +349,7 @@ body {
 }
 
 .waste-date {
-    font-size: 14px; /* Ridotto da 16px */
-    font-weight: 600;
-    background: rgba(255, 255, 255, 0.25);
-    color: inherit;
-    padding: 6px 16px; /* Ridotto padding verticale */
-    border-radius: 20px;
-    display: inline-block;
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-    min-width: 100px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: none; /* NASCONDE il badge "DOMANI" */
 }
 
 /* Specific styles for carta (yellow background) */
@@ -415,8 +404,8 @@ body {
 
 /* Specific styles for carta (yellow background) */
 .waste-info-card.carta .schedule-info-box {
-    background: rgba(51, 51, 51, 0.25);
-    border-color: rgba(51, 51, 51, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 .schedule-header {
@@ -755,9 +744,381 @@ body {
 .info-content {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 32px;
 }
 
+/* === TAB NAVIGATION === */
+.tab-navigation {
+    display: flex;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-large);
+    padding: 4px;
+    margin-bottom: 24px;
+    gap: 2px;
+}
+
+.tab-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-medium);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tab-btn i {
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.tab-btn:hover {
+    color: var(--amia-primary);
+    background: rgba(var(--amia-primary-rgb), 0.1);
+}
+
+.tab-btn.active {
+    background: var(--amia-primary);
+    color: white;
+    box-shadow: var(--shadow-light);
+}
+
+.tab-btn.active:hover {
+    background: var(--amia-primary);
+    color: white;
+}
+
+/* === TAB CONTENT === */
+.tab-content {
+    position: relative;
+    min-height: 300px;
+}
+
+.tab-pane {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.tab-pane.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.section-header i {
+    color: var(--amia-primary);
+    font-size: 20px;
+}
+
+.section-header h3 {
+    color: var(--amia-primary);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* App Description Section */
+.app-description .description-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-medium);
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: var(--amia-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-light);
+}
+
+.feature-item i {
+    color: var(--amia-primary);
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+
+.feature-item span {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* SDG Section */
+.sdg-section .sdg-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.sdg-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sdg-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-large);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.sdg-card:hover {
+    background: var(--bg-primary);
+    border-color: var(--amia-light);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.sdg-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--amia-primary), var(--amia-light));
+    border-radius: var(--radius-medium);
+    color: white;
+    flex-shrink: 0;
+}
+
+.sdg-icon i {
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.sdg-number {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    background: var(--amia-secondary);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    border: 2px solid white;
+    z-index: 3;
+}
+
+.sdg-info h4 {
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.sdg-info p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Links Section */
+.info-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-large);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.info-link:hover {
+    background: var(--bg-primary);
+    border-color: var(--amia-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-large);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Specific styling for calendar icon */
+.calendar-icon {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+}
+
+.calendar-icon:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    transform: rotate(45deg);
+}
+
+/* Specific styling for dictionary icon */
+.dictionary-icon {
+    background: linear-gradient(135deg, #2196F3, #42A5F5);
+    color: white;
+}
+
+.dictionary-icon:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    transform: rotate(45deg);
+}
+
+.link-icon i {
+    font-size: 24px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 1;
+}
+
+/* Hover effects for link icons */
+.info-link:hover .calendar-icon {
+    background: linear-gradient(135deg, #66BB6A, #4CAF50);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.info-link:hover .dictionary-icon {
+    background: linear-gradient(135deg, #42A5F5, #2196F3);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.link-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.link-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.link-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.info-link .fas.fa-external-link-alt {
+    color: var(--text-secondary);
+    font-size: 16px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    background: var(--bg-primary);
+    padding: 8px;
+    border-radius: var(--radius-small);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-link:hover .fas.fa-external-link-alt {
+    opacity: 1;
+    background: var(--amia-light);
+    color: var(--amia-primary);
+    transform: translateX(4px) scale(1.1);
+}
+
+/* Legacy styles for backward compatibility */
 .info-section h3 {
     color: var(--amia-primary);
     font-size: 18px;
@@ -954,20 +1315,20 @@ body {
     }
     
     .waste-icon {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
     }
     
     .waste-icon i {
-        font-size: 28px;
+        font-size: 42px;
     }
     
     .waste-type {
-        font-size: 20px;
+        font-size: 32px;
     }
     
     .waste-type {
-        font-size: 22px;
+        font-size: 32px;
         margin-bottom: 6px;
     }
     
@@ -1028,20 +1389,20 @@ body {
     }
     
     .waste-icon {
-        width: 55px;
-        height: 55px;
+        width: 70px;
+        height: 70px;
     }
     
     .waste-icon i {
-        font-size: 26px;
+        font-size: 36px;
     }
     
     .waste-type {
-        font-size: 18px;
+        font-size: 28px;
     }
     
     .waste-type {
-        font-size: 18px;
+        font-size: 28px;
     }
     
     .waste-icon-container {
@@ -1049,8 +1410,8 @@ body {
     }
     
     .waste-icon {
-        width: 40px;
-        height: 40px;
+        width: 60px;
+        height: 60px;
     }
     
     .bottom-nav {
@@ -1077,16 +1438,16 @@ body {
     }
     
     .waste-icon {
-        width: 50px;
-        height: 50px;
+        width: 65px;
+        height: 65px;
     }
     
     .waste-icon i {
-        font-size: 24px;
+        font-size: 34px;
     }
     
     .waste-type {
-        font-size: 20px;
+        font-size: 26px;
     }
     
     .bottom-nav {
@@ -1125,7 +1486,7 @@ body {
     }
     
     .waste-type {
-        font-size: 18px;
+        font-size: 24px;
     }
     
     .nav-label {
@@ -1239,4 +1600,169 @@ body {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+/* === RESPONSIVE INFO MODAL === */
+@media (max-width: 600px) {
+    .tab-btn {
+        font-size: 10px;
+        padding: 10px 6px;
+        gap: 4px;
+    }
+    
+    .tab-btn i {
+        font-size: 16px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .feature-item {
+        padding: 16px;
+    }
+    
+    .sdg-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 16px;
+    }
+    
+    .sdg-icon {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .sdg-icon i {
+        font-size: 32px;
+    }
+    
+    .sdg-number {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+        bottom: -6px;
+        right: -6px;
+    }
+    
+    .info-link {
+        padding: 16px;
+    }
+    
+    .link-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .link-icon i {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 1;
+    }
+    
+    .info-link .fas.fa-external-link-alt {
+        width: 28px;
+        height: 28px;
+        padding: 6px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tab-navigation {
+        margin-bottom: 20px;
+    }
+    
+    .tab-btn {
+        font-size: 9px;
+        padding: 8px 4px;
+        gap: 3px;
+    }
+    
+    .tab-btn i {
+        font-size: 14px;
+    }
+    
+    .info-content {
+        gap: 24px;
+    }
+    
+    .info-section {
+        gap: 12px;
+    }
+    
+    .section-header h3 {
+        font-size: 18px;
+    }
+    
+    .section-header i {
+        font-size: 18px;
+    }
+    
+    .app-description .description-content p,
+    .sdg-section .sdg-content p {
+        font-size: 14px;
+    }
+    
+    .feature-item span {
+        font-size: 13px;
+    }
+    
+    .sdg-info h4 {
+        font-size: 16px;
+    }
+    
+    .sdg-info p {
+        font-size: 13px;
+    }
+    
+    .link-title {
+        font-size: 15px;
+    }
+    
+    .link-description {
+        font-size: 13px;
+    }
+}
+
+@media (max-height: 600px) {
+    .modal-content {
+        max-height: 90vh;
+    }
+    
+    .tab-content {
+        min-height: 250px;
+    }
+    
+    .info-content {
+        gap: 20px;
+    }
+    
+    .tab-navigation {
+        margin-bottom: 16px;
+    }
+    
+    .sdg-card {
+        padding: 16px;
+    }
+    
+    .sdg-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .sdg-icon i {
+        font-size: 20px;
+    }
+    
+    .sdg-number {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
 }

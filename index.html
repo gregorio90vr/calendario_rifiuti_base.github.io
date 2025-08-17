@@ -18,7 +18,7 @@
                 </h1>
                 
                 <!-- District Info in Header -->
-                <div class="district-header-info" id="district-header-info">
+                <div class="district-header-info" id="district-header-info" onclick="openDistrictModal()" title="Clicca per cambiare quartiere">
                     <i class="fas fa-map-marker-alt"></i>
                     <span class="district-header-name" id="selected-district-name-header">Basson</span>
                     <span class="district-header-calendar" id="selected-calendar-type-header">Azzurro</span>
@@ -67,12 +67,12 @@
             
             <button class="nav-btn" id="district-button" title="Quartiere">
                 <i class="fas fa-map-marker-alt nav-icon"></i>
-                <span class="nav-label">QUARTIERE</span>
+                <span class="nav-label" id="district-text">QUARTIERE</span>
             </button>
             
             <button class="nav-btn" id="language-button" title="Lingua">
                 <i class="fas fa-globe nav-icon"></i>
-                <span class="nav-label current-lang">ITA/ENG</span>
+                <span class="nav-label current-lang">Lingua</span>
             </button>
             
             <button class="nav-btn" id="info-button" title="Info">
@@ -218,29 +218,136 @@
             </div>
             
             <div class="modal-body">
-                <div class="info-content">
-                    <div class="info-section">
-                        <h3><i class="fas fa-recycle"></i> Obiettivi Sostenibili</h3>
-                        <p>Contribuisci agli SDGs 11, 12 e 14 attraverso la raccolta differenziata intelligente</p>
+                <!-- Tab Navigation -->
+                <div class="tab-navigation">
+                    <button class="tab-btn active" onclick="switchInfoTab('app')" data-tab="app">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span data-translate="infoModal.tabApp">Come funziona</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchInfoTab('sdg')" data-tab="sdg">
+                        <i class="fas fa-leaf"></i>
+                        <span data-translate="infoModal.tabSDG">SDG</span>
+                    </button>
+                    <button class="tab-btn" onclick="switchInfoTab('links')" data-tab="links">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span data-translate="infoModal.tabLinks">Link Utili</span>
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- App Tab -->
+                    <div class="tab-pane active" id="app-tab">
+                        <div class="info-section app-description">
+                            <div class="description-content">
+                                <p data-translate="infoModal.appDescription">
+                                    Questa app ti aiuta a gestire la raccolta differenziata a Verona. 
+                                    Puoi controllare il calendario dei rifiuti del tuo quartiere, 
+                                    cercare dove buttare specifici oggetti e rimanere sempre aggiornato 
+                                    sui giorni di raccolta.
+                                </p>
+                                <div class="features-grid">
+                                    <div class="feature-item">
+                                        <i class="fas fa-calendar-check"></i>
+                                        <span data-translate="infoModal.feature1">Calendario personalizzato</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-search"></i>
+                                        <span data-translate="infoModal.feature2">Ricerca intelligente</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span data-translate="infoModal.feature3">Per tutti i quartieri</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-globe"></i>
+                                        <span data-translate="infoModal.feature4">Multilingua</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="info-links">
-                        <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" class="info-link" target="_blank">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span>Calendario AMIA</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                        <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" class="info-link" target="_blank">
-                            <i class="fas fa-book"></i>
-                            <span>Dizionario Rifiuti</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
+
+                    <!-- SDG Tab -->
+                    <div class="tab-pane" id="sdg-tab">
+                        <div class="info-section sdg-section">
+                            <div class="sdg-content">
+                                <p data-translate="infoModal.sdgDescription">
+                                    Ogni azione di raccolta differenziata contribuisce al raggiungimento 
+                                    degli Obiettivi di Sviluppo Sostenibile delle Nazioni Unite:
+                                </p>
+                                <div class="sdg-grid">
+                                    <div class="sdg-card">
+                                        <div class="sdg-icon">
+                                            <i class="fas fa-city"></i>
+                                            <span class="sdg-number">11</span>
+                                        </div>
+                                        <div class="sdg-info">
+                                            <h4 data-translate="infoModal.sdg11Title">Città Sostenibili</h4>
+                                            <p data-translate="infoModal.sdg11Description">Rendere le città inclusive, sicure e sostenibili</p>
+                                        </div>
+                                    </div>
+                                    <div class="sdg-card">
+                                        <div class="sdg-icon">
+                                            <i class="fas fa-recycle"></i>
+                                            <span class="sdg-number">12</span>
+                                        </div>
+                                        <div class="sdg-info">
+                                            <h4 data-translate="infoModal.sdg12Title">Consumo Responsabile</h4>
+                                            <p data-translate="infoModal.sdg12Description">Garantire modelli di consumo e produzione sostenibili</p>
+                                        </div>
+                                    </div>
+                                    <div class="sdg-card">
+                                        <div class="sdg-icon">
+                                            <i class="fas fa-water"></i>
+                                            <span class="sdg-number">14</span>
+                                        </div>
+                                        <div class="sdg-info">
+                                            <h4 data-translate="infoModal.sdg14Title">Vita Sott'acqua</h4>
+                                            <p data-translate="infoModal.sdg14Description">Conservare gli oceani e le risorse marine</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Links Tab -->
+                    <div class="tab-pane" id="links-tab">
+                        <div class="info-section links-section">
+                            <div class="info-links">
+                                <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" class="info-link" target="_blank">
+                                    <div class="link-icon calendar-icon">
+                                        <i class="fas fa-calendar-days"></i>
+                                    </div>
+                                    <div class="link-content">
+                                        <span class="link-title" data-translate="infoModal.linkCalendar">Calendario Ufficiale AMIA</span>
+                                        <span class="link-description" data-translate="infoModal.linkCalendarDesc">Consulta i calendari completi</span>
+                                    </div>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" class="info-link" target="_blank">
+                                    <div class="link-icon dictionary-icon">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <div class="link-content">
+                                        <span class="link-title" data-translate="infoModal.linkDictionary">Dizionario dei Rifiuti</span>
+                                        <span class="link-description" data-translate="infoModal.linkDictionaryDesc">Trova dove buttare ogni oggetto</span>
+                                    </div>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Data Files -->
+    <script src="waste-calendars.js"></script>
+    <script src="waste-dictionary.js"></script>
+    <!-- Main Application -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@ const TRANSLATIONS = {
     it: {
         appTitle: "CALENDARIO RIFIUTI",
         searchButton: "DOVE LO BUTTO",
+        districtButton: "QUARTIERE",
         modalTitle: "Dove lo butto?",
         searchPlaceholder: "Scrivi cosa vuoi buttare...",
         searchHint: "Es: bottiglie di plastica, giornali, scatolette di tonno",
@@ -58,11 +59,36 @@ const TRANSLATIONS = {
             lattina: "lattina",
             avanzi: "avanzi",
             giornale: "giornale"
+        },
+        infoModal: {
+            tabApp: "Come funziona",
+            tabSDG: "SDG",
+            tabLinks: "Link Utili",
+            appTitle: "Come funziona l'app",
+            appDescription: "Questa app ti aiuta a gestire la raccolta differenziata a Verona. Puoi controllare il calendario dei rifiuti del tuo quartiere, cercare dove buttare specifici oggetti e rimanere sempre aggiornato sui giorni di raccolta.",
+            feature1: "Calendario personalizzato",
+            feature2: "Ricerca intelligente", 
+            feature3: "Per tutti i quartieri",
+            feature4: "Multilingua",
+            sdgTitle: "Obiettivi di Sviluppo Sostenibile",
+            sdgDescription: "Ogni azione di raccolta differenziata contribuisce al raggiungimento degli Obiettivi di Sviluppo Sostenibile delle Nazioni Unite:",
+            sdg11Title: "Città Sostenibili",
+            sdg11Description: "Rendere le città inclusive, sicure e sostenibili",
+            sdg12Title: "Consumo Responsabile", 
+            sdg12Description: "Garantire modelli di consumo e produzione sostenibili",
+            sdg14Title: "Vita Sott'acqua",
+            sdg14Description: "Conservare gli oceani e le risorse marine",
+            linksTitle: "Risorse Utili",
+            linkCalendar: "Calendario Ufficiale AMIA",
+            linkCalendarDesc: "Consulta i calendari completi",
+            linkDictionary: "Dizionario dei Rifiuti", 
+            linkDictionaryDesc: "Trova dove buttare ogni oggetto"
         }
     },
     en: {
         appTitle: "WASTE CALENDAR",
         searchButton: "WHERE DO I THROW IT",
+        districtButton: "DISTRICT",
         modalTitle: "Where do I throw it?",
         searchPlaceholder: "Search for an item...",
         searchHint: "Ex: plastic bottles, newspapers, tuna cans",
@@ -110,149 +136,33 @@ const TRANSLATIONS = {
             lattina: "can",
             avanzi: "leftovers",
             giornale: "newspaper"
+        },
+        infoModal: {
+            tabApp: "How it works",
+            tabSDG: "SDG", 
+            tabLinks: "Useful Links",
+            appTitle: "How the app works",
+            appDescription: "This app helps you manage waste collection in Verona. You can check your district's waste calendar, search where to throw specific items and stay updated on collection days.",
+            feature1: "Personalized calendar",
+            feature2: "Smart search",
+            feature3: "All districts covered", 
+            feature4: "Multilingual",
+            sdgTitle: "Sustainable Development Goals",
+            sdgDescription: "Every waste sorting action contributes to achieving the United Nations Sustainable Development Goals:",
+            sdg11Title: "Sustainable Cities",
+            sdg11Description: "Make cities inclusive, safe and sustainable",
+            sdg12Title: "Responsible Consumption",
+            sdg12Description: "Ensure sustainable consumption and production patterns", 
+            sdg14Title: "Life Below Water",
+            sdg14Description: "Conserve oceans and marine resources",
+            linksTitle: "Useful Resources",
+            linkCalendar: "Official AMIA Calendar",
+            linkCalendarDesc: "View complete calendars",
+            linkDictionary: "Waste Dictionary",
+            linkDictionaryDesc: "Find where to throw any item"
         }
     }
 };
-
-// === DIZIONARIO RIFIUTI ===
-const WASTE_DICTIONARY = {
-    it: {
-        umido: {
-            items: [
-                "avanzi di cibo", "bucce di frutta", "bucce di verdura", "ossa di pesce", 
-                "ossa di carne", "gusci d'uovo", "fondi di caffè", "bustine di tè",
-                "pane vecchio", "pasta avanzata", "riso", "fiori recisi", "foglie",
-                "tovaglioli sporchi", "fazzoletti usati", "sfalci d'erba",
-                "potature", "lettiera biodegradabile", "tappi di sughero naturale",
-                "cenere fredda di legna", "escrementi di animali", "peli di animali"
-            ]
-        },
-        plastica: {
-            items: [
-                "bottiglie di plastica", "flaconi shampoo", "contenitori yogurt", 
-                "sacchetti di plastica", "vaschette alimentari", "pellicola trasparente",
-                "tappi di plastica", "lattine di alluminio", "barattoli di metallo",
-                "scatolette tonno", "carta stagnola", "tetra pak",
-                "vaschette polistirolo", "blister medicinali", "reggette di plastica",
-                "retine per frutta", "sacchetti freezer", "flaconi detersivi",
-                "tappi a corona", "bombolette spray vuote"
-            ]
-        },
-        carta: {
-            items: [
-                "giornali", "riviste", "libri", "quaderni", "scatole di cartone",
-                "fogli di carta", "sacchetti di carta", "cartoni del latte", 
-                "buste di carta", "scatole cereali", "cartone ondulato",
-                "volantini pubblicitari", "scontrini", "biglietti autobus",
-                "carta regalo", "calendari", "agende", "fumetti",
-                "scatole pizza pulite", "contenitori tetrapak"
-            ]
-        },
-        secco: {
-            items: [
-                "pannolini", "assorbenti", "ceramica rotta", "porcellana",
-                "giocattoli rotti", "cd", "dvd", "spugne sporche", 
-                "mozziconi sigarette", "polvere aspirapolvere", "lettiera chimica",
-                "carta oleata", "carta plastificata", "scontrini termici",
-                "oggetti di gomma piccoli", "preservativi", "rasoi usa e getta",
-                "cotton fioc", "cerotti", "calzini strappati"
-            ]
-        }
-    },
-    en: {
-        umido: {
-            items: [
-                "food scraps", "fruit peels", "vegetable peels", "fish bones", 
-                "meat bones", "eggshells", "coffee grounds", "tea bags",
-                "old bread", "leftover pasta", "rice", "cut flowers", "leaves",
-                "dirty napkins", "used tissues", "grass clippings",
-                "prunings", "biodegradable litter", "natural cork stoppers",
-                "cold wood ash", "pet waste", "animal hair"
-            ]
-        },
-        plastica: {
-            items: [
-                "plastic bottles", "shampoo bottles", "yogurt containers", 
-                "plastic bags", "food trays", "plastic wrap",
-                "plastic caps", "aluminum cans", "metal jars",
-                "tuna cans", "aluminum foil", "tetra pak",
-                "polystyrene trays", "medicine blisters", "plastic straps",
-                "fruit nets", "freezer bags", "detergent containers",
-                "bottle caps", "empty spray cans"
-            ]
-        },
-        carta: {
-            items: [
-                "newspapers", "magazines", "books", "notebooks", "cardboard boxes",
-                "paper sheets", "paper bags", "milk cartons", 
-                "paper bags", "cereal boxes", "cardboard",
-                "advertising flyers", "receipts", "bus tickets",
-                "gift wrapping", "calendars", "diaries", "comics",
-                "clean pizza boxes", "tetrapak containers"
-            ]
-        },
-        secco: {
-            items: [
-                "diapers", "sanitary products", "broken ceramics", "porcelain",
-                "broken toys", "cds", "dvds", "dirty sponges", 
-                "cigarette butts", "vacuum dust", "chemical litter",
-                "wax paper", "plastic-coated paper", "thermal receipts",
-                "small rubber objects", "condoms", "disposable razors",
-                "cotton swabs", "bandages", "torn socks"
-            ]
-        }
-    }
-};
-
-// === CALENDARIO RIFIUTI ESTESO ===
-const WASTE_CALENDARS = {
-    azzurro: {
-        "2025-08-01": "umido", "2025-08-02": "plastica", "2025-08-03": "umido", "2025-08-04": "secco",
-        "2025-08-05": "umido", "2025-08-06": null, "2025-08-07": "carta", "2025-08-08": "umido",
-        "2025-08-09": "plastica", "2025-08-10": "umido", "2025-08-11": "secco", "2025-08-12": "umido",
-        "2025-08-13": null, "2025-08-14": "carta", "2025-08-15": "umido", "2025-08-16": "plastica",
-        "2025-08-17": null, "2025-08-18": "secco", "2025-08-19": "umido", "2025-08-20": null,
-        "2025-08-21": "carta", "2025-08-22": "umido", "2025-08-23": "plastica", "2025-08-24": "umido",
-        "2025-08-25": "secco", "2025-08-26": "umido", "2025-08-27": null, "2025-08-28": "carta",
-        "2025-08-29": "umido", "2025-08-30": "plastica", "2025-08-31": "umido"
-    },
-    verde: {
-        "2025-08-01": "plastica", "2025-08-02": "umido", "2025-08-03": "secco", "2025-08-04": "umido",
-        "2025-08-05": null, "2025-08-06": "carta", "2025-08-07": "umido", "2025-08-08": "plastica",
-        "2025-08-09": "umido", "2025-08-10": "secco", "2025-08-11": "umido", "2025-08-12": null,
-        "2025-08-13": "carta", "2025-08-14": "umido", "2025-08-15": "plastica", "2025-08-16": "umido",
-        "2025-08-17": "secco", "2025-08-18": "umido", "2025-08-19": null, "2025-08-20": "carta",
-        "2025-08-21": "umido", "2025-08-22": "plastica", "2025-08-23": "umido", "2025-08-24": "secco",
-        "2025-08-25": "umido", "2025-08-26": null, "2025-08-27": "carta", "2025-08-28": "umido",
-        "2025-08-29": "plastica", "2025-08-30": "umido", "2025-08-31": "secco"
-    }
-};
-
-// === QUARTIERI ===
-const DISTRICTS = [
-    { name: "Basson", calendar: "azzurro" },
-    { name: "Borgo Milano", calendar: "verde" },
-    { name: "Borgo Roma", calendar: "azzurro" },
-    { name: "Borgo Trento", calendar: "verde" },
-    { name: "Borgo Venezia", calendar: "azzurro" },
-    { name: "Cattarossola", calendar: "verde" },
-    { name: "Centro Storico", calendar: "azzurro" },
-    { name: "Chievo", calendar: "verde" },
-    { name: "Golosine", calendar: "azzurro" },
-    { name: "La Rizza", calendar: "verde" },
-    { name: "Parona", calendar: "azzurro" },
-    { name: "Pozzo Dipinto", calendar: "verde" },
-    { name: "Quinzano", calendar: "azzurro" },
-    { name: "Sacra Famiglia", calendar: "verde" },
-    { name: "San Lazzaro", calendar: "azzurro" },
-    { name: "San Massimo", calendar: "verde" },
-    { name: "Santa Lucia", calendar: "azzurro" },
-    { name: "Santo Stefano", calendar: "verde" },
-    { name: "Stadio", calendar: "azzurro" },
-    { name: "Tombetta", calendar: "verde" },
-    { name: "Valdonega", calendar: "azzurro" },
-    { name: "Veronetta", calendar: "verde" }
-];
 
 // === ICONE RIFIUTI ===
 const WASTE_ICONS = {
@@ -419,18 +329,25 @@ function switchLanguage(lang) {
         appTitle.innerHTML = `<i class="fas fa-calendar-alt header-icon"></i>${TRANSLATIONS[currentLanguage].appTitle}`;
     }
     
+    
     // Update navigation labels
     const searchButton = document.getElementById('search-text');
     if (searchButton) {
         searchButton.textContent = TRANSLATIONS[currentLanguage].searchButton;
     }
     
+    const districtButton = document.getElementById('district-text');
+    if (districtButton) {
+        districtButton.textContent = TRANSLATIONS[currentLanguage].districtButton;
+    }
+    
     // Update language button
     const langButton = document.querySelector('.current-lang');
     if (langButton) {
-        langButton.textContent = currentLanguage === 'it' ? 'ITA/ENG' : 'ENG/ITA';
+        langButton.textContent = currentLanguage === 'it' ? 'Lingua' : 'Language';
     }
-    
+
+  
     // Update modal titles
     const modalTitle = document.getElementById('modal-title');
     if (modalTitle) {
@@ -781,10 +698,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Initialize app
+    initializeApp();
+});
+
+// === TAB MANAGEMENT ===
+function switchInfoTab(tabName) {
+    // Remove active class from all tabs and panes
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+    
+    // Add active class to selected tab and pane
+    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+    document.getElementById(`${tabName}-tab`).classList.add('active');
+}
+
+function initializeApp() {
     switchLanguage('it');
     updateDistrictInfo();
     updateWasteCard();
     updateScheduleInfo();
     
     console.log('© 2025 Gregorio Pellegrini. Tutti i diritti riservati.');
-});
+}
