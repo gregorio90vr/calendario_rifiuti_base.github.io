@@ -67146,23 +67146,80 @@ const DISTRICTS_DATA = {
   ]
 };
 
-// Mappa dei quartieri ai tipi di calendario
-const CALENDAR_MAP = {
-  "basson": "azzurro",
-  "ca di david": "azzurro",
-  "la rizza": "azzurro",
-  "sacra famiglia": "azzurro",
-  "marangona": "verde",
-  "mizzole": "verde",
-  "montorio": "verde",
-  "parona": "verde",
-  "quinzano": "verde",
-  "basse": "blu",
-  "san michele": "blu",
-  "san felice": "blu",
-  "basso acquar": "arancione",
-  "palazzina": "arancione",
-  "san massimo": "arancione"
+// Utilizzare la costante DISTRICTS da waste-calendars.js - la versione corretta e completa
+// Converto l'array DISTRICTS in un oggetto per accesso veloce
+const CALENDAR_MAP = {};
+
+// Popolo CALENDAR_MAP dai dati DISTRICTS corretti di waste-calendars.js
+if (typeof DISTRICTS !== 'undefined') {
+    DISTRICTS.forEach(district => {
+        CALENDAR_MAP[district.name.toLowerCase().trim()] = district.calendar;
+    });
+} else {
+    // Fallback se DISTRICTS non è caricato - copio i valori dalla definizione corretta
+    const DISTRICTS_FALLBACK = [
+        { name: "Basso Acquar", calendar:"arancione"},
+        { name: "Palazzina", calendar:"arancione"},
+        { name: "San Massimo", calendar:"arancione"},
+        { name: "Basse", calendar:"blu"},
+        { name: "San Michele", calendar:"blu"},
+        { name: "San Felice", calendar:"blu"},
+        { name: "Valpantena", calendar:"blu"},
+        { name: "Zai Montorio", calendar:"blu"},
+        { name: "Basson", calendar:"azzurro"},
+        { name: "Ca Di David", calendar:"azzurro"},
+        { name: "La Rizza", calendar:"azzurro"},
+        { name: "La Sorte", calendar:"azzurro"},
+        { name: "Madonna Di Dossobuono", calendar:"azzurro"},
+        { name: "Sacra Famiglia", calendar:"azzurro"},
+        { name: "Torricelle", calendar:"azzurro"},
+        { name: "Marangona", calendar:"verde"},
+        { name: "Mizzole", calendar:"verde"},
+        { name: "Montorio", calendar:"verde"},
+        { name: "Parona", calendar:"verde"},
+        { name: "Pigozzo", calendar:"verde"},
+        { name: "Ponte Florio", calendar:"verde"},
+        { name: "Quinzano", calendar:"verde"},
+        { name: "Zai Bassona", calendar:"verde"},
+        { name: "Zai Storica", calendar:"verde"}
+    ];
+    
+    DISTRICTS_FALLBACK.forEach(district => {
+        CALENDAR_MAP[district.name.toLowerCase().trim()] = district.calendar;
+    });
+}
+
+// Mappatura tra nomi OpenData (campo OMOGENEA) e quartieri DISTRICTS
+const OPENDATA_TO_DISTRICT_MAP = {
+    "citta` antica": "Basson",
+    "centro storico": "Basson", 
+    "veronetta": "Basson",
+    "san zeno": "Basson",
+    "borgo milano": "Ca Di David",
+    "borgo roma": "La Rizza",
+    "borgo venezia": "Sacra Famiglia",
+    "borgo trento": "Basson",
+    "porto san pancrazio": "Parona",
+    "parona": "Parona",
+    "quinzano": "Quinzano",
+    "montorio": "Montorio",
+    "mizzole": "Mizzole",
+    "san felice del benaco": "San Felice",
+    "san michele": "San Michele",
+    "basse di stura": "Basse",
+    "palazzina": "Palazzina",
+    "san massimo": "San Massimo",
+    "basso acquar": "Basso Acquar",
+    "marangona": "Marangona",
+    "torricelle": "Torricelle",
+    "la sorte": "La Sorte",
+    "madonna di dossobuono": "Madonna Di Dossobuono",
+    "valpantena": "Valpantena",
+    "zai montorio": "Zai Montorio",
+    "pigozzo": "Pigozzo",
+    "ponte florio": "Ponte Florio",
+    "zai bassona": "Zai Bassona",
+    "zai storica": "Zai Storica"
 };
 
 /**
@@ -67176,9 +67233,35 @@ function findDistrictByCoordinates(coords) {
     for (let feature of DISTRICTS_DATA.features) {
         if (isPointInPolygon(point, feature.geometry)) {
             const properties = feature.properties;
+            
+            // Ottieni il nome del quartiere dai dati OpenData
+            let openDataName = properties.OMOGENEA || properties.nome_zona || properties.district_name;
+            
+            if (openDataName) {
+                // Normalizza il nome (minuscolo, rimuovi caratteri speciali)
+                const normalizedName = openDataName.toLowerCase()
+                    .replace(/`/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+                
+                // Cerca nella mappatura OpenData -> Quartiere DISTRICTS
+                const districtName = OPENDATA_TO_DISTRICT_MAP[normalizedName];
+                
+                if (districtName) {
+                    // Trova il tipo di calendario per questo quartiere usando CALENDAR_MAP
+                    const calendarType = CALENDAR_MAP[districtName.toLowerCase().trim()];
+                    
+                    return {
+                        district: districtName,
+                        calendarType: calendarType || "azzurro"
+                    };
+                }
+            }
+            
+            // Se non trova una mappatura, ritorna i dati raw
             return {
-                district: properties.district_name || properties.nome_zona || "Sconosciuto",
-                calendarType: properties.calendar_type || "azzurro"
+                district: openDataName || "Sconosciuto", 
+                calendarType: "azzurro"
             };
         }
     }
