@@ -720,3 +720,161 @@ function initializeApp() {
     
     console.log('© 2025 Gregorio Pellegrini. Tutti i diritti riservati.');
 }
+
+// === GEOLOCATION FUNCTIONALITY ===
+function useGeolocation() {
+    const btn = document.getElementById('geolocation-btn');
+    const loading = document.getElementById('geolocation-loading');
+    
+    // Check if geolocation is available
+    if (!navigator.geolocation) {
+        alert('La geolocalizzazione non è supportata da questo browser.');
+        return;
+    }
+    
+    // Disable button and show loading
+    btn.disabled = true;
+    loading.style.display = 'block';
+    btn.querySelector('span').textContent = 'Rilevamento posizione...';
+    
+    // Get current position
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            const coords = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+            
+            // Find district using the coordinates
+            const result = findDistrictByCoordinates(coords);
+            
+            if (result && result.district && result.calendarType) {
+                // Update the app with the found district
+                currentDistrict = result.district.toLowerCase().replace(/\s+/g, '');
+                currentCalendarType = result.calendarType;
+                
+                // Close the modal and update the app
+                closeDistrictModal();
+                updateDistrictInfo();
+                updateWasteCard();
+                updateScheduleInfo();
+                
+                // Show success message
+                showLocationSuccess(result.district, result.calendarType);
+                
+            } else {
+                // No district found
+                alert('Non siamo riusciti a identificare il tuo quartiere. Seleziona manualmente dalla lista.');
+            }
+        },
+        function(error) {
+            // Handle geolocation errors
+            let errorMessage = 'Errore nella geolocalizzazione: ';
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage += 'Permesso negato. Abilita la geolocalizzazione nelle impostazioni del browser.';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage += 'Posizione non disponibile.';
+                    break;
+                case error.TIMEOUT:
+                    errorMessage += 'Timeout nella richiesta di posizione.';
+                    break;
+                default:
+                    errorMessage += 'Errore sconosciuto.';
+                    break;
+            }
+            alert(errorMessage);
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 300000 // 5 minutes
+        }
+    );
+    
+    // Reset button state after timeout or completion
+    setTimeout(function() {
+        btn.disabled = false;
+        loading.style.display = 'none';
+        btn.querySelector('span').textContent = 'Usa la mia posizione';
+    }, 15000);
+}
+
+function showLocationSuccess(district, calendarType) {
+    // Create a temporary success message
+    const successMsg = document.createElement('div');
+    successMsg.className = 'location-success-message';
+    successMsg.innerHTML = `
+        <div class="success-content">
+            <i class="fas fa-check-circle"></i>
+            <div class="success-text">
+                <h4>Posizione rilevata!</h4>
+                <p>Quartiere: <strong>${district}</strong></p>
+                <p>Calendario: <strong>${calendarType.charAt(0).toUpperCase() + calendarType.slice(1)}</strong></p>
+            </div>
+        </div>
+    `;
+    
+    // Add styles for the success message
+    successMsg.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        padding: 16px 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+        z-index: 10000;
+        animation: slideDown 0.3s ease;
+    `;
+    
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        .success-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .success-text h4 {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+        }
+        .success-text p {
+            margin: 2px 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add to DOM
+    document.body.appendChild(successMsg);
+    
+    // Remove after 4 seconds
+    setTimeout(() => {
+        successMsg.style.animation = 'slideUp 0.3s ease';
+        setTimeout(() => {
+            if (document.body.contains(successMsg)) {
+                document.body.removeChild(successMsg);
+            }
+            if (document.head.contains(style)) {
+                document.head.removeChild(style);
+            }
+        }, 300);
+    }, 4000);
+}
+
+function closeDistrictModal() {
+    const modal = document.getElementById('district-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}

@@ -1165,6 +1165,58 @@ body {
     opacity: 0.6;
 }
 
+/* === GEOLOCATION SECTION === */
+.geolocation-section {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.geolocation-btn {
+    width: 100%;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, var(--amia-primary), var(--amia-secondary));
+    color: white;
+    border: none;
+    border-radius: var(--radius-medium);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.geolocation-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+}
+
+.geolocation-btn:active {
+    transform: translateY(0);
+}
+
+.geolocation-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.geolocation-loading {
+    position: absolute;
+    right: 16px;
+}
+
+.geolocation-text {
+    margin: 16px 0 0 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
 /* === DISTRICT LIST === */
 .district-list {
     max-height: 300px;
