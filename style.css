@@ -133,11 +133,13 @@ body {
 .district-header-name {
     color: white;
     font-weight: 700;
+    transition: opacity 0.3s ease;
 }
 
 .district-header-calendar {
     color: var(--amia-light);
     font-weight: 500;
+    transition: opacity 0.3s ease;
 }
 
 /* === MAIN CONTENT === */
@@ -634,12 +636,28 @@ body {
     font-size: 16px;
     background: var(--bg-secondary);
     transition: all 0.3s ease;
+    cursor: text;
+    /* Previeni zoom su iOS quando si tocca l'input */
+    -webkit-text-size-adjust: 100%;
 }
 
 .search-input:focus {
     outline: none;
     border-color: var(--amia-primary);
     box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+/* Migliore esperienza touch su mobile */
+@media (max-width: 768px) {
+    .search-input {
+        font-size: 16px; /* Previeni zoom su iOS */
+        padding: 18px 50px 18px 18px;
+    }
+    
+    .search-input::placeholder {
+        color: var(--text-secondary);
+        opacity: 0.8;
+    }
 }
 
 .search-icon {
@@ -1268,29 +1286,84 @@ body {
     border-radius: var(--radius-medium);
     border-left: 4px solid transparent;
     transition: all 0.3s ease;
-    cursor: pointer; /* Make it clear it's clickable */
+    cursor: pointer;
+    border: 2px solid transparent;
 }
 
 .search-result-item:hover {
-    background: var(--bg-primary);
     box-shadow: var(--shadow-light);
-    transform: translateY(-1px); /* Subtle lift effect */
+    transform: translateY(-1px);
 }
 
-.search-result-item.umido { border-left-color: var(--umido-color); }
-.search-result-item.carta { border-left-color: var(--carta-color); }
-.search-result-item.plastica { border-left-color: var(--plastica-color); }
-.search-result-item.secco { border-left-color: var(--secco-color); }
+/* Waste type colors - SFONDI COLORATI COMPLETI */
+.search-result-item.umido { 
+    background: linear-gradient(135deg, #8D4004 0%, #A0510A 100%);
+    color: white;
+    border-color: #8D4004;
+}
+
+.search-result-item.umido:hover {
+    background: linear-gradient(135deg, #A0510A 0%, #B8620F 100%);
+    box-shadow: 0 4px 15px rgba(141, 64, 4, 0.3);
+}
+
+.search-result-item.carta { 
+    background: linear-gradient(135deg, #FFD700 0%, #FFC107 100%);
+    color: #333;
+    border-color: #FFD700;
+}
+
+.search-result-item.carta:hover {
+    background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.search-result-item.plastica { 
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    color: white;
+    border-color: #2196F3;
+}
+
+.search-result-item.plastica:hover {
+    background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.search-result-item.secco { 
+    background: linear-gradient(135deg, #424242 0%, #616161 100%);
+    color: white;
+    border-color: #424242;
+}
+
+.search-result-item.secco:hover {
+    background: linear-gradient(135deg, #616161 0%, #757575 100%);
+    box-shadow: 0 4px 15px rgba(66, 66, 66, 0.3);
+}
 
 .search-result-title {
     font-weight: 600;
-    color: var(--text-primary);
     margin-bottom: 4px;
 }
 
 .search-result-category {
     font-size: 14px;
-    color: var(--text-secondary);
+    opacity: 0.85;
+}
+
+/* Colori del testo per ogni tipo di rifiuto */
+.search-result-item.umido .search-result-title,
+.search-result-item.umido .search-result-category,
+.search-result-item.plastica .search-result-title,
+.search-result-item.plastica .search-result-category,
+.search-result-item.secco .search-result-title,
+.search-result-item.secco .search-result-category {
+    color: white;
+}
+
+.search-result-item.carta .search-result-title,
+.search-result-item.carta .search-result-category {
+    color: #333;
+    font-weight: 700;
 }
 
 /* === RESPONSIVE DESIGN === */

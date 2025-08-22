@@ -22,6 +22,20 @@ const TRANSLATIONS = {
         noCollection: "Nessun conferimento",
         noPickupToday: "Nessuna consegna per oggi",
         relaxDay: "Giornata libera",
+        geolocation: {
+            useMyLocation: "Usa la mia posizione",
+            detecting: "Rilevamento posizione...",
+            orSelectManually: "Oppure seleziona manualmente:",
+            notSupported: "La geolocalizzazione non è supportata da questo browser.",
+            permissionDenied: "Permesso negato. Abilita la geolocalizzazione nelle impostazioni del browser.",
+            positionUnavailable: "Posizione non disponibile.",
+            timeout: "Timeout nella richiesta di posizione.",
+            unknownError: "Errore sconosciuto.",
+            districtNotFound: "Non siamo riusciti a identificare il tuo quartiere. Seleziona manualmente dalla lista.",
+            locationDetected: "Posizione rilevata!",
+            district: "Quartiere:",
+            calendar: "Calendario:"
+        },
         wasteTypes: {
             umido: "Umido",
             plastica: "Plastica/Metalli",
@@ -99,6 +113,20 @@ const TRANSLATIONS = {
         noCollection: "No collection",
         noPickupToday: "No pickup for today",
         relaxDay: "Free day",
+        geolocation: {
+            useMyLocation: "Use my location",
+            detecting: "Detecting location...",
+            orSelectManually: "Or select manually:",
+            notSupported: "Geolocation is not supported by this browser.",
+            permissionDenied: "Permission denied. Enable geolocation in browser settings.",
+            positionUnavailable: "Position unavailable.",
+            timeout: "Location request timeout.",
+            unknownError: "Unknown error.",
+            districtNotFound: "We could not identify your district. Please select manually from the list.",
+            locationDetected: "Location detected!",
+            district: "District:",
+            calendar: "Calendar:"
+        },
         wasteTypes: {
             umido: "Organic",
             plastica: "Plastic/Metals",
@@ -385,6 +413,20 @@ function switchLanguage(lang) {
         }
     });
     
+    // Update geolocation button and text
+    const geolocationBtn = document.getElementById('geolocation-btn');
+    if (geolocationBtn) {
+        const span = geolocationBtn.querySelector('span');
+        if (span) {
+            span.textContent = TRANSLATIONS[currentLanguage].geolocation.useMyLocation;
+        }
+    }
+    
+    const geolocationText = document.querySelector('.geolocation-text');
+    if (geolocationText) {
+        geolocationText.textContent = TRANSLATIONS[currentLanguage].geolocation.orSelectManually;
+    }
+    
     // Update all content
     updateWasteCard();
     updateScheduleInfo();
@@ -415,10 +457,6 @@ function closeModal(modalId) {
 
 function openSearchModal() {
     openModal('search-modal');
-    setTimeout(() => {
-        const searchInput = document.getElementById('search-input');
-        if (searchInput) searchInput.focus();
-    }, 350);
 }
 
 function closeSearchModal() {
@@ -432,10 +470,6 @@ function closeSearchModal() {
 function openDistrictModal() {
     openModal('district-modal');
     renderDistrictList();
-    setTimeout(() => {
-        const districtSearch = document.getElementById('district-search');
-        if (districtSearch) districtSearch.focus();
-    }, 350);
 }
 
 function closeDistrictModal() {
@@ -728,14 +762,14 @@ function useGeolocation() {
     
     // Check if geolocation is available
     if (!navigator.geolocation) {
-        alert('La geolocalizzazione non è supportata da questo browser.');
+        alert(TRANSLATIONS[currentLanguage].geolocation.notSupported);
         return;
     }
     
     // Disable button and show loading
     btn.disabled = true;
     loading.style.display = 'block';
-    btn.querySelector('span').textContent = 'Rilevamento posizione...';
+    btn.querySelector('span').textContent = TRANSLATIONS[currentLanguage].geolocation.detecting;
     
     // Get current position
     navigator.geolocation.getCurrentPosition(
@@ -749,132 +783,183 @@ function useGeolocation() {
             const result = findDistrictByCoordinates(coords);
             
             if (result && result.district && result.calendarType) {
-                // Update the app with the found district
-                currentDistrict = result.district.toLowerCase().replace(/\s+/g, '');
-                currentCalendarType = result.calendarType;
+                // Controlla se è cambiato rispetto al quartiere attuale
+                const newDistrict = result.district.toLowerCase().replace(/\s+/g, '');
+                const newCalendarType = result.calendarType;
                 
-                // Close the modal and update the app
+                // Aggiorna sempre i valori (anche se uguali, per rinfrescare)
+                currentDistrict = newDistrict;
+                currentCalendarType = newCalendarType;
+                
+                // Salva le preferenze
+                localStorage.setItem('selectedDistrict', currentDistrict);
+                localStorage.setItem('selectedCalendarType', currentCalendarType);
+                
+                // Close the modal and update the app with smooth transitions
                 closeDistrictModal();
-                updateDistrictInfo();
-                updateWasteCard();
+                updateDistrictInfoSmooth();
+                updateWasteCardSmooth();
                 updateScheduleInfo();
                 
-                // Show success message
-                showLocationSuccess(result.district, result.calendarType);
+                // Mostra solo un feedback semplice nell'header
+                showSimpleLocationUpdate(result.district, result.calendarType);
                 
             } else {
                 // No district found
-                alert('Non siamo riusciti a identificare il tuo quartiere. Seleziona manualmente dalla lista.');
+                alert(TRANSLATIONS[currentLanguage].geolocation.districtNotFound);
             }
+            
+            // Reset button state
+            resetGeolocationButton();
         },
         function(error) {
             // Handle geolocation errors
-            let errorMessage = 'Errore nella geolocalizzazione: ';
+            let errorMessage = '';
             switch(error.code) {
                 case error.PERMISSION_DENIED:
-                    errorMessage += 'Permesso negato. Abilita la geolocalizzazione nelle impostazioni del browser.';
+                    errorMessage = TRANSLATIONS[currentLanguage].geolocation.permissionDenied;
                     break;
                 case error.POSITION_UNAVAILABLE:
-                    errorMessage += 'Posizione non disponibile.';
+                    errorMessage = TRANSLATIONS[currentLanguage].geolocation.positionUnavailable;
                     break;
                 case error.TIMEOUT:
-                    errorMessage += 'Timeout nella richiesta di posizione.';
+                    errorMessage = TRANSLATIONS[currentLanguage].geolocation.timeout;
                     break;
                 default:
-                    errorMessage += 'Errore sconosciuto.';
+                    errorMessage = TRANSLATIONS[currentLanguage].geolocation.unknownError;
                     break;
             }
             alert(errorMessage);
+            
+            // Reset button state
+            resetGeolocationButton();
         },
         {
             enableHighAccuracy: true,
             timeout: 10000,
-            maximumAge: 300000 // 5 minutes
+            maximumAge: 60000 // 1 minute instead of 5 minutes
         }
     );
-    
-    // Reset button state after timeout or completion
-    setTimeout(function() {
-        btn.disabled = false;
-        loading.style.display = 'none';
-        btn.querySelector('span').textContent = 'Usa la mia posizione';
-    }, 15000);
 }
 
-function showLocationSuccess(district, calendarType) {
-    // Create a temporary success message
-    const successMsg = document.createElement('div');
-    successMsg.className = 'location-success-message';
-    successMsg.innerHTML = `
-        <div class="success-content">
-            <i class="fas fa-check-circle"></i>
-            <div class="success-text">
-                <h4>Posizione rilevata!</h4>
-                <p>Quartiere: <strong>${district}</strong></p>
-                <p>Calendario: <strong>${calendarType.charAt(0).toUpperCase() + calendarType.slice(1)}</strong></p>
-            </div>
-        </div>
-    `;
+function resetGeolocationButton() {
+    const btn = document.getElementById('geolocation-btn');
+    const loading = document.getElementById('geolocation-loading');
     
-    // Add styles for the success message
-    successMsg.style.cssText = `
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: linear-gradient(135deg, #4CAF50, #45a049);
-        color: white;
-        padding: 16px 24px;
-        border-radius: 8px;
-        box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
-        z-index: 10000;
-        animation: slideDown 0.3s ease;
-    `;
+    if (btn && loading) {
+        btn.disabled = false;
+        loading.style.display = 'none';
+        btn.querySelector('span').textContent = TRANSLATIONS[currentLanguage].geolocation.useMyLocation;
+    }
+}
+
+function showSimpleLocationUpdate(district, calendarType) {
+    // Trova l'elemento header del quartiere
+    const districtHeaderInfo = document.getElementById('district-header-info');
     
-    // Add animation styles
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
-        .success-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .success-text h4 {
-            margin: 0 0 4px 0;
-            font-size: 16px;
-        }
-        .success-text p {
-            margin: 2px 0;
-            font-size: 14px;
-            opacity: 0.9;
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // Add to DOM
-    document.body.appendChild(successMsg);
-    
-    // Remove after 4 seconds
-    setTimeout(() => {
-        successMsg.style.animation = 'slideUp 0.3s ease';
+    if (districtHeaderInfo) {
+        // Aggiungi un breve effetto visivo per indicare l'aggiornamento
+        districtHeaderInfo.style.transform = 'scale(1.05)';
+        districtHeaderInfo.style.transition = 'transform 0.3s ease';
+        
+        // Torna normale dopo l'animazione
         setTimeout(() => {
-            if (document.body.contains(successMsg)) {
-                document.body.removeChild(successMsg);
-            }
-            if (document.head.contains(style)) {
-                document.head.removeChild(style);
-            }
+            districtHeaderInfo.style.transform = 'scale(1)';
         }, 300);
-    }, 4000);
+        
+        // Rimuovi la transizione dopo l'animazione
+        setTimeout(() => {
+            districtHeaderInfo.style.transition = '';
+        }, 600);
+    }
 }
 
 function closeDistrictModal() {
     const modal = document.getElementById('district-modal');
     if (modal) {
         modal.style.display = 'none';
+    }
+}
+
+// === SMOOTH UPDATE FUNCTIONS FOR GEOLOCATION ===
+function updateDistrictInfoSmooth() {
+    const districtNameHeader = document.getElementById('selected-district-name-header');
+    const calendarTypeHeader = document.getElementById('selected-calendar-type-header');
+    
+    const district = DISTRICTS.find(d => d.name.toLowerCase() === currentDistrict.toLowerCase());
+    if (district) {
+        // Funzione per aggiornare un elemento con transizione smooth
+        const updateElementSmooth = (element, newText) => {
+            if (element && element.textContent !== newText) {
+                element.style.transition = 'opacity 0.2s ease-in-out';
+                element.style.opacity = '0.5';
+                
+                setTimeout(() => {
+                    element.textContent = newText;
+                    element.style.opacity = '1';
+                }, 100);
+                
+                setTimeout(() => {
+                    element.style.transition = '';
+                }, 400);
+            }
+        };
+        
+        // Update header district info with smooth transition
+        updateElementSmooth(districtNameHeader, district.name);
+        updateElementSmooth(calendarTypeHeader, district.calendar.charAt(0).toUpperCase() + district.calendar.slice(1));
+        
+        currentCalendarType = district.calendar;
+    }
+}
+
+function updateWasteCardSmooth() {
+    const wasteCard = document.getElementById('waste-info-card');
+    const wasteIcon = document.getElementById('waste-icon');
+    const wasteType = document.getElementById('waste-type');
+    const wasteDate = document.getElementById('waste-date');
+    
+    if (!wasteCard || !wasteIcon || !wasteType || !wasteDate) return;
+    
+    // La logica è: oggi preparo il rifiuto che verrà ritirato domani
+    const tomorrowWaste = getTomorrowWaste();
+    
+    // Funzione per aggiornare contenuto con fade
+    const updateContentSmooth = (element, newContent, isHTML = false) => {
+        element.style.transition = 'opacity 0.2s ease-in-out, transform 0.2s ease-in-out';
+        element.style.opacity = '0.5';
+        element.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            if (isHTML) {
+                element.innerHTML = newContent;
+            } else {
+                element.textContent = newContent;
+            }
+            element.style.opacity = '1';
+            element.style.transform = 'scale(1)';
+        }, 100);
+        
+        setTimeout(() => {
+            element.style.transition = '';
+        }, 300);
+    };
+    
+    if (tomorrowWaste) {
+        // C'è un ritiro domani, mostro cosa preparare oggi
+        wasteCard.className = 'waste-info-card';
+        wasteCard.classList.add(tomorrowWaste);
+        
+        updateContentSmooth(wasteIcon, WASTE_ICONS[tomorrowWaste], true);
+        updateContentSmooth(wasteType, TRANSLATIONS[currentLanguage].wasteTypes[tomorrowWaste]);
+        updateContentSmooth(wasteDate, TRANSLATIONS[currentLanguage].tomorrow);
+    } else {
+        // Non c'è ritiro domani - mostro sempre che oggi non c'è nulla da fare
+        wasteCard.className = 'waste-info-card';
+        wasteCard.classList.add('no-pickup');
+        
+        updateContentSmooth(wasteIcon, '<i class="fas fa-calendar-check"></i>', true);
+        updateContentSmooth(wasteType, TRANSLATIONS[currentLanguage].noPickupToday);
+        updateContentSmooth(wasteDate, TRANSLATIONS[currentLanguage].relaxDay);
     }
 }
