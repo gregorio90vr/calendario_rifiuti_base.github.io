@@ -1425,7 +1425,7 @@ body {
     }
     
     .waste-icon i {
-        font-size: 36px;
+        font-size: 52px; /*cambiato da 36 a 5236px*/
     }
     
     .waste-type {
@@ -1474,7 +1474,7 @@ body {
     }
     
     .waste-icon i {
-        font-size: 34px;
+        font-size: 52px; /*cambiato da 36 a 5236px*/
     }
     
     .waste-type {
