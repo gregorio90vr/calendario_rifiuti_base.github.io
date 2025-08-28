@@ -133,13 +133,11 @@ body {
 .district-header-name {
     color: white;
     font-weight: 700;
-    transition: opacity 0.3s ease;
 }
 
 .district-header-calendar {
     color: var(--amia-light);
     font-weight: 500;
-    transition: opacity 0.3s ease;
 }
 
 /* === MAIN CONTENT === */
@@ -158,26 +156,28 @@ body {
 /* === DATE SECTION === */
 .date-section {
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px 20px;
     background: var(--bg-secondary);
     border-radius: var(--radius-medium);
-    border: 1px solid var(--amia-light);
+    border: 2px solid var(--amia-light);
     flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin: 8px 0;
 }
 
 .date-display {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--amia-primary);
     margin: 0;
+    letter-spacing: 0.5px;
 }
 
 /* === WASTE INFO CARD === */
 .waste-info-card {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     border-radius: 20px;
-    padding: 24px;
+    padding: 16px;
     text-align: center;
     box-shadow: 
         0 8px 32px rgba(0,0,0,0.12),
@@ -192,7 +192,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 320px;
+    min-height: 280px;
 }
 
 /* Sezione superiore con icona e dettagli */
@@ -286,8 +286,8 @@ body {
 }
 
 .waste-icon {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
     display: flex;
@@ -304,7 +304,7 @@ body {
 }
 
 .waste-icon:hover {
-    transform: scale(1.05) translateY(-1px); /* Ridotto effetto hover */
+    transform: scale(1.05) translateY(-1px);
     box-shadow: 
         0 8px 24px rgba(0,0,0,0.15),
         0 3px 8px rgba(0,0,0,0.1),
@@ -312,7 +312,7 @@ body {
 }
 
 .waste-icon i {
-    font-size: 64px;
+    font-size: 48px;
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 
         0 2px 4px rgba(0,0,0,0.3),
@@ -338,12 +338,12 @@ body {
 }
 
 .waste-type {
-    font-size: 48px;
+    font-size: 42px;
     font-weight: 800;
     color: inherit;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-shadow: 
         0 3px 6px rgba(0,0,0,0.4),
         0 1px 3px rgba(0,0,0,0.3);
@@ -363,24 +363,24 @@ body {
 /* === SCHEDULE INFO BOX (inside card) === */
 .schedule-info-box {
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 16px; /* Ridotto da 20px */
-    padding: 14px 16px; /* Ridotto padding */
+    border-radius: 14px;
+    padding: 12px 14px;
     box-shadow: 
         0 4px 16px rgba(0, 0, 0, 0.08),
         0 1px 4px rgba(0, 0, 0, 0.06),
         inset 0 1px 0 rgba(255,255,255,0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Ridotto border */
+    border: 1px solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
-    min-height: 60px; /* Ridotto da 80px */
-    max-height: 90px; /* Limite massimo altezza */
+    min-height: 50px;
+    max-height: 80px;
     text-align: center;
-    flex: 0 0 auto; /* Non crescere oltre necessario */
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     max-width: 100%;
-    margin-top: 4px; /* Ridotto margin */
+    margin-top: 12px;
 }
 
 .schedule-header {
@@ -636,28 +636,12 @@ body {
     font-size: 16px;
     background: var(--bg-secondary);
     transition: all 0.3s ease;
-    cursor: text;
-    /* Previeni zoom su iOS quando si tocca l'input */
-    -webkit-text-size-adjust: 100%;
 }
 
 .search-input:focus {
     outline: none;
     border-color: var(--amia-primary);
     box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
-}
-
-/* Migliore esperienza touch su mobile */
-@media (max-width: 768px) {
-    .search-input {
-        font-size: 16px; /* Previeni zoom su iOS */
-        padding: 18px 50px 18px 18px;
-    }
-    
-    .search-input::placeholder {
-        color: var(--text-secondary);
-        opacity: 0.8;
-    }
 }
 
 .search-icon {
@@ -1183,58 +1167,6 @@ body {
     opacity: 0.6;
 }
 
-/* === GEOLOCATION SECTION === */
-.geolocation-section {
-    margin-bottom: 24px;
-    text-align: center;
-}
-
-.geolocation-btn {
-    width: 100%;
-    padding: 16px 20px;
-    background: linear-gradient(135deg, var(--amia-primary), var(--amia-secondary));
-    color: white;
-    border: none;
-    border-radius: var(--radius-medium);
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    position: relative;
-    overflow: hidden;
-}
-
-.geolocation-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
-}
-
-.geolocation-btn:active {
-    transform: translateY(0);
-}
-
-.geolocation-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-}
-
-.geolocation-loading {
-    position: absolute;
-    right: 16px;
-}
-
-.geolocation-text {
-    margin: 16px 0 0 0;
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 500;
-}
-
 /* === DISTRICT LIST === */
 .district-list {
     max-height: 300px;
@@ -1286,210 +1218,184 @@ body {
     border-radius: var(--radius-medium);
     border-left: 4px solid transparent;
     transition: all 0.3s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
+    cursor: pointer; /* Make it clear it's clickable */
 }
 
 .search-result-item:hover {
+    background: var(--bg-primary);
     box-shadow: var(--shadow-light);
-    transform: translateY(-1px);
+    transform: translateY(-1px); /* Subtle lift effect */
 }
 
-/* Waste type colors - SFONDI COLORATI COMPLETI */
-.search-result-item.umido { 
-    background: linear-gradient(135deg, #8D4004 0%, #A0510A 100%);
-    color: white;
-    border-color: #8D4004;
-}
-
-.search-result-item.umido:hover {
-    background: linear-gradient(135deg, #A0510A 0%, #B8620F 100%);
-    box-shadow: 0 4px 15px rgba(141, 64, 4, 0.3);
-}
-
-.search-result-item.carta { 
-    background: linear-gradient(135deg, #FFD700 0%, #FFC107 100%);
-    color: #333;
-    border-color: #FFD700;
-}
-
-.search-result-item.carta:hover {
-    background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-}
-
-.search-result-item.plastica { 
-    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
-    color: white;
-    border-color: #2196F3;
-}
-
-.search-result-item.plastica:hover {
-    background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
-    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
-}
-
-.search-result-item.secco { 
-    background: linear-gradient(135deg, #424242 0%, #616161 100%);
-    color: white;
-    border-color: #424242;
-}
-
-.search-result-item.secco:hover {
-    background: linear-gradient(135deg, #616161 0%, #757575 100%);
-    box-shadow: 0 4px 15px rgba(66, 66, 66, 0.3);
-}
+.search-result-item.umido { border-left-color: var(--umido-color); }
+.search-result-item.carta { border-left-color: var(--carta-color); }
+.search-result-item.plastica { border-left-color: var(--plastica-color); }
+.search-result-item.secco { border-left-color: var(--secco-color); }
 
 .search-result-title {
     font-weight: 600;
+    color: var(--text-primary);
     margin-bottom: 4px;
 }
 
 .search-result-category {
     font-size: 14px;
-    opacity: 0.85;
-}
-
-/* Colori del testo per ogni tipo di rifiuto */
-.search-result-item.umido .search-result-title,
-.search-result-item.umido .search-result-category,
-.search-result-item.plastica .search-result-title,
-.search-result-item.plastica .search-result-category,
-.search-result-item.secco .search-result-title,
-.search-result-item.secco .search-result-category {
-    color: white;
-}
-
-.search-result-item.carta .search-result-title,
-.search-result-item.carta .search-result-category {
-    color: #333;
-    font-weight: 700;
+    color: var(--text-secondary);
 }
 
 /* === RESPONSIVE DESIGN === */
 
-/* Mobile Height Optimization - Critical for single screen view */
-@media (max-height: 800px) {
-    .app-header {
-        padding: 10px 20px;
-    }
-    
-    .app-header h1 {
-        font-size: 16px;
-    }
-    
-    .app-main {
-        padding: 4px 16px;
-        gap: 4px;
-    }
-    
-    .date-section {
-        padding: 6px;
-    }
-    
+/* Desktop/Laptop View */
+@media (min-width: 1024px) {
     .waste-info-card {
-        min-height: 180px;
-        padding: 16px;
-        gap: 16px;
+        min-height: 360px;
+        padding: 24px;
     }
     
     .waste-icon {
-        width: 65px;
-        height: 65px;
+        width: 140px;
+        height: 140px;
     }
     
     .waste-icon i {
-        font-size: 32px;
+        font-size: 72px;
     }
     
     .waste-type {
-        font-size: 22px;
-    }
-    
-    .bottom-nav {
-        padding: 5px 8px 7px;
-    }
-}
-
-@media (max-height: 700px) {
-    .app-header {
-        padding: 8px 18px;
-    }
-    
-    .app-header h1 {
-        font-size: 15px;
-    }
-    
-    .app-main {
-        padding: 3px 14px;
-        gap: 3px;
-    }
-    
-    .date-section {
-        padding: 5px;
-    }
-    
-    .date-display {
-        font-size: 12px;
-    }
-    
-    .waste-info-card {
-        min-height: 160px;
-        padding: 14px;
-        gap: 14px;
-    }
-    
-    .waste-icon {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .waste-icon i {
-        font-size: 42px;
-    }
-    
-    .waste-type {
-        font-size: 32px;
-    }
-    
-    .waste-type {
-        font-size: 32px;
-        margin-bottom: 6px;
-    }
-    
-    .waste-date {
-        font-size: 13px;
-        padding: 4px 10px;
+        font-size: 52px;
+        letter-spacing: 3px;
     }
     
     .schedule-info-box {
-        padding: 10px;
-        min-height: 50px;
+        padding: 20px 24px;
+        min-height: 70px;
+        border-radius: 18px;
     }
     
-    .schedule-title {
-        font-size: 11px;
+    .schedule-text {
+        font-size: 16px;
     }
     
-    .schedule-message {
-        font-size: 11px;
+    .date-section {
+        padding: 20px 24px;
     }
     
-    .bottom-nav {
-        padding: 3px 6px 4px;
+    .date-display {
+        font-size: 20px;
+    }
+}
+
+/* Tablet View */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .waste-info-card {
+        min-height: 320px;
+        padding: 20px;
     }
     
-    .nav-btn {
-        padding: 3px 5px;
-        gap: 1px;
+    .waste-icon {
+        width: 120px;
+        height: 120px;
     }
     
-    .nav-icon {
+    .waste-icon i {
+        font-size: 60px;
+    }
+    
+    .waste-type {
+        font-size: 48px;
+    }
+    
+    .schedule-info-box {
+        padding: 16px 20px;
+        min-height: 60px;
+    }
+    
+    .schedule-text {
+        font-size: 15px;
+    }
+    
+    .date-section {
+        padding: 18px 22px;
+    }
+    
+    .date-display {
+        font-size: 19px;
+    }
+}
+
+/* Mobile View - Large Screens */
+@media (min-width: 481px) and (max-width: 767px) {
+    .waste-info-card {
+        min-height: 300px;
+        padding: 18px;
+    }
+    
+    .waste-icon {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .waste-icon i {
+        font-size: 56px;
+    }
+    
+    .waste-type {
+        font-size: 44px;
+    }
+    
+    .schedule-info-box {
+        padding: 15px 18px;
+        min-height: 55px;
+    }
+    
+    .schedule-text {
         font-size: 14px;
     }
     
-    .nav-label {
-        font-size: 7px;
+    .date-section {
+        padding: 16px 20px;
+    }
+    
+    .date-display {
+        font-size: 18px;
+    }
+}
+
+/* Mobile View - Small Screens */
+@media (max-width: 480px) {
+    .waste-info-card {
+        min-height: 280px;
+        padding: 16px;
+    }
+    
+    .waste-icon {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .waste-icon i {
+        font-size: 52px;
+    }
+    
+    .waste-type {
+        font-size: 40px;
+    }
+    
+    .schedule-info-box {
+        padding: 14px 16px;
+        min-height: 50px;
+    }
+    
+    .schedule-text {
+        font-size: 13px;
+    }
+    
+    .date-section {
+        padding: 14px 18px;
+    }
+    
+    .date-display {
+        font-size: 17px;
     }
 }
 
