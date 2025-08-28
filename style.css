@@ -1364,38 +1364,53 @@ body {
 /* Mobile View - Small Screens */
 @media (max-width: 480px) {
     .waste-info-card {
-        min-height: 280px;
-        padding: 16px;
+        min-height: 320px;
+        padding: 20px;
     }
     
     .waste-icon {
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        height: 130px;
+        margin: 10px 0;
     }
     
     .waste-icon i {
-        font-size: 52px;
+        font-size: 68px;
     }
     
     .waste-type {
-        font-size: 40px;
+        font-size: 48px;
+        letter-spacing: 2px;
+        margin: 10px 0;
     }
     
     .schedule-info-box {
-        padding: 14px 16px;
-        min-height: 50px;
+        padding: 18px 20px;
+        min-height: 65px;
+        border-radius: 16px;
+        margin-top: 15px;
     }
     
     .schedule-text {
-        font-size: 13px;
+        font-size: 15px;
+    }
+    
+    .schedule-title {
+        font-size: 16px;
+        margin-bottom: 8px;
     }
     
     .date-section {
-        padding: 14px 18px;
+        padding: 16px 20px;
+        margin: 10px 0;
     }
     
     .date-display {
-        font-size: 17px;
+        font-size: 18px;
+    }
+    
+    .waste-main-content {
+        gap: 16px;
     }
 }
 
