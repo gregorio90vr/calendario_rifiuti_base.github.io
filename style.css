@@ -1249,169 +1249,169 @@ body {
 /* Desktop/Laptop View */
 @media (min-width: 1024px) {
     .waste-info-card {
-        min-height: 360px;
-        padding: 24px;
+        min-height: min(65vh, 420px);
+        padding: 32px;
     }
     
     .waste-icon {
-        width: 140px;
-        height: 140px;
+        width: min(32vh, 180px);
+        height: min(32vh, 180px);
     }
     
     .waste-icon i {
-        font-size: 72px;
+        font-size: min(15vh, 84px);
     }
     
     .waste-type {
-        font-size: 52px;
-        letter-spacing: 3px;
+        font-size: min(12vh, 64px);
+        letter-spacing: min(1vh, 4px);
     }
     
     .schedule-info-box {
-        padding: 20px 24px;
-        min-height: 70px;
-        border-radius: 18px;
+        padding: 24px 32px;
+        min-height: 80px;
+        border-radius: 20px;
     }
     
     .schedule-text {
-        font-size: 16px;
+        font-size: min(3vh, 18px);
     }
     
     .date-section {
-        padding: 20px 24px;
+        padding: 24px 32px;
     }
     
     .date-display {
-        font-size: 20px;
+        font-size: min(4vh, 22px);
     }
 }
 
 /* Tablet View */
 @media (min-width: 768px) and (max-width: 1023px) {
     .waste-info-card {
-        min-height: 320px;
-        padding: 20px;
+        min-height: min(60vh, 380px);
+        padding: 28px;
     }
     
     .waste-icon {
-        width: 120px;
-        height: 120px;
+        width: min(30vh, 160px);
+        height: min(30vh, 160px);
     }
     
     .waste-icon i {
-        font-size: 60px;
+        font-size: min(14vh, 76px);
     }
     
     .waste-type {
-        font-size: 48px;
+        font-size: min(10vh, 58px);
     }
     
     .schedule-info-box {
-        padding: 16px 20px;
-        min-height: 60px;
+        padding: 20px 24px;
+        min-height: 70px;
     }
     
     .schedule-text {
-        font-size: 15px;
+        font-size: min(3vh, 17px);
     }
     
     .date-section {
-        padding: 18px 22px;
+        padding: 22px 26px;
     }
     
     .date-display {
-        font-size: 19px;
+        font-size: min(3.5vh, 20px);
     }
 }
 
 /* Mobile View - Large Screens */
 @media (min-width: 481px) and (max-width: 767px) {
     .waste-info-card {
-        min-height: 300px;
-        padding: 18px;
+        min-height: min(58vh, 360px);
+        padding: 24px;
     }
     
     .waste-icon {
-        width: 110px;
-        height: 110px;
+        width: min(28vh, 150px);
+        height: min(28vh, 150px);
     }
     
     .waste-icon i {
-        font-size: 56px;
+        font-size: min(13vh, 72px);
     }
     
     .waste-type {
-        font-size: 44px;
+        font-size: min(9vh, 54px);
     }
     
     .schedule-info-box {
-        padding: 15px 18px;
-        min-height: 55px;
+        padding: 18px 22px;
+        min-height: 65px;
     }
     
     .schedule-text {
-        font-size: 14px;
+        font-size: min(2.8vh, 16px);
     }
     
     .date-section {
-        padding: 16px 20px;
+        padding: 20px 24px;
     }
     
     .date-display {
-        font-size: 18px;
+        font-size: min(3.2vh, 19px);
     }
 }
 
 /* Mobile View - Small Screens */
 @media (max-width: 480px) {
     .waste-info-card {
-        min-height: 320px;
-        padding: 20px;
+        min-height: min(55vh, 340px);
+        padding: 24px;
     }
     
     .waste-icon {
-        width: 130px;
-        height: 130px;
-        margin: 10px 0;
+        width: min(26vh, 140px);
+        height: min(26vh, 140px);
+        margin: calc(1.5vh + 8px) 0;
     }
     
     .waste-icon i {
-        font-size: 68px;
+        font-size: min(12vh, 70px);
     }
     
     .waste-type {
-        font-size: 48px;
-        letter-spacing: 2px;
-        margin: 10px 0;
+        font-size: min(8.5vh, 50px);
+        letter-spacing: min(0.4vh, 2.5px);
+        margin: calc(1.5vh + 8px) 0;
     }
     
     .schedule-info-box {
-        padding: 18px 20px;
-        min-height: 65px;
+        padding: 20px 22px;
+        min-height: min(12vh, 70px);
         border-radius: 16px;
-        margin-top: 15px;
+        margin-top: calc(2vh + 10px);
     }
     
     .schedule-text {
-        font-size: 15px;
+        font-size: min(2.6vh, 16px);
     }
     
     .schedule-title {
-        font-size: 16px;
-        margin-bottom: 8px;
+        font-size: min(2.8vh, 17px);
+        margin-bottom: calc(1vh + 6px);
     }
     
     .date-section {
-        padding: 16px 20px;
-        margin: 10px 0;
+        padding: 18px 22px;
+        margin: calc(1.5vh + 8px) 0;
     }
     
     .date-display {
-        font-size: 18px;
+        font-size: min(3vh, 18px);
     }
     
     .waste-main-content {
-        gap: 16px;
+        gap: calc(2vh + 12px);
     }
 }
 
