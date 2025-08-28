@@ -419,13 +419,18 @@ body {
 }
 
 .schedule-icon {
-    font-size: 16px;
+    font-size: min(5vw, 22px);
     color: inherit;
     opacity: 0.9;
+    width: min(6vw, 32px);
+    height: min(6vw, 32px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .schedule-title {
-    font-size: 14px;
+    font-size: min(4vw, 18px);
     font-weight: 600;
     color: inherit;
     opacity: 0.95;
