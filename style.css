@@ -176,8 +176,8 @@ body {
 /* === WASTE INFO CARD === */
 .waste-info-card {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    border-radius: min(20px, 4vw);
-    padding: calc(2vh + 10px);
+    border-radius: 20px;
+    padding: 16px;
     text-align: center;
     box-shadow: 
         0 8px 32px rgba(0,0,0,0.12),
@@ -192,8 +192,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: min(50vh, 360px);
-    max-height: 70vh;
+    min-height: 280px;
 }
 
 /* Sezione superiore con icona e dettagli */
@@ -287,14 +286,14 @@ body {
 }
 
 .waste-icon {
-    width: min(28vh, 160px);
-    height: min(28vh, 160px);
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: calc(1vh + 5px) 0;
+    margin: 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
         0 6px 20px rgba(0,0,0,0.12),
@@ -313,7 +312,7 @@ body {
 }
 
 .waste-icon i {
-    font-size: min(12vh, 72px);
+    font-size: 48px;
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 
         0 2px 4px rgba(0,0,0,0.3),
@@ -339,16 +338,16 @@ body {
 }
 
 .waste-type {
-    font-size: min(8vh, 52px);
+    font-size: 42px;
     font-weight: 800;
     color: inherit;
-    margin: calc(1vh + 5px) 0;
+    margin: 0;
     text-transform: uppercase;
-    letter-spacing: min(0.5vh, 3px);
+    letter-spacing: 2px;
     text-shadow: 
         0 3px 6px rgba(0,0,0,0.4),
         0 1px 3px rgba(0,0,0,0.3);
-    line-height: 1.1;
+    line-height: 1;
 }
 
 .waste-date {
@@ -1249,169 +1248,154 @@ body {
 /* Desktop/Laptop View */
 @media (min-width: 1024px) {
     .waste-info-card {
-        min-height: min(65vh, 420px);
-        padding: 32px;
+        min-height: 360px;
+        padding: 24px;
     }
     
     .waste-icon {
-        width: min(32vh, 180px);
-        height: min(32vh, 180px);
+        width: 140px;
+        height: 140px;
     }
     
     .waste-icon i {
-        font-size: min(15vh, 84px);
+        font-size: 72px;
     }
     
     .waste-type {
-        font-size: min(12vh, 64px);
-        letter-spacing: min(1vh, 4px);
+        font-size: 52px;
+        letter-spacing: 3px;
     }
     
     .schedule-info-box {
-        padding: 24px 32px;
-        min-height: 80px;
-        border-radius: 20px;
+        padding: 20px 24px;
+        min-height: 70px;
+        border-radius: 18px;
     }
     
     .schedule-text {
-        font-size: min(3vh, 18px);
+        font-size: 16px;
     }
     
     .date-section {
-        padding: 24px 32px;
+        padding: 20px 24px;
     }
     
     .date-display {
-        font-size: min(4vh, 22px);
+        font-size: 20px;
     }
 }
 
 /* Tablet View */
 @media (min-width: 768px) and (max-width: 1023px) {
     .waste-info-card {
-        min-height: min(60vh, 380px);
-        padding: 28px;
+        min-height: 320px;
+        padding: 20px;
     }
     
     .waste-icon {
-        width: min(30vh, 160px);
-        height: min(30vh, 160px);
+        width: 120px;
+        height: 120px;
     }
     
     .waste-icon i {
-        font-size: min(14vh, 76px);
+        font-size: 60px;
     }
     
     .waste-type {
-        font-size: min(10vh, 58px);
+        font-size: 48px;
     }
     
     .schedule-info-box {
-        padding: 20px 24px;
-        min-height: 70px;
+        padding: 16px 20px;
+        min-height: 60px;
     }
     
     .schedule-text {
-        font-size: min(3vh, 17px);
+        font-size: 15px;
     }
     
     .date-section {
-        padding: 22px 26px;
+        padding: 18px 22px;
     }
     
     .date-display {
-        font-size: min(3.5vh, 20px);
+        font-size: 19px;
     }
 }
 
 /* Mobile View - Large Screens */
 @media (min-width: 481px) and (max-width: 767px) {
     .waste-info-card {
-        min-height: min(58vh, 360px);
-        padding: 24px;
+        min-height: 300px;
+        padding: 18px;
     }
     
     .waste-icon {
-        width: min(28vh, 150px);
-        height: min(28vh, 150px);
+        width: 110px;
+        height: 110px;
     }
     
     .waste-icon i {
-        font-size: min(13vh, 72px);
+        font-size: 56px;
     }
     
     .waste-type {
-        font-size: min(9vh, 54px);
+        font-size: 44px;
     }
     
     .schedule-info-box {
-        padding: 18px 22px;
-        min-height: 65px;
+        padding: 15px 18px;
+        min-height: 55px;
     }
     
     .schedule-text {
-        font-size: min(2.8vh, 16px);
+        font-size: 14px;
     }
     
     .date-section {
-        padding: 20px 24px;
+        padding: 16px 20px;
     }
     
     .date-display {
-        font-size: min(3.2vh, 19px);
+        font-size: 18px;
     }
 }
 
 /* Mobile View - Small Screens */
 @media (max-width: 480px) {
     .waste-info-card {
-        min-height: min(55vh, 340px);
-        padding: 24px;
+        min-height: 280px;
+        padding: 16px;
     }
     
     .waste-icon {
-        width: min(26vh, 140px);
-        height: min(26vh, 140px);
-        margin: calc(1.5vh + 8px) 0;
+        width: 100px;
+        height: 100px;
     }
     
     .waste-icon i {
-        font-size: min(12vh, 70px);
+        font-size: 52px;
     }
     
     .waste-type {
-        font-size: min(8.5vh, 50px);
-        letter-spacing: min(0.4vh, 2.5px);
-        margin: calc(1.5vh + 8px) 0;
+        font-size: 40px;
     }
     
     .schedule-info-box {
-        padding: 20px 22px;
-        min-height: min(12vh, 70px);
-        border-radius: 16px;
-        margin-top: calc(2vh + 10px);
+        padding: 14px 16px;
+        min-height: 50px;
     }
     
     .schedule-text {
-        font-size: min(2.6vh, 16px);
-    }
-    
-    .schedule-title {
-        font-size: min(2.8vh, 17px);
-        margin-bottom: calc(1vh + 6px);
+        font-size: 13px;
     }
     
     .date-section {
-        padding: 18px 22px;
-        margin: calc(1.5vh + 8px) 0;
+        padding: 14px 18px;
     }
     
     .date-display {
-        font-size: min(3vh, 18px);
-    }
-    
-    .waste-main-content {
-        gap: calc(2vh + 12px);
+        font-size: 17px;
     }
 }
 
