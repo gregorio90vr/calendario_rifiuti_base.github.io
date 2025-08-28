@@ -286,21 +286,21 @@ body {
 }
 
 .waste-icon {
-    width: min(40vw, 180px);
-    height: min(40vw, 180px);
+    width: 200px;  /*cambiatao era 90*/
+    height: 200px; /*cambiatao era 90*/
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: min(3vh, 20px) 0;
+    margin: 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
         0 6px 20px rgba(0,0,0,0.12),
         0 2px 6px rgba(0,0,0,0.08),
         inset 0 2px 4px rgba(255,255,255,0.1);
     backdrop-filter: blur(20px);
-    border: min(0.5vw, 3px) solid rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .waste-icon:hover {
@@ -312,7 +312,7 @@ body {
 }
 
 .waste-icon i {
-    font-size: min(20vw, 96px);
+    font-size: 48px;  /*cambiatao era 48*/
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 
         0 2px 4px rgba(0,0,0,0.3),
@@ -338,16 +338,16 @@ body {
 }
 
 .waste-type {
-    font-size: min(15vw, 72px);
+    font-size: 42px;
     font-weight: 800;
     color: inherit;
-    margin: min(2vh, 15px) 0;
+    margin: 0;
     text-transform: uppercase;
-    letter-spacing: min(1vw, 4px);
+    letter-spacing: 2px;
     text-shadow: 
         0 3px 6px rgba(0,0,0,0.4),
         0 1px 3px rgba(0,0,0,0.3);
-    line-height: 1.1;
+    line-height: 1;
 }
 
 .waste-date {
@@ -419,18 +419,13 @@ body {
 }
 
 .schedule-icon {
-    font-size: min(5vw, 22px);
+    font-size: 16px;
     color: inherit;
     opacity: 0.9;
-    width: min(6vw, 32px);
-    height: min(6vw, 32px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .schedule-title {
-    font-size: min(4vw, 18px);
+    font-size: 14px;
     font-weight: 600;
     color: inherit;
     opacity: 0.95;
@@ -1430,7 +1425,7 @@ body {
     }
     
     .waste-icon i {
-        font-size: 52px; /*cambiato da 36 a 5236px*/
+        font-size: 36px;
     }
     
     .waste-type {
@@ -1479,7 +1474,7 @@ body {
     }
     
     .waste-icon i {
-        font-size: 52px; /*cambiato da 36 a 5236px*/
+        font-size: 34px;
     }
     
     .waste-type {
