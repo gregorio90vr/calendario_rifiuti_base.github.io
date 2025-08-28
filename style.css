@@ -176,8 +176,8 @@ body {
 /* === WASTE INFO CARD === */
 .waste-info-card {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    border-radius: 20px;
-    padding: 16px;
+    border-radius: min(20px, 4vw);
+    padding: calc(2vh + 10px);
     text-align: center;
     box-shadow: 
         0 8px 32px rgba(0,0,0,0.12),
@@ -192,7 +192,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 280px;
+    min-height: min(50vh, 360px);
+    max-height: 70vh;
 }
 
 /* Sezione superiore con icona e dettagli */
@@ -286,14 +287,14 @@ body {
 }
 
 .waste-icon {
-    width: 90px;
-    height: 90px;
+    width: min(28vh, 160px);
+    height: min(28vh, 160px);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    margin: calc(1vh + 5px) 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
         0 6px 20px rgba(0,0,0,0.12),
@@ -312,7 +313,7 @@ body {
 }
 
 .waste-icon i {
-    font-size: 48px;
+    font-size: min(12vh, 72px);
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 
         0 2px 4px rgba(0,0,0,0.3),
@@ -338,16 +339,16 @@ body {
 }
 
 .waste-type {
-    font-size: 42px;
+    font-size: min(8vh, 52px);
     font-weight: 800;
     color: inherit;
-    margin: 0;
+    margin: calc(1vh + 5px) 0;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: min(0.5vh, 3px);
     text-shadow: 
         0 3px 6px rgba(0,0,0,0.4),
         0 1px 3px rgba(0,0,0,0.3);
-    line-height: 1;
+    line-height: 1.1;
 }
 
 .waste-date {
