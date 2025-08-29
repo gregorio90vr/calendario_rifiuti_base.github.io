@@ -192,8 +192,16 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    min-height: min(75vh, 420px);
+    min-height: 420px;
     max-height: 85vh;
+}
+
+/* Regole specifiche per dispositivi mobili */
+@media screen and (max-width: 480px) {
+    .waste-info-card {
+        min-height: 85vh;
+        padding: 4vh 3vw;
+    }
 }
 
 /* Sezione superiore con icona e dettagli */
@@ -288,21 +296,30 @@ body {
 }
 
 .waste-icon {
-    width: min(40vh, 200px);
-    height: min(40vh, 200px);
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: min(3vh, 16px) 0;
+    margin: 16px 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
         0 6px 20px rgba(0,0,0,0.12),
         0 2px 6px rgba(0,0,0,0.08),
         inset 0 2px 4px rgba(255,255,255,0.1);
     backdrop-filter: blur(20px);
-    border: min(0.4vh, 3px) solid rgba(255, 255, 255, 0.15);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Regole specifiche per dispositivi mobili */
+@media screen and (max-width: 480px) {
+    .waste-icon {
+        width: 65vw;
+        height: 65vw;
+        margin: 3vh 0;
+    }
 }
 
 .waste-icon:hover {
@@ -314,11 +331,18 @@ body {
 }
 
 .waste-icon i {
-    font-size: min(20vh, 90px);
+    font-size: 90px;
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 
         0 2px 4px rgba(0,0,0,0.3),
         0 0 8px rgba(255,255,255,0.1);
+}
+
+/* Regole specifiche per dispositivi mobili */
+@media screen and (max-width: 480px) {
+    .waste-icon i {
+        font-size: 32vw;
+    }
 }
 
 /* Specific icon colors for colored cards */
@@ -340,16 +364,24 @@ body {
 }
 
 .waste-type {
-    font-size: min(15vh, 60px);
+    font-size: 52px;
     font-weight: 800;
     color: inherit;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: min(0.8vh, 3px);
+    letter-spacing: 3px;
     text-shadow: 
         0 3px 6px rgba(0,0,0,0.4),
         0 1px 3px rgba(0,0,0,0.3);
     line-height: 1;
+}
+
+/* Regole specifiche per dispositivi mobili */
+@media screen and (max-width: 480px) {
+    .waste-type {
+        font-size: 13vw;
+        letter-spacing: 1vw;
+    }
 }
 
 .waste-date {
@@ -365,16 +397,16 @@ body {
 /* === SCHEDULE INFO BOX (inside card) === */
 .schedule-info-box {
     background: rgba(255, 255, 255, 0.15);
-    border-radius: min(2vh, 14px);
-    padding: min(2vh, 14px) min(2.5vh, 16px);
+    border-radius: 14px;
+    padding: 14px 16px;
     box-shadow: 
         0 4px 16px rgba(0, 0, 0, 0.08),
         0 1px 4px rgba(0, 0, 0, 0.06),
         inset 0 1px 0 rgba(255,255,255,0.1);
-    border: min(0.2vh, 1px) solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
-    min-height: min(8vh, 50px);
-    max-height: min(12vh, 80px);
+    min-height: 50px;
+    max-height: 80px;
     text-align: center;
     flex: 0 0 auto;
     display: flex;
@@ -382,7 +414,18 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 100%;
-    margin-top: min(2vh, 12px);
+    margin-top: 12px;
+}
+
+/* Regole specifiche per dispositivi mobili */
+@media screen and (max-width: 480px) {
+    .schedule-info-box {
+        min-height: 12vh;
+        max-height: 15vh;
+        padding: 3vh 4vw;
+        margin-top: 3vh;
+        border-radius: 4vw;
+    }
 }
 
 .schedule-header {
