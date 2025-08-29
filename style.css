@@ -1290,6 +1290,43 @@ body {
 
 /* === RESPONSIVE DESIGN === */
 
+/* Test Xiaomi A3 */
+@media screen and (width: 720px) and (height: 1650px), 
+       screen and (width: 1650px) and (height: 720px) {
+    .waste-info-card {
+        min-height: 80vh;
+        padding: 3vh 4vw;
+    }
+    
+    .waste-icon {
+        width: 60vw;
+        height: 60vw;
+        margin: 2vh 0;
+    }
+    
+    .waste-icon i {
+        font-size: 30vw;
+    }
+    
+    .waste-type {
+        font-size: 12vw;
+        letter-spacing: 0.8vw;
+        margin-top: 2vh;
+    }
+    
+    .schedule-info-box {
+        min-height: 10vh;
+        max-height: 14vh;
+        padding: 2vh 3vw;
+        margin-top: 2vh;
+        border-radius: 3vw;
+    }
+    
+    .schedule-text {
+        font-size: 4vw;
+    }
+}
+
 /* Desktop/Laptop View */
 @media (min-width: 1024px) {
     .waste-info-card {
