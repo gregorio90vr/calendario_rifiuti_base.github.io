@@ -176,23 +176,24 @@ body {
 /* === WASTE INFO CARD === */
 .waste-info-card {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    border-radius: 20px;
-    padding: 16px;
+    border-radius: min(4vh, 20px);
+    padding: min(4vh, 24px) min(3vh, 20px);
     text-align: center;
     box-shadow: 
         0 8px 32px rgba(0,0,0,0.12),
         0 2px 8px rgba(0,0,0,0.08),
         inset 0 1px 0 rgba(255,255,255,0.1);
-    border: 2px solid rgba(255,255,255,0.1);
+    border: min(0.4vh, 2px) solid rgba(255,255,255,0.1);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    min-height: 280px;
+    min-height: min(65vh, 420px);
+    max-height: 75vh;
 }
 
 /* Sezione superiore con icona e dettagli */
@@ -200,10 +201,11 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 24px;
-    margin-bottom: 16px;
+    gap: min(4vh, 24px);
+    padding: min(3vh, 20px) 0;
+    margin-bottom: min(3vh, 20px);
 }
 
 /* Card colored backgrounds based on waste type - DARKER COLORS */
@@ -286,21 +288,21 @@ body {
 }
 
 .waste-icon {
-    width: 200px;  /*cambiatao era 90*/
-    height: 200px; /*cambiatao era 90*/
+    width: min(33vh, 200px);
+    height: min(33vh, 200px);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    margin: min(2vh, 16px) 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
         0 6px 20px rgba(0,0,0,0.12),
         0 2px 6px rgba(0,0,0,0.08),
         inset 0 2px 4px rgba(255,255,255,0.1);
     backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    border: min(0.4vh, 3px) solid rgba(255, 255, 255, 0.15);
 }
 
 .waste-icon:hover {
@@ -312,7 +314,7 @@ body {
 }
 
 .waste-icon i {
-    font-size: 48px;  /*cambiatao era 48*/
+    font-size: min(14vh, 90px);
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 
         0 2px 4px rgba(0,0,0,0.3),
@@ -338,12 +340,12 @@ body {
 }
 
 .waste-type {
-    font-size: 42px;
+    font-size: min(10vh, 60px);
     font-weight: 800;
     color: inherit;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: min(0.5vh, 3px);
     text-shadow: 
         0 3px 6px rgba(0,0,0,0.4),
         0 1px 3px rgba(0,0,0,0.3);
@@ -363,16 +365,16 @@ body {
 /* === SCHEDULE INFO BOX (inside card) === */
 .schedule-info-box {
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 14px;
-    padding: 12px 14px;
+    border-radius: min(2vh, 14px);
+    padding: min(2vh, 14px) min(2.5vh, 16px);
     box-shadow: 
         0 4px 16px rgba(0, 0, 0, 0.08),
         0 1px 4px rgba(0, 0, 0, 0.06),
         inset 0 1px 0 rgba(255,255,255,0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: min(0.2vh, 1px) solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
-    min-height: 50px;
-    max-height: 80px;
+    min-height: min(8vh, 50px);
+    max-height: min(12vh, 80px);
     text-align: center;
     flex: 0 0 auto;
     display: flex;
@@ -380,7 +382,7 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 100%;
-    margin-top: 12px;
+    margin-top: min(2vh, 12px);
 }
 
 .schedule-header {
@@ -397,8 +399,8 @@ body {
 }
 
 .schedule-text {
-    font-size: 13px; /* Ridotto da 15px */
-    font-weight: 500; /* Ridotto peso font */
+    font-size: min(3vh, 18px);
+    font-weight: 500;
     line-height: 1.4;
     opacity: 0.9;
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
