@@ -1,20 +1,30 @@
-// Copyright © 2025 Gregorio Pellegrini. Tutti i diritti riservati.
-// Calendario Rifiuti - Nuovo Design con Layout Wireframe
+// =========================================
+// CALENDARIO RIFIUTI VERONA - NEW DESIGN
+// Basato su wireframe fornito dall'utente
+// © 2025 Gregorio Pellegrini
+// =========================================
 
 // === CONFIGURAZIONE GLOBALE ===
 let currentLanguage = 'it';
 let currentDistrict = 'basson';
 let currentCalendarType = 'azzurro';
 
+// === DATA FISSA DELL'APP ===
+// La data viene salvata una sola volta all'avvio dell'app per evitare 
+// inconsistenze durante l'uso (cambio quartiere, lingua, ecc.)
+// Questa data rimane costante per tutta la sessione dell'app
+const APP_START_DATE = new Date(); // Data salvata all'avvio dell'app
+
 // === TRADUZIONI COMPLETE ===
 const TRANSLATIONS = {
     it: {
-        appTitle: "CALENDARIO RIFIUTI",
+        appTitle: "CALENDARIO RIFIUTI VERONA",
         searchButton: "DOVE LO BUTTO",
-        districtButton: "QUARTIERE",
+        districtButton: "QUARTIERE", 
+        languageButton: "LINGUA",
+        infoButton: "INFO",
         modalTitle: "Dove lo butto?",
         searchPlaceholder: "Scrivi cosa vuoi buttare...",
-        searchHint: "Es: bottiglie di plastica, giornali, scatolette di tonno",
         closeButton: "Chiudi",
         noResults: "Nessun risultato trovato",
         today: "OGGI",
@@ -23,10 +33,10 @@ const TRANSLATIONS = {
         noPickupToday: "Nessuna consegna per oggi",
         relaxDay: "Giornata libera",
         wasteTypes: {
-            umido: "Umido",
-            plastica: "Plastica/Metalli",
-            carta: "Carta",
-            secco: "Secco"
+            umido: "UMIDO",
+            plastica: "PLASTICA/METALLI", 
+            carta: "CARTA",
+            secco: "SECCO"
         },
         timeStatus: {
             rest: {
@@ -34,8 +44,8 @@ const TRANSLATIONS = {
                 message: "Oggi non devi preparare nessun rifiuto"
             },
             canDispose: {
-                title: "✅ Puoi conferire ora",
-                message: "Porta fuori i rifiuti per il ritiro di domani (19:00-21:00)"
+                title: "✅ Puoi conferire ora", 
+                message: "Porta fuori i rifiuti per il ritiro (19:00-21:00)"
             },
             prepare: {
                 title: "⏰ Prepara i rifiuti",
@@ -46,8 +56,6 @@ const TRANSLATIONS = {
                 message: "Prepara i rifiuti per domani, esponili dalle 19.00 alle 21.00"
             }
         },
-        sdgTitle: "Obiettivi di Sviluppo Sostenibile",
-        sdgDescription: "Contribuisci agli SDGs 11, 12 e 14 attraverso la raccolta differenziata",
         districtSelector: {
             title: "Seleziona il tuo quartiere",
             placeholder: "Cerca il tuo quartiere...",
@@ -55,55 +63,33 @@ const TRANSLATIONS = {
         },
         searchSuggestions: {
             bottiglia: "bottiglia",
-            carta: "carta", 
-            lattina: "lattina",
-            avanzi: "avanzi",
-            giornale: "giornale"
+            carta: "carta",
+            lattina: "lattina", 
+            avanzi: "avanzi"
         },
-        infoModal: {
-            tabApp: "Come funziona",
-            tabSDG: "SDG",
-            tabLinks: "Link Utili",
-            appTitle: "Come funziona l'app",
-            appDescription: "Questa app ti aiuta a gestire la raccolta differenziata a Verona. Puoi controllare il calendario dei rifiuti del tuo quartiere, cercare dove buttare specifici oggetti e rimanere sempre aggiornato sui giorni di raccolta.",
-            feature1: "Calendario personalizzato",
-            feature2: "Ricerca intelligente", 
-            feature3: "Per tutti i quartieri",
-            feature4: "Multilingua",
-            sdgTitle: "Obiettivi di Sviluppo Sostenibile",
-            sdgDescription: "Ogni azione di raccolta differenziata contribuisce al raggiungimento degli Obiettivi di Sviluppo Sostenibile delle Nazioni Unite:",
-            sdg11Title: "Città Sostenibili",
-            sdg11Description: "Rendere le città inclusive, sicure e sostenibili",
-            sdg12Title: "Consumo Responsabile", 
-            sdg12Description: "Garantire modelli di consumo e produzione sostenibili",
-            sdg14Title: "Vita Sott'acqua",
-            sdg14Description: "Conservare gli oceani e le risorse marine",
-            linksTitle: "Risorse Utili",
-            linkCalendar: "Calendario Ufficiale AMIA",
-            linkCalendarDesc: "Consulta i calendari completi",
-            linkDictionary: "Dizionario dei Rifiuti", 
-            linkDictionaryDesc: "Trova dove buttare ogni oggetto"
-        }
+        detailsTitle: "Dettagli Conferimento",
+        detailsDefault: "Esponi i rifiuti SOLO dalle 19:00 alle 21:00 per il ritiro di domani mattina"
     },
     en: {
-        appTitle: "WASTE CALENDAR",
+        appTitle: "WASTE CALENDAR VERONA",
         searchButton: "WHERE DO I THROW IT",
         districtButton: "DISTRICT",
+        languageButton: "LANGUAGE", 
+        infoButton: "INFO",
         modalTitle: "Where do I throw it?",
         searchPlaceholder: "Search for an item...",
-        searchHint: "Ex: plastic bottles, newspapers, tuna cans",
         closeButton: "Close",
-        noResults: "No results found",
+        noResults: "No results found", 
         today: "TODAY",
         tomorrow: "TOMORROW",
         noCollection: "No collection",
         noPickupToday: "No pickup for today",
         relaxDay: "Free day",
         wasteTypes: {
-            umido: "Organic",
-            plastica: "Plastic/Metals",
-            carta: "Paper",
-            secco: "Dry Waste"
+            umido: "ORGANIC",
+            plastica: "PLASTIC/METALS",
+            carta: "PAPER", 
+            secco: "DRY WASTE"
         },
         timeStatus: {
             rest: {
@@ -112,10 +98,10 @@ const TRANSLATIONS = {
             },
             canDispose: {
                 title: "✅ You can dispose now",
-                message: "Take out the waste for tomorrow's pickup (7:00 PM - 9:00 PM)"
+                message: "Take out the waste for pickup (7:00 PM - 9:00 PM)"
             },
             prepare: {
-                title: "⏰ Prepare waste",
+                title: "⏰ Prepare waste", 
                 message: "Prepare waste for tomorrow, take them out after 7:00 PM"
             },
             tooLate: {
@@ -123,8 +109,6 @@ const TRANSLATIONS = {
                 message: "Prepare waste for tomorrow, take them out from 7:00 PM to 9:00 PM"
             }
         },
-        sdgTitle: "Sustainable Development Goals",
-        sdgDescription: "Contribute to SDGs 11, 12 and 14 through waste separation",
         districtSelector: {
             title: "Select your district",
             placeholder: "Search your district...",
@@ -132,96 +116,127 @@ const TRANSLATIONS = {
         },
         searchSuggestions: {
             bottiglia: "bottle",
-            carta: "paper", 
+            carta: "paper",
             lattina: "can",
-            avanzi: "leftovers",
-            giornale: "newspaper"
+            avanzi: "leftovers"
         },
-        infoModal: {
-            tabApp: "How it works",
-            tabSDG: "SDG", 
-            tabLinks: "Useful Links",
-            appTitle: "How the app works",
-            appDescription: "This app helps you manage waste collection in Verona. You can check your district's waste calendar, search where to throw specific items and stay updated on collection days.",
-            feature1: "Personalized calendar",
-            feature2: "Smart search",
-            feature3: "All districts covered", 
-            feature4: "Multilingual",
-            sdgTitle: "Sustainable Development Goals",
-            sdgDescription: "Every waste sorting action contributes to achieving the United Nations Sustainable Development Goals:",
-            sdg11Title: "Sustainable Cities",
-            sdg11Description: "Make cities inclusive, safe and sustainable",
-            sdg12Title: "Responsible Consumption",
-            sdg12Description: "Ensure sustainable consumption and production patterns", 
-            sdg14Title: "Life Below Water",
-            sdg14Description: "Conserve oceans and marine resources",
-            linksTitle: "Useful Resources",
-            linkCalendar: "Official AMIA Calendar",
-            linkCalendarDesc: "View complete calendars",
-            linkDictionary: "Waste Dictionary",
-            linkDictionaryDesc: "Find where to throw any item"
-        }
+        detailsTitle: "Collection Details",
+        detailsDefault: "Put out waste ONLY from 7:00 PM to 9:00 PM for tomorrow morning pickup"
     }
 };
 
 // === ICONE RIFIUTI ===
 const WASTE_ICONS = {
-    umido: '<i class="fas fa-seedling"></i>',
-    plastica: '<i class="fas fa-recycle"></i>',  // Using recycle icon
+    umido: '<i class="fas fa-leaf"></i>',
+    plastica: '<i class="fas fa-recycle"></i>',
     carta: '<i class="fas fa-newspaper"></i>',
     secco: '<i class="fas fa-trash"></i>'
 };
 
 // === UTILITY FUNCTIONS ===
 function getCurrentDate() {
-    const now = new Date();
     const options = {
         weekday: 'long',
-        year: 'numeric',
+        year: 'numeric', 
         month: 'long',
         day: 'numeric'
     };
-    return new Intl.DateTimeFormat(currentLanguage === 'it' ? 'it-IT' : 'en-US', options).format(now);
+    return new Intl.DateTimeFormat(currentLanguage === 'it' ? 'it-IT' : 'en-US', options).format(APP_START_DATE);
 }
 
-function formatDateKey(date = new Date()) {
+function formatDateKey(date = APP_START_DATE) {
     return date.toISOString().split('T')[0];
 }
 
-function getWasteForDate(date = new Date()) {
+// === GESTIONE PARAMETRI URL ===
+function getURLParams() {
+    const params = new URLSearchParams(window.location.search);
+    const quartiere = params.get('quartiere');
+    
+    console.log('🔗 URL Parameters detected:', { quartiere });
+    
+    return {
+        quartiere: quartiere
+    };
+}
+
+function validateDistrict(quartiereName) {
+    if (!quartiereName) return null;
+    
+    // Converte il nome del quartiere in lowercase per il confronto
+    const normalizedName = quartiereName.toLowerCase().replace(/[^a-z0-9]/g, '_');
+    
+    // Cerca il quartiere nella lista
+    const district = DISTRICTS.find(d => 
+        d.name.toLowerCase().replace(/[^a-z0-9]/g, '_') === normalizedName
+    );
+    
+    if (district) {
+        console.log('✅ Valid district found:', district.name, '- Calendar:', district.calendar);
+        return district.name.toLowerCase();
+    } else {
+        console.warn('⚠️ Invalid district from URL:', quartiereName);
+        return null;
+    }
+}
+
+// === DEBUG UTILITIES ===
+function getAppDateInfo() {
+    const today = formatDateKey(APP_START_DATE);
+    const tomorrow = new Date(APP_START_DATE);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowKey = formatDateKey(tomorrow);
+    
+    return {
+        displayedDate: APP_START_DATE.toLocaleDateString(),
+        todayKey: today,
+        tomorrowKey: tomorrowKey,
+        currentCalendar: currentCalendarType,
+        todayWasteInCalendar: getWasteForDate(APP_START_DATE),
+        tomorrowWasteInCalendar: getTomorrowWaste(),
+        wasteToShow: getTomorrowWaste(),
+        logic: "Oggi preparo il rifiuto che verrà ritirato domani",
+        timeStatus: getTimeStatus()
+    };
+}
+
+function testAllCalendarsForDate(dateKey) {
+    const results = {};
+    Object.keys(WASTE_CALENDARS).forEach(calendarType => {
+        const calendar = WASTE_CALENDARS[calendarType];
+        results[calendarType] = calendar[dateKey] || 'null';
+    });
+    return results;
+}
+
+// === FORCE UPDATE UTILITY ===
+function forceUpdateAll() {
+    console.log('🔄 Force updating all components...');
+    updateDistrictInfo();
+    updateWasteCard();
+    updateDetailsSection();
+    console.log('✅ Force update complete');
+}
+
+function getWasteForDate(date = APP_START_DATE) {
     const dateKey = formatDateKey(date);
     const calendar = WASTE_CALENDARS[currentCalendarType];
     return calendar ? calendar[dateKey] : null;
 }
 
-// Ottiene il rifiuto da preparare oggi (quello di domani)
 function getTomorrowWaste() {
-    const tomorrow = new Date();
+    const tomorrow = new Date(APP_START_DATE);
     tomorrow.setDate(tomorrow.getDate() + 1);
     return getWasteForDate(tomorrow);
 }
 
-function getNextWasteDate() {
-    const calendar = WASTE_CALENDARS[currentCalendarType];
-    if (!calendar) return null;
-
-    const today = new Date();
-    for (let i = 1; i <= 7; i++) {
-        const nextDate = new Date(today);
-        nextDate.setDate(today.getDate() + i);
-        const dateKey = formatDateKey(nextDate);
-        if (calendar[dateKey]) {
-            return { date: nextDate, waste: calendar[dateKey] };
-        }
-    }
-    return null;
-}
-
 function getTimeStatus() {
+    // Usa sempre il fuso orario di Roma (Europe/Rome)
     const now = new Date();
-    const hour = now.getHours();
+    const romeTime = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Rome' }));
+    const hour = romeTime.getHours();
     
-    if (hour >= 19 && hour <= 21) {
+    if (hour >= 19 && hour < 21) {
         return 'canDispose';
     } else if (hour < 19) {
         return 'prepare';
@@ -232,144 +247,146 @@ function getTimeStatus() {
 
 // === UI UPDATE FUNCTIONS ===
 function updateWasteCard() {
-    const wasteCard = document.getElementById('waste-info-card');
+    const wasteCard = document.getElementById('waste-card');
+    const wasteIconCircle = document.getElementById('waste-icon-circle');
     const wasteIcon = document.getElementById('waste-icon');
-    const wasteType = document.getElementById('waste-type');
-    const wasteDate = document.getElementById('waste-date');
+    const wasteTypeTitle = document.getElementById('waste-type-title');
     
-    if (!wasteCard || !wasteIcon || !wasteType || !wasteDate) return;
+    if (!wasteCard || !wasteIcon || !wasteTypeTitle) return;
+    
+    // Debug: log current state before updating
+    console.log('🔄 Updating waste card - Calendar:', currentCalendarType, 'Date:', formatDateKey(APP_START_DATE));
     
     // La logica è: oggi preparo il rifiuto che verrà ritirato domani
     const tomorrowWaste = getTomorrowWaste();
     
+    console.log('🗑️ Tomorrow waste for', currentCalendarType, 'calendar:', tomorrowWaste);
+    
+    // Reset classes
+    wasteCard.className = 'waste-card';
+    
     if (tomorrowWaste) {
         // C'è un ritiro domani, mostro cosa preparare oggi
-        wasteCard.className = 'waste-info-card';
         wasteCard.classList.add(tomorrowWaste);
-        
         wasteIcon.innerHTML = WASTE_ICONS[tomorrowWaste];
-        wasteType.textContent = TRANSLATIONS[currentLanguage].wasteTypes[tomorrowWaste];
-        wasteDate.textContent = TRANSLATIONS[currentLanguage].tomorrow;
+        wasteTypeTitle.textContent = TRANSLATIONS[currentLanguage].wasteTypes[tomorrowWaste];
     } else {
-        // Non c'è ritiro domani - mostro sempre che oggi non c'è nulla da fare
-        wasteCard.className = 'waste-info-card';
-        wasteCard.classList.add('no-pickup'); // Classe speciale per "nessun ritiro"
+        // Non c'è ritiro domani
+        wasteCard.classList.add('no-pickup');
         wasteIcon.innerHTML = '<i class="fas fa-calendar-check"></i>';
-        wasteType.textContent = TRANSLATIONS[currentLanguage].noPickupToday;
-        wasteDate.textContent = TRANSLATIONS[currentLanguage].relaxDay;
+        wasteTypeTitle.textContent = TRANSLATIONS[currentLanguage].noPickupToday;
     }
 }
 
-function updateScheduleInfo() {
-    const scheduleTitle = document.getElementById('time-title');
-    const scheduleMessage = document.getElementById('time-message');
-    const scheduleBox = document.getElementById('schedule-info-box');
+function updateDetailsSection() {
+    const detailsTitle = document.getElementById('details-title');
+    const detailsText = document.getElementById('details-text');
+    const timeStatus = document.getElementById('time-status');
+    const timeStatusText = document.getElementById('time-status-text');
     
-    if (!scheduleTitle || !scheduleMessage || !scheduleBox) return;
+    if (!detailsTitle || !detailsText || !timeStatus || !timeStatusText) return;
+    
+    // Update titles
+    detailsTitle.textContent = TRANSLATIONS[currentLanguage].detailsTitle;
+    detailsText.textContent = TRANSLATIONS[currentLanguage].detailsDefault;
     
     // Controlla se domani c'è un ritiro
     const tomorrowWaste = getTomorrowWaste();
-    let timeStatus = 'rest'; // Default status
+    let statusKey = 'rest'; // Default status
     
     if (!tomorrowWaste) {
         // Nessun ritiro domani - mostra messaggio speciale
-        timeStatus = 'rest';
-        const statusInfo = TRANSLATIONS[currentLanguage].timeStatus[timeStatus];
-        scheduleTitle.textContent = statusInfo.title;
-        scheduleMessage.textContent = statusInfo.message;
+        statusKey = 'rest';
     } else {
         // C'è un ritiro domani - mostra info sui tempi
-        timeStatus = getTimeStatus();
-        const statusInfo = TRANSLATIONS[currentLanguage].timeStatus[timeStatus];
-        
-        scheduleTitle.textContent = statusInfo.title;
-        scheduleMessage.textContent = statusInfo.message;
+        statusKey = getTimeStatus();
     }
     
-    // Update box color based on status
-    scheduleBox.className = 'schedule-info-box';
-    scheduleBox.classList.add(timeStatus);
+    const statusInfo = TRANSLATIONS[currentLanguage].timeStatus[statusKey];
+    timeStatusText.textContent = statusInfo.title;
+    
+    // Update time status classes
+    timeStatus.className = 'time-status';
+    timeStatus.classList.add(statusKey.replace(/([A-Z])/g, '-$1').toLowerCase());
 }
 
 function updateDistrictInfo() {
-    const districtName = document.getElementById('selected-district-name');
-    const calendarType = document.getElementById('selected-calendar-type');
-    
-    // Header elements
-    const districtNameHeader = document.getElementById('selected-district-name-header');
-    const calendarTypeHeader = document.getElementById('selected-calendar-type-header');
+    const districtName = document.getElementById('district-name');
     
     const district = DISTRICTS.find(d => d.name.toLowerCase() === currentDistrict.toLowerCase());
-    if (district) {
-        const calendarTypeText = currentLanguage === 'it' ? 
-            `Calendario ${district.calendar.charAt(0).toUpperCase() + district.calendar.slice(1)}` :
-            `${district.calendar.charAt(0).toUpperCase() + district.calendar.slice(1)} Calendar`;
-        
-        // Update old district info (if still exists)
-        if (districtName) districtName.textContent = district.name;
-        if (calendarType) calendarType.textContent = calendarTypeText;
-        
-        // Update header district info
-        if (districtNameHeader) districtNameHeader.textContent = district.name;
-        if (calendarTypeHeader) {
-            // Show only the calendar type without "Calendario/Calendar"
-            calendarTypeHeader.textContent = district.calendar.charAt(0).toUpperCase() + district.calendar.slice(1);
-        }
-        
+    if (district && districtName) {
+        const oldCalendar = currentCalendarType;
+        districtName.textContent = district.name.toUpperCase();
         currentCalendarType = district.calendar;
+        
+        if (oldCalendar !== currentCalendarType) {
+            console.log('📅 Calendar type updated:', oldCalendar, '->', currentCalendarType);
+        }
+    } else {
+        console.warn('⚠️ District not found or element missing:', currentDistrict);
     }
 }
 
-function switchLanguage(lang) {
-    currentLanguage = lang;
-    
-    // Update header
-    const appTitle = document.getElementById('app-title');
+function updateLanguage() {
+    // Update title
+    const appTitle = document.querySelector('.app-title');
     if (appTitle) {
-        appTitle.innerHTML = `<i class="fas fa-calendar-alt header-icon"></i>${TRANSLATIONS[currentLanguage].appTitle}`;
+        appTitle.textContent = TRANSLATIONS[currentLanguage].appTitle;
     }
     
+    // Update date
+    const dateDisplay = document.getElementById('date-display');
+    if (dateDisplay) {
+        dateDisplay.textContent = getCurrentDate();
+    }
     
     // Update navigation labels
-    const searchButton = document.getElementById('search-text');
-    if (searchButton) {
-        searchButton.textContent = TRANSLATIONS[currentLanguage].searchButton;
-    }
+    const navLabels = document.querySelectorAll('.nav-label');
+    const navTexts = [
+        TRANSLATIONS[currentLanguage].searchButton,
+        TRANSLATIONS[currentLanguage].languageButton, 
+        TRANSLATIONS[currentLanguage].districtButton,
+        TRANSLATIONS[currentLanguage].infoButton
+    ];
     
-    const districtButton = document.getElementById('district-text');
-    if (districtButton) {
-        districtButton.textContent = TRANSLATIONS[currentLanguage].districtButton;
-    }
+    navLabels.forEach((label, index) => {
+        if (navTexts[index]) {
+            label.textContent = navTexts[index];
+        }
+    });
     
-    // Update language button
-    const langButton = document.querySelector('.current-lang');
-    if (langButton) {
-        langButton.textContent = currentLanguage === 'it' ? 'Lingua' : 'Language';
-    }
-
-  
     // Update modal titles
-    const modalTitle = document.getElementById('modal-title');
-    if (modalTitle) {
-        modalTitle.innerHTML = `<i class="fas fa-search"></i>${currentLanguage === 'it' ? 'Dove lo butto?' : 'Where do I throw it?'}`;
+    const searchModalTitle = document.getElementById('search-modal-title');
+    if (searchModalTitle) {
+        searchModalTitle.textContent = TRANSLATIONS[currentLanguage].modalTitle;
     }
     
-    // Update district modal title  
     const districtModalTitle = document.getElementById('district-modal-title');
     if (districtModalTitle) {
-        districtModalTitle.innerHTML = `<i class="fas fa-map-marker-alt"></i>${currentLanguage === 'it' ? 'Seleziona Quartiere' : 'Select District'}`;
+        districtModalTitle.textContent = TRANSLATIONS[currentLanguage].districtSelector.title;
     }
     
-    // Update language modal title
     const languageModalTitle = document.getElementById('language-modal-title');
     if (languageModalTitle) {
-        languageModalTitle.innerHTML = `<i class="fas fa-language"></i>${currentLanguage === 'it' ? 'Seleziona Lingua' : 'Select Language'}`;
+        languageModalTitle.textContent = currentLanguage === 'it' ? 'Seleziona Lingua' : 'Select Language';
     }
     
-    // Update active language option
-    document.querySelectorAll('.language-option').forEach(option => {
-        option.classList.toggle('active', option.dataset.lang === currentLanguage);
-    });
+    const infoModalTitle = document.getElementById('info-modal-title');
+    if (infoModalTitle) {
+        infoModalTitle.textContent = currentLanguage === 'it' ? 'Informazioni' : 'Information';
+    }
+    
+    // Update search placeholder
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.placeholder = TRANSLATIONS[currentLanguage].searchPlaceholder;
+    }
+    
+    // Update district search placeholder
+    const districtSearch = document.getElementById('district-search');
+    if (districtSearch) {
+        districtSearch.placeholder = TRANSLATIONS[currentLanguage].districtSelector.placeholder;
+    }
     
     // Update search suggestions
     const searchSuggestions = document.querySelectorAll('.suggestion-chip span[data-translate]');
@@ -385,39 +402,37 @@ function switchLanguage(lang) {
         }
     });
     
-    // Update all content
-    updateWasteCard();
-    updateScheduleInfo();
+    // Update active language option
+    document.querySelectorAll('.language-option').forEach(option => {
+        option.classList.toggle('active', option.dataset.lang === currentLanguage);
+    });
+    
+    // Update all content - IMPORTANT: updateDistrictInfo() MUST be called first
+    // to update currentCalendarType before updateWasteCard() uses it
     updateDistrictInfo();
+    updateWasteCard();
+    updateDetailsSection();
 }
 
 // === MODAL FUNCTIONS ===
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
-        modal.style.display = 'flex';
-        setTimeout(() => modal.classList.add('active'), 10);
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal && modal.classList.contains('active')) {
-        console.log(`🚪 Smoothly closing modal: ${modalId}`);
+    if (modal) {
         modal.classList.remove('active');
-        setTimeout(() => {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }, 450); // Aumentato da 300 a 450ms per animazione più fluida
+        document.body.style.overflow = '';
     }
 }
 
 function openSearchModal() {
     openModal('search-modal');
-    // Rimosso il focus automatico per evitare l'apertura della tastiera su mobile
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) searchInput.placeholder = TRANSLATIONS[currentLanguage].searchPlaceholder;
 }
 
 function closeSearchModal() {
@@ -431,9 +446,6 @@ function closeSearchModal() {
 function openDistrictModal() {
     openModal('district-modal');
     renderDistrictList();
-    // Rimosso il focus automatico per evitare l'apertura della tastiera su mobile
-    const districtSearch = document.getElementById('district-search');
-    if (districtSearch) districtSearch.placeholder = TRANSLATIONS[currentLanguage].districtSelector.placeholder;
 }
 
 function closeDistrictModal() {
@@ -494,34 +506,31 @@ function performSearch(query) {
     
     resultsContainer.innerHTML = results.map(result => `
         <div class="search-result-item ${result.type}" onclick="selectSearchResult('${result.type}', '${result.item.replace(/'/g, "\\'")}')">
-            <div class="search-result-title">${result.item}</div>
-            <div class="search-result-category">${result.category}</div>
+            <div class="search-result-icon">
+                ${WASTE_ICONS[result.type]}
+            </div>
+            <div class="search-result-content">
+                <div class="search-result-title">${result.item}</div>
+                <div class="search-result-category">${result.category}</div>
+            </div>
         </div>
     `).join('');
 }
 
-// Funzione per gestire i click sui suggerimenti
 function performSearchBySuggestion(suggestionKey) {
-    // Ottiene la traduzione corretta per la lingua attuale
     const translatedTerm = TRANSLATIONS[currentLanguage].searchSuggestions[suggestionKey];
     console.log(`🔍 Search suggestion clicked: ${suggestionKey} -> ${translatedTerm}`);
     
-    // Esegue la ricerca con il termine tradotto
     performSearch(translatedTerm);
     
-    // Aggiorna anche il campo di input per mostrare cosa si sta cercando
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.value = translatedTerm;
     }
 }
 
-// Funzione per gestire la selezione di un risultato di ricerca
 function selectSearchResult(wasteType, item) {
-    // Mostra che tipo di rifiuto è stato selezionato
     console.log(`Selezionato: ${item} - Categoria: ${wasteType}`);
-    
-    // Chiude il modal di ricerca
     closeSearchModal();
 }
 
@@ -555,119 +564,43 @@ function renderDistrictList(filter = '') {
     `).join('');
 }
 
-// === UTILITY FUNCTIONS ===
-function closeAllModals() {
-    console.log('🚪 Smoothly closing all modals...');
-    
-    // Get all modals and close them with animation
-    const allModals = ['search-modal', 'district-modal', 'language-modal', 'info-modal'];
-    
-    allModals.forEach(modalId => {
-        const modal = document.getElementById(modalId);
-        if (modal && modal.classList.contains('active')) {
-            console.log(`🎭 Animating close: ${modalId}`);
-            modal.classList.remove('active');
-        }
-    });
-    
-    // Wait for animation to complete before hiding
-    setTimeout(() => {
-        allModals.forEach(modalId => {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        });
-        
-        // Reset body overflow
-        document.body.style.overflow = '';
-        console.log('✅ All modals closed smoothly');
-    }, 450); // Match CSS animation duration
-}
-
-function selectSearchResult(wasteType, item) {
-    console.log('🔍 Search result selected:', { item, wasteType });
-    closeAllModals();
-    console.log('✅ Search modals closed');
-}
-
-function selectLanguage(lang) {
-    console.log('🌍 Changing language to:', lang);
-    console.log('🔄 Current language before:', currentLanguage);
-    
-    switchLanguage(lang);
-    
-    console.log('✅ Current language after:', currentLanguage);
-    console.log('🔍 Available dictionary keys:', Object.keys(WASTE_DICTIONARY[currentLanguage] || {}));
-    
-    // Clear search results to force refresh
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-    if (searchInput && searchResults) {
-        const currentQuery = searchInput.value;
-        searchResults.innerHTML = '';
-        if (currentQuery.trim()) {
-            setTimeout(() => performSearch(currentQuery), 100);
-        }
-    }
-    
-    closeAllModals();
-}
-
 function selectDistrict(districtName) {
     console.log('🏘️ Selecting district:', districtName);
     
+    const oldCalendar = currentCalendarType;
     currentDistrict = districtName;
-    updateDistrictInfo();
-    updateWasteCard();
-    updateScheduleInfo();
     
-    console.log('✅ District changed, closing modals...');
-    closeAllModals();
+    updateLanguage(); // This will update district info and all content
+    
+    console.log('📊 Calendar changed from', oldCalendar, 'to', currentCalendarType);
+    console.log('🔍 Updated waste info:', getAppDateInfo());
+    
+    closeDistrictModal();
     
     console.log('✅ District selection complete');
 }
 
+function selectLanguage(lang) {
+    console.log('🌍 Changing language to:', lang);
+    
+    currentLanguage = lang;
+    updateLanguage();
+    closeLanguageModal();
+    
+    console.log('✅ Language changed to:', currentLanguage);
+}
+
 // === EVENT LISTENERS ===
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Calendario Rifiuti - DEBUG MODE ENABLED');
+    console.log('🚀 Calendario Rifiuti Verona - New Design Loaded');
     console.log('📊 Current Language:', currentLanguage);
     console.log('🏘️ Current District:', currentDistrict);
-    console.log('📅 Current Date:', new Date().toLocaleDateString());
+    console.log('📅 App Date:', APP_START_DATE.toLocaleDateString());
+    console.log('🔍 Date Debug Info:', getAppDateInfo());
+    console.log('📋 All calendars for tomorrow (2025-09-24):', testAllCalendarsForDate('2025-09-24'));
     
-    // Set current date
-    const dateElement = document.getElementById('current-date');
-    if (dateElement) {
-        dateElement.textContent = getCurrentDate();
-    }
-    
-    // Update every minute
-    setInterval(() => {
-        updateWasteCard();
-        updateScheduleInfo();
-    }, 60000);
-    
-    // Navigation event listeners
-    document.getElementById('search-button')?.addEventListener('click', openSearchModal);
-    document.getElementById('district-button')?.addEventListener('click', openDistrictModal);
-    document.getElementById('language-button')?.addEventListener('click', openLanguageModal);
-    document.getElementById('info-button')?.addEventListener('click', openInfoModal);
-    
-    // Modal close buttons
-    document.getElementById('close-btn')?.addEventListener('click', closeSearchModal);
-    document.getElementById('district-close-btn')?.addEventListener('click', closeDistrictModal);
-    document.getElementById('language-close-btn')?.addEventListener('click', closeLanguageModal);
-    document.getElementById('info-close-btn')?.addEventListener('click', closeInfoModal);
-    
-    // Modal overlays
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        overlay.addEventListener('click', (e) => {
-            const modal = e.target.closest('.modal');
-            if (modal) {
-                closeModal(modal.id);
-            }
-        });
-    });
+    // Initialize app
+    initializeApp();
     
     // Search input
     let searchTimeout;
@@ -683,38 +616,150 @@ document.addEventListener('DOMContentLoaded', function() {
         districtSearchTimeout = setTimeout(() => renderDistrictList(e.target.value), 300);
     });
     
-    // REMOVED: Language options event listeners - now using onclick in HTML
-    
     // Keyboard events
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeSearchModal();
-            closeDistrictModal();
+            closeDistrictModal(); 
             closeLanguageModal();
             closeInfoModal();
         }
     });
     
-    // Initialize app
-    initializeApp();
+    // Modal overlay clicks
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            const modal = e.target.closest('.modal');
+            if (modal) {
+                closeModal(modal.id);
+            }
+        });
+    });
 });
 
-// === TAB MANAGEMENT ===
-function switchInfoTab(tabName) {
-    // Remove active class from all tabs and panes
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-    
-    // Add active class to selected tab and pane
-    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-    document.getElementById(`${tabName}-tab`).classList.add('active');
-}
-
 function initializeApp() {
-    switchLanguage('it');
-    updateDistrictInfo();
-    updateWasteCard();
-    updateScheduleInfo();
+    console.log('🚀 Initializing Calendario Rifiuti App...');
     
+    // === GESTIONE PARAMETRI URL ===
+    const urlParams = getURLParams();
+    
+    // Imposta quartiere da URL se presente e valido
+    if (urlParams.quartiere) {
+        const validDistrict = validateDistrict(urlParams.quartiere);
+        if (validDistrict) {
+            currentDistrict = validDistrict;
+            console.log('🏘️ District set from URL:', currentDistrict);
+        }
+    }
+    
+    // Set initial district info
+    updateDistrictInfo();
+    
+    // Initialize language and all content
+    updateLanguage();
+    
+    // Initialize info tabs - make sure first tab is active
+    const firstTab = document.querySelector('.info-tab[data-tab="app"]');
+    const firstContent = document.getElementById('app-tab');
+    if (firstTab && firstContent) {
+        firstTab.classList.add('active');
+        firstContent.classList.add('active');
+    }
+    
+    console.log('✅ App initialized successfully');
+    console.log('📊 Current state:', {
+        district: currentDistrict,
+        language: currentLanguage,
+        calendar: currentCalendarType
+    });
     console.log('© 2025 Gregorio Pellegrini. Tutti i diritti riservati.');
 }
+
+// Make functions globally available
+window.openSearchModal = openSearchModal;
+window.closeSearchModal = closeSearchModal;
+window.openDistrictModal = openDistrictModal;
+window.closeDistrictModal = closeDistrictModal;
+// === GESTIONE TAB INFO MODAL ===
+function showInfoTab(tabName) {
+    console.log('🔄 Switching info tab to:', tabName);
+    
+    // Verifica che gli elementi esistano
+    const allTabs = document.querySelectorAll('.info-tab');
+    const allContents = document.querySelectorAll('.info-tab-content');
+    
+    console.log('Found tabs:', allTabs.length, 'Found contents:', allContents.length);
+    
+    // Rimuovi classe active da tutti i tab
+    allTabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Rimuovi classe active da tutti i contenuti
+    allContents.forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Aggiungi classe active al tab selezionato
+    const selectedTab = document.querySelector(`[data-tab="${tabName}"]`);
+    if (selectedTab) {
+        selectedTab.classList.add('active');
+        console.log('Tab activated:', tabName);
+    } else {
+        console.warn('Tab not found:', tabName);
+    }
+    
+    // Mostra il contenuto corrispondente
+    const selectedContent = document.getElementById(`${tabName}-tab`);
+    if (selectedContent) {
+        selectedContent.classList.add('active');
+        console.log('Content activated:', tabName + '-tab');
+    } else {
+        console.warn('Content not found:', tabName + '-tab');
+    }
+    
+    console.log('✅ Info tab switched to:', tabName);
+}
+
+// === GENERAZIONE URL PER QR CODE ===
+function generateQRCodeURLs(baseURL = 'https://tuouser.github.io/calendario-rifiuti/') {
+    console.log('📱 Generating QR Code URLs for all districts...');
+    
+    const qrUrls = {};
+    
+    DISTRICTS.forEach(district => {
+        const districtParam = district.name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+        const url = `${baseURL}?quartiere=${districtParam}`;
+        
+        qrUrls[district.name] = {
+            url: url,
+            calendar: district.calendar,
+            qrCodeParam: districtParam
+        };
+    });
+    
+    console.table(qrUrls);
+    return qrUrls;
+}
+
+// === UTILITY PER TESTARE URL PARAMETRI ===
+function testURLParams() {
+    console.log('🧪 Testing URL parameters...');
+    console.log('Current URL:', window.location.href);
+    console.log('Current params:', getURLParams());
+    console.log('Current district:', currentDistrict);
+    console.log('Current calendar:', currentCalendarType);
+}
+
+window.openLanguageModal = openLanguageModal;
+window.closeLanguageModal = closeLanguageModal;
+window.openInfoModal = openInfoModal;
+window.closeInfoModal = closeInfoModal;
+window.selectLanguage = selectLanguage;
+window.selectDistrict = selectDistrict;
+window.performSearchBySuggestion = performSearchBySuggestion;
+window.selectSearchResult = selectSearchResult;
+window.forceUpdateAll = forceUpdateAll;
+window.showInfoTab = showInfoTab;
+window.generateQRCodeURLs = generateQRCodeURLs;
+window.testURLParams = testURLParams;
