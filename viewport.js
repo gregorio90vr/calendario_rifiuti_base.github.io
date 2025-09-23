@@ -1,11 +1,38 @@
-// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-let vh = window.innerHeight * 0.01;
-// Then we set the value in the --vh custom property to the root of the document
-document.documentElement.style.setProperty('--vh', `${vh}px`);
+function updateViewportHeight() {
+    // Get the actual viewport height
+    const vh = window.innerHeight;
+    
+    // Set a CSS custom property with the viewport height
+    document.documentElement.style.setProperty('--viewport-height', `${vh}px`);
+    
+    // Also set the body and html height explicitly
+    document.documentElement.style.height = `${vh}px`;
+    document.body.style.height = `${vh}px`;
+}
 
-// We listen to the resize event
+// Initial call
+updateViewportHeight();
+
+// Update on resize
+let resizeTimeout;
 window.addEventListener('resize', () => {
-    // We execute the same script as before
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    // Debounce the resize event
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateViewportHeight, 100);
+});
+
+// Update on orientation change
+window.addEventListener('orientationchange', () => {
+    // Small delay to ensure new dimensions are available
+    setTimeout(updateViewportHeight, 200);
+});
+
+// Update on page load
+window.addEventListener('load', updateViewportHeight);
+
+// Optional: update on visibility change (when tab becomes active)
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        updateViewportHeight();
+    }
 });
