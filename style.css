@@ -69,7 +69,8 @@
 html {
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
-    height: 100%;
+    height: 100vh;
+    height: -webkit-fill-available;
     overscroll-behavior-y: none;
 }
 
@@ -78,9 +79,9 @@ body {
     line-height: 1.5;
     color: var(--gray-900);
     background: linear-gradient(135deg, var(--amia-primary) 0%, var(--amia-secondary) 100%);
-    height: 100vh;
-    height: -webkit-fill-available;
-    width: 100vw;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    width: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
@@ -88,7 +89,8 @@ body {
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
     overflow: hidden;
-    position: fixed;
+    display: flex;
+    flex-direction: column;
 }
 
 /* === APP CONTAINER === */
@@ -96,14 +98,15 @@ body {
     max-width: 430px;
     width: 100%;
     margin: 0 auto;
-    height: 100%;
+    height: 100vh;
+    height: -webkit-fill-available;
     background: var(--white);
     display: flex;
     flex-direction: column;
     position: relative;
     box-shadow: var(--shadow-xl);
     overflow: hidden;
-    min-height: -webkit-fill-available;
+    min-height: 0;
 }
 
 /* === HEADER === */
@@ -168,10 +171,13 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 6px;
-    gap: 6px;
+    padding: 4px;
+    gap: 4px;
     background: var(--gray-50);
     overflow: hidden;
+    min-height: 0;
+    height: calc(100vh - 106px);
+    height: calc(-webkit-fill-available - 106px);
 }
 
 /* === DATE SECTION === */
@@ -199,23 +205,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 0;
+    margin: 4px 0;
 }
 
 .waste-card {
     background: var(--white);
     border-radius: 16px;
-    padding: 12px;
+    padding: 8px;
     text-align: center;
     box-shadow: var(--shadow-lg);
     border: 2px solid var(--amia-light);
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 200px;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;    
     justify-content: center;
-    gap: 30px;
+    gap: 12px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -225,8 +234,8 @@ body {
 }
 
 .waste-icon-circle {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.2);
     display: flex;
@@ -249,11 +258,11 @@ body {
 }
 
 .waste-type-title {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 900;
     color: var(--white);
-    margin-bottom: var(--spacing-sm);
-    letter-spacing: 1px;
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: 0.5px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
@@ -386,8 +395,10 @@ body {
     box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
     z-index: 1000;
     width: 100%;
-    height: 56px;
+    height: 50px;
     flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
 }
 
 .nav-btn {
@@ -464,9 +475,10 @@ body {
     background: var(--white);
     border-radius: var(--radius-lg);
     max-width: 400px;
-    width: 90%;
-    max-height: 80vh;
-    margin: var(--spacing-lg);
+    width: 94%;
+    max-height: calc(100vh - 40px);
+    max-height: calc((var(--vh, 1vh) * 100) - 40px);
+    margin: 20px;
     box-shadow: var(--shadow-xl);
     position: relative;
     z-index: 1001;
@@ -1137,8 +1149,12 @@ body {
 @media screen and (max-width: 480px) {
     .app-container {
         height: 100vh;
+        height: -webkit-fill-available;
         max-width: 100%;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
     }
     
     .main-content {
