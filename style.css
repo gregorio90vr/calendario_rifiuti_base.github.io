@@ -117,7 +117,7 @@ body {
     box-shadow: var(--shadow-md);
     position: relative;
     z-index: 10;
-    height: 56px;
+    height: 80px;
     flex-shrink: 0;
 }
 
@@ -168,8 +168,8 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 4px;
-    gap: 4px;
+    padding: 2px;
+    gap: 2px;
     background: var(--gray-50);
     overflow: hidden;
     min-height: 0;
@@ -178,11 +178,11 @@ body {
 /* === DATE SECTION === */
 .date-section {
     text-align: center;
-    padding: 6px;
+    padding: 8px;
     background: var(--white);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
-    border: 2px solid var(--amia-light);
+    border: 1px solid var(--amia-light);
     flex-shrink: 0;
     margin: 0;
 }
@@ -196,18 +196,18 @@ body {
 
 /* === WASTE CARD - MAIN FOCAL POINT === */
 .waste-card-container {
-    flex: 1;
+    flex: 2;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 0;
-    padding: 4px 0;
+    padding: 2px 0;
 }
 
 .waste-card {
     background: var(--white);
     border-radius: 16px;
-    padding: 8px;
+    padding: 90px 8px;
     text-align: center;
     box-shadow: var(--shadow-lg);
     border: 2px solid var(--amia-light);
@@ -217,7 +217,7 @@ body {
     display: flex;
     flex-direction: column;    
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -319,15 +319,15 @@ body {
 /* === DETAILS SECTION === */
 .details-section {
     flex-shrink: 0;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: 2px;
 }
 
 .details-card {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-md);
+    padding: 8px;
     box-shadow: var(--shadow-sm);
-    border-left: 4px solid var(--amia-primary);
+    border-left: 3px solid var(--amia-primary);
     text-align: center;
 }
 
@@ -385,10 +385,10 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border-top: 1px solid var(--gray-200);
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
     z-index: 1000;
     width: 100%;
-    height: 50px;
+    height: 60px;
     flex-shrink: 0;
     position: sticky;
     bottom: 0;
