@@ -79,6 +79,7 @@ body {
     color: var(--gray-900);
     background: linear-gradient(135deg, var(--amia-primary) 0%, var(--amia-secondary) 100%);
     height: 100vh;
+    height: -webkit-fill-available;
     width: 100vw;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -93,6 +94,7 @@ body {
 /* === APP CONTAINER === */
 .app-container {
     max-width: 430px;
+    width: 100%;
     margin: 0 auto;
     height: 100%;
     background: var(--white);
@@ -101,6 +103,7 @@ body {
     position: relative;
     box-shadow: var(--shadow-xl);
     overflow: hidden;
+    min-height: -webkit-fill-available;
 }
 
 /* === HEADER === */
@@ -200,8 +203,8 @@ body {
 
 .waste-card {
     background: var(--white);
-    border-radius: 20px;
-    padding: 16px;
+    border-radius: 16px;
+    padding: 12px;
     text-align: center;
     box-shadow: var(--shadow-lg);
     border: 2px solid var(--amia-light);
@@ -211,8 +214,8 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 80px;
+    justify-content: space-between;
+    gap: 8px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -390,15 +393,15 @@ body {
 .nav-btn {
     background: transparent;
     border: none;
-    padding: var(--spacing-md) var(--spacing-sm);
+    padding: 8px 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: 2px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: var(--font-family);
-    min-height: 70px;
+    height: 100%;
 }
 
 .nav-btn:hover {
