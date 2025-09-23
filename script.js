@@ -132,7 +132,7 @@ const WASTE_ICONS = {
     carta: '<i class="fas fa-newspaper"></i>',
     secco: '<i class="fas fa-trash"></i>'
 };
-
+ 
 // === UTILITY FUNCTIONS ===
 function getCurrentDate() {
     const options = {
