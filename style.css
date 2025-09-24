@@ -70,15 +70,10 @@ body {
 }
 
 .app-title {
-    font-size: clamp(14px, 4vw, 18px);
+    font-size: clamp(1rem, 3.5vh, 1.5rem);
     font-weight: 800;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     margin: 0;
-    line-height: 1.2;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 100%;
 }
 
 .header-right {
