@@ -130,7 +130,7 @@ const TRANSLATIONS = {
                 rights: "Tutti i diritti riservati"
             }
         }
-    },   
+    },  
     en: {
         appTitle: "WASTE CALENDAR VERONA",
         searchButton: "WHERE DO I THROW IT",

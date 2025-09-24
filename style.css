@@ -39,7 +39,7 @@ body {
     background: var(--white, #ffffff);
     display: grid;
     grid-template-rows: 
-        90px           /* Header fisso più compatto */
+        80px           /* Header fisso più compatto */
         1fr            /* Main content flessibile - si adatta allo spazio restante */
         60px;          /* Footer fisso */
     grid-template-areas: 
@@ -56,14 +56,14 @@ body {
     grid-area: header;
     background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
     color: white;
-    padding: 8px 16px;
+    padding: 6px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     position: relative;
     z-index: 10;
-    height: 90px;
+    height:80px;
 }
 
 .header-content {
@@ -76,14 +76,15 @@ body {
 }
 
 .app-title {
-    font-size: clamp(1.1rem, 5vw, 1.3rem);
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
     font-weight: 800;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     margin: 0;
     text-align: center;
     line-height: 1.1;
     width: 100%;
     text-transform: uppercase;
+    padding: 2px 0;
 }
 
 .district-selector {
