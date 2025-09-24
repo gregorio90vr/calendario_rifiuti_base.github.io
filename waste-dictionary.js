@@ -1,7 +1,7 @@
 
 // Copyright © 2025 Gregorio Pellegrini. Tutti i diritti riservati.
 // Dizionario Rifiuti - Dati per la Ricerca "Dove lo butto"
-
+ 
 // === DIZIONARIO RIFIUTI ===
 const WASTE_DICTIONARY = {
     it: {

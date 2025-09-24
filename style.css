@@ -70,23 +70,21 @@ body {
     min-width: 0;
     display: flex;
     align-items: center;
+    margin-right: 12px;
+    max-width: 50%;
 }
 
 .app-title {
-    font-size: clamp(0.75rem, calc(0.7rem + 1vw), 1.1rem);
+    font-size: clamp(0.65rem, 2.5vw, 0.95rem);
     font-weight: 800;
-    letter-spacing: 0.2px;
+    letter-spacing: 0;
     margin: 0;
     text-align: left;
-    line-height: 1.2;
-    white-space: normal;
-    overflow: visible;
+    line-height: 1.1;
+    display: block;
+    word-break: break-word;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-start;
-    transition: font-size 0.3s ease;
+    padding: 4px 0;
 }
 
 .header-right {
