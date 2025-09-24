@@ -68,7 +68,68 @@ const TRANSLATIONS = {
             avanzi: "avanzi"
         },
         detailsTitle: "Dettagli Conferimento",
-        detailsDefault: "Esponi i rifiuti SOLO dalle 19:00 alle 21:00 per il ritiro di domani mattina"
+        detailsDefault: "Esponi i rifiuti SOLO dalle 19:00 alle 21:00",
+        infoModal: {
+            title: "Informazioni",
+            tabs: {
+                app: "App",
+                links: "Link Utili", 
+                sdg: "Sostenibilità",
+                about: "Info"
+            },
+            app: {
+                title: "Come funziona l'app",
+                description: "Questa app ti aiuta a gestire la raccolta differenziata a Verona. Controlla il calendario del tuo quartiere e scopri dove buttare ogni oggetto.",
+                features: {
+                    calendar: "Calendario personalizzato per quartiere",
+                    search: "Ricerca intelligente rifiuti", 
+                    schedule: "Orari di conferimento (19:00-21:00)",
+                    multilang: "Supporto multilingue (IT/EN)"
+                }
+            },
+            links: {
+                title: "Link Utili AMIA",
+                description: "Risorse ufficiali per approfondimenti",
+                calendar: {
+                    title: "Calendari Ufficiali",
+                    description: "Tutti i calendari del porta a porta"
+                },
+                dictionary: {
+                    title: "Dizionario Rifiuti", 
+                    description: "Dove buttare ogni oggetto"
+                },
+                website: {
+                    title: "Sito AMIA",
+                    description: "Portale principale"
+                }
+            },
+            sdg: {
+                title: "Obiettivi Sostenibili",
+                description: "Contribuisci agli SDGs delle Nazioni Unite",
+                goal11: {
+                    title: "Città Sostenibili",
+                    description: "Rendere le città inclusive e sostenibili"
+                },
+                goal12: {
+                    title: "Consumo Responsabile", 
+                    description: "Garantire modelli sostenibili"
+                },
+                goal14: {
+                    title: "Vita Sott'acqua",
+                    description: "Conservare oceani e risorse marine"
+                }
+            },
+            about: {
+                title: "Informazioni App",
+                version: "Versione",
+                lastUpdate: "Ultimo aggiornamento",
+                lastUpdateValue: "Settembre 2025",
+                compatibility: "Compatibilità",
+                compatibilityValue: "Tutti i dispositivi",
+                copyright: "© 2025 Gregorio Pellegrini",
+                rights: "Tutti i diritti riservati"
+            }
+        }
     },
     en: {
         appTitle: "WASTE CALENDAR VERONA",
@@ -121,7 +182,68 @@ const TRANSLATIONS = {
             avanzi: "leftovers"
         },
         detailsTitle: "Collection Details",
-        detailsDefault: "Put out waste ONLY from 7:00 PM to 9:00 PM for tomorrow morning pickup"
+        detailsDefault: "Put out waste ONLY from 7:00 PM to 9:00",
+        infoModal: {
+            title: "Information",
+            tabs: {
+                app: "App",
+                links: "Useful Links",
+                sdg: "Sustainability", 
+                about: "About"
+            },
+            app: {
+                title: "How the app works",
+                description: "This app helps you manage waste collection in Verona. Check your neighborhood calendar and discover where to throw every item.",
+                features: {
+                    calendar: "Personalized calendar by neighborhood",
+                    search: "Smart waste search",
+                    schedule: "Collection hours (7:00 PM - 9:00 PM)",
+                    multilang: "Multi-language support (IT/EN)"
+                }
+            },
+            links: {
+                title: "Useful AMIA Links",
+                description: "Official resources for further information",
+                calendar: {
+                    title: "Official Calendars",
+                    description: "All door-to-door calendars"
+                },
+                dictionary: {
+                    title: "Waste Dictionary",
+                    description: "Where to throw every item"
+                },
+                website: {
+                    title: "AMIA Website", 
+                    description: "Main portal"
+                }
+            },
+            sdg: {
+                title: "Sustainable Goals",
+                description: "Contribute to UN SDGs",
+                goal11: {
+                    title: "Sustainable Cities",
+                    description: "Make cities inclusive and sustainable"
+                },
+                goal12: {
+                    title: "Responsible Consumption",
+                    description: "Ensure sustainable patterns"
+                },
+                goal14: {
+                    title: "Life Below Water",
+                    description: "Conserve oceans and marine resources"
+                }
+            },
+            about: {
+                title: "App Information",
+                version: "Version",
+                lastUpdate: "Last update",
+                lastUpdateValue: "September 2025",
+                compatibility: "Compatibility",
+                compatibilityValue: "All devices",
+                copyright: "© 2025 Gregorio Pellegrini",
+                rights: "All rights reserved"
+            }
+        }
     }
 };
 
@@ -373,7 +495,7 @@ function updateLanguage() {
     
     const infoModalTitle = document.getElementById('info-modal-title');
     if (infoModalTitle) {
-        infoModalTitle.textContent = currentLanguage === 'it' ? 'Informazioni' : 'Information';
+        infoModalTitle.textContent = TRANSLATIONS[currentLanguage].infoModal.title;
     }
     
     // Update search placeholder
@@ -407,11 +529,129 @@ function updateLanguage() {
         option.classList.toggle('active', option.dataset.lang === currentLanguage);
     });
     
+    // Update info modal content
+    updateInfoModalContent();
+    
     // Update all content - IMPORTANT: updateDistrictInfo() MUST be called first
     // to update currentCalendarType before updateWasteCard() uses it
     updateDistrictInfo();
     updateWasteCard();
     updateDetailsSection();
+}
+
+// === INFO MODAL UPDATE ===
+function updateInfoModalContent() {
+    const t = TRANSLATIONS[currentLanguage].infoModal;
+    
+    // Update tab labels
+    const appTab = document.querySelector('[data-tab="app"] span');
+    if (appTab) appTab.textContent = t.tabs.app;
+    
+    const linksTab = document.querySelector('[data-tab="links"] span');
+    if (linksTab) linksTab.textContent = t.tabs.links;
+    
+    const sdgTab = document.querySelector('[data-tab="sdg"] span');
+    if (sdgTab) sdgTab.textContent = t.tabs.sdg;
+    
+    const aboutTab = document.querySelector('[data-tab="about"] span');
+    if (aboutTab) aboutTab.textContent = t.tabs.about;
+    
+    // Update App tab content
+    const appTabContent = document.getElementById('app-tab');
+    if (appTabContent) {
+        const appTitle = appTabContent.querySelector('h3');
+        if (appTitle) appTitle.textContent = t.app.title;
+        
+        const appDescription = appTabContent.querySelector('p');
+        if (appDescription) appDescription.textContent = t.app.description;
+        
+        const featureItems = appTabContent.querySelectorAll('.feature-item span');
+        if (featureItems.length >= 4) {
+            featureItems[0].textContent = t.app.features.calendar;
+            featureItems[1].textContent = t.app.features.search;
+            featureItems[2].textContent = t.app.features.schedule;
+            featureItems[3].textContent = t.app.features.multilang;
+        }
+    }
+    
+    // Update Links tab content
+    const linksTabContent = document.getElementById('links-tab');
+    if (linksTabContent) {
+        const linksTitle = linksTabContent.querySelector('h3');
+        if (linksTitle) linksTitle.textContent = t.links.title;
+        
+        const linksDescription = linksTabContent.querySelector('p');
+        if (linksDescription) linksDescription.textContent = t.links.description;
+        
+        const linkTitles = linksTabContent.querySelectorAll('.link-title');
+        const linkDescriptions = linksTabContent.querySelectorAll('.link-description');
+        
+        if (linkTitles.length >= 3 && linkDescriptions.length >= 3) {
+            linkTitles[0].textContent = t.links.calendar.title;
+            linkDescriptions[0].textContent = t.links.calendar.description;
+            
+            linkTitles[1].textContent = t.links.dictionary.title;
+            linkDescriptions[1].textContent = t.links.dictionary.description;
+            
+            linkTitles[2].textContent = t.links.website.title;
+            linkDescriptions[2].textContent = t.links.website.description;
+        }
+    }
+    
+    // Update SDG tab content
+    const sdgTabContent = document.getElementById('sdg-tab');
+    if (sdgTabContent) {
+        const sdgTitle = sdgTabContent.querySelector('h3');
+        if (sdgTitle) sdgTitle.textContent = t.sdg.title;
+        
+        const sdgDescription = sdgTabContent.querySelector('p');
+        if (sdgDescription) sdgDescription.textContent = t.sdg.description;
+        
+        const sdgItems = sdgTabContent.querySelectorAll('.sdg-item');
+        if (sdgItems.length >= 3) {
+            const goal11Title = sdgItems[0].querySelector('h4');
+            const goal11Desc = sdgItems[0].querySelector('p');
+            if (goal11Title) goal11Title.textContent = t.sdg.goal11.title;
+            if (goal11Desc) goal11Desc.textContent = t.sdg.goal11.description;
+            
+            const goal12Title = sdgItems[1].querySelector('h4');
+            const goal12Desc = sdgItems[1].querySelector('p');
+            if (goal12Title) goal12Title.textContent = t.sdg.goal12.title;
+            if (goal12Desc) goal12Desc.textContent = t.sdg.goal12.description;
+            
+            const goal14Title = sdgItems[2].querySelector('h4');
+            const goal14Desc = sdgItems[2].querySelector('p');
+            if (goal14Title) goal14Title.textContent = t.sdg.goal14.title;
+            if (goal14Desc) goal14Desc.textContent = t.sdg.goal14.description;
+        }
+    }
+    
+    // Update About tab content
+    const aboutTabContent = document.getElementById('about-tab');
+    if (aboutTabContent) {
+        const aboutTitle = aboutTabContent.querySelector('h3');
+        if (aboutTitle) aboutTitle.textContent = t.about.title;
+        
+        const infoItems = aboutTabContent.querySelectorAll('.info-item strong');
+        if (infoItems.length >= 3) {
+            infoItems[0].textContent = t.about.version;
+            infoItems[1].textContent = t.about.lastUpdate;
+            infoItems[2].textContent = t.about.compatibility;
+        }
+        
+        const infoValues = aboutTabContent.querySelectorAll('.info-item span');
+        if (infoValues.length >= 3) {
+            // Version stays "2.0"
+            infoValues[1].textContent = t.about.lastUpdateValue;
+            infoValues[2].textContent = t.about.compatibilityValue;
+        }
+        
+        const copyrightText = aboutTabContent.querySelector('.copyright p strong');
+        if (copyrightText) copyrightText.textContent = t.about.copyright;
+        
+        const rightsText = aboutTabContent.querySelector('.copyright p:last-child');
+        if (rightsText) rightsText.textContent = t.about.rights;
+    }
 }
 
 // === MODAL FUNCTIONS ===
@@ -506,12 +746,12 @@ function performSearch(query) {
     
     resultsContainer.innerHTML = results.map(result => `
         <div class="search-result-item ${result.type}" onclick="selectSearchResult('${result.type}', '${result.item.replace(/'/g, "\\'")}')">
-            <div class="search-result-icon">
+            <div class="result-icon ${result.type}">
                 ${WASTE_ICONS[result.type]}
             </div>
-            <div class="search-result-content">
-                <div class="search-result-title">${result.item}</div>
-                <div class="search-result-category">${result.category}</div>
+            <div class="result-content">
+                <div class="result-name">${result.item}</div>
+                <div class="result-category">${result.category}</div>
             </div>
         </div>
     `).join('');
@@ -554,12 +794,8 @@ function renderDistrictList(filter = '') {
     }
     
     districtList.innerHTML = filteredDistricts.map(district => `
-        <div class="district-item" onclick="selectDistrict('${district.name.toLowerCase()}')">
-            <div class="district-calendar-icon ${district.calendar}"></div>
-            <div class="district-item-info">
-                <div class="district-item-name">${district.name}</div>
-                <div class="district-item-calendar">Calendario ${district.calendar.charAt(0).toUpperCase() + district.calendar.slice(1)}</div>
-            </div>
+        <div class="district-item" data-calendar="${district.calendar}" onclick="selectDistrict('${district.name.toLowerCase()}')">
+            <div class="district-name">${district.name}</div>
         </div>
     `).join('');
 }
@@ -751,6 +987,10 @@ function testURLParams() {
     console.log('Current calendar:', currentCalendarType);
 }
 
+window.openSearchModal = openSearchModal;
+window.closeSearchModal = closeSearchModal;
+window.openDistrictModal = openDistrictModal;
+window.closeDistrictModal = closeDistrictModal;
 window.openLanguageModal = openLanguageModal;
 window.closeLanguageModal = closeLanguageModal;
 window.openInfoModal = openInfoModal;
@@ -763,3 +1003,14 @@ window.forceUpdateAll = forceUpdateAll;
 window.showInfoTab = showInfoTab;
 window.generateQRCodeURLs = generateQRCodeURLs;
 window.testURLParams = testURLParams;
+
+// === INIZIALIZZAZIONE APP ===
+// Avvia l'app quando il DOM è caricato
+document.addEventListener('DOMContentLoaded', initializeApp);
+
+// Backup: inizializza anche se il DOM è già caricato
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
+}

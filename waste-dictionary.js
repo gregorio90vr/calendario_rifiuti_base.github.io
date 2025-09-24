@@ -1,3 +1,4 @@
+
 // Copyright © 2025 Gregorio Pellegrini. Tutti i diritti riservati.
 // Dizionario Rifiuti - Dati per la Ricerca "Dove lo butto"
 
@@ -6,118 +7,45 @@ const WASTE_DICTIONARY = {
     it: {
         umido: {
             items: [
-                "avanzi di cibo", "bucce di frutta", "bucce di verdura", "ossa di pesce", 
-                "ossa di carne", "gusci d'uovo", "fondi di caffè", "bustine di tè",
-                "pane vecchio", "pasta avanzata", "riso", "fiori recisi", "foglie",
-                "tovaglioli sporchi", "fazzoletti usati", "sfalci d'erba",
-                "potature", "lettiera biodegradabile", "tappi di sughero naturale",
-                "cenere fredda di legna", "escrementi di animali", "peli di animali",
-                "scarti di cucina", "verdure marce", "frutta marcia", "gusci di noce",
-                "gusci di nocciole", "gusci di mandorle", "noccioli di pesca",
-                "noccioli di albicocca", "noccioli di ciliegia", "torsoli di mela",
-                "buccia di banana", "scorza di arancia", "scorza di limone"
+                "alimenti avariati", "umido", "avanzi di cibo", "bambù", "bicchieri e coppette in materiale compostabile (ad es.cellulosa, amido di mais, ecc.)", "bustine di tè", "carbone spento", "carta assorbente da cucina (scottex)", "carta umida imbevuta di liquidi organici (sugo, olio, ecc.)", "cenere spenta", "cialde caffè con ivolucro biodegradabile", "conchiglie e molluschi", "cotton fioc compostabile", "fiammiferi", "filtri del the, tè, caffè e camomilla", "fiori secchi e recisi", "fondi di caffè", "gusci di crostacei", "gusci di frutta secca", "gusci d’uovo", "incensi", "lettiera naturale per animali", "lische di pesce", "ossa (avanzi di cibo)", "paglia", "piante piccole", "piatti e posate in materiale compostabile", "salviette di carta unte", "scarti di cucina", "segature (piccole quantità)", "stecchi in legno per gelati", "stuzzicadenti", "tovaglioli di carta usati", "truciolati o residui di lavorazione del legno (piccole quantità)", "trucioli di tempera della matita o pastelli", "uova", "umido", "verdura avariata"
             ]
         },
         plastica: {
             items: [
-                "bottiglie di plastica", "flaconi shampoo", "contenitori yogurt", 
-                "sacchetti di plastica", "vaschette alimentari", "pellicola trasparente",
-                "tappi di plastica", "lattine di alluminio", "barattoli di metallo",
-                "scatolette tonno", "carta stagnola", "tetra pak",
-                "vaschette polistirolo", "blister medicinali", "reggette di plastica",
-                "retine per frutta", "sacchetti freezer", "flaconi detersivi",
-                "tappi a corona", "bombolette spray vuote", "contenitori gelato",
-                "vaschette di alluminio", "lattine bibite", "barattoli di latta",
-                "tubetti dentifricio", "flaconi cosmetici", "contenitori shampoo",
-                "bottiglie detergenti", "contenitori alimentari", "buste della spesa",
-                "involucri di caramelle", "confezioni snack", "packaging alimentari"
+                "acetone (contenitore vuoto e lavato)", "acidi (contenitore vuoto e lavato)", "alcool (contenitore vuoto)", "alluminio", "annaffiatoio", "attaccapanni in ferro", "bacinelle in plastica", "barattoli in acciaio (vuoti e puliti)", "barattoli in alluminio e acciaio (per olio, pelati, tonno, ecc.)", "barattoli in latta (scatole di pelati, ecc.)", "barattoli in plastica per prodotti vari", "barattoli per alimenti in polvere", "barattoli per articoli da cancelleria", "barattoli per detersivi", "barattoli per rullini fotografici", "barattoli per salviette umide", "barattolini di crema", "barre da imballaggio in polistirolo espanso", "bicchieri in plastica", "bombolette spray non pericolose (contenitore vuoto)", "borse di plastica", "bottiglie di plastica per acqua, olio, succhi", "buste di plastica", "caffettiera", "candeggina (contenitore vuoto e lavato)", "cards plastificate", "carta delle caramelle", "carta patinata", "carta stagnola (alluminio)", "cassette per ortofrutta e carni", "cellophane", "chiavi in metallo", "confezioni delle merendine", "confezioni in plastica rigide o flessibili", "contenitore borotalco", "contenitore pasta abrasiva", "contenitori in plastica (bacinelle e terrine)", "contenitori per alimenti in alluminio e acciaio", "contenitori per bibite (lattine)", "coperchi metallici", "coperchietti dei barattoli di yogurt", "coppette del gelato di plastica pulite", "cosmetici (contenitore plastica)", "cotton fioc in plastica", "dentifricio (tubetto vuoto)", "deodorante personale con contenitore in plastica", "detersivo (flaccone vuoto e pulito)", "detersivo (sacchetto vuoto e pulito)", "dispensatori per alimenti vuoti e puliti (creme, salse, yogurt)", "fiale in plastia vuote", "film e pellicole da imballaggio in plastica", "flacconi di plastica vuoti (detersivi e saponi)", "flacconi per alimenti vuoti (creme e salse)", "fogli di protezione in alluminio delle cioccolate", "fogli in alluminio per uso domestico", "forbici", "grattugia in plastica per alimenti", "imballaggi in metallo", "imballaggi in plastica", "imballaggi in polistirolo", "lacche (contenitore vuoto)", "latta", "lattine in alluminio", "lattine in banda stagnata", "nylon", "padelle", "paste abrasive (contenitotre vuoto)", "pellicole per alimenti", "polistirolo imballaggi", "polistirolo pannelli", "posate in metallo", "posate in plastica", "profumi (contenitori vuoti)", "reggette per legatura pacchi (in plastica)", "reti in plastica per frutta e verdura", "sacchetti di carta con interno plasticato", "sacchetti di plastica", "sacchi e sacchetti in plastica (fuorché per materiale edile)", "sacchi per alimenti per animali", "sacchi per detersivi", "sacchi per prodotti di giardinaggio", "scatolette per tonno e altri alimenti", "scolapasta in plastica", "secchielli in plastica", "shoppers", "stagnola", "tagliere in plastica", "taniche per uso domestico (no benzina meno 5lt)", "tappi a corona", "tappi di barattoli in metallo", "tappi in plastica", "tintura per abiti, scarpe, capelli (contenitore vuoto)", "tubetti di dentifricio", "tubetti per uso alimentare", "vaschette e barattoli per gelati", "vaschette in alluminio per alimenti", "vaschette in plastica portauova", "vasi in plastica"
             ]
         },
         carta: {
             items: [
-                "giornali", "riviste", "libri", "quaderni", "scatole di cartone",
-                "fogli di carta", "sacchetti di carta", "cartoni del latte", 
-                "buste di carta", "scatole cereali", "cartone ondulato",
-                "volantini pubblicitari", "scontrini", "biglietti autobus",
-                "carta regalo", "calendari", "agende", "fumetti",
-                "scatole pizza pulite", "contenitori tetrapak", "fotocopie",
-                "documenti", "lettere", "buste postali", "depliant",
-                "cataloghi", "opuscoli", "brochure", "manuali",
-                "carta da pacco", "cartoncini", "biglietti da visita",
-                "inviti", "cartoline", "poster di carta"
+               "agenda", "brick per succo di frutta, tè (senza cannuccia)", "buste di carta", "cartoncino", "cartone da imballaggio", "cartone della pizza", "cartone per alimenti - tetrapak (per latte, succhi di frutta, ecc.)", "confezioni in cartoncino (ad es. della pasta,del dentifricio, dei cereali, ecc.)", "coppette del gelato di carta pulite", "detersivo (imballaggio cartone)", "fogli di carta e cartone", "imballaggi in carta e cartone", "pacchetti di sigarette senza parti in plastica", "pergamene", "post-it", "quaderni", "raccoglitore dossier senza parti metalliche", "riviste", "rotolo interno alla carta igienica", "salviette pulite", "scatola in cartone per pizza (se sporchi pulire con una salvietta)", "scatoloni", "tetra-pak", "tovaglioli di carta puliti", "vaschette in carta portauova", "vassoi e confezioni in cartoncino"
             ]
         },
         secco: {
             items: [
-                "pannolini", "assorbenti", "ceramica rotta", "porcellana",
-                "giocattoli rotti", "cd", "dvd", "spugne sporche", 
-                "mozziconi sigarette", "polvere aspirapolvere", "lettiera chimica",
-                "carta oleata", "carta plastificata", "scontrini termici",
-                "oggetti di gomma piccoli", "preservativi", "rasoi usa e getta",
-                "cotton fioc", "cerotti", "calzini strappati", "collant rotti",
-                "scarpe rotte", "borse rotte", "ombrelli rotti",
-                "penne scariche", "pennarelli secchi", "evidenziatori vuoti",
-                "lampadine a incandescenza", "specchi rotti", "vetro temperato",
-                "cristalli rotti", "bicchieri rotti", "piatti rotti"
+"accendino", "addobbi natalizi", "adesivi", "ago con cappuccio", "aquiloni", "assorbenti", "astucci", "auricolari", "bambole", "asta bandiere", "bicchieri in cristallo", "bicchieri di vetro", "borsa dell’acqua calda", "candela", "contenitori in plastica per candele", "canne per irrigazione", "cannucce", "capelli", "capsule per macchinette caffè", "carta carbone", "carta cerata", "carta da forno", "carta per affettati", "carta per formaggio", "carta sporca di colla o altre sostanze", "carta vetrata", "cartoni pizza sporchi", "casco moto e bici", "cassette audio e video", "cd e cd-rom", "cera", "ceramica", "cerini", "cerotti", "ciabatte", "cialde caffè con involucro non biodegradabili", "ciuccio", "corda", "cosmetici", "cotone usato", "cover di cellulari", "cristallo", "cuscini", "custodie per cd, musicassette, videocassette", "deodorante per auto", "detersivo (sacchetto sporco)", "diapositive", "dischetti per computer", "dischi in vinile", "dvd", "elastici", "etichette adesive", "etichette di indumenti", "evidenziatori", "fazzoletti di carta sporchi", "feltrini", "filo interdentale", "fiori finti", "fotografie", "ganci per chiudere i sacchetti", "garze sterili", "giocattoli", "gommapiuma", "graffette", "guanti in gomma, lattice, usa e getta", "guarnizioni", "insetticidi per uso domestico (barattoli vuoti e puliti)", "lamette usa e getta", "lampadine a incandescenza", "lastre raggi", "lenti a contatto", "lenti occhiali", "lettiera sintetica per animali", "lucida scarpe", "lumini / cera di lumino", "lumini / contenitori in plastica per lumini", "mascherine", "matite", "mollette", "mozziconi di sigaretta", "musicassette", "nastri per fiori", "nastro adesivo", "negativi fotografici", "occhiali / montatura occhiali", "oggetti in gomma", "ombrelli", "ovatta", "paletta raccogli rifiuti", "palline da tennis", "palloni da gioco", "panni elettrostatici per la polvere", "pannolini", "parasole per auto", "paste abrasive (contenitotre sporco)", "peli", "pellicola fotografica", "peluche", "pennarelli", "penne", "pennelli", "pettini", "piastrine per zanzare", "piatti in ceramica", "pirofile", "polveri dell’aspirapolvere", "portadocumenti e cartellette in plastica", "profilattici", "rasoi usa e getta", "righelli", "rullino fotografico", "sacche per dialisi e per stomatizzati", "sacchetti per aspirapolvere", "salviette", "sapone in pezzi e saponette", "scarpe e scarponi usati in cattivo stato", "scarponi da sci rotti", "scontrini in carta chimica", "scopa", "sigarette", "siringhe (con l’apposito cappuccio inserito sull’ago)", "spago", "spazzole", "spazzolini", "spugne", "spugne abrasive", "spugne per fiori", "spugne sintetiche", "stoviglie", "stracci da cucina", "stracci unti da olio minerale", "tamponi per timbri", "tappeti", "tappezzeria/tappeti", "tazze e tazzine in ceramica rotta", "tergicristalli rotti", "trucchi", "tubi in gomma", "tubi in pvc per idraulico", "uncinetto", "unghie", "valigie", "vasi in ceramica", "vasi in terracotta", "videocassette", "zanzariere", "zerbino", "zoccoli"
             ]
         }
     },
     en: {
         umido: {
             items: [
-                "food scraps", "fruit peels", "vegetable peels", "fish bones", 
-                "meat bones", "eggshells", "coffee grounds", "tea bags",
-                "old bread", "leftover pasta", "rice", "cut flowers", "leaves",
-                "dirty napkins", "used tissues", "grass clippings",
-                "prunings", "biodegradable litter", "natural cork stoppers",
-                "cold wood ash", "pet waste", "animal hair", "kitchen waste",
-                "rotten vegetables", "spoiled fruit", "walnut shells",
-                "hazelnut shells", "almond shells", "peach pits",
-                "apricot pits", "cherry pits", "apple cores",
-                "banana peels", "orange peel", "lemon peel"
+                "spoiled food", "organic waste", "food leftovers", "bamboo", "compostable cups and bowls (e.g. cellulose, corn starch, etc.)", "tea bags", "extinguished charcoal", "kitchen paper towels (e.g. paper towel rolls)", "wet paper soaked with organic liquids (sauce, oil, etc.)", "extinguished ash", "biodegradable coffee pods with wrapper", "shells and mollusks", "compostable cotton swabs", "matches", "tea, coffee, and chamomile filters", "dried and cut flowers", "coffee grounds", "shells of crustaceans", "nut shells", "eggshells", "incense", "natural pet litter", "fish bones", "bones (food scraps)", "straw", "small plants", "compostable plates and cutlery", "greasy paper napkins", "kitchen scraps", "sawdust (small quantities)", "wooden sticks from ice creams", "toothpicks", "used paper napkins", "wood shavings or processing residues (small quantities)", "pencil or crayon shavings", "eggs", "organic waste", "spoiled vegetables"
             ]
         },
         plastica: {
             items: [
-                "plastic bottles", "shampoo bottles", "yogurt containers", 
-                "plastic bags", "food trays", "plastic wrap",
-                "plastic caps", "aluminum cans", "metal jars",
-                "tuna cans", "aluminum foil", "tetra pak",
-                "polystyrene trays", "medicine blisters", "plastic straps",
-                "fruit nets", "freezer bags", "detergent containers",
-                "bottle caps", "empty spray cans", "ice cream containers",
-                "aluminum trays", "soda cans", "tin cans",
-                "toothpaste tubes", "cosmetic bottles", "shampoo containers",
-                "detergent bottles", "food containers", "shopping bags",
-                "candy wrappers", "snack packaging", "food packaging"
+               "acetone (empty and rinsed container)", "acids (empty and rinsed container)", "alcohol (empty container)", "aluminum", "watering can", "iron coat hanger", "plastic basins", "steel jars (empty and clean)", "aluminum and steel jars (for oil, peeled tomatoes, tuna, etc.)", "tin cans (e.g. for peeled tomatoes)", "plastic jars for various products", "powdered food jars", "stationery item jars", "detergent jars", "film roll containers", "wet wipe containers", "cream jars", "expanded polystyrene packaging bars", "plastic cups", "non-hazardous spray cans (empty)", "plastic bags", "plastic bottles for water, oil, juice", "plastic pouches", "coffee maker", "bleach (empty and rinsed container)", "laminated cards", "candy wrappers", "glossy paper", "aluminum foil", "fruit and meat crates", "cellophane", "metal keys", "snack wrappers", "rigid or flexible plastic packaging", "talc container", "abrasive paste container", "plastic containers (basins and bowls)", "food containers in aluminum and steel", "drink containers (cans)", "metal lids", "yogurt jar lids", "clean plastic ice cream cups", "cosmetic containers (plastic)", "plastic cotton swabs", "toothpaste (empty tube)", "personal deodorant in plastic container", "detergent (empty and clean bottle)", "detergent (empty and clean pouch)", "empty and clean food dispensers (creams, sauces, yogurt)", "empty plastic vials", "plastic packaging films and wraps", "empty plastic bottles (detergents and soaps)", "empty food bottles (creams and sauces)", "aluminum protective sheets from chocolate", "household aluminum foil", "scissors", "plastic food grater", "metal packaging", "plastic packaging", "polystyrene packaging", "hair sprays (empty container)", "tin", "aluminum cans", "tinplate cans", "nylon", "pans", "abrasive paste (empty container)", "food wrap film", "polystyrene packaging", "polystyrene panels", "metal cutlery", "plastic cutlery", "perfume bottles (empty)", "plastic strapping for package binding", "plastic nets for fruit and vegetables", "paper bags with plastic lining", "plastic bags", "plastic sacks and bags (except for construction material)", "pet food bags", "detergent bags", "gardening product bags", "tuna and other food cans", "plastic colander", "plastic buckets", "plastic shopping bags (shoppers)", "foil", "plastic cutting board", "plastic jerrycans for domestic use (no gasoline, under 5l)", "crown caps", "metal jar lids", "plastic caps", "dye for clothes, shoes, hair (empty container)", "toothpaste tubes", "food-use tubes", "ice cream tubs and jars", "aluminum food trays", "plastic egg trays", "plastic pots"
             ]
         },
         carta: {
             items: [
-                "newspapers", "magazines", "books", "notebooks", "cardboard boxes",
-                "paper sheets", "paper bags", "milk cartons", 
-                "paper bags", "cereal boxes", "cardboard",
-                "advertising flyers", "receipts", "bus tickets",
-                "gift wrapping", "calendars", "diaries", "comics",
-                "clean pizza boxes", "tetrapak containers", "photocopies",
-                "documents", "letters", "envelopes", "leaflets",
-                "catalogs", "brochures", "pamphlets", "manuals",
-                "wrapping paper", "cardstock", "business cards",
-                "invitations", "postcards", "paper posters"
+               "notebook", "juice or tea brick (without straw)", "paper bags", "cardstock", "packaging cardboard", "pizza box", "food carton – tetra pak (for milk, juice, etc.)", "cardboard packaging (e.g. for pasta, toothpaste, cereal, etc.)", "clean paper ice cream cups", "detergent (cardboard packaging)", "sheets of paper and cardboard", "paper and cardboard packaging", "cigarette packs without plastic parts", "parchment", "sticky notes (post-it)", "notebooks", "file folders without metal parts", "magazines", "toilet paper roll core", "clean wipes", "pizza box (if dirty, clean with a wipe)", "large cardboard boxes", "tetra pak", "clean paper napkins", "paper egg cartons", "cardboard trays and packaging"
             ]
         },
         secco: {
             items: [
-                "diapers", "sanitary products", "broken ceramics", "porcelain",
-                "broken toys", "cds", "dvds", "dirty sponges", 
-                "cigarette butts", "vacuum dust", "chemical litter",
-                "wax paper", "plastic-coated paper", "thermal receipts",
-                "small rubber objects", "condoms", "disposable razors",
-                "cotton swabs", "bandages", "torn socks", "torn pantyhose",
-                "broken shoes", "broken bags", "broken umbrellas",
-                "empty pens", "dried markers", "empty highlighters",
-                "incandescent bulbs", "broken mirrors", "tempered glass",
-                "broken crystals", "broken glasses", "broken plates"
+                "christmas decorations", "stickers", "needle with cap", "kites", "sanitary pads", "pencil cases", "earphones", "dolls", "flagpole", "crystal glasses", "glass cups", "hot water bottle", "candle", "plastic containers for candles", "irrigation pipes", "straws", "hair", "coffee machine capsules", "carbon paper", "wax paper", "baking paper", "deli paper", "cheese paper", "glue- or substance-soiled paper", "sandpaper", "greasy pizza boxes", "motorcycle and bicycle helmet", "audio and video tapes", "cds and cd-roms", "wax", "ceramic", "matches", "band-aids", "slippers", "non-biodegradable coffee pods with wrapper", "pacifier", "rope", "cosmetics", "used cotton", "phone covers", "crystal (material)", "cushions", "cd, cassette, vhs cases", "car air freshener", "detergent (dirty bag)", "slides (photographic)", "computer disks", "vinyl records", "dvds", "rubber bands", "adhesive labels", "clothing labels", "highlighters", "used tissues", "felt pads", "dental floss", "artificial flowers", "photographs", "bag clips", "sterile gauze", "toys", "foam rubber", "paper clips", "rubber, latex, disposable gloves", "gaskets", "household insecticide (empty and clean cans)", "disposable razors", "incandescent bulbs", "x-ray plates", "contact lenses", "eyeglass lenses", "synthetic pet litter", "shoe polish", "grave candles / candle wax", "grave candles / plastic containers", "face masks", "pencils", "clothespins", "cigarette butts", "cassette tapes", "flower ribbons", "adhesive tape", "photo negatives", "glasses / eyeglass frames", "rubber items", "umbrellas", "cotton wool", "dustpan", "tennis balls", "play balls", "electrostatic dust cloths", "diapers", "car sunshades", "abrasive pastes (dirty container)", "hair (body or pet)", "photographic film", "stuffed animals", "markers", "pens", "paintbrushes", "combs", "mosquito repellent tablets", "ceramic plates", "baking dishes", "vacuum cleaner dust", "plastic folders and document holders", "condoms", "disposable razors", "rulers", "film roll", "dialysis and ostomy bags", "vacuum cleaner bags", "wipes", "bar soap and soap bars", "worn-out shoes and boots", "broken ski boots", "thermal paper receipts", "broom", "cigarettes", "syringes (with cap on needle)", "string", "brushes", "toothbrushes", "sponges", "abrasive sponges", "floral foam", "synthetic sponges", "tableware", "kitchen rags", "rags soaked in mineral oil", "stamp pads", "rugs", "upholstery / carpets", "broken ceramic cups and mugs", "broken windshield wipers", "makeup", "rubber tubes", "pvc plumbing pipes", "crochet hook", "nails (fingernails/toenails)", "suitcases", "ceramic pots", "terracotta pots", "vhs tapes", "mosquito nets", "doormat", "clogs",
+
             ]
         }
     }
