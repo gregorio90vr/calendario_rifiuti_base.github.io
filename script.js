@@ -1,5 +1,5 @@
 // =========================================
-// CALENDARIO RIFIUTI - NEW DESIGN
+// CALENDARIO RIFIUTI VERONA - NEW DESIGN
 // Basato su wireframe fornito dall'utente
 // © 2025 Gregorio Pellegrini
 // =========================================
@@ -18,7 +18,7 @@ const APP_START_DATE = new Date(); // Data salvata all'avvio dell'app
 // === TRADUZIONI COMPLETE ===
 const TRANSLATIONS = {
     it: {
-        appTitle: "CALENDARIO RIFIUTI",
+        appTitle: "CALENDARIO RIFIUTI VERONA",
         searchButton: "DOVE LO BUTTO",
         districtButton: "QUARTIERE", 
         languageButton: "LINGUA",
@@ -828,7 +828,7 @@ function selectLanguage(lang) {
 
 // === EVENT LISTENERS ===
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Calendario Rifiuti - New Design Loaded');
+    console.log('🚀 CALENDARIO RIFIUTI VERONA - New Design Loaded');
     console.log('📊 Current Language:', currentLanguage);
     console.log('🏘️ Current District:', currentDistrict);
     console.log('📅 App Date:', APP_START_DATE.toLocaleDateString());
