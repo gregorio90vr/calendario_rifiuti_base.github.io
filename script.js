@@ -37,7 +37,7 @@ const TRANSLATIONS = {
             plastica: "PLASTICA/METALLI", 
             carta: "CARTA",
             secco: "SECCO"
-        },
+        }, 
         timeStatus: {
             rest: {
                 title: "🛋️ GIORNO DI RIPOSO",
