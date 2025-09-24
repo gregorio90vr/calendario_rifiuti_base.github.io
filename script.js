@@ -1004,7 +1004,7 @@ window.showInfoTab = showInfoTab;
 window.generateQRCodeURLs = generateQRCodeURLs;
 window.testURLParams = testURLParams;
 
-// === INIZIALIZZAZIONE APP ===
+// === INIZIALIZZAZIONE APP ====
 // Avvia l'app quando il DOM è caricato
 document.addEventListener('DOMContentLoaded', initializeApp);
 

@@ -63,6 +63,7 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     position: relative;
     z-index: 10;
+    overflow: hidden;
 }
 
 .header-content {
@@ -117,24 +118,31 @@ body {
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.25);
     color: white;
-    padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 16px);
-    border-radius: 20px;
+    padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 12px);
+    border-radius: 14px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: clamp(10px, 2.2vw, 13px);
-    line-height: 1.1;
+    font-size: clamp(8px, 1.8vw, 11px);
+    line-height: 0.9;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: clamp(4px, 1vw, 8px);
+    gap: clamp(2px, 0.6vw, 4px);
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    min-height: clamp(32px, 7vw, 40px);
+    height: clamp(24px, 5vw, 32px);
+    max-height: calc(100% - 4px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     flex-shrink: 0;
     min-width: 0;
-    max-width: clamp(160px, 35vw, 250px);
+    max-width: clamp(130px, 30vw, 180px);
     position: relative;
+    overflow: hidden;
+}
+
+.district-selector i {
+    font-size: clamp(7px, 1.4vw, 10px);
+    flex-shrink: 0;
 }
 
 .district-selector:hover {
@@ -149,14 +157,29 @@ body {
 
 .district-name {
     font-weight: 700;
-    letter-spacing: 0.3px;
+    letter-spacing: 0px;
     color: white;
     text-align: center;
-    white-space: normal;
-    word-wrap: break-word;
-    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 0.9;
     display: block;
-    hyphens: auto;
+    flex: 1;
+    min-width: 0;
+    font-size: clamp(6px, 1.6vw, 10px);
+    max-width: 100%;
+}
+
+/* Adattamento dinamico per nomi lunghi */
+.district-name.long {
+    font-size: clamp(5px, 1.3vw, 8px);
+    letter-spacing: -0.1px;
+}
+
+.district-name.very-long {
+    font-size: clamp(4px, 1.1vw, 7px);
+    letter-spacing: -0.2px;
 }
 
 /* === RESPONSIVE HEADER OPTIMIZATIONS === */
@@ -173,21 +196,30 @@ body {
     }
     
     .district-selector {
-        padding: 6px 10px;
-        font-size: 10px;
-        gap: 4px;
-        min-height: 30px;
-        max-width: clamp(120px, 30vw, 180px);
+        padding: 3px 6px;
+        font-size: 8px;
+        gap: 2px;
+        height: clamp(20px, 4.5vw, 24px);
+        max-height: calc(100% - 2px);
+        max-width: clamp(90px, 26vw, 140px);
     }
     
     .district-name {
-        font-size: 9px;
-        line-height: 1.0;
+        font-size: clamp(5px, 1.3vw, 7px);
+        line-height: 0.9;
+    }
+    
+    .district-name.long {
+        font-size: clamp(4px, 1.1vw, 6px);
+    }
+    
+    .district-name.very-long {
+        font-size: clamp(3px, 1vw, 5px);
     }
     
     /* Icone più piccole su mobile */
     .district-selector i {
-        font-size: 10px;
+        font-size: clamp(7px, 1.5vw, 9px);
         flex-shrink: 0;
     }
 }
@@ -209,17 +241,26 @@ body {
     }
     
     .district-selector {
-        padding: 4px 8px;
-        font-size: 9px;
-        min-height: 28px;
-        max-width: clamp(100px, 28vw, 160px);
+        padding: 2px 5px;
+        font-size: 7px;
+        height: clamp(18px, 4vw, 22px);
+        max-height: calc(100% - 2px);
+        max-width: clamp(80px, 23vw, 120px);
         flex-shrink: 0;
     }
     
     .district-name {
-        font-size: 8px;
-        line-height: 1.0;
-        letter-spacing: 0.1px;
+        font-size: clamp(4px, 1.1vw, 6px);
+        line-height: 0.9;
+        letter-spacing: 0px;
+    }
+    
+    .district-name.long {
+        font-size: clamp(3px, 1vw, 5px);
+    }
+    
+    .district-name.very-long {
+        font-size: clamp(3px, 0.9vw, 4px);
     }
     
 
@@ -258,16 +299,25 @@ body {
     }
     
     .district-selector {
-        padding: 3px 6px;
-        font-size: 8px;
-        min-height: 26px;
-        max-width: clamp(90px, 25vw, 140px);
+        padding: 1px 3px;
+        font-size: 6px;
+        height: clamp(16px, 3.5vw, 20px);
+        max-height: calc(100% - 1px);
+        max-width: clamp(70px, 20vw, 100px);
     }
     
     .district-name {
-        font-size: 7px;
-        line-height: 0.9;
+        font-size: clamp(3px, 0.9vw, 5px);
+        line-height: 0.8;
         letter-spacing: 0px;
+    }
+    
+    .district-name.long {
+        font-size: clamp(2px, 0.8vw, 4px);
+    }
+    
+    .district-name.very-long {
+        font-size: clamp(2px, 0.7vw, 3px);
     }
     
 
