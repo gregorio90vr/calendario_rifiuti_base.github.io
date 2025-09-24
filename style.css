@@ -39,7 +39,7 @@ body {
     background: var(--white, #ffffff);
     display: grid;
     grid-template-rows: 
-        95px           /* Header fisso con più spazio */
+        70px           /* Header ottimizzato per layout orizzontale */
         1fr            /* Main content flessibile - si adatta allo spazio restante */
         60px;          /* Footer fisso */
     grid-template-areas: 
@@ -56,58 +56,83 @@ body {
     grid-area: header;
     background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
     color: white;
-    padding: 6px 16px;
+    padding: clamp(8px, 2vw, 16px) clamp(12px, 3vw, 20px);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     position: relative;
     z-index: 10;
-    height:80px;
 }
 
 .header-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
     width: 100%;
     height: 100%;
-    padding: 2px 0;
+    gap: clamp(8px, 2vw, 16px);
 }
 
 .app-title {
-    font-size: clamp(0.85rem, 3.5vw, 1rem);
+    font-size: clamp(0.9rem, 3.8vw, 1.1rem);
     font-weight: 800;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.3px;
     margin: 0;
-    text-align: center;
-    line-height: 1.2;
-    width: 100%;
+    text-align: left;
+    line-height: 1.1;
+    flex: 1;
     text-transform: uppercase;
-    padding-top: 4px;
+    display: flex;
+    align-items: center;
+}
+
+/* Versione compatta per mobile molto piccolo */
+@media (max-width: 350px) {
+    .app-title {
+        font-size: 0.8rem;
+        letter-spacing: 0.2px;
+    }
+    
+    .app-title::after {
+        content: "RIFIUTI VR";
+    }
+    
+    .app-title {
+        text-indent: -9999px;
+        position: relative;
+    }
+    
+    .app-title::after {
+        text-indent: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: 800;
+    }
 }
 
 .district-selector {
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.25);
     color: white;
-    padding: 6px 16px;
-    border-radius: 18px;
+    padding: clamp(6px, 1.5vw, 10px) clamp(12px, 3vw, 16px);
+    border-radius: 20px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: clamp(12px, 2.5vw, 14px);
+    font-size: clamp(10px, 2.2vw, 13px);
     line-height: 1.2;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: clamp(4px, 1vw, 8px);
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    min-height: 34px;
+    height: clamp(32px, 7vw, 40px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin-bottom: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .district-selector:hover {
@@ -124,6 +149,116 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+/* === RESPONSIVE HEADER OPTIMIZATIONS === */
+@media (max-width: 400px) {
+    .header-content {
+        gap: 8px;
+    }
+    
+    .app-title {
+        font-size: 0.85rem;
+        letter-spacing: 0.2px;
+    }
+    
+    .district-selector {
+        padding: 6px 10px;
+        font-size: 10px;
+        gap: 4px;
+        height: 30px;
+    }
+    
+    .district-name {
+        max-width: 70px;
+    }
+    
+    /* Icone più piccole su mobile */
+    .district-selector i {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 350px) {
+    .app-header {
+        padding: 8px 12px;
+    }
+    
+    .header-content {
+        gap: 6px;
+    }
+    
+    .app-title {
+        font-size: 0.8rem;
+    }
+    
+    .district-selector {
+        padding: 4px 8px;
+        font-size: 9px;
+        height: 28px;
+        min-width: 80px;
+    }
+    
+    .district-name {
+        max-width: 50px;
+        font-size: 9px;
+    }
+}
+
+/* Versione ultra-compatta per schermi molto piccoli */
+@media (max-width: 320px) {
+    .app-container {
+        grid-template-rows: 
+            65px           /* Header più compatto per mobile piccolo */
+            1fr 
+            60px;
+    }
+    
+    .app-title::after {
+        content: "RIFIUTI VR";
+    }
+    
+    .app-title {
+        font-size: 0;
+        position: relative;
+    }
+    
+    .app-title::after {
+        font-size: 0.75rem;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 800;
+        letter-spacing: 0.3px;
+    }
+}
+
+/* Layout ottimizzato per tablet e desktop */
+@media (min-width: 500px) {
+    .app-container {
+        grid-template-rows: 
+            80px           /* Header più alto per schermi grandi */
+            1fr 
+            60px;
+    }
+    
+    .app-title {
+        font-size: 1.2rem;
+        letter-spacing: 0.4px;
+    }
+    
+    .district-selector {
+        padding: 8px 20px;
+        font-size: 14px;
+        height: 42px;
+        gap: 10px;
+    }
+    
+    .district-name {
+        max-width: 150px;
+    }
 }
 
 /* === MAIN CONTENT - RIPARTIZIONE INTELLIGENTE === */
