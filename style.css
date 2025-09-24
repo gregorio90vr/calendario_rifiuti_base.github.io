@@ -117,22 +117,24 @@ body {
     background: rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.25);
     color: white;
-    padding: clamp(6px, 1.5vw, 10px) clamp(12px, 3vw, 16px);
+    padding: clamp(8px, 2vw, 12px) clamp(12px, 3vw, 16px);
     border-radius: 20px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: clamp(10px, 2.2vw, 13px);
-    line-height: 1.2;
+    line-height: 1.1;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: clamp(4px, 1vw, 8px);
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    height: clamp(32px, 7vw, 40px);
+    min-height: clamp(32px, 7vw, 40px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    white-space: nowrap;
     flex-shrink: 0;
+    min-width: 0;
+    max-width: clamp(160px, 35vw, 250px);
+    position: relative;
 }
 
 .district-selector:hover {
@@ -141,42 +143,52 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+
+
+
+
 .district-name {
     font-weight: 700;
     letter-spacing: 0.3px;
     color: white;
     text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 120px;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.1;
+    display: block;
+    hyphens: auto;
 }
 
 /* === RESPONSIVE HEADER OPTIMIZATIONS === */
 @media (max-width: 400px) {
     .header-content {
-        gap: 8px;
+        gap: clamp(4px, 1vw, 8px);
     }
     
     .app-title {
         font-size: 0.85rem;
         letter-spacing: 0.2px;
+        flex: 1;
+        min-width: 0;
     }
     
     .district-selector {
         padding: 6px 10px;
         font-size: 10px;
         gap: 4px;
-        height: 30px;
+        min-height: 30px;
+        max-width: clamp(120px, 30vw, 180px);
     }
     
     .district-name {
-        max-width: 70px;
+        font-size: 9px;
+        line-height: 1.0;
     }
     
     /* Icone più piccole su mobile */
     .district-selector i {
         font-size: 10px;
+        flex-shrink: 0;
     }
 }
 
@@ -186,24 +198,31 @@ body {
     }
     
     .header-content {
-        gap: 6px;
+        gap: 4px;
+        flex-wrap: nowrap;
     }
     
     .app-title {
         font-size: 0.8rem;
+        flex: 1;
+        min-width: 0;
     }
     
     .district-selector {
         padding: 4px 8px;
         font-size: 9px;
-        height: 28px;
-        min-width: 80px;
+        min-height: 28px;
+        max-width: clamp(100px, 28vw, 160px);
+        flex-shrink: 0;
     }
     
     .district-name {
-        max-width: 50px;
-        font-size: 9px;
+        font-size: 8px;
+        line-height: 1.0;
+        letter-spacing: 0.1px;
     }
+    
+
 }
 
 /* Versione ultra-compatta per schermi molto piccoli */
@@ -233,6 +252,25 @@ body {
         font-weight: 800;
         letter-spacing: 0.3px;
     }
+    
+    .header-content {
+        gap: 2px;
+    }
+    
+    .district-selector {
+        padding: 3px 6px;
+        font-size: 8px;
+        min-height: 26px;
+        max-width: clamp(90px, 25vw, 140px);
+    }
+    
+    .district-name {
+        font-size: 7px;
+        line-height: 0.9;
+        letter-spacing: 0px;
+    }
+    
+
 }
 
 /* Layout ottimizzato per tablet e desktop */
@@ -256,9 +294,7 @@ body {
         gap: 10px;
     }
     
-    .district-name {
-        max-width: 150px;
-    }
+
 }
 
 /* === MAIN CONTENT - RIPARTIZIONE INTELLIGENTE === */
