@@ -39,13 +39,15 @@ body {
     background: var(--white, #ffffff);
     display: grid;
     grid-template-rows: 
-        clamp(120px, 22vh, 150px)  /* Header molto più spazioso per layout verticale */
-        1fr            /* Main content flessibile - si adatta allo spazio restante */
-        60px;          /* Footer fisso */
+        clamp(120px, 22vh, 150px)  /* Header */
+        1fr            /* Main content */
+        60px          /* Navigation */
+        auto;         /* Credits */
     grid-template-areas: 
         "header"
         "main"
-        "nav";
+        "nav"
+        "credits";
     position: relative;
     box-shadow: 0 16px 40px rgba(0,0,0,0.25);
     overflow: hidden;
@@ -1258,6 +1260,7 @@ body {
 
 /* === BOTTOM NAVIGATION === */
 .bottom-nav {
+    grid-area: nav;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -1267,6 +1270,31 @@ body {
     box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
     position: relative;
     z-index: 10;
+}
+
+/* === APP CREDITS === */
+.app-credits {
+    grid-area: credits;
+    text-align: center;
+    padding: 8px 12px;
+    background: white;
+    font-size: 0.75rem;
+    color: #666;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.author-name {
+    color: #2E7D32;
+    font-weight: 600;
+}
+
+.disclaimer {
+    color: #94a3b8;
+    margin-left: 4px;
 }
 
 .nav-btn {
