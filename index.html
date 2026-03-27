@@ -50,11 +50,19 @@
 
             <section class="details-section">
                 <article class="details-card" id="details-card">
-                    <h3 class="details-title" id="details-title">Dettagli conferimento</h3>
-                    <p class="time-schedule-text" id="details-text">Esponi i rifiuti solo dalle 19:00 alle 21:00</p>
-                    <div class="time-status" id="time-status">
-                        <i class="fa-regular fa-clock"></i>
-                        <span class="status-text" id="time-status-text">-</span>
+                    <div class="details-head">
+                        <h3 class="details-title" id="details-title">Dettagli conferimento</h3>
+                        <button class="details-toggle" id="details-toggle" type="button" aria-expanded="true" aria-controls="details-content">
+                            <span id="details-toggle-label">Mostra dettagli</span>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="details-content" id="details-content">
+                        <p class="time-schedule-text" id="details-text">Esponi i rifiuti solo dalle 19:00 alle 21:00</p>
+                        <div class="time-status" id="time-status">
+                            <i class="fa-regular fa-clock"></i>
+                            <span class="status-text" id="time-status-text">-</span>
+                        </div>
                     </div>
                 </article>
             </section>
