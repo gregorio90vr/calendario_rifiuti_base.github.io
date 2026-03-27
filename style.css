@@ -190,8 +190,8 @@ body {
 .main-content {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    gap: 10px;
-    padding: 10px;
+    gap: 12px;
+    padding: 12px;
     overflow-y: auto;
 }
 
@@ -219,7 +219,7 @@ body {
 .waste-card {
     border-radius: var(--radius-lg);
     padding: 16px;
-    min-height: 330px;
+    min-height: 320px;
     display: grid;
     align-content: center;
     justify-items: center;
@@ -324,6 +324,59 @@ body {
     display: grid;
     gap: 10px;
     box-shadow: 0 8px 16px rgba(35, 99, 45, 0.08);
+}
+
+.details-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.details-content {
+    display: grid;
+    gap: 10px;
+}
+
+.details-toggle {
+    display: none;
+    border: 1px solid #d3e7d3;
+    background: #f6fcf6;
+    color: #2a6633;
+    border-radius: 999px;
+    min-height: 34px;
+    padding: 6px 10px;
+    font-family: "Rajdhani", sans-serif;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 700;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.details-toggle i {
+    transition: transform 0.2s ease;
+}
+
+.details-section.compact .details-toggle {
+    display: inline-flex;
+}
+
+.details-section.compact.collapsed .details-toggle i {
+    transform: rotate(-90deg);
+}
+
+.details-section.compact .details-content {
+    max-height: 220px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.22s ease, opacity 0.2s ease;
+}
+
+.details-section.compact.collapsed .details-content {
+    max-height: 0;
+    opacity: 0;
 }
 
 .details-title {
@@ -959,6 +1012,21 @@ body {
 }
 
 @media (max-width: 390px) {
+    .app-shell {
+        height: min(100dvh - 10px, 960px);
+        border-radius: 22px;
+    }
+
+    .main-content {
+        grid-template-rows: auto auto auto;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .hero-card-wrap {
+        align-items: start;
+    }
+
     .nav-label {
         font-size: 0.62rem;
         letter-spacing: 0.07em;
@@ -969,7 +1037,37 @@ body {
     }
 
     .waste-card {
-        min-height: 285px;
+        min-height: clamp(208px, 43vh, 272px);
+        padding: 14px 12px;
+        gap: 12px;
+    }
+
+    .waste-badge {
+        font-size: 0.68rem;
+        letter-spacing: 0.09em;
+    }
+
+    .details-card {
+        padding: 12px;
+    }
+
+    .details-title {
+        font-size: 0.86rem;
+    }
+}
+
+@media (max-height: 760px) {
+    .app-shell {
+        height: min(100dvh - 8px, 960px);
+    }
+
+    .main-content {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .waste-card {
+        min-height: clamp(196px, 42vh, 270px);
     }
 }
 
