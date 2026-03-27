@@ -1,6 +1,10 @@
 let currentLanguage = "it";
 let currentDistrict = "basson";
 let currentCalendarType = "azzurro";
+let isDetailsExpanded = false;
+
+const COMPACT_DETAILS_MEDIA_QUERY = "(max-width: 430px), (max-height: 760px)";
+const compactDetailsMedia = window.matchMedia(COMPACT_DETAILS_MEDIA_QUERY);
 
 const APP_DATE = new Date();
 
@@ -29,6 +33,8 @@ const TRANSLATIONS = {
         infoModalTitle: "Informazioni",
         detailsTitle: "Dettagli conferimento",
         detailsDefault: "Esponi i rifiuti solo dalle 19:00 alle 21:00",
+        detailsToggleShow: "Mostra dettagli",
+        detailsToggleHide: "Nascondi",
         noResults: "Nessun risultato trovato",
         noDistrictResults: "Nessun quartiere trovato",
         noPickupToday: "Nessun conferimento",
@@ -120,6 +126,8 @@ const TRANSLATIONS = {
         infoModalTitle: "Information",
         detailsTitle: "Collection details",
         detailsDefault: "Put waste out only from 7:00 PM to 9:00 PM",
+        detailsToggleShow: "Show details",
+        detailsToggleHide: "Hide",
         noResults: "No results found",
         noDistrictResults: "No district found",
         noPickupToday: "No collection",
@@ -285,6 +293,38 @@ function updateDetails() {
     status.className = "time-status";
     status.classList.add(statusKey.replace(/([A-Z])/g, "-$1").toLowerCase());
     statusText.textContent = t.timeStatus[statusKey];
+
+    updateDetailsLayout();
+}
+
+function updateDetailsLayout() {
+    const section = document.querySelector(".details-section");
+    const toggle = document.getElementById("details-toggle");
+    const toggleLabel = document.getElementById("details-toggle-label");
+
+    if (!section || !toggle || !toggleLabel) return;
+
+    const t = TRANSLATIONS[currentLanguage];
+    const isCompact = compactDetailsMedia.matches;
+
+    section.classList.toggle("compact", isCompact);
+
+    if (!isCompact) {
+        section.classList.remove("collapsed");
+        toggle.setAttribute("aria-expanded", "true");
+        toggleLabel.textContent = t.detailsToggleHide;
+        return;
+    }
+
+    section.classList.toggle("collapsed", !isDetailsExpanded);
+    toggle.setAttribute("aria-expanded", String(isDetailsExpanded));
+    toggleLabel.textContent = isDetailsExpanded ? t.detailsToggleHide : t.detailsToggleShow;
+}
+
+function toggleDetailsVisibility() {
+    if (!compactDetailsMedia.matches) return;
+    isDetailsExpanded = !isDetailsExpanded;
+    updateDetailsLayout();
 }
 
 function resolveDistrictFromState() {
@@ -317,6 +357,7 @@ function applyTranslations() {
     const infoModalTitle = document.getElementById("info-modal-title");
     const searchInput = document.getElementById("search-input");
     const districtSearch = document.getElementById("district-search");
+    const detailsToggleLabel = document.getElementById("details-toggle-label");
 
     if (appTitle) appTitle.textContent = t.appTitle;
     if (todayLabel) todayLabel.textContent = t.todayLabel;
@@ -329,6 +370,9 @@ function applyTranslations() {
     if (infoModalTitle) infoModalTitle.textContent = t.infoModalTitle;
     if (searchInput) searchInput.placeholder = t.searchPlaceholder;
     if (districtSearch) districtSearch.placeholder = t.districtPlaceholder;
+    if (detailsToggleLabel) {
+        detailsToggleLabel.textContent = isDetailsExpanded ? t.detailsToggleHide : t.detailsToggleShow;
+    }
 
     document.querySelectorAll("[data-translate]").forEach((el) => {
         const key = el.getAttribute("data-translate");
@@ -355,6 +399,7 @@ function applyTranslations() {
     });
 
     applyInfoTranslations();
+    updateDetailsLayout();
 }
 
 function applyInfoTranslations() {
@@ -664,6 +709,7 @@ function testURLParams() {
 function bindEvents() {
     const searchInput = document.getElementById("search-input");
     const districtSearchInput = document.getElementById("district-search");
+    const detailsToggle = document.getElementById("details-toggle");
 
     let searchTimer = null;
     let districtTimer = null;
@@ -682,6 +728,17 @@ function bindEvents() {
         });
     }
 
+    if (detailsToggle) {
+        detailsToggle.addEventListener("click", toggleDetailsVisibility);
+    }
+
+    compactDetailsMedia.addEventListener("change", (event) => {
+        if (!event.matches) {
+            isDetailsExpanded = true;
+        }
+        updateDetailsLayout();
+    });
+
     document.addEventListener("keydown", (e) => {
         if (e.key !== "Escape") return;
         closeSearchModal();
@@ -692,6 +749,7 @@ function bindEvents() {
 }
 
 function initializeApp() {
+    isDetailsExpanded = !compactDetailsMedia.matches;
     currentDistrict = normalizeDistrictName(currentDistrict);
     applyUrlDistrict();
     updateDistrictInfo();
