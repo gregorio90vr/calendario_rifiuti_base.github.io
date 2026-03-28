@@ -3,151 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#2E7D32">
+    <meta name="theme-color" content="#2e7d32">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>Calendario Rifiuti Verona</title>
+    <title>Calendario Rifiuti Verona 2.0</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Rajdhani:wght@600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Urbanist:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="bg-orb bg-orb-a" aria-hidden="true"></div>
-    <div class="bg-orb bg-orb-b" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
 
     <div class="app-shell">
-        <header class="app-header">
-            <div class="brand-block">
-                <p class="kicker" id="today-label">OGGI PREPARA</p>
-                <h1 class="app-title">Calendario Rifiuti Verona</h1>
-                <p class="header-subtitle" id="header-subtitle">Servizio raccolta porta a porta</p>
+        <header class="topbar">
+            <div class="topbar-left">
+                <p class="topbar-kicker" id="today-label">OGGI PREPARA</p>
+                <h1 class="topbar-title" id="app-title">Calendario Rifiuti Verona</h1>
             </div>
-
-            <button class="district-selector" id="district-selector" type="button" onclick="openDistrictModal()">
+            <button class="district-pill" type="button" onclick="openDistrictModal()" aria-label="Seleziona quartiere">
                 <i class="fa-solid fa-location-dot"></i>
-                <span class="district-name" id="district-name">BASSON</span>
-                <i class="fa-solid fa-chevron-down"></i>
+                <span id="district-name">BASSON</span>
             </button>
         </header>
 
-        <main class="main-content">
-            <section class="date-panel" aria-live="polite">
-                <i class="fa-regular fa-calendar"></i>
-                <span id="date-display">-</span>
+        <main class="dashboard">
+            <section class="date-strip" aria-live="polite">
+                <div class="date-strip-head">
+                    <span class="strip-label" id="date-strip-label">Data di consultazione</span>
+                    <button class="date-today-btn" id="date-today-btn" type="button">Oggi</button>
+                </div>
+                <strong id="date-display">-</strong>
+                <div class="date-nav-controls">
+                    <button class="date-nav-btn" id="date-prev-btn" type="button" aria-label="Giorno precedente">
+                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <input class="date-picker" id="date-picker" type="date" aria-label="Seleziona data">
+                    <button class="date-nav-btn" id="date-next-btn" type="button" aria-label="Giorno successivo">
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
             </section>
 
-            <section class="hero-card-wrap" aria-live="polite">
-                <article class="waste-card" id="waste-card">
-                    <div class="waste-badge">Raccolta di domani</div>
-                    <div class="waste-icon-circle" id="waste-icon-circle">
-                        <span id="waste-icon"></span>
+            <section class="signal-board">
+                <article class="waste-card no-pickup" id="waste-card" aria-live="polite">
+                    <div class="waste-main">
+                        <div class="waste-icon" id="waste-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                        <h2 class="waste-title" id="waste-type-title">-</h2>
                     </div>
-                    <h2 class="waste-type-title" id="waste-type-title">-</h2>
-                </article>
-            </section>
-
-            <section class="details-section">
-                <article class="details-card" id="details-card">
-                    <div class="details-head">
-                        <h3 class="details-title" id="details-title">Dettagli conferimento</h3>
-                        <button class="details-toggle" id="details-toggle" type="button" aria-expanded="true" aria-controls="details-content">
-                            <span id="details-toggle-label">Mostra dettagli</span>
-                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                        </button>
+                    <div class="waste-meta">
+                        <span class="meta-chip" id="hero-district-chip">Zona: -</span>
+                        <span class="meta-chip" id="hero-time-chip">Conferimento 19:00-21:00</span>
                     </div>
-                    <div class="details-content" id="details-content">
-                        <p class="time-schedule-text" id="details-text">Esponi i rifiuti solo dalle 19:00 alle 21:00</p>
-                        <div class="time-status" id="time-status">
-                            <i class="fa-regular fa-clock"></i>
-                            <span class="status-text" id="time-status-text">-</span>
+                    <div class="card-details" id="card-details">
+                        <div class="details-headline">
+                            <h3 id="details-title">Dettagli conferimento</h3>
+                            <p id="details-text">Esponi i rifiuti solo dalle 19:00 alle 21:00</p>
                         </div>
                     </div>
                 </article>
             </section>
         </main>
 
-        <nav class="bottom-nav" aria-label="Navigazione principale">
-            <button class="nav-btn" data-nav="search" type="button" onclick="openSearchModal()">
+        <nav class="dock" aria-label="Navigazione principale">
+            <button class="dock-btn" data-nav="search" type="button" onclick="openSearchModal()">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <span class="nav-label">DOVE LO BUTTO</span>
             </button>
-            <button class="nav-btn" data-nav="language" type="button" onclick="openLanguageModal()">
-                <i class="fa-solid fa-language"></i>
-                <span class="nav-label">LINGUA</span>
-            </button>
-            <button class="nav-btn" data-nav="district" type="button" onclick="openDistrictModal()">
+            <button class="dock-btn" data-nav="district" type="button" onclick="openDistrictModal()">
                 <i class="fa-solid fa-map-location-dot"></i>
                 <span class="nav-label">QUARTIERE</span>
             </button>
-            <button class="nav-btn" data-nav="info" type="button" onclick="openInfoModal()">
+            <button class="dock-btn" data-nav="language" type="button" onclick="openLanguageModal()">
+                <i class="fa-solid fa-language"></i>
+                <span class="nav-label">LINGUA</span>
+            </button>
+            <button class="dock-btn" data-nav="info" type="button" onclick="openInfoModal()">
                 <i class="fa-solid fa-circle-info"></i>
                 <span class="nav-label">INFO</span>
             </button>
         </nav>
-
-        <footer class="app-credits">
-            <span>Autore: Gregorio Pellegrini</span>
-            <span>© 2025 - Solo per uso informativo</span>
-        </footer>
     </div>
 
     <div class="modal" id="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
-        <div class="modal-overlay" onclick="closeSearchModal()"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="search-modal-title">Dove lo butto?</h2>
-                <button class="modal-close" type="button" onclick="closeSearchModal()" aria-label="Chiudi">
+        <div class="modal-backdrop" onclick="closeSearchModal()"></div>
+        <section class="modal-card">
+            <header class="modal-head">
+                <h2 id="search-modal-title">Dove lo butto?</h2>
+                <button type="button" class="modal-close" onclick="closeSearchModal()" aria-label="Chiudi">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
-            </div>
+            </header>
             <div class="modal-body">
-                <div class="search-container">
-                    <input type="text" class="search-input" id="search-input" placeholder="Scrivi cosa vuoi buttare..." autocomplete="off">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <div class="input-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="search-input" class="search-input" type="text" autocomplete="off" placeholder="Scrivi cosa vuoi buttare...">
                 </div>
-
-                <div class="search-suggestions" id="search-suggestions">
-                    <button class="suggestion-chip" type="button" onclick="performSearchBySuggestion('bottiglia')">
-                        <i class="fa-solid fa-wine-bottle"></i>
-                        <span data-translate="searchSuggestions.bottiglia">bottiglia</span>
-                    </button>
-                    <button class="suggestion-chip" type="button" onclick="performSearchBySuggestion('carta')">
-                        <i class="fa-regular fa-file-lines"></i>
-                        <span data-translate="searchSuggestions.carta">carta</span>
-                    </button>
-                    <button class="suggestion-chip" type="button" onclick="performSearchBySuggestion('lattina')">
-                        <i class="fa-solid fa-can-food"></i>
-                        <span data-translate="searchSuggestions.lattina">lattina</span>
-                    </button>
-                    <button class="suggestion-chip" type="button" onclick="performSearchBySuggestion('avanzi')">
-                        <i class="fa-solid fa-utensils"></i>
-                        <span data-translate="searchSuggestions.avanzi">avanzi</span>
-                    </button>
+                <div class="suggestions" id="search-suggestions">
+                    <button type="button" class="chip" onclick="performSearchBySuggestion('bottiglia')"><span data-translate="searchSuggestions.bottiglia">bottiglia</span></button>
+                    <button type="button" class="chip" onclick="performSearchBySuggestion('carta')"><span data-translate="searchSuggestions.carta">carta</span></button>
+                    <button type="button" class="chip" onclick="performSearchBySuggestion('lattina')"><span data-translate="searchSuggestions.lattina">lattina</span></button>
+                    <button type="button" class="chip" onclick="performSearchBySuggestion('avanzi')"><span data-translate="searchSuggestions.avanzi">avanzi</span></button>
                 </div>
-
-                <div class="search-results" id="search-results"></div>
+                <div id="search-results-meta" class="results-meta" aria-live="polite"></div>
+                <div id="search-results" class="results-list search-results-grid"></div>
             </div>
-        </div>
+        </section>
     </div>
 
     <div class="modal" id="district-modal" role="dialog" aria-modal="true" aria-labelledby="district-modal-title">
-        <div class="modal-overlay" onclick="closeDistrictModal()"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="district-modal-title">Seleziona il tuo quartiere</h2>
-                <button class="modal-close" type="button" onclick="closeDistrictModal()" aria-label="Chiudi">
+        <div class="modal-backdrop" onclick="closeDistrictModal()"></div>
+        <section class="modal-card">
+            <header class="modal-head">
+                <h2 id="district-modal-title">Seleziona il tuo quartiere</h2>
+                <button type="button" class="modal-close" onclick="closeDistrictModal()" aria-label="Chiudi">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
-            </div>
+            </header>
             <div class="modal-body">
-                <div class="search-container">
-                    <input type="text" class="search-input" id="district-search" placeholder="Cerca il tuo quartiere..." autocomplete="off">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <div class="input-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="district-search" class="search-input" type="text" autocomplete="off" placeholder="Cerca il tuo quartiere...">
                 </div>
-                <div class="district-legend" id="district-legend">
-                    <span class="legend-title" data-translate="clusterLegendTitle">Cluster calendario</span>
+                <div class="cluster-legend">
+                    <span data-translate="clusterLegendTitle">Cluster calendario</span>
                     <div class="legend-chips">
                         <span class="legend-chip arancione" data-translate="cluster.arancione">Arancione</span>
                         <span class="legend-chip azzurro" data-translate="cluster.azzurro">Azzurro</span>
@@ -155,108 +135,116 @@
                         <span class="legend-chip verde" data-translate="cluster.verde">Verde</span>
                     </div>
                 </div>
-                <div class="district-list" id="district-list"></div>
+                <div id="district-results-meta" class="results-meta" aria-live="polite"></div>
+                <div id="district-list" class="results-list district-results-grid"></div>
             </div>
-        </div>
+        </section>
     </div>
 
     <div class="modal" id="language-modal" role="dialog" aria-modal="true" aria-labelledby="language-modal-title">
-        <div class="modal-overlay" onclick="closeLanguageModal()"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="language-modal-title">Seleziona lingua</h2>
-                <button class="modal-close" type="button" onclick="closeLanguageModal()" aria-label="Chiudi">
+        <div class="modal-backdrop" onclick="closeLanguageModal()"></div>
+        <section class="modal-card small">
+            <header class="modal-head">
+                <h2 id="language-modal-title">Seleziona lingua</h2>
+                <button type="button" class="modal-close" onclick="closeLanguageModal()" aria-label="Chiudi">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
-            </div>
+            </header>
             <div class="modal-body">
                 <div class="language-options">
                     <button class="language-option active" data-lang="it" type="button" onclick="selectLanguage('it')">
-                        <span class="language-label">Italiano</span>
-                        <i class="fa-solid fa-check"></i>
+                        <span class="language-main">
+                            <span class="language-flag it" aria-hidden="true"></span>
+                            <span class="language-copy">
+                                <span class="language-label">Italiano</span>
+                                <span class="language-note">Lingua predefinita</span>
+                            </span>
+                        </span>
+                        <span class="language-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
                     </button>
                     <button class="language-option" data-lang="en" type="button" onclick="selectLanguage('en')">
-                        <span class="language-label">English</span>
-                        <i class="fa-solid fa-check"></i>
+                        <span class="language-main">
+                            <span class="language-flag en" aria-hidden="true"></span>
+                            <span class="language-copy">
+                                <span class="language-label">English</span>
+                                <span class="language-note">International</span>
+                            </span>
+                        </span>
+                        <span class="language-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
     <div class="modal" id="info-modal" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
-        <div class="modal-overlay" onclick="closeInfoModal()"></div>
-        <div class="modal-content info-modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="info-modal-title">Informazioni</h2>
-                <button class="modal-close" type="button" onclick="closeInfoModal()" aria-label="Chiudi">
+        <div class="modal-backdrop" onclick="closeInfoModal()"></div>
+        <section class="modal-card">
+            <header class="modal-head">
+                <h2 id="info-modal-title">Informazioni</h2>
+                <button type="button" class="modal-close" onclick="closeInfoModal()" aria-label="Chiudi">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
-            </div>
+            </header>
             <div class="modal-body">
-                <div class="info-nav">
-                    <button class="info-tab active" type="button" data-tab="app" onclick="showInfoTab('app')">App</button>
-                    <button class="info-tab" type="button" data-tab="links" onclick="showInfoTab('links')">Link Utili</button>
-                    <button class="info-tab" type="button" data-tab="sdg" onclick="showInfoTab('sdg')">Sostenibilita</button>
-                    <button class="info-tab" type="button" data-tab="about" onclick="showInfoTab('about')">Info</button>
+                <div class="info-tabs">
+                    <button class="info-tab active" data-tab="app" type="button" onclick="showInfoTab('app')">App</button>
+                    <button class="info-tab" data-tab="links" type="button" onclick="showInfoTab('links')">Link Utili</button>
+                    <button class="info-tab" data-tab="sdg" type="button" onclick="showInfoTab('sdg')">Sostenibilita</button>
+                    <button class="info-tab" data-tab="about" type="button" onclick="showInfoTab('about')">Info</button>
                 </div>
 
-                <div class="info-content">
-                    <section class="info-tab-content active" id="app-tab">
-                        <h3>Come funziona l'app</h3>
-                        <p>Questa app ti aiuta a gestire la raccolta differenziata a Verona.</p>
-                        <div class="features-list">
-                            <div class="feature-item"><i class="fa-solid fa-calendar-check"></i><span>Calendario personalizzato per quartiere</span></div>
-                            <div class="feature-item"><i class="fa-solid fa-magnifying-glass"></i><span>Ricerca intelligente rifiuti</span></div>
-                            <div class="feature-item"><i class="fa-regular fa-clock"></i><span>Orari di conferimento (19:00-21:00)</span></div>
-                            <div class="feature-item"><i class="fa-solid fa-language"></i><span>Supporto multilingue (IT/EN)</span></div>
-                        </div>
-                    </section>
+                <section class="info-tab-content active" id="app-tab">
+                    <h3>Come funziona l'app</h3>
+                    <p>Questa app ti aiuta a gestire la raccolta differenziata a Verona.</p>
+                    <ul class="bullet-list">
+                        <li>Calendario personalizzato per quartiere</li>
+                        <li>Ricerca intelligente rifiuti</li>
+                        <li>Orari di conferimento (19:00-21:00)</li>
+                        <li>Supporto multilingue (IT/EN)</li>
+                    </ul>
+                </section>
 
-                    <section class="info-tab-content" id="links-tab">
-                        <h3>Link Utili AMIA</h3>
-                        <p>Risorse ufficiali per approfondimenti</p>
-                        <div class="links-grid">
-                            <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" target="_blank" rel="noopener" class="info-link">
-                                <span class="link-title">Calendari Ufficiali</span>
-                                <span class="link-description">Tutti i calendari del porta a porta</span>
-                            </a>
-                            <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" target="_blank" rel="noopener" class="info-link">
-                                <span class="link-title">Dizionario Rifiuti</span>
-                                <span class="link-description">Dove buttare ogni oggetto</span>
-                            </a>
-                            <a href="https://www.amiavr.it" target="_blank" rel="noopener" class="info-link">
-                                <span class="link-title">Sito AMIA</span>
-                                <span class="link-description">Portale principale</span>
-                            </a>
-                        </div>
-                    </section>
+                <section class="info-tab-content" id="links-tab">
+                    <h3>Link Utili AMIA</h3>
+                    <p>Risorse ufficiali per approfondimenti</p>
+                    <div class="link-list">
+                        <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" target="_blank" rel="noopener" class="info-link">
+                            <span class="link-title">Calendari Ufficiali</span>
+                            <span class="link-description">Tutti i calendari del porta a porta</span>
+                        </a>
+                        <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" target="_blank" rel="noopener" class="info-link">
+                            <span class="link-title">Dizionario Rifiuti</span>
+                            <span class="link-description">Dove buttare ogni oggetto</span>
+                        </a>
+                        <a href="https://www.amiavr.it" target="_blank" rel="noopener" class="info-link">
+                            <span class="link-title">Sito AMIA</span>
+                            <span class="link-description">Portale principale</span>
+                        </a>
+                    </div>
+                </section>
 
-                    <section class="info-tab-content" id="sdg-tab">
-                        <h3>Obiettivi Sostenibili</h3>
-                        <p>Contribuisci agli SDGs delle Nazioni Unite</p>
-                        <div class="sdg-grid">
-                            <article class="sdg-item"><div class="sdg-number">11</div><div class="sdg-content"><h4>Citta Sostenibili</h4><p>Rendere le citta inclusive e sostenibili</p></div></article>
-                            <article class="sdg-item"><div class="sdg-number">12</div><div class="sdg-content"><h4>Consumo Responsabile</h4><p>Garantire modelli sostenibili</p></div></article>
-                            <article class="sdg-item"><div class="sdg-number">14</div><div class="sdg-content"><h4>Vita Sott'acqua</h4><p>Conservare oceani e risorse marine</p></div></article>
-                        </div>
-                    </section>
+                <section class="info-tab-content" id="sdg-tab">
+                    <h3>Obiettivi Sostenibili</h3>
+                    <p>Contribuisci agli SDGs delle Nazioni Unite</p>
+                    <div class="sdg-list">
+                        <article class="sdg-item"><strong>11</strong><div><h4>Citta Sostenibili</h4><p>Rendere le citta inclusive e sostenibili</p></div></article>
+                        <article class="sdg-item"><strong>12</strong><div><h4>Consumo Responsabile</h4><p>Garantire modelli sostenibili</p></div></article>
+                        <article class="sdg-item"><strong>14</strong><div><h4>Vita Sott'acqua</h4><p>Conservare oceani e risorse marine</p></div></article>
+                    </div>
+                </section>
 
-                    <section class="info-tab-content" id="about-tab">
-                        <h3>Informazioni App</h3>
-                        <div class="app-info">
-                            <div class="info-item"><strong>Versione</strong><span>3.0</span></div>
-                            <div class="info-item"><strong>Ultimo aggiornamento</strong><span>Marzo 2026</span></div>
-                            <div class="info-item"><strong>Compatibilita</strong><span>Tutti i dispositivi</span></div>
-                        </div>
-                        <div class="copyright">
-                            <p><strong>© 2025 Gregorio Pellegrini</strong></p>
-                            <p>Tutti i diritti riservati</p>
-                        </div>
-                    </section>
-                </div>
+                <section class="info-tab-content" id="about-tab">
+                    <h3>Informazioni App</h3>
+                    <div class="about-list">
+                        <div><strong>Versione</strong><span>2.0</span></div>
+                        <div><strong>Ultimo aggiornamento</strong><span>Marzo 2026</span></div>
+                        <div><strong>Compatibilita</strong><span>Tutti i dispositivi</span></div>
+                    </div>
+                    <p class="copyright">© 2026 Gregorio Pellegrini</p>
+                </section>
             </div>
-        </div>
+        </section>
     </div>
 
     <script src="waste-calendars.js"></script>
