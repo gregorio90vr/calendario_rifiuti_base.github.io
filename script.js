@@ -1,19 +1,22 @@
-let currentLanguage = "it";
-let currentDistrict = "basson";
-let currentCalendarType = "azzurro";
-let isDetailsExpanded = false;
+const state = {
+    language: "it",
+    district: "basson",
+    calendar: "azzurro",
+    selectedDate: null
+};
 
-const COMPACT_DETAILS_MEDIA_QUERY = "(max-width: 430px), (max-height: 760px)";
-const compactDetailsMedia = window.matchMedia(COMPACT_DETAILS_MEDIA_QUERY);
-
-const APP_DATE = new Date();
+const TODAY = startOfDay(new Date());
 
 const TRANSLATIONS = {
     it: {
         appTitle: "Calendario Rifiuti Verona",
         todayLabel: "OGGI PREPARA",
-        headerSubtitle: "Servizio raccolta porta a porta",
-        wasteBadge: "Raccolta di domani",
+        todayLabelBrowsing: "DATA IN CONSULTAZIONE",
+        wasteBadge: "Raccolta del giorno successivo",
+        dateStripLabel: "Data di consultazione",
+        datePrevLabel: "Giorno precedente",
+        dateNextLabel: "Giorno successivo",
+        dateTodayButton: "Oggi",
         searchButton: "DOVE LO BUTTO",
         languageButton: "LINGUA",
         districtButton: "QUARTIERE",
@@ -33,8 +36,9 @@ const TRANSLATIONS = {
         infoModalTitle: "Informazioni",
         detailsTitle: "Dettagli conferimento",
         detailsDefault: "Esponi i rifiuti solo dalle 19:00 alle 21:00",
-        detailsToggleShow: "Mostra dettagli",
-        detailsToggleHide: "Nascondi",
+        detailsBrowsing: "Stai consultando una data diversa da oggi",
+        heroDistrictPrefix: "Zona",
+        heroTimeChip: "Conferimento 19:00-21:00",
         noResults: "Nessun risultato trovato",
         noDistrictResults: "Nessun quartiere trovato",
         noPickupToday: "Nessun conferimento",
@@ -54,7 +58,8 @@ const TRANSLATIONS = {
             rest: "Nessun ritiro domani: giornata libera",
             canDispose: "Puoi conferire ora (19:00-21:00)",
             prepare: "Prepara oggi per domani, esponi dopo le 19:00",
-            tooLate: "Finestra chiusa: prepara per domani"
+            tooLate: "Finestra chiusa: prepara per domani",
+            browsing: "Modalita consultazione calendario"
         },
         infoTabs: {
             app: "App",
@@ -97,16 +102,19 @@ const TRANSLATIONS = {
                 u: "Ultimo aggiornamento",
                 c: "Compatibilita",
                 uVal: "Marzo 2026",
-                cVal: "Tutti i dispositivi",
-                rights: "Tutti i diritti riservati"
+                cVal: "Tutti i dispositivi"
             }
         }
     },
     en: {
         appTitle: "Waste Calendar Verona",
         todayLabel: "PREPARE TODAY",
-        headerSubtitle: "Door-to-door collection service",
-        wasteBadge: "Collection tomorrow",
+        todayLabelBrowsing: "BROWSING DATE",
+        wasteBadge: "Collection for next day",
+        dateStripLabel: "Browse date",
+        datePrevLabel: "Previous day",
+        dateNextLabel: "Next day",
+        dateTodayButton: "Today",
         searchButton: "WHERE DO I THROW IT",
         languageButton: "LANGUAGE",
         districtButton: "DISTRICT",
@@ -126,8 +134,9 @@ const TRANSLATIONS = {
         infoModalTitle: "Information",
         detailsTitle: "Collection details",
         detailsDefault: "Put waste out only from 7:00 PM to 9:00 PM",
-        detailsToggleShow: "Show details",
-        detailsToggleHide: "Hide",
+        detailsBrowsing: "You are browsing a date different from today",
+        heroDistrictPrefix: "Area",
+        heroTimeChip: "Set out 7:00 PM-9:00 PM",
         noResults: "No results found",
         noDistrictResults: "No district found",
         noPickupToday: "No collection",
@@ -147,7 +156,8 @@ const TRANSLATIONS = {
             rest: "No pickup tomorrow: free day",
             canDispose: "You can dispose now (7:00 PM - 9:00 PM)",
             prepare: "Prepare today for tomorrow, take out after 7:00 PM",
-            tooLate: "Window closed: prepare for tomorrow"
+            tooLate: "Window closed: prepare for tomorrow",
+            browsing: "Calendar browsing mode"
         },
         infoTabs: {
             app: "App",
@@ -190,8 +200,7 @@ const TRANSLATIONS = {
                 u: "Last update",
                 c: "Compatibility",
                 uVal: "March 2026",
-                cVal: "All devices",
-                rights: "All rights reserved"
+                cVal: "All devices"
             }
         }
     }
@@ -203,6 +212,53 @@ const WASTE_ICONS = {
     carta: '<i class="fa-regular fa-newspaper"></i>',
     secco: '<i class="fa-solid fa-trash"></i>'
 };
+
+function startOfDay(date) {
+    const dt = new Date(date);
+    dt.setHours(0, 0, 0, 0);
+    return dt;
+}
+
+function addDays(baseDate, delta) {
+    const dt = new Date(baseDate);
+    dt.setDate(dt.getDate() + delta);
+    return startOfDay(dt);
+}
+
+function isSameDay(a, b) {
+    return a.getFullYear() === b.getFullYear()
+        && a.getMonth() === b.getMonth()
+        && a.getDate() === b.getDate();
+}
+
+function formatDateForInput(date) {
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function parseDateInputValue(value) {
+    if (!value) return null;
+    const [y, m, d] = value.split("-").map(Number);
+    if (!y || !m || !d) return null;
+    return new Date(y, m - 1, d);
+}
+
+function isViewingToday() {
+    return isSameDay(state.selectedDate, TODAY);
+}
+
+function getResultsMetaText(scope, count) {
+    if (state.language === "en") {
+        if (scope === "district") {
+            return count === 1 ? "1 district found" : `${count} districts found`;
+        }
+        return count === 1 ? "1 result" : `${count} results`;
+    }
+
+    if (scope === "district") {
+        return count === 1 ? "1 quartiere trovato" : `${count} quartieri trovati`;
+    }
+    return count === 1 ? "1 risultato" : `${count} risultati`;
+}
 
 function normalizeDistrictName(name) {
     return (name || "")
@@ -221,12 +277,6 @@ function getDateKey(date) {
     return `${y}-${m}-${d}`;
 }
 
-function getTomorrowDate() {
-    const dt = new Date(APP_DATE);
-    dt.setDate(dt.getDate() + 1);
-    return dt;
-}
-
 function getTimeStatus() {
     const now = new Date();
     const rome = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Rome" }));
@@ -237,142 +287,125 @@ function getTimeStatus() {
     return "tooLate";
 }
 
-function getTomorrowWaste() {
-    const cal = WASTE_CALENDARS[currentCalendarType] || {};
-    return cal[getDateKey(getTomorrowDate())] || null;
+function getWasteForSelectedDate() {
+    const cal = WASTE_CALENDARS[state.calendar] || {};
+    const pickupDate = addDays(state.selectedDate, 1);
+    return cal[getDateKey(pickupDate)] || null;
 }
 
 function getTranslatedDate() {
-    const locale = currentLanguage === "it" ? "it-IT" : "en-GB";
+    const locale = state.language === "it" ? "it-IT" : "en-GB";
     return new Intl.DateTimeFormat(locale, {
         weekday: "long",
         year: "numeric",
         month: "long",
         day: "numeric"
-    }).format(APP_DATE);
+    }).format(state.selectedDate);
+}
+
+function getDistrictRecord() {
+    return DISTRICTS.find((d) => normalizeDistrictName(d.name) === state.district) || null;
+}
+
+function updateDistrictInfo() {
+    const t = TRANSLATIONS[state.language];
+    const district = getDistrictRecord();
+    if (!district) return;
+
+    state.calendar = district.calendar;
+
+    const districtName = document.getElementById("district-name");
+    const heroDistrictChip = document.getElementById("hero-district-chip");
+
+    if (districtName) districtName.textContent = district.name.trim().toUpperCase();
+    if (heroDistrictChip) heroDistrictChip.textContent = `${t.heroDistrictPrefix}: ${district.name.trim()}`;
 }
 
 function updateWasteCard() {
+    const t = TRANSLATIONS[state.language];
     const card = document.getElementById("waste-card");
     const icon = document.getElementById("waste-icon");
     const title = document.getElementById("waste-type-title");
 
     if (!card || !icon || !title) return;
 
-    const tomorrowWaste = getTomorrowWaste();
-
+    const todayWaste = getWasteForSelectedDate();
     card.className = "waste-card";
 
-    if (!tomorrowWaste) {
+    if (!todayWaste) {
         card.classList.add("no-pickup");
         icon.innerHTML = '<i class="fa-regular fa-calendar-check"></i>';
-        title.textContent = TRANSLATIONS[currentLanguage].noPickupToday;
+        title.textContent = t.noPickupToday;
         return;
     }
 
-    card.classList.add(tomorrowWaste);
-    icon.innerHTML = WASTE_ICONS[tomorrowWaste] || '<i class="fa-solid fa-trash"></i>';
-    title.textContent = TRANSLATIONS[currentLanguage].wasteTypes[tomorrowWaste] || tomorrowWaste;
+    card.classList.add(todayWaste);
+    icon.innerHTML = WASTE_ICONS[todayWaste] || '<i class="fa-solid fa-trash"></i>';
+    title.textContent = t.wasteTypes[todayWaste] || todayWaste;
 }
 
-function updateDetails() {
-    const t = TRANSLATIONS[currentLanguage];
-    const detailsTitle = document.getElementById("details-title");
-    const detailsText = document.getElementById("details-text");
-    const status = document.getElementById("time-status");
-    const statusText = document.getElementById("time-status-text");
+function updateStatusPanel() {
+    const t = TRANSLATIONS[state.language];
+    const title = document.getElementById("details-title");
+    const text = document.getElementById("details-text");
 
-    if (!detailsTitle || !detailsText || !status || !statusText) return;
+    if (!title || !text) return;
 
-    detailsTitle.textContent = t.detailsTitle;
-    detailsText.textContent = t.detailsDefault;
+    title.textContent = t.detailsTitle;
+    const selectedWaste = getWasteForSelectedDate();
 
-    const tomorrowWaste = getTomorrowWaste();
-    const statusKey = tomorrowWaste ? getTimeStatus() : "rest";
-
-    status.className = "time-status";
-    status.classList.add(statusKey.replace(/([A-Z])/g, "-$1").toLowerCase());
-    statusText.textContent = t.timeStatus[statusKey];
-
-    updateDetailsLayout();
-}
-
-function updateDetailsLayout() {
-    const section = document.querySelector(".details-section");
-    const toggle = document.getElementById("details-toggle");
-    const toggleLabel = document.getElementById("details-toggle-label");
-
-    if (!section || !toggle || !toggleLabel) return;
-
-    const t = TRANSLATIONS[currentLanguage];
-    const isCompact = compactDetailsMedia.matches;
-
-    section.classList.toggle("compact", isCompact);
-
-    if (!isCompact) {
-        section.classList.remove("collapsed");
-        toggle.setAttribute("aria-expanded", "true");
-        toggleLabel.textContent = t.detailsToggleHide;
+    if (!isViewingToday()) {
+        text.textContent = t.detailsBrowsing;
         return;
     }
 
-    section.classList.toggle("collapsed", !isDetailsExpanded);
-    toggle.setAttribute("aria-expanded", String(isDetailsExpanded));
-    toggleLabel.textContent = isDetailsExpanded ? t.detailsToggleHide : t.detailsToggleShow;
-}
-
-function toggleDetailsVisibility() {
-    if (!compactDetailsMedia.matches) return;
-    isDetailsExpanded = !isDetailsExpanded;
-    updateDetailsLayout();
-}
-
-function resolveDistrictFromState() {
-    const district = DISTRICTS.find((d) => normalizeDistrictName(d.name) === currentDistrict);
-    if (!district) return null;
-    return district;
-}
-
-function updateDistrictInfo() {
-    const district = resolveDistrictFromState();
-    const districtNameEl = document.getElementById("district-name");
-
-    if (!district) return;
-
-    currentCalendarType = district.calendar;
-    if (districtNameEl) districtNameEl.textContent = district.name.toUpperCase().trim();
+    text.textContent = selectedWaste ? t.detailsDefault : t.timeStatus.rest;
 }
 
 function applyTranslations() {
-    const t = TRANSLATIONS[currentLanguage];
+    const t = TRANSLATIONS[state.language];
 
-    const appTitle = document.querySelector(".app-title");
+    const appTitle = document.getElementById("app-title");
     const todayLabel = document.getElementById("today-label");
-    const headerSubtitle = document.getElementById("header-subtitle");
-    const badge = document.querySelector(".waste-badge");
     const dateDisplay = document.getElementById("date-display");
+    const dateStripLabel = document.getElementById("date-strip-label");
+    const dateTodayBtn = document.getElementById("date-today-btn");
+    const datePrevBtn = document.getElementById("date-prev-btn");
+    const dateNextBtn = document.getElementById("date-next-btn");
+    const wasteBadge = document.getElementById("waste-badge");
+    const heroTimeChip = document.getElementById("hero-time-chip");
+
     const searchModalTitle = document.getElementById("search-modal-title");
     const districtModalTitle = document.getElementById("district-modal-title");
     const languageModalTitle = document.getElementById("language-modal-title");
     const infoModalTitle = document.getElementById("info-modal-title");
+
     const searchInput = document.getElementById("search-input");
     const districtSearch = document.getElementById("district-search");
-    const detailsToggleLabel = document.getElementById("details-toggle-label");
 
     if (appTitle) appTitle.textContent = t.appTitle;
-    if (todayLabel) todayLabel.textContent = t.todayLabel;
-    if (headerSubtitle) headerSubtitle.textContent = t.headerSubtitle;
-    if (badge) badge.textContent = t.wasteBadge;
+    if (todayLabel) todayLabel.textContent = isViewingToday() ? t.todayLabel : t.todayLabelBrowsing;
     if (dateDisplay) dateDisplay.textContent = getTranslatedDate();
+    if (dateStripLabel) dateStripLabel.textContent = t.dateStripLabel;
+    if (dateTodayBtn) dateTodayBtn.textContent = t.dateTodayButton;
+    if (datePrevBtn) datePrevBtn.setAttribute("aria-label", t.datePrevLabel);
+    if (dateNextBtn) dateNextBtn.setAttribute("aria-label", t.dateNextLabel);
+    if (wasteBadge) wasteBadge.textContent = t.wasteBadge;
+    if (heroTimeChip) heroTimeChip.textContent = t.heroTimeChip;
+
     if (searchModalTitle) searchModalTitle.textContent = t.searchModalTitle;
     if (districtModalTitle) districtModalTitle.textContent = t.districtModalTitle;
     if (languageModalTitle) languageModalTitle.textContent = t.languageModalTitle;
     if (infoModalTitle) infoModalTitle.textContent = t.infoModalTitle;
+
     if (searchInput) searchInput.placeholder = t.searchPlaceholder;
     if (districtSearch) districtSearch.placeholder = t.districtPlaceholder;
-    if (detailsToggleLabel) {
-        detailsToggleLabel.textContent = isDetailsExpanded ? t.detailsToggleHide : t.detailsToggleShow;
-    }
+
+    const navLabels = document.querySelectorAll(".nav-label");
+    const navValues = [t.searchButton, t.districtButton, t.languageButton, t.infoButton];
+    navLabels.forEach((el, idx) => {
+        if (navValues[idx]) el.textContent = navValues[idx];
+    });
 
     document.querySelectorAll("[data-translate]").forEach((el) => {
         const key = el.getAttribute("data-translate");
@@ -381,57 +414,63 @@ function applyTranslations() {
         if (typeof value === "string") el.textContent = value;
     });
 
-    const navLabels = document.querySelectorAll(".nav-label");
-    const navText = [t.searchButton, t.languageButton, t.districtButton, t.infoButton];
-    navLabels.forEach((el, idx) => {
-        if (navText[idx]) el.textContent = navText[idx];
-    });
-
-    document.querySelectorAll(".suggestion-chip span[data-translate]").forEach((el) => {
-        const key = el.getAttribute("data-translate");
-        if (!key) return;
-        const value = key.split(".").reduce((acc, part) => (acc ? acc[part] : null), t);
-        if (value) el.textContent = value;
-    });
-
     document.querySelectorAll(".language-option").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.lang === currentLanguage);
+        btn.classList.toggle("active", btn.dataset.lang === state.language);
     });
 
     applyInfoTranslations();
-    updateDetailsLayout();
+    updateDateNavigationUI();
+}
+
+function updateDateNavigationUI() {
+    const datePicker = document.getElementById("date-picker");
+    const todayBtn = document.getElementById("date-today-btn");
+    if (datePicker) {
+        datePicker.value = formatDateForInput(state.selectedDate);
+    }
+    if (todayBtn) {
+        const isToday = isViewingToday();
+        todayBtn.disabled = isToday;
+        todayBtn.classList.toggle("is-disabled", isToday);
+    }
+}
+
+function shiftSelectedDate(days) {
+    state.selectedDate = addDays(state.selectedDate, days);
+    updateAll();
+}
+
+function resetToToday() {
+    state.selectedDate = new Date(TODAY);
+    updateAll();
 }
 
 function applyInfoTranslations() {
-    const t = TRANSLATIONS[currentLanguage];
+    const t = TRANSLATIONS[state.language];
 
-    const infoTabs = document.querySelectorAll(".info-tab");
-    if (infoTabs[0]) infoTabs[0].textContent = t.infoTabs.app;
-    if (infoTabs[1]) infoTabs[1].textContent = t.infoTabs.links;
-    if (infoTabs[2]) infoTabs[2].textContent = t.infoTabs.sdg;
-    if (infoTabs[3]) infoTabs[3].textContent = t.infoTabs.about;
+    const tabs = document.querySelectorAll(".info-tab");
+    if (tabs[0]) tabs[0].textContent = t.infoTabs.app;
+    if (tabs[1]) tabs[1].textContent = t.infoTabs.links;
+    if (tabs[2]) tabs[2].textContent = t.infoTabs.sdg;
+    if (tabs[3]) tabs[3].textContent = t.infoTabs.about;
 
     const appTab = document.getElementById("app-tab");
     if (appTab) {
-        const h3 = appTab.querySelector("h3");
-        const p = appTab.querySelector("p");
-        const features = appTab.querySelectorAll(".feature-item span");
-        if (h3) h3.textContent = t.info.app.title;
-        if (p) p.textContent = t.info.app.text;
-        if (features[0]) features[0].textContent = t.info.app.f1;
-        if (features[1]) features[1].textContent = t.info.app.f2;
-        if (features[2]) features[2].textContent = t.info.app.f3;
-        if (features[3]) features[3].textContent = t.info.app.f4;
+        appTab.querySelector("h3").textContent = t.info.app.title;
+        appTab.querySelector("p").textContent = t.info.app.text;
+        const li = appTab.querySelectorAll("li");
+        if (li[0]) li[0].textContent = t.info.app.f1;
+        if (li[1]) li[1].textContent = t.info.app.f2;
+        if (li[2]) li[2].textContent = t.info.app.f3;
+        if (li[3]) li[3].textContent = t.info.app.f4;
     }
 
     const linksTab = document.getElementById("links-tab");
     if (linksTab) {
-        const h3 = linksTab.querySelector("h3");
-        const p = linksTab.querySelector("p");
+        linksTab.querySelector("h3").textContent = t.info.links.title;
+        linksTab.querySelector("p").textContent = t.info.links.text;
         const titles = linksTab.querySelectorAll(".link-title");
         const descs = linksTab.querySelectorAll(".link-description");
-        if (h3) h3.textContent = t.info.links.title;
-        if (p) p.textContent = t.info.links.text;
         if (titles[0]) titles[0].textContent = t.info.links.l1t;
         if (descs[0]) descs[0].textContent = t.info.links.l1d;
         if (titles[1]) titles[1].textContent = t.info.links.l2t;
@@ -442,40 +481,30 @@ function applyInfoTranslations() {
 
     const sdgTab = document.getElementById("sdg-tab");
     if (sdgTab) {
-        const h3 = sdgTab.querySelector("h3");
-        const p = sdgTab.querySelector("p");
+        sdgTab.querySelector("h3").textContent = t.info.sdg.title;
+        sdgTab.querySelector("p").textContent = t.info.sdg.text;
         const items = sdgTab.querySelectorAll(".sdg-item");
-        if (h3) h3.textContent = t.info.sdg.title;
-        if (p) p.textContent = t.info.sdg.text;
         if (items[0]) {
-            const h = items[0].querySelector("h4");
-            const d = items[0].querySelector("p");
-            if (h) h.textContent = t.info.sdg.s11t;
-            if (d) d.textContent = t.info.sdg.s11d;
+            items[0].querySelector("h4").textContent = t.info.sdg.s11t;
+            items[0].querySelector("p").textContent = t.info.sdg.s11d;
         }
         if (items[1]) {
-            const h = items[1].querySelector("h4");
-            const d = items[1].querySelector("p");
-            if (h) h.textContent = t.info.sdg.s12t;
-            if (d) d.textContent = t.info.sdg.s12d;
+            items[1].querySelector("h4").textContent = t.info.sdg.s12t;
+            items[1].querySelector("p").textContent = t.info.sdg.s12d;
         }
         if (items[2]) {
-            const h = items[2].querySelector("h4");
-            const d = items[2].querySelector("p");
-            if (h) h.textContent = t.info.sdg.s14t;
-            if (d) d.textContent = t.info.sdg.s14d;
+            items[2].querySelector("h4").textContent = t.info.sdg.s14t;
+            items[2].querySelector("p").textContent = t.info.sdg.s14d;
         }
     }
 
     const aboutTab = document.getElementById("about-tab");
     if (aboutTab) {
-        const h3 = aboutTab.querySelector("h3");
-        const rows = aboutTab.querySelectorAll(".info-item");
-        const rights = aboutTab.querySelector(".copyright p:last-child");
-        if (h3) h3.textContent = t.info.about.title;
+        aboutTab.querySelector("h3").textContent = t.info.about.title;
+        const rows = aboutTab.querySelectorAll(".about-list > div");
         if (rows[0]) {
             rows[0].querySelector("strong").textContent = t.info.about.v;
-            rows[0].querySelector("span").textContent = "3.0";
+            rows[0].querySelector("span").textContent = "2.0";
         }
         if (rows[1]) {
             rows[1].querySelector("strong").textContent = t.info.about.u;
@@ -485,117 +514,117 @@ function applyInfoTranslations() {
             rows[2].querySelector("strong").textContent = t.info.about.c;
             rows[2].querySelector("span").textContent = t.info.about.cVal;
         }
-        if (rights) rights.textContent = t.info.about.rights;
     }
 }
 
 function performSearch(query) {
     const target = document.getElementById("search-results");
+    const meta = document.getElementById("search-results-meta");
     if (!target) return;
 
-    const trimmed = (query || "").trim().toLowerCase();
-    if (!trimmed) {
+    const term = (query || "").trim().toLowerCase();
+    if (!term) {
         target.innerHTML = "";
+        if (meta) meta.textContent = "";
         return;
     }
 
-    const dictionary = WASTE_DICTIONARY[currentLanguage];
+    const dict = WASTE_DICTIONARY[state.language];
     const results = [];
 
-    Object.entries(dictionary).forEach(([type, data]) => {
+    Object.entries(dict).forEach(([type, data]) => {
         data.items.forEach((item) => {
-            if (item.toLowerCase().includes(trimmed)) {
+            if (item.toLowerCase().includes(term)) {
                 results.push({
                     item,
                     type,
-                    category: TRANSLATIONS[currentLanguage].wasteTypes[type]
+                    category: TRANSLATIONS[state.language].wasteTypes[type]
                 });
             }
         });
     });
 
     if (!results.length) {
-        target.innerHTML = `<div class="no-results"><i class="fa-solid fa-magnifying-glass"></i><p>${TRANSLATIONS[currentLanguage].noResults}</p></div>`;
+        target.innerHTML = `<div class="no-results"><p>${TRANSLATIONS[state.language].noResults}</p></div>`;
+        if (meta) meta.textContent = getResultsMetaText("search", 0);
         return;
     }
 
-    const html = results
+    if (meta) meta.textContent = getResultsMetaText("search", results.length);
+
+    target.innerHTML = results
         .slice(0, 120)
-        .map((result) => {
-            const safeItem = result.item.replace(/'/g, "\\'");
-            return `
-                <button class="search-result-item ${result.type}" type="button" onclick="selectSearchResult('${result.type}', '${safeItem}')">
-                    <span class="result-icon ${result.type}">${WASTE_ICONS[result.type]}</span>
+        .map((r, idx) => {
+            const safe = r.item.replace(/'/g, "\\'");
+            return `<button class="search-result-item ${r.type}" style="--item-index:${idx % 14};" type="button" onclick="selectSearchResult('${r.type}', '${safe}')">
+                <span class="result-main">
+                    <span class="result-icon ${r.type}">${WASTE_ICONS[r.type]}</span>
                     <span class="result-content">
-                        <span class="result-name">${result.item}</span>
-                        <span class="result-category">${result.category}</span>
+                        <span class="result-name">${r.item}</span>
+                        <span class="result-category">${r.category}</span>
                     </span>
-                </button>
-            `;
+                </span>
+                <span class="result-side">
+                    <span class="result-tag ${r.type}">${r.category}</span>
+                    <i class="fa-solid fa-chevron-right result-arrow" aria-hidden="true"></i>
+                </span>
+            </button>`;
         })
         .join("");
-
-    target.innerHTML = html;
 }
 
-function performSearchBySuggestion(suggestionKey) {
-    const t = TRANSLATIONS[currentLanguage];
-    const term = t.searchSuggestions[suggestionKey] || suggestionKey;
+function performSearchBySuggestion(key) {
+    const t = TRANSLATIONS[state.language];
+    const value = t.searchSuggestions[key] || key;
     const input = document.getElementById("search-input");
-    if (input) input.value = term;
-    performSearch(term);
+    if (input) input.value = value;
+    performSearch(value);
 }
 
 function selectSearchResult(type, item) {
-    console.log("search result", type, item);
+    console.log("selected", type, item);
     closeSearchModal();
 }
 
 function renderDistrictList(filter = "") {
     const list = document.getElementById("district-list");
+    const meta = document.getElementById("district-results-meta");
     if (!list) return;
 
-    const normalizedFilter = (filter || "").trim().toLowerCase();
+    const term = filter.trim().toLowerCase();
+    const districtRows = DISTRICTS.filter((d) => d.name.toLowerCase().includes(term));
 
-    const districts = DISTRICTS.filter((d) => d.name.toLowerCase().includes(normalizedFilter));
-
-    if (!districts.length) {
-        list.innerHTML = `<div class="no-results"><i class="fa-solid fa-location-dot"></i><p>${TRANSLATIONS[currentLanguage].noDistrictResults}</p></div>`;
+    if (!districtRows.length) {
+        list.innerHTML = `<div class="no-results"><p>${TRANSLATIONS[state.language].noDistrictResults}</p></div>`;
+        if (meta) meta.textContent = getResultsMetaText("district", 0);
         return;
     }
 
-    list.innerHTML = districts
-        .map((d) => {
-            const normalized = normalizeDistrictName(d.name);
-            const selected = normalized === currentDistrict ? " selected" : "";
-            return `
-                <button class="district-item ${d.calendar}${selected}" type="button" onclick="selectDistrict('${normalized}')">
-                    <span class="district-color-dot ${d.calendar}" aria-hidden="true"></span>
-                    <span class="district-text-wrap">
-                        <span class="district-name">${d.name.trim()}</span>
-                    </span>
-                </button>
-            `;
+    if (meta) meta.textContent = getResultsMetaText("district", districtRows.length);
+
+    list.innerHTML = districtRows
+        .map((d, idx) => {
+            const norm = normalizeDistrictName(d.name);
+            const selected = norm === state.district ? " selected" : "";
+            return `<button class="district-item ${d.calendar}${selected}" style="--item-index:${idx % 14};" type="button" onclick="selectDistrict('${norm}')">
+                <span class="district-text-wrap">
+                    <span class="district-name">${d.name.trim()}</span>
+                </span>
+            </button>`;
         })
         .join("");
 }
 
-function selectDistrict(districtName) {
-    currentDistrict = districtName;
-    updateDistrictInfo();
-    updateWasteCard();
-    updateDetails();
-    applyTranslations();
+function selectDistrict(name) {
+    state.district = name;
+    updateAll();
     closeDistrictModal();
 }
 
 function selectLanguage(lang) {
     if (!TRANSLATIONS[lang]) return;
-    currentLanguage = lang;
-    applyTranslations();
-    updateDistrictInfo();
-    updateWasteCard();
-    updateDetails();
+    state.language = lang;
+    updateAll();
     closeLanguageModal();
 }
 
@@ -604,8 +633,14 @@ function showInfoTab(tabName) {
         tab.classList.toggle("active", tab.dataset.tab === tabName);
     });
 
-    document.querySelectorAll(".info-tab-content").forEach((content) => {
-        content.classList.toggle("active", content.id === `${tabName}-tab`);
+    document.querySelectorAll(".info-tab-content").forEach((section) => {
+        section.classList.toggle("active", section.id === `${tabName}-tab`);
+    });
+}
+
+function setActiveNav(key = "") {
+    document.querySelectorAll(".dock-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.nav === key);
     });
 }
 
@@ -623,22 +658,19 @@ function closeModal(id) {
     document.body.style.overflow = "";
 }
 
-function setActiveNav(navKey = "") {
-    document.querySelectorAll(".nav-btn").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.nav === navKey);
-    });
-}
-
 function openSearchModal() {
     setActiveNav("search");
     openModal("search-modal");
 }
+
 function closeSearchModal() {
     closeModal("search-modal");
     const input = document.getElementById("search-input");
     const results = document.getElementById("search-results");
+    const meta = document.getElementById("search-results-meta");
     if (input) input.value = "";
     if (results) results.innerHTML = "";
+    if (meta) meta.textContent = "";
     setActiveNav("");
 }
 
@@ -659,14 +691,17 @@ function openLanguageModal() {
     setActiveNav("language");
     openModal("language-modal");
 }
+
 function closeLanguageModal() {
     closeModal("language-modal");
     setActiveNav("");
 }
+
 function openInfoModal() {
     setActiveNav("info");
     openModal("info-modal");
 }
+
 function closeInfoModal() {
     closeModal("info-modal");
     setActiveNav("");
@@ -674,42 +709,49 @@ function closeInfoModal() {
 
 function applyUrlDistrict() {
     const params = new URLSearchParams(window.location.search);
-    const q = params.get("quartiere");
-    if (!q) return;
+    const districtParam = params.get("quartiere");
+    if (!districtParam) return;
 
-    const normalizedParam = normalizeDistrictName(q);
-    const match = DISTRICTS.find((d) => normalizeDistrictName(d.name) === normalizedParam);
-
-    if (match) {
-        currentDistrict = normalizeDistrictName(match.name);
-    }
+    const normalized = normalizeDistrictName(districtParam);
+    const match = DISTRICTS.find((d) => normalizeDistrictName(d.name) === normalized);
+    if (match) state.district = normalizeDistrictName(match.name);
 }
 
 function generateQRCodeURLs(baseURL = window.location.origin + window.location.pathname) {
-    const out = {};
+    const output = {};
     DISTRICTS.forEach((district) => {
         const normalized = normalizeDistrictName(district.name);
-        out[district.name.trim()] = {
+        output[district.name.trim()] = {
             url: `${baseURL}?quartiere=${normalized}`,
             calendar: district.calendar,
             qrCodeParam: normalized
         };
     });
-    return out;
+    return output;
 }
 
 function testURLParams() {
     return {
         currentURL: window.location.href,
-        currentDistrict,
-        currentCalendarType
+        district: state.district,
+        calendar: state.calendar
     };
+}
+
+function updateAll() {
+    applyTranslations();
+    updateDistrictInfo();
+    updateWasteCard();
+    updateStatusPanel();
 }
 
 function bindEvents() {
     const searchInput = document.getElementById("search-input");
-    const districtSearchInput = document.getElementById("district-search");
-    const detailsToggle = document.getElementById("details-toggle");
+    const districtInput = document.getElementById("district-search");
+    const prevBtn = document.getElementById("date-prev-btn");
+    const nextBtn = document.getElementById("date-next-btn");
+    const todayBtn = document.getElementById("date-today-btn");
+    const datePicker = document.getElementById("date-picker");
 
     let searchTimer = null;
     let districtTimer = null;
@@ -721,23 +763,24 @@ function bindEvents() {
         });
     }
 
-    if (districtSearchInput) {
-        districtSearchInput.addEventListener("input", (e) => {
+    if (districtInput) {
+        districtInput.addEventListener("input", (e) => {
             clearTimeout(districtTimer);
             districtTimer = setTimeout(() => renderDistrictList(e.target.value), 120);
         });
     }
 
-    if (detailsToggle) {
-        detailsToggle.addEventListener("click", toggleDetailsVisibility);
+    if (prevBtn) prevBtn.addEventListener("click", () => shiftSelectedDate(-1));
+    if (nextBtn) nextBtn.addEventListener("click", () => shiftSelectedDate(1));
+    if (todayBtn) todayBtn.addEventListener("click", resetToToday);
+    if (datePicker) {
+        datePicker.addEventListener("change", (e) => {
+            const parsed = parseDateInputValue(e.target.value);
+            if (!parsed) return;
+            state.selectedDate = startOfDay(parsed);
+            updateAll();
+        });
     }
-
-    compactDetailsMedia.addEventListener("change", (event) => {
-        if (!event.matches) {
-            isDetailsExpanded = true;
-        }
-        updateDetailsLayout();
-    });
 
     document.addEventListener("keydown", (e) => {
         if (e.key !== "Escape") return;
@@ -748,18 +791,15 @@ function bindEvents() {
     });
 }
 
-function initializeApp() {
-    isDetailsExpanded = !compactDetailsMedia.matches;
-    currentDistrict = normalizeDistrictName(currentDistrict);
+function initialize() {
+    state.district = normalizeDistrictName(state.district);
+    state.selectedDate = new Date(TODAY);
     applyUrlDistrict();
-    updateDistrictInfo();
     bindEvents();
-    applyTranslations();
-    updateWasteCard();
-    updateDetails();
+    updateAll();
 }
 
-document.addEventListener("DOMContentLoaded", initializeApp);
+document.addEventListener("DOMContentLoaded", initialize);
 
 window.openSearchModal = openSearchModal;
 window.closeSearchModal = closeSearchModal;
