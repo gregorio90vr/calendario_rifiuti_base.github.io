@@ -2,465 +2,254 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#2e7d32">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>Calendario Rifiuti</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Calendario Rifiuti Verona 2.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Urbanist:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-content">
-                <div class="header-top">
-                    <h1 class="app-title">CALENDARIO RIFIUTI<br>VERONA</h1>
-                </div>
-                <div class="header-bottom">
-                    <button class="district-selector" id="district-selector" onclick="openDistrictModal()">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span class="district-name" id="district-name">BASSON</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="topbar-left">
+                <p class="topbar-kicker" id="today-label">OGGI PREPARA</p>
+                <h1 class="topbar-title" id="app-title">Calendario Rifiuti Verona</h1>
             </div>
+            <button class="district-pill" type="button" onclick="openDistrictModal()" aria-label="Seleziona quartiere">
+                <i class="fa-solid fa-location-dot"></i>
+                <span id="district-name">BASSON</span>
+            </button>
         </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Date Section -->
-            <section class="date-section">
-                <div class="date-display" id="date-display">
-                    Lunedì, 23 Settembre 2025
+        <main class="dashboard">
+            <section class="date-strip" aria-live="polite">
+                <div class="date-strip-head">
+                    <span class="strip-label" id="date-strip-label">Data di consultazione</span>
+                    <button class="date-today-btn" id="date-today-btn" type="button">Oggi</button>
+                </div>
+                <strong id="date-display">-</strong>
+                <div class="date-nav-controls">
+                    <button class="date-nav-btn" id="date-prev-btn" type="button" aria-label="Giorno precedente">
+                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <input class="date-picker" id="date-picker" type="date" aria-label="Seleziona data">
+                    <button class="date-nav-btn" id="date-next-btn" type="button" aria-label="Giorno successivo">
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                    </button>
                 </div>
             </section>
 
-            <!-- Waste Card - This is the main focal point -->
-            <section class="waste-card-container">
-                <div class="waste-card" id="waste-card">
-                    <div class="waste-icon-circle" id="waste-icon-circle">
-                        <span id="waste-icon"></span>
+            <section class="signal-board">
+                <article class="waste-card no-pickup" id="waste-card" aria-live="polite">
+                    <div class="waste-main">
+                        <div class="waste-icon" id="waste-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                        <h2 class="waste-title" id="waste-type-title">-</h2>
                     </div>
-                    <div class="waste-type-title" id="waste-type-title">UMIDO</div>
-                </div>
-            </section>
-
-            <!-- Details Section -->
-            <section class="details-section">
-                <div class="details-card" id="details-card">
-                    <div class="details-content">
-                        <div class="time-schedule">
-                            <span class="time-schedule-text" id="details-text">
-                                Esponi i rifiuti dalle 19:00 alle 21:00
-                            </span>
+                    <div class="waste-meta">
+                        <span class="meta-chip" id="hero-district-chip">Zona: -</span>
+                        <span class="meta-chip" id="hero-time-chip">Conferimento 19:00-21:00</span>
+                    </div>
+                    <div class="card-details" id="card-details">
+                        <div class="details-headline">
+                            <h3 id="details-title">Dettagli conferimento</h3>
+                            <p id="details-text">Esponi i rifiuti solo dalle 19:00 alle 21:00</p>
                         </div>
                     </div>
-                </div>
+                </article>
             </section>
         </main>
 
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <button class="nav-btn" id="search-btn" onclick="openSearchModal()">
-                <i class="fas fa-search"></i>
+        <nav class="dock" aria-label="Navigazione principale">
+            <button class="dock-btn" data-nav="search" type="button" onclick="openSearchModal()">
+                <i class="fa-solid fa-magnifying-glass"></i>
                 <span class="nav-label">DOVE LO BUTTO</span>
             </button>
-            <button class="nav-btn" id="language-btn" onclick="openLanguageModal()">
-                <i class="fas fa-globe"></i>
-                <span class="nav-label">LINGUA</span>
-            </button>
-            <button class="nav-btn" id="district-btn" onclick="openDistrictModal()">
-                <i class="fas fa-map-marker-alt"></i>
+            <button class="dock-btn" data-nav="district" type="button" onclick="openDistrictModal()">
+                <i class="fa-solid fa-map-location-dot"></i>
                 <span class="nav-label">QUARTIERE</span>
             </button>
-            <button class="nav-btn" id="info-btn" onclick="openInfoModal()">
-                <i class="fas fa-info-circle"></i>
+            <button class="dock-btn" data-nav="language" type="button" onclick="openLanguageModal()">
+                <i class="fa-solid fa-language"></i>
+                <span class="nav-label">LINGUA</span>
+            </button>
+            <button class="dock-btn" data-nav="info" type="button" onclick="openInfoModal()">
+                <i class="fa-solid fa-circle-info"></i>
                 <span class="nav-label">INFO</span>
             </button>
         </nav>
-
-        <!-- Author Credits -->
-        <div class="app-credits">
-            <span>Autore: </span>
-            <span class="author-name">Gregorio Pellegrini</span>
-            <span class="disclaimer">© 2025 - Solo per uso informativo</span>
-        </div>
     </div>
 
-    <!-- Modals -->
-    
-    <!-- Search Modal -->
-    <div class="modal" id="search-modal">
-        <div class="modal-overlay" onclick="closeSearchModal()"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <i class="fas fa-search"></i>
-                    <span id="search-modal-title">Dove lo butto?</span>
-                </h2>
-                <button class="modal-close" onclick="closeSearchModal()">
-                    <i class="fas fa-times"></i>
+    <div class="modal" id="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+        <div class="modal-backdrop" onclick="closeSearchModal()"></div>
+        <section class="modal-card">
+            <header class="modal-head">
+                <h2 id="search-modal-title">Dove lo butto?</h2>
+                <button type="button" class="modal-close" onclick="closeSearchModal()" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
-            </div>
+            </header>
             <div class="modal-body">
-                <div class="search-container">
-                    <input type="text" class="search-input" id="search-input" placeholder="Scrivi cosa vuoi buttare...">
-                    <i class="fas fa-search search-icon"></i>
+                <div class="input-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="search-input" class="search-input" type="text" autocomplete="off" placeholder="Scrivi cosa vuoi buttare...">
                 </div>
-                
-                <div class="search-suggestions" id="search-suggestions">
-                    <div class="suggestion-chip" onclick="performSearchBySuggestion('bottiglia')">
-                        <i class="fas fa-wine-bottle"></i>
-                        <span data-translate="searchSuggestions.bottiglia">bottiglia</span>
-                    </div>
-                    <div class="suggestion-chip" onclick="performSearchBySuggestion('carta')">
-                        <i class="fas fa-file-alt"></i>
-                        <span data-translate="searchSuggestions.carta">carta</span>
-                    </div>
-                    <div class="suggestion-chip" onclick="performSearchBySuggestion('lattina')">
-                        <i class="fas fa-can-food"></i>
-                        <span data-translate="searchSuggestions.lattina">lattina</span>
-                    </div>
-                    <div class="suggestion-chip" onclick="performSearchBySuggestion('avanzi')">
-                        <i class="fas fa-utensils"></i>
-                        <span data-translate="searchSuggestions.avanzi">avanzi</span>
-                    </div>
+                <div class="suggestions" id="search-suggestions">
+                    <button type="button" class="chip" onclick="performSearchBySuggestion('bottiglia')"><span data-translate="searchSuggestions.bottiglia">bottiglia</span></button>
+                    <button type="button" class="chip" onclick="performSearchBySuggestion('carta')"><span data-translate="searchSuggestions.carta">carta</span></button>
+                    <button type="button" class="chip" onclick="performSearchBySuggestion('lattina')"><span data-translate="searchSuggestions.lattina">lattina</span></button>
+                    <button type="button" class="chip" onclick="performSearchBySuggestion('avanzi')"><span data-translate="searchSuggestions.avanzi">avanzi</span></button>
                 </div>
-                
-                <div class="search-results" id="search-results"></div>
+                <div id="search-results-meta" class="results-meta" aria-live="polite"></div>
+                <div id="search-results" class="results-list search-results-grid"></div>
             </div>
-        </div>
+        </section>
     </div>
 
-    <!-- District Modal -->
-    <div class="modal" id="district-modal">
-        <div class="modal-overlay" onclick="closeDistrictModal()"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span id="district-modal-title">Seleziona il tuo quartiere</span>
-                </h2>
-                <button class="modal-close" onclick="closeDistrictModal()">
-                    <i class="fas fa-times"></i>
+    <div class="modal" id="district-modal" role="dialog" aria-modal="true" aria-labelledby="district-modal-title">
+        <div class="modal-backdrop" onclick="closeDistrictModal()"></div>
+        <section class="modal-card">
+            <header class="modal-head">
+                <h2 id="district-modal-title">Seleziona il tuo quartiere</h2>
+                <button type="button" class="modal-close" onclick="closeDistrictModal()" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
-            </div>
+            </header>
             <div class="modal-body">
-                <div class="search-container">
-                    <input type="text" class="search-input" id="district-search" placeholder="Cerca il tuo quartiere...">
-                    <i class="fas fa-search search-icon"></i>
+                <div class="input-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="district-search" class="search-input" type="text" autocomplete="off" placeholder="Cerca il tuo quartiere...">
                 </div>
-                <div class="district-list" id="district-list"></div>
+                <div class="cluster-legend">
+                    <span data-translate="clusterLegendTitle">Cluster calendario</span>
+                    <div class="legend-chips">
+                        <span class="legend-chip arancione" data-translate="cluster.arancione">Arancione</span>
+                        <span class="legend-chip azzurro" data-translate="cluster.azzurro">Azzurro</span>
+                        <span class="legend-chip blu" data-translate="cluster.blu">Blu</span>
+                        <span class="legend-chip verde" data-translate="cluster.verde">Verde</span>
+                    </div>
+                </div>
+                <div id="district-results-meta" class="results-meta" aria-live="polite"></div>
+                <div id="district-list" class="results-list district-results-grid"></div>
             </div>
-        </div>
+        </section>
     </div>
 
-    <!-- Language Modal -->
-    <div class="modal" id="language-modal">
-        <div class="modal-overlay" onclick="closeLanguageModal()"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <i class="fas fa-globe"></i>
-                    <span id="language-modal-title">Seleziona Lingua</span>
-                </h2>
-                <button class="modal-close" onclick="closeLanguageModal()">
-                    <i class="fas fa-times"></i>
+    <div class="modal" id="language-modal" role="dialog" aria-modal="true" aria-labelledby="language-modal-title">
+        <div class="modal-backdrop" onclick="closeLanguageModal()"></div>
+        <section class="modal-card small">
+            <header class="modal-head">
+                <h2 id="language-modal-title">Seleziona lingua</h2>
+                <button type="button" class="modal-close" onclick="closeLanguageModal()" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
-            </div>
+            </header>
             <div class="modal-body">
                 <div class="language-options">
-                    <button class="language-option active" data-lang="it" onclick="selectLanguage('it')">
-                        <div class="flag-icon">
-                            <svg width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <filter id="shadow-it" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
-                                        <feOffset dx="0" dy="0.5"/>
-                                        <feComponentTransfer>
-                                            <feFuncA type="linear" slope="0.3"/>
-                                        </feComponentTransfer>
-                                        <feMerge>
-                                            <feMergeNode/>
-                                            <feMergeNode in="SourceGraphic"/>
-                                        </feMerge>
-                                    </filter>
-                                </defs>
-                                <g filter="url(#shadow-it)">
-                                    <!-- Green stripe with gradient -->
-                                    <rect width="8" height="16" fill="#009246"/>
-                                    <rect width="8" height="16" fill="url(#grad-green)"/>
-                                    <!-- White stripe with subtle shading -->
-                                    <rect x="8" width="8" height="16" fill="#ffffff"/>
-                                    <rect x="8" width="8" height="16" fill="rgba(0,0,0,0.03)"/>
-                                    <!-- Red stripe with gradient -->
-                                    <rect x="16" width="8" height="16" fill="#ce2b37"/>
-                                    <rect x="16" width="8" height="16" fill="url(#grad-red)"/>
-                                </g>
-                                <defs>
-                                    <linearGradient id="grad-green" x1="0" y1="0" x2="0" y2="16" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0" stop-color="#ffffff" stop-opacity="0.2"/>
-                                        <stop offset="1" stop-color="#000000" stop-opacity="0.1"/>
-                                    </linearGradient>
-                                    <linearGradient id="grad-red" x1="0" y1="0" x2="0" y2="16" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0" stop-color="#ffffff" stop-opacity="0.2"/>
-                                        <stop offset="1" stop-color="#000000" stop-opacity="0.1"/>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                        <span>Italiano</span>
-                        <i class="fas fa-check"></i>
+                    <button class="language-option active" data-lang="it" type="button" onclick="selectLanguage('it')">
+                        <span class="language-main">
+                            <span class="language-flag it" aria-hidden="true"></span>
+                            <span class="language-copy">
+                                <span class="language-label">Italiano</span>
+                                <span class="language-note">Lingua predefinita</span>
+                            </span>
+                        </span>
+                        <span class="language-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
                     </button>
-                    <button class="language-option" data-lang="en" onclick="selectLanguage('en')">
-                        <div class="flag-icon">
-                            <svg width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <filter id="shadow-uk" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feGaussianBlur in="SourceAlpha" stdDeviation="0.5"/>
-                                        <feOffset dx="0" dy="0.5"/>
-                                        <feComponentTransfer>
-                                            <feFuncA type="linear" slope="0.3"/>
-                                        </feComponentTransfer>
-                                        <feMerge>
-                                            <feMergeNode/>
-                                            <feMergeNode in="SourceGraphic"/>
-                                        </feMerge>
-                                    </filter>
-                                </defs>
-                                <g filter="url(#shadow-uk)">
-                                    <!-- Blue background with gradient -->
-                                    <rect width="24" height="16" fill="#012169"/>
-                                    <rect width="24" height="16" fill="url(#grad-blue)"/>
-                                    
-                                    <!-- Saint Andrew's Cross (white) -->
-                                    <path d="M0 0L24 16M24 0L0 16" stroke="#ffffff" stroke-width="3.5"/>
-                                    
-                                    <!-- Saint Andrew's Cross (red) -->
-                                    <path d="M0 0L24 16M24 0L0 16" stroke="#C8102E" stroke-width="2"/>
-                                    
-                                    <!-- Saint George's Cross (white) -->
-                                    <path d="M12 0V16M0 8H24" stroke="#ffffff" stroke-width="5"/>
-                                    
-                                    <!-- Saint George's Cross (red) -->
-                                    <path d="M12 0V16M0 8H24" stroke="#C8102E" stroke-width="3"/>
-                                </g>
-                                <defs>
-                                    <linearGradient id="grad-blue" x1="0" y1="0" x2="0" y2="16" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0" stop-color="#ffffff" stop-opacity="0.1"/>
-                                        <stop offset="1" stop-color="#000000" stop-opacity="0.1"/>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                        <span>English</span>
-                        <i class="fas fa-check"></i>
+                    <button class="language-option" data-lang="en" type="button" onclick="selectLanguage('en')">
+                        <span class="language-main">
+                            <span class="language-flag en" aria-hidden="true"></span>
+                            <span class="language-copy">
+                                <span class="language-label">English</span>
+                                <span class="language-note">International</span>
+                            </span>
+                        </span>
+                        <span class="language-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
-    <!-- Info Modal -->
-    <div class="modal" id="info-modal">
-        <div class="modal-overlay" onclick="closeInfoModal()"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <i class="fas fa-info-circle"></i>
-                    <span id="info-modal-title">Informazioni</span>
-                </h2>
-                <button class="modal-close" onclick="closeInfoModal()">
-                    <i class="fas fa-times"></i>
+    <div class="modal" id="info-modal" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
+        <div class="modal-backdrop" onclick="closeInfoModal()"></div>
+        <section class="modal-card">
+            <header class="modal-head">
+                <h2 id="info-modal-title">Informazioni</h2>
+                <button type="button" class="modal-close" onclick="closeInfoModal()" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
-            </div>
+            </header>
             <div class="modal-body">
-                <!-- Info Navigation Tabs -->
-                <div class="info-nav">
-                    <button class="info-tab active" onclick="showInfoTab('app')" data-tab="app">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span>App</span>
-                    </button>
-                    <button class="info-tab" onclick="showInfoTab('links')" data-tab="links">
-                        <i class="fas fa-link"></i>
-                        <span>Link Utili</span>
-                    </button>
-                    <button class="info-tab" onclick="showInfoTab('sdg')" data-tab="sdg">
-                        <i class="fas fa-leaf"></i>
-                        <span>Sostenibilità</span>
-                    </button>
-                    <button class="info-tab" onclick="showInfoTab('about')" data-tab="about">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Info</span>
-                    </button>
+                <div class="info-tabs">
+                    <button class="info-tab active" data-tab="app" type="button" onclick="showInfoTab('app')">App</button>
+                    <button class="info-tab" data-tab="links" type="button" onclick="showInfoTab('links')">Link Utili</button>
+                    <button class="info-tab" data-tab="sdg" type="button" onclick="showInfoTab('sdg')">Sostenibilita</button>
+                    <button class="info-tab" data-tab="about" type="button" onclick="showInfoTab('about')">Info</button>
                 </div>
 
-                <!-- Info Content Tabs -->
-                <div class="info-content">
-                    <!-- App Tab -->
-                    <div class="info-tab-content active" id="app-tab">
-                        <div class="info-section">
-                            <div class="info-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <h3>Come funziona l'app</h3>
-                            <p>Questa app ti aiuta a gestire la raccolta differenziata a Verona. Controlla il calendario del tuo quartiere e scopri dove buttare ogni oggetto.</p>
-                            
-                            <div class="features-list">
-                                <div class="feature-item">
-                                    <i class="fas fa-calendar-check"></i>
-                                    <span>Calendario personalizzato per quartiere</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-search"></i>
-                                    <span>Ricerca intelligente rifiuti</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-clock"></i>
-                                    <span>Orari di conferimento (19:00-21:00)</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-globe"></i>
-                                    <span>Supporto multilingue (IT/EN)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <section class="info-tab-content active" id="app-tab">
+                    <h3>Come funziona l'app</h3>
+                    <p>Questa app ti aiuta a gestire la raccolta differenziata a Verona.</p>
+                    <ul class="bullet-list">
+                        <li>Calendario personalizzato per quartiere</li>
+                        <li>Ricerca intelligente rifiuti</li>
+                        <li>Orari di conferimento (19:00-21:00)</li>
+                        <li>Supporto multilingue (IT/EN)</li>
+                    </ul>
+                </section>
 
-                    <!-- Links Tab -->
-                    <div class="info-tab-content" id="links-tab">
-                        <div class="info-section">
-                            <div class="info-icon">
-                                <i class="fas fa-link"></i>
-                            </div>
-                            <h3>Link Utili AMIA</h3>
-                            <p>Risorse ufficiali per approfondimenti</p>
-                            
-                            <div class="links-grid">
-                                <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" class="info-link" target="_blank" rel="noopener">
-                                    <div class="link-icon">
-                                        <i class="fas fa-calendar-days"></i>
-                                    </div>
-                                    <div class="link-content">
-                                        <span class="link-title">Calendari Ufficiali</span>
-                                        <span class="link-description">Tutti i calendari del porta a porta</span>
-                                    </div>
-                                    <i class="fas fa-external-link-alt link-external"></i>
-                                </a>
-                                
-                                <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" class="info-link" target="_blank" rel="noopener">
-                                    <div class="link-icon">
-                                        <i class="fas fa-book-open"></i>
-                                    </div>
-                                    <div class="link-content">
-                                        <span class="link-title">Dizionario Rifiuti</span>
-                                        <span class="link-description">Dove buttare ogni oggetto</span>
-                                    </div>
-                                    <i class="fas fa-external-link-alt link-external"></i>
-                                </a>
-                                
-                                <a href="https://www.amiavr.it" class="info-link" target="_blank" rel="noopener">
-                                    <div class="link-icon">
-                                        <i class="fas fa-home"></i>
-                                    </div>
-                                    <div class="link-content">
-                                        <span class="link-title">Sito AMIA</span>
-                                        <span class="link-description">Portale principale</span>
-                                    </div>
-                                    <i class="fas fa-external-link-alt link-external"></i>
-                                </a>
-                            </div>
-                        </div>
+                <section class="info-tab-content" id="links-tab">
+                    <h3>Link Utili AMIA</h3>
+                    <p>Risorse ufficiali per approfondimenti</p>
+                    <div class="link-list">
+                        <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" target="_blank" rel="noopener" class="info-link">
+                            <span class="link-title">Calendari Ufficiali</span>
+                            <span class="link-description">Tutti i calendari del porta a porta</span>
+                        </a>
+                        <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" target="_blank" rel="noopener" class="info-link">
+                            <span class="link-title">Dizionario Rifiuti</span>
+                            <span class="link-description">Dove buttare ogni oggetto</span>
+                        </a>
+                        <a href="https://www.amiavr.it" target="_blank" rel="noopener" class="info-link">
+                            <span class="link-title">Sito AMIA</span>
+                            <span class="link-description">Portale principale</span>
+                        </a>
                     </div>
+                </section>
 
-                    <!-- SDG Tab -->
-                    <div class="info-tab-content" id="sdg-tab">
-                        <div class="info-section">
-                            <div class="info-icon">
-                                <i class="fas fa-leaf"></i>
-                            </div>
-                            <h3>Obiettivi Sostenibili</h3>
-                            <p>Contribuisci agli SDGs delle Nazioni Unite</p>
-                            
-                            <div class="sdg-grid">
-                                <div class="sdg-item">
-                                    <div class="sdg-number">11</div>
-                                    <div class="sdg-content">
-                                        <h4>Città Sostenibili</h4>
-                                        <p>Rendere le città inclusive e sostenibili</p>
-                                    </div>
-                                </div>
-                                <div class="sdg-item">
-                                    <div class="sdg-number">12</div>
-                                    <div class="sdg-content">
-                                        <h4>Consumo Responsabile</h4>
-                                        <p>Garantire modelli sostenibili</p>
-                                    </div>
-                                </div>
-                                <div class="sdg-item">
-                                    <div class="sdg-number">14</div>
-                                    <div class="sdg-content">
-                                        <h4>Vita Sott'acqua</h4>
-                                        <p>Conservare oceani e risorse marine</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <section class="info-tab-content" id="sdg-tab">
+                    <h3>Obiettivi Sostenibili</h3>
+                    <p>Contribuisci agli SDGs delle Nazioni Unite</p>
+                    <div class="sdg-list">
+                        <article class="sdg-item"><strong>11</strong><div><h4>Citta Sostenibili</h4><p>Rendere le citta inclusive e sostenibili</p></div></article>
+                        <article class="sdg-item"><strong>12</strong><div><h4>Consumo Responsabile</h4><p>Garantire modelli sostenibili</p></div></article>
+                        <article class="sdg-item"><strong>14</strong><div><h4>Vita Sott'acqua</h4><p>Conservare oceani e risorse marine</p></div></article>
                     </div>
+                </section>
 
-                    <!-- About Tab -->
-                    <div class="info-tab-content" id="about-tab">
-                        <div class="info-section">
-                            <div class="info-icon">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                            <h3>Informazioni App</h3>
-                            <div class="app-info">
-                                <div class="info-item">
-                                    <i class="fas fa-tag"></i>
-                                    <div>
-                                        <strong>Versione</strong>
-                                        <span>2.0</span>
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <div>
-                                        <strong>Ultimo aggiornamento</strong>
-                                        <span>Settembre 2025</span>
-                                    </div>
-                                </div>
-                                <div class="info-item">
-                                    <i class="fas fa-devices"></i>
-                                    <div>
-                                        <strong>Compatibilità</strong>
-                                        <span>Tutti i dispositivi</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="copyright">
-                                <i class="fas fa-copyright"></i>
-                                <div>
-                                    <p><strong>© 2025 Gregorio Pellegrini</strong></p>
-                                    <p>Tutti i diritti riservati</p>
-                                </div>
-                            </div>
-                        </div>
+                <section class="info-tab-content" id="about-tab">
+                    <h3>Informazioni App</h3>
+                    <div class="about-list">
+                        <div><strong>Versione</strong><span>2.0</span></div>
+                        <div><strong>Ultimo aggiornamento</strong><span>Marzo 2026</span></div>
+                        <div><strong>Compatibilita</strong><span>Tutti i dispositivi</span></div>
                     </div>
-                </div>
+                    <p class="copyright">© 2026 Gregorio Pellegrini</p>
+                </section>
             </div>
-        </div>
+        </section>
     </div>
 
-    <!-- Data Files -->
     <script src="waste-calendars.js"></script>
     <script src="waste-dictionary.js"></script>
     <script src="districts-data.js"></script>
-    
-    <!-- Main Application -->
     <script src="script.js"></script>
     <script src="viewport.js"></script>
 </body>
