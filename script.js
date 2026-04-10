@@ -12,7 +12,6 @@ const TRANSLATIONS = {
         appTitle: "Calendario Rifiuti Verona",
         todayLabel: "OGGI PREPARA",
         todayLabelBrowsing: "DATA IN CONSULTAZIONE",
-        wasteBadge: "Raccolta del giorno successivo",
         dateStripLabel: "Data di consultazione",
         datePrevLabel: "Giorno precedente",
         dateNextLabel: "Giorno successivo",
@@ -30,7 +29,8 @@ const TRANSLATIONS = {
             arancione: "Arancione",
             azzurro: "Azzurro",
             blu: "Blu",
-            verde: "Verde"
+            verde: "Verde",
+            viola: "Viola"
         },
         languageModalTitle: "Seleziona lingua",
         infoModalTitle: "Informazioni",
@@ -110,7 +110,6 @@ const TRANSLATIONS = {
         appTitle: "Waste Calendar Verona",
         todayLabel: "PREPARE TODAY",
         todayLabelBrowsing: "BROWSING DATE",
-        wasteBadge: "Collection for next day",
         dateStripLabel: "Browse date",
         datePrevLabel: "Previous day",
         dateNextLabel: "Next day",
@@ -128,7 +127,8 @@ const TRANSLATIONS = {
             arancione: "Orange",
             azzurro: "Sky blue",
             blu: "Blue",
-            verde: "Green"
+            verde: "Green",
+            viola: "Purple"
         },
         languageModalTitle: "Select language",
         infoModalTitle: "Information",
@@ -372,8 +372,6 @@ function applyTranslations() {
     const dateTodayBtn = document.getElementById("date-today-btn");
     const datePrevBtn = document.getElementById("date-prev-btn");
     const dateNextBtn = document.getElementById("date-next-btn");
-    const wasteBadge = document.getElementById("waste-badge");
-    const heroTimeChip = document.getElementById("hero-time-chip");
 
     const searchModalTitle = document.getElementById("search-modal-title");
     const districtModalTitle = document.getElementById("district-modal-title");
@@ -390,8 +388,6 @@ function applyTranslations() {
     if (dateTodayBtn) dateTodayBtn.textContent = t.dateTodayButton;
     if (datePrevBtn) datePrevBtn.setAttribute("aria-label", t.datePrevLabel);
     if (dateNextBtn) dateNextBtn.setAttribute("aria-label", t.dateNextLabel);
-    if (wasteBadge) wasteBadge.textContent = t.wasteBadge;
-    if (heroTimeChip) heroTimeChip.textContent = t.heroTimeChip;
 
     if (searchModalTitle) searchModalTitle.textContent = t.searchModalTitle;
     if (districtModalTitle) districtModalTitle.textContent = t.districtModalTitle;
