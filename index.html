@@ -2,250 +2,275 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#2e7d32">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#0e7c3a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>Calendario Rifiuti Verona 2.0</title>
+    <meta name="description" content="Calendario raccolta differenziata e dizionario rifiuti di Verona">
+    <title>Rifiuti Verona 3.0</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Urbanist:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="bg-grid" aria-hidden="true"></div>
-
-    <div class="app-shell">
-        <header class="topbar">
-            <div class="topbar-left">
-                <p class="topbar-kicker" id="today-label">OGGI PREPARA</p>
-                <h1 class="topbar-title" id="app-title">Calendario Rifiuti Verona</h1>
-            </div>
-            <button class="district-pill" type="button" onclick="openDistrictModal()" aria-label="Seleziona quartiere">
-                <i class="fa-solid fa-location-dot"></i>
-                <span id="district-name">BASSON</span>
+    <div class="app">
+        <!-- ===== HEADER ===== -->
+        <header class="header">
+            <button class="header-district" type="button" data-action="open-district" aria-label="Cambia quartiere">
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <span class="header-district-text">
+                    <span class="header-district-label" data-i18n="header.district">Quartiere</span>
+                    <strong id="district-name">—</strong>
+                </span>
+                <i class="fa-solid fa-chevron-down chev" aria-hidden="true"></i>
+            </button>
+            <button class="header-icon-btn" type="button" data-action="open-language" aria-label="Lingua">
+                <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                <span id="lang-code">IT</span>
             </button>
         </header>
 
-        <main class="dashboard">
-            <section class="date-strip" aria-live="polite">
-                <div class="date-strip-head">
-                    <span class="strip-label" id="date-strip-label">Data di consultazione</span>
-                    <button class="date-today-btn" id="date-today-btn" type="button">Oggi</button>
+        <!-- ===== HERO ===== -->
+        <section class="hero" aria-live="polite">
+            <div class="hero-status" id="hero-status">
+                <span class="status-dot" id="status-dot"></span>
+                <span id="status-text">—</span>
+            </div>
+
+            <div class="hero-card" id="hero-card">
+                <div class="hero-day" id="hero-day">—</div>
+                <div class="hero-icon" id="hero-icon">
+                    <i class="fa-regular fa-calendar"></i>
                 </div>
-                <strong id="date-display">-</strong>
-                <div class="date-nav-controls">
-                    <button class="date-nav-btn" id="date-prev-btn" type="button" aria-label="Giorno precedente">
+                <div class="hero-waste-type" id="hero-waste-type">—</div>
+                <div class="hero-instruction" id="hero-instruction">—</div>
+                <div class="hero-countdown" id="hero-countdown" hidden>
+                    <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                    <span id="countdown-text">—</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== UPCOMING TIMELINE ===== -->
+        <section class="upcoming">
+            <div class="section-header">
+                <h2 data-i18n="upcoming.title">Prossimi 7 giorni</h2>
+                <button class="link-btn" type="button" data-action="open-calendar">
+                    <span data-i18n="upcoming.viewAll">Vedi calendario</span>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="timeline" id="timeline" role="list"></div>
+        </section>
+
+        <!-- ===== QUICK ACTIONS ===== -->
+        <section class="quick-actions">
+            <button class="action-card primary" type="button" data-action="open-search">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                <span class="action-title" data-i18n="actions.searchTitle">Dove lo butto?</span>
+                <span class="action-subtitle" data-i18n="actions.searchSubtitle">Cerca un oggetto</span>
+            </button>
+            <button class="action-card" type="button" data-action="open-info">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                <span class="action-title" data-i18n="actions.infoTitle">Info & link</span>
+                <span class="action-subtitle" data-i18n="actions.infoSubtitle">Guida e contatti</span>
+            </button>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 Gregorio Pellegrini · v3.0</p>
+        </footer>
+    </div>
+
+    <!-- ===== SEARCH SHEET ===== -->
+    <div class="sheet" id="sheet-search" role="dialog" aria-modal="true" aria-labelledby="search-title" hidden>
+        <div class="sheet-backdrop" data-action="close-sheet"></div>
+        <div class="sheet-card">
+            <div class="sheet-handle" aria-hidden="true"></div>
+            <header class="sheet-head">
+                <h2 id="search-title" data-i18n="search.title">Dove lo butto?</h2>
+                <button class="sheet-close" type="button" data-action="close-sheet" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </header>
+            <div class="sheet-body">
+                <div class="search-input-wrap">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input id="search-input" type="search" autocomplete="off" inputmode="search"
+                           data-i18n-placeholder="search.placeholder" placeholder="Cerca un rifiuto…">
+                    <button class="search-clear" type="button" data-action="clear-search" aria-label="Pulisci" hidden>
+                        <i class="fa-solid fa-circle-xmark" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="filter-chips" id="filter-chips" role="tablist"></div>
+
+                <p class="sheet-meta" id="search-meta" aria-live="polite"></p>
+                <div class="search-results" id="search-results"></div>
+                <div class="search-empty" id="search-empty" hidden>
+                    <i class="fa-regular fa-circle-question" aria-hidden="true"></i>
+                    <p data-i18n="search.empty">Inizia a digitare per cercare un oggetto.</p>
+                    <div class="suggestion-chips" id="suggestion-chips"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== DISTRICT SHEET ===== -->
+    <div class="sheet" id="sheet-district" role="dialog" aria-modal="true" aria-labelledby="district-title" hidden>
+        <div class="sheet-backdrop" data-action="close-sheet"></div>
+        <div class="sheet-card">
+            <div class="sheet-handle" aria-hidden="true"></div>
+            <header class="sheet-head">
+                <h2 id="district-title" data-i18n="district.title">Scegli il quartiere</h2>
+                <button class="sheet-close" type="button" data-action="close-sheet" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </header>
+            <div class="sheet-body">
+                <div class="search-input-wrap">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input id="district-input" type="search" autocomplete="off" inputmode="search"
+                           data-i18n-placeholder="district.placeholder" placeholder="Cerca quartiere…">
+                </div>
+                <p class="sheet-meta" id="district-meta" aria-live="polite"></p>
+                <div class="district-list" id="district-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CALENDAR SHEET ===== -->
+    <div class="sheet" id="sheet-calendar" role="dialog" aria-modal="true" aria-labelledby="calendar-title" hidden>
+        <div class="sheet-backdrop" data-action="close-sheet"></div>
+        <div class="sheet-card">
+            <div class="sheet-handle" aria-hidden="true"></div>
+            <header class="sheet-head">
+                <h2 id="calendar-title" data-i18n="calendar.title">Calendario completo</h2>
+                <button class="sheet-close" type="button" data-action="close-sheet" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </header>
+            <div class="sheet-body">
+                <div class="calendar-controls">
+                    <button class="cal-nav-btn" type="button" id="cal-prev" aria-label="Mese precedente">
                         <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                     </button>
-                    <input class="date-picker" id="date-picker" type="date" aria-label="Seleziona data">
-                    <button class="date-nav-btn" id="date-next-btn" type="button" aria-label="Giorno successivo">
+                    <button class="cal-month-label" type="button" id="cal-month-label" aria-label="Vai a oggi">—</button>
+                    <button class="cal-nav-btn" type="button" id="cal-next" aria-label="Mese successivo">
                         <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </button>
                 </div>
-            </section>
 
-            <section class="signal-board">
-                <article class="waste-card no-pickup" id="waste-card" aria-live="polite">
-                    <div class="waste-main">
-                        <div class="waste-icon" id="waste-icon"><i class="fa-regular fa-calendar-check"></i></div>
-                        <h2 class="waste-title" id="waste-type-title">-</h2>
-                    </div>
-                    <div class="waste-meta">
-                        <span class="meta-chip" id="hero-district-chip">Zona: -</span>
-                    </div>
-                    <div class="card-details" id="card-details">
-                        <div class="details-headline">
-                            <h3 id="details-title">Dettagli conferimento</h3>
-                            <p id="details-text">Esponi i rifiuti solo dalle 19:00 alle 21:00</p>
-                        </div>
-                    </div>
-                </article>
-            </section>
-        </main>
+                <div class="cal-summary" id="cal-summary"></div>
 
-        <nav class="dock" aria-label="Navigazione principale">
-            <button class="dock-btn" data-nav="search" type="button" onclick="openSearchModal()">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <span class="nav-label">DOVE LO BUTTO</span>
-            </button>
-            <button class="dock-btn" data-nav="district" type="button" onclick="openDistrictModal()">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <span class="nav-label">QUARTIERE</span>
-            </button>
-            <button class="dock-btn" data-nav="language" type="button" onclick="openLanguageModal()">
-                <i class="fa-solid fa-language"></i>
-                <span class="nav-label">LINGUA</span>
-            </button>
-            <button class="dock-btn" data-nav="info" type="button" onclick="openInfoModal()">
-                <i class="fa-solid fa-circle-info"></i>
-                <span class="nav-label">INFO</span>
-            </button>
-        </nav>
+                <div class="cal-viewport" id="cal-viewport">
+                    <div class="cal-grid-head">
+                        <span data-i18n="weekday.shortMon">L</span>
+                        <span data-i18n="weekday.shortTue">M</span>
+                        <span data-i18n="weekday.shortWed">M</span>
+                        <span data-i18n="weekday.shortThu">G</span>
+                        <span data-i18n="weekday.shortFri">V</span>
+                        <span data-i18n="weekday.shortSat">S</span>
+                        <span data-i18n="weekday.shortSun">D</span>
+                    </div>
+                    <div class="cal-grid" id="cal-grid"></div>
+                    <p class="cal-swipe-hint" data-i18n="calendar.swipeHint">Scorri ← → per cambiare mese</p>
+                </div>
+
+                <div class="cal-day-detail" id="cal-day-detail" hidden></div>
+
+                <div class="cal-legend" id="cal-legend"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="modal" id="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
-        <div class="modal-backdrop" onclick="closeSearchModal()"></div>
-        <section class="modal-card">
-            <header class="modal-head">
-                <h2 id="search-modal-title">Dove lo butto?</h2>
-                <button type="button" class="modal-close" onclick="closeSearchModal()" aria-label="Chiudi">
-                    <i class="fa-solid fa-xmark"></i>
+    <!-- ===== LANGUAGE SHEET ===== -->
+    <div class="sheet" id="sheet-language" role="dialog" aria-modal="true" aria-labelledby="language-title" hidden>
+        <div class="sheet-backdrop" data-action="close-sheet"></div>
+        <div class="sheet-card sheet-small">
+            <div class="sheet-handle" aria-hidden="true"></div>
+            <header class="sheet-head">
+                <h2 id="language-title" data-i18n="language.title">Lingua</h2>
+                <button class="sheet-close" type="button" data-action="close-sheet" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
             </header>
-            <div class="modal-body">
-                <div class="input-wrap">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input id="search-input" class="search-input" type="text" autocomplete="off" placeholder="Scrivi cosa vuoi buttare...">
-                </div>
-                <div class="suggestions" id="search-suggestions">
-                    <button type="button" class="chip" onclick="performSearchBySuggestion('bottiglia')"><span data-translate="searchSuggestions.bottiglia">bottiglia</span></button>
-                    <button type="button" class="chip" onclick="performSearchBySuggestion('carta')"><span data-translate="searchSuggestions.carta">carta</span></button>
-                    <button type="button" class="chip" onclick="performSearchBySuggestion('lattina')"><span data-translate="searchSuggestions.lattina">lattina</span></button>
-                    <button type="button" class="chip" onclick="performSearchBySuggestion('avanzi')"><span data-translate="searchSuggestions.avanzi">avanzi</span></button>
-                </div>
-                <div id="search-results-meta" class="results-meta" aria-live="polite"></div>
-                <div id="search-results" class="results-list search-results-grid"></div>
+            <div class="sheet-body">
+                <button class="lang-option" data-lang="it" type="button">
+                    <span class="lang-flag">🇮🇹</span>
+                    <span class="lang-name">Italiano</span>
+                    <i class="fa-solid fa-check lang-check" aria-hidden="true"></i>
+                </button>
+                <button class="lang-option" data-lang="en" type="button">
+                    <span class="lang-flag">🇬🇧</span>
+                    <span class="lang-name">English</span>
+                    <i class="fa-solid fa-check lang-check" aria-hidden="true"></i>
+                </button>
             </div>
-        </section>
+        </div>
     </div>
 
-    <div class="modal" id="district-modal" role="dialog" aria-modal="true" aria-labelledby="district-modal-title">
-        <div class="modal-backdrop" onclick="closeDistrictModal()"></div>
-        <section class="modal-card">
-            <header class="modal-head">
-                <h2 id="district-modal-title">Seleziona il tuo quartiere</h2>
-                <button type="button" class="modal-close" onclick="closeDistrictModal()" aria-label="Chiudi">
-                    <i class="fa-solid fa-xmark"></i>
+    <!-- ===== INFO SHEET ===== -->
+    <div class="sheet" id="sheet-info" role="dialog" aria-modal="true" aria-labelledby="info-title" hidden>
+        <div class="sheet-backdrop" data-action="close-sheet"></div>
+        <div class="sheet-card">
+            <div class="sheet-handle" aria-hidden="true"></div>
+            <header class="sheet-head">
+                <h2 id="info-title" data-i18n="info.title">Informazioni</h2>
+                <button class="sheet-close" type="button" data-action="close-sheet" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
             </header>
-            <div class="modal-body">
-                <div class="input-wrap">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input id="district-search" class="search-input" type="text" autocomplete="off" placeholder="Cerca il tuo quartiere...">
+            <div class="sheet-body">
+                <div class="info-block">
+                    <h3 data-i18n="info.howTitle">Come funziona</h3>
+                    <p data-i18n="info.howText">L'app mostra cosa preparare per il prossimo conferimento porta-a-porta nel tuo quartiere e ti ricorda la finestra 19:00–21:00 in cui esporre i sacchi.</p>
                 </div>
-                <div class="cluster-legend">
-                    <span data-translate="clusterLegendTitle">Cluster calendario</span>
-                    <div class="legend-chips">
-                        <span class="legend-chip arancione" data-translate="cluster.arancione">Arancione</span>
-                        <span class="legend-chip azzurro" data-translate="cluster.azzurro">Azzurro</span>
-                        <span class="legend-chip blu" data-translate="cluster.blu">Blu</span>
-                        <span class="legend-chip verde" data-translate="cluster.verde">Verde</span>
-                        <span class="legend-chip viola" data-translate="cluster.viola">Viola</span>
-                    </div>
+                <div class="info-block">
+                    <h3 data-i18n="info.linksTitle">Link utili</h3>
+                    <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" target="_blank" rel="noopener" class="info-link">
+                        <span><strong data-i18n="info.l1t">Calendari ufficiali AMIA</strong><br><small data-i18n="info.l1d">Tutti i calendari porta-a-porta</small></span>
+                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" target="_blank" rel="noopener" class="info-link">
+                        <span><strong data-i18n="info.l2t">Dizionario rifiuti</strong><br><small data-i18n="info.l2d">Dove buttare ogni oggetto</small></span>
+                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.amiavr.it" target="_blank" rel="noopener" class="info-link">
+                        <span><strong data-i18n="info.l3t">Sito AMIA</strong><br><small data-i18n="info.l3d">Portale principale</small></span>
+                        <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
                 </div>
-                <div id="district-results-meta" class="results-meta" aria-live="polite"></div>
-                <div id="district-list" class="results-list district-results-grid"></div>
+                <div class="info-block">
+                    <h3 data-i18n="info.aboutTitle">App</h3>
+                    <p class="info-meta">v3.0 · <span data-i18n="info.update">Aprile 2026</span></p>
+                    <p class="info-meta">© 2026 Gregorio Pellegrini</p>
+                </div>
             </div>
-        </section>
+        </div>
     </div>
 
-    <div class="modal" id="language-modal" role="dialog" aria-modal="true" aria-labelledby="language-modal-title">
-        <div class="modal-backdrop" onclick="closeLanguageModal()"></div>
-        <section class="modal-card small">
-            <header class="modal-head">
-                <h2 id="language-modal-title">Seleziona lingua</h2>
-                <button type="button" class="modal-close" onclick="closeLanguageModal()" aria-label="Chiudi">
-                    <i class="fa-solid fa-xmark"></i>
+    <!-- ===== ITEM DETAIL SHEET ===== -->
+    <div class="sheet" id="sheet-item" role="dialog" aria-modal="true" aria-labelledby="item-title" hidden>
+        <div class="sheet-backdrop" data-action="close-sheet"></div>
+        <div class="sheet-card sheet-small">
+            <div class="sheet-handle" aria-hidden="true"></div>
+            <header class="sheet-head">
+                <h2 id="item-title">—</h2>
+                <button class="sheet-close" type="button" data-action="close-sheet" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
             </header>
-            <div class="modal-body">
-                <div class="language-options">
-                    <button class="language-option active" data-lang="it" type="button" onclick="selectLanguage('it')">
-                        <span class="language-main">
-                            <span class="language-flag it" aria-hidden="true"></span>
-                            <span class="language-copy">
-                                <span class="language-label">Italiano</span>
-                                <span class="language-note">Lingua predefinita</span>
-                            </span>
-                        </span>
-                        <span class="language-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
-                    </button>
-                    <button class="language-option" data-lang="en" type="button" onclick="selectLanguage('en')">
-                        <span class="language-main">
-                            <span class="language-flag en" aria-hidden="true"></span>
-                            <span class="language-copy">
-                                <span class="language-label">English</span>
-                                <span class="language-note">International</span>
-                            </span>
-                        </span>
-                        <span class="language-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
-                    </button>
-                </div>
+            <div class="sheet-body">
+                <div class="item-detail" id="item-detail"></div>
             </div>
-        </section>
+        </div>
     </div>
 
-    <div class="modal" id="info-modal" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
-        <div class="modal-backdrop" onclick="closeInfoModal()"></div>
-        <section class="modal-card">
-            <header class="modal-head">
-                <h2 id="info-modal-title">Informazioni</h2>
-                <button type="button" class="modal-close" onclick="closeInfoModal()" aria-label="Chiudi">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </header>
-            <div class="modal-body">
-                <div class="info-tabs">
-                    <button class="info-tab active" data-tab="app" type="button" onclick="showInfoTab('app')">App</button>
-                    <button class="info-tab" data-tab="links" type="button" onclick="showInfoTab('links')">Link Utili</button>
-                    <button class="info-tab" data-tab="sdg" type="button" onclick="showInfoTab('sdg')">Sostenibilita</button>
-                    <button class="info-tab" data-tab="about" type="button" onclick="showInfoTab('about')">Info</button>
-                </div>
-
-                <section class="info-tab-content active" id="app-tab">
-                    <h3>Come funziona l'app</h3>
-                    <p>Questa app ti aiuta a gestire la raccolta differenziata a Verona.</p>
-                    <ul class="bullet-list">
-                        <li>Calendario personalizzato per quartiere</li>
-                        <li>Ricerca intelligente rifiuti</li>
-                        <li>Orari di conferimento (19:00-21:00)</li>
-                        <li>Supporto multilingue (IT/EN)</li>
-                    </ul>
-                </section>
-
-                <section class="info-tab-content" id="links-tab">
-                    <h3>Link Utili AMIA</h3>
-                    <p>Risorse ufficiali per approfondimenti</p>
-                    <div class="link-list">
-                        <a href="https://www.amiavr.it/Raccolta-differenziata/I-calendari-del-porta-a-porta" target="_blank" rel="noopener" class="info-link">
-                            <span class="link-title">Calendari Ufficiali</span>
-                            <span class="link-description">Tutti i calendari del porta a porta</span>
-                        </a>
-                        <a href="https://www.amiavr.it/Raccolta-differenziata/Dizionario-dei-rifiuti" target="_blank" rel="noopener" class="info-link">
-                            <span class="link-title">Dizionario Rifiuti</span>
-                            <span class="link-description">Dove buttare ogni oggetto</span>
-                        </a>
-                        <a href="https://www.amiavr.it" target="_blank" rel="noopener" class="info-link">
-                            <span class="link-title">Sito AMIA</span>
-                            <span class="link-description">Portale principale</span>
-                        </a>
-                    </div>
-                </section>
-
-                <section class="info-tab-content" id="sdg-tab">
-                    <h3>Obiettivi Sostenibili</h3>
-                    <p>Contribuisci agli SDGs delle Nazioni Unite</p>
-                    <div class="sdg-list">
-                        <article class="sdg-item"><strong>11</strong><div><h4>Citta Sostenibili</h4><p>Rendere le citta inclusive e sostenibili</p></div></article>
-                        <article class="sdg-item"><strong>12</strong><div><h4>Consumo Responsabile</h4><p>Garantire modelli sostenibili</p></div></article>
-                        <article class="sdg-item"><strong>14</strong><div><h4>Vita Sott'acqua</h4><p>Conservare oceani e risorse marine</p></div></article>
-                    </div>
-                </section>
-
-                <section class="info-tab-content" id="about-tab">
-                    <h3>Informazioni App</h3>
-                    <div class="about-list">
-                        <div><strong>Versione</strong><span>2.0</span></div>
-                        <div><strong>Ultimo aggiornamento</strong><span>Marzo 2026</span></div>
-                        <div><strong>Compatibilita</strong><span>Tutti i dispositivi</span></div>
-                    </div>
-                    <p class="copyright">© 2026 Gregorio Pellegrini</p>
-                </section>
-            </div>
-        </section>
-    </div>
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
     <script src="waste-calendars.js"></script>
     <script src="waste-dictionary.js"></script>
